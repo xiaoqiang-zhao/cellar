@@ -1,0 +1,24 @@
+{
+  "name": "cellar",
+  "version": "0.0.1",
+  "description": "大前端的一些知识理论实践的整理，不仅包括浏览器也包括服务器端的node，http协议，设计模式，工程化等内容",
+  "keywords": [
+    "前端"
+  ],
+  "maintainers": [
+    {
+      "name": "longze",
+      "email": "longze_xq@163.com"
+    }
+  ],
+  "scripts": {
+    "start": "node server",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/longze/cellar.git"
+  },
+  "dependencies": {
+  }
+}
