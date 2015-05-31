@@ -41,6 +41,17 @@ github是开源的圣地，但开源是靠不开源作为经济支撑的，因�
 
 ## github上的一些操作
 
+**个人主页**
+登录github后点击用户名到个人主页。
+
+**Repository** ，
+仓库在个人主页下，有一个名为 `repositories` 的tab页，此tab页下是当前账户下所有仓库的列表。
+当前账户自建的仓库和从别人那里fork出的仓库都可以在这里找到。
+
+**branch**
+从上面 `repositories` 的列表可进入任一仓库，从当前仓库下的 `branches` 链接可进入分支管理页，
+可以在此处删除分支，或者将分支合并回主干。
+
 ## 更多资料
 
 [GitHub详细教程](http://blog.csdn.net/showhilllee/article/details/27706679)
