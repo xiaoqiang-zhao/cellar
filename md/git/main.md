@@ -57,6 +57,11 @@ github是开源的圣地，但开源是靠不开源作为经济支撑的，因�
 **更新分支**
 右击项目文件，git/repository/pull 从git上获取新的分支信息。
 
+**切换分支**
+右下角有编码和Git的版本信息，点击右下角的版本信息上下箭头会出现Git Branches列表，
+其中Remote Branches就是Git上的分支列表，
+在展开下一级菜单中有Check Out，Compare，Merge，Delete。
+
 ## 更多资料
 
 [GitHub详细教程](http://blog.csdn.net/showhilllee/article/details/27706679)
