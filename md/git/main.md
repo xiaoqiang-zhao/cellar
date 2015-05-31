@@ -52,6 +52,11 @@ github是开源的圣地，但开源是靠不开源作为经济支撑的，因�
 从上面 `repositories` 的列表可进入任一仓库，从当前仓库下的 `branches` 链接可进入分支管理页，
 可以在此处删除分支，或者将分支合并回主干。
 
+## WebStorm 技巧备忘
+
+**更新分支**
+右击项目文件，git/repository/pull 从git上获取新的分支信息。
+
 ## 更多资料
 
 [GitHub详细教程](http://blog.csdn.net/showhilllee/article/details/27706679)
