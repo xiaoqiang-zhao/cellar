@@ -10,7 +10,7 @@ var config = require('./config');
 
 function routRequest(request, response) {
     var routList = [
-        routStaticField,
+        routStaticFile,
         routUserSettingPath,
         routAutoPath,
         notFound
@@ -32,15 +32,7 @@ function routRequest(request, response) {
      */
 }
 
-function routUserSettingPath() {
-
-}
-
-function routAutoPath() {
-
-}
-
-function routStaticField(request, response, routList) {
+function routStaticFile(request, response, routList) {
     // TODO 错误日志，异常处理
     // 请求路径
     var path = url.parse(request.url).pathname;
@@ -58,7 +50,7 @@ function routStaticField(request, response, routList) {
                     request,
                     response,
                     {
-                        type: 'field',
+                        type: 'file',
                         data: staticFieldConfig,
                         msg: '未找到文件，或文件读取失败'
                     }
@@ -101,6 +93,14 @@ function routStaticField(request, response, routList) {
 
         return configData;
     }
+}
+
+function routUserSettingPath() {
+
+}
+
+function routAutoPath() {
+
 }
 
 function notFound() {
