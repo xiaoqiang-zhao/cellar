@@ -6,13 +6,14 @@
 var encoding = 'utf-8'; // 编码方式一定要在这里设置，下面很多地方会用到，切勿删除
 
 module.exports = {
-    encoding: encoding,            // 编码设置
-    defaultPort: 8899,             // 服务启动的默认端口
-    defaultPage: '/index.html',    // 默认页面
-    servicePath: '../../service/', // 动态服务的路径
-    isAutoOpenDefaultPage: true,   // 服务启动后是否在浏览器中打开默认页面
-    afterPortConflict: 'break',    // 端口冲突后：break停止启动，continue寻找可用端口继续启动
-    staticFieldConfig: {           // 静态文件配置
+    encoding: encoding,                      // 编码设置
+    defaultPort: 8899,                       // 服务启动的默认端口
+    defaultPage: '/index.html',              // 默认页面
+    servicePath: '../../service/',           // 动态服务的路径
+    serviceRoutConfigPath: 'rout-config.js', // service下，用户自定义服务路由，可支持RESTful
+    isAutoOpenDefaultPage: true,             // 服务启动后是否在浏览器中打开默认页面
+    afterPortConflict: 'break',              // 端口冲突后：break停止启动，continue寻找可用端口继续启动
+    staticFieldConfig: {                     // 静态文件配置
         html: {
             contentType: 'text/html; charset=' + encoding,
             encoding: encoding
