@@ -123,11 +123,10 @@ function routStaticFile(request, response, routList) {
 function routUserSettingPath(request, response, routList) {
     var serviceRoutConfig;
     var routInfo;
+    var servicePath = config.servicePath;
     try {
-        serviceRoutConfig = require(config.servicePath + config.serviceRoutConfigPath);
+        serviceRoutConfig = require(servicePath + config.serviceRoutConfigPath);
         routInfo = getRoutInfo(request, serviceRoutConfig);
-
-
     }
         // 获取用户配置的路由失败，进入下一个分支
     catch (err) {
@@ -142,7 +141,7 @@ function routUserSettingPath(request, response, routList) {
     if (routInfo !== null) {
         try {
             var contentType = getStaticFieldConfig(routInfo.contentType);
-            var serviceModel = require(routInfo.servicePath);
+            var serviceModel = require(servicePath + routInfo.modelPath);
             var content = serviceModel[routInfo.method](request);
 
             response.writeHead(200, {

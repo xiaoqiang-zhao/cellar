@@ -7,8 +7,8 @@ module.exports = [
     {
         requestMethodType: 'GET',
         contentType: 'html',
-        urlPath: '/articles/{articleId}', // 匹配的请求路径
-        modelPath: './articles',          // 响应模块路径
+        urlPath: '/articles/{articleId}', // 匹配的请求路径（不包括url参数）
+        modelPath: 'articles',            // 响应模块路径（其实是与server下config的servicePath做拼接）
         method: 'data'                    // 模块具体响应方法，默认是data方法
     }
 ];
