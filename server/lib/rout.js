@@ -128,8 +128,8 @@ function routUserSettingPath(request, response, routList) {
         serviceRoutConfig = require(servicePath + config.serviceRoutConfigPath);
         routInfo = getRoutInfo(request, serviceRoutConfig);
     }
-        // 获取用户配置的路由失败，进入下一个分支
     catch (err) {
+        // 获取用户配置的路由失败，进入下一个分支
         if (routList.length > 0) {
             routList.shift()(request, response, routList);
         }
@@ -142,7 +142,23 @@ function routUserSettingPath(request, response, routList) {
         try {
             var contentType = getStaticFieldConfig(routInfo.contentType);
             var serviceModel = require(servicePath + routInfo.modelPath);
-            var content = serviceModel[routInfo.method](request);
+
+            /**
+             * 方案一，使用方便，但是会污染服务对象
+             *
+             // 为 serviceModel 添加额外的属性，
+             // 如果 serviceModel 中已经有这两个属性，那么会被覆盖，这个还没有好的解决办法
+             serviceModel.request = request;
+             serviceModel.response = response;
+             // 将分离出的路径参数传入
+             var content = serviceModel[routInfo.method].apply(serviceModel, routInfo.arguments);
+             */
+
+            /**
+             * 方案一，不污染服务对象，在服务对象的对外方法中需要显示声明参数
+             */
+            routInfo.arguments.push(request, response);
+            var content = serviceModel[routInfo.method].apply(serviceModel, routInfo.arguments);
 
             response.writeHead(200, {
                 'Content-Type': contentType

@@ -5,14 +5,7 @@
  */
 
 module.exports = {
-    data: function (request, response) {
-        // 先写静态的
-        response.writeHead(200, {
-            'Content-Type': ''
-        });
-        response.write('临时');
-        response.end();
-
+    data: function (articleName, request, response) {
         return '临时';
     }
 };
