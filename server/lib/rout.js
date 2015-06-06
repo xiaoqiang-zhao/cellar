@@ -9,12 +9,11 @@ var url = require('url');
 var config = require('./config');
 
 /****  路径处理  ***/
-// 去开头
-
 config.requireServicePath = '../..' + config.servicePath; // 写死了，如果修改server的目录结构此处会有坑
-var filePathRoot = __filename.replace(process.cwd(), '');
+// 去开头
+var filePathRoot = __dirname.replace(process.cwd(), '');
 // 去结尾
-filePathRoot = filePathRoot.replace('/server/lib/rout.js', '');
+filePathRoot = filePathRoot.replace(/\/server\/lib$/, '');
 // 加相对路径，去头之后是以斜杠开头的
 filePathRoot = '.' + filePathRoot;
 config.filePathRoot = filePathRoot;
@@ -324,7 +323,8 @@ function routAutoPath(request, response, routList) {
  * @private
  */
 function notFound(request, response) {
-
+    response.writeHead(404);
+    response.end();
 }
 module.exports = {
     routRequest: routRequest
