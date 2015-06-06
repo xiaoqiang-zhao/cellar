@@ -1,5 +1,5 @@
 /**
- * ·şÎñÂ·ÓÉÅäÖÃÎÄ¼ş
+ * æœåŠ¡è·¯ç”±é…ç½®æ–‡ä»¶
  *
  * Created by v_zhaoxiaoqiang on 2015/6/3.
  */
@@ -7,8 +7,8 @@ module.exports = [
     {
         requestMethodType: 'GET',
         contentType: 'html',
-        urlPath: '/articles/{articleId}', // Æ¥ÅäµÄÇëÇóÂ·¾¶£¨²»°üÀ¨url²ÎÊı£©
-        modelPath: 'articles',            // ÏìÓ¦Ä£¿éÂ·¾¶£¨ÆäÊµÊÇÓëserverÏÂconfigµÄservicePath×öÆ´½Ó£©
-        method: 'data'                    // Ä£¿é¾ßÌåÏìÓ¦·½·¨£¬Ä¬ÈÏÊÇdata·½·¨
+        urlPath: '/articles/{articleId}', // åŒ¹é…çš„è¯·æ±‚è·¯å¾„ï¼ˆä¸åŒ…æ‹¬urlå‚æ•°ï¼‰
+        modelPath: '/articles',           // å“åº”æ¨¡å—è·¯å¾„ï¼ˆå…¶å®æ˜¯ä¸serverä¸‹configçš„servicePathåšæ‹¼æ¥ï¼‰
+        methodName: 'data'                // æ¨¡å—å…·ä½“å“åº”æ–¹æ³•ï¼Œé»˜è®¤æ˜¯dataæ–¹æ³•
     }
 ];
