@@ -8,6 +8,17 @@ var fs = require('fs');
 var url = require('url');
 var config = require('./config');
 
+/****  路径处理  ***/
+// 去开头
+
+config.requireServicePath = '../..' + config.servicePath; // 写死了，如果修改server的目录结构此处会有坑
+var filePathRoot = __filename.replace(process.cwd(), '');
+// 去结尾
+filePathRoot = filePathRoot.replace('/server/lib/rout.js', '');
+// 加相对路径，去头之后是以斜杠开头的
+filePathRoot = '.' + filePathRoot;
+config.filePathRoot = filePathRoot;
+
 /**
  * 通过扩展名获取文件的配置信息
  *
@@ -83,7 +94,7 @@ function routStaticFile(request, response, routList) {
     // 允许访问此扩展名的静态文件
     if (staticFieldConfig !== undefined) {
         // 读取静态文件
-        fs.readFile('.' + path, staticFieldConfig.encoding, function (err, data) {
+        fs.readFile(filePathRoot + path, staticFieldConfig.encoding, function (err, data) {
             if (err) {
                 routList[routList.length - 1](
                     request,
@@ -123,9 +134,9 @@ function routStaticFile(request, response, routList) {
 function routUserSettingPath(request, response, routList) {
     var serviceRoutConfig;
     var routInfo;
-    var servicePath = config.servicePath;
+    var requireServicePath = config.requireServicePath;
     try {
-        serviceRoutConfig = require(servicePath + config.serviceRoutConfigPath);
+        serviceRoutConfig = require(requireServicePath + config.serviceRoutConfigPath);
         routInfo = getRoutInfo(request, serviceRoutConfig);
     }
     catch (err) {
@@ -141,7 +152,9 @@ function routUserSettingPath(request, response, routList) {
     if (routInfo !== null) {
         try {
             var contentType = getStaticFieldConfig(routInfo.contentType);
-            var serviceModel = require(servicePath + routInfo.modelPath);
+            var serviceModel = require(requireServicePath + routInfo.modelPath);
+            // 服务调用方法名
+            var methodName = routInfo.methodName || config.serviceDefaultMethodName;
 
             /**
              * 方案一，使用方便，但是会污染服务对象
@@ -155,10 +168,13 @@ function routUserSettingPath(request, response, routList) {
              */
 
             /**
-             * 方案一，不污染服务对象，在服务对象的对外方法中需要显示声明参数
+             * 方案二，不污染服务对象，在服务对象的对外方法中需要显示声明参数
              */
             routInfo.arguments.push(request, response);
-            var content = serviceModel[routInfo.method].apply(serviceModel, routInfo.arguments);
+            var content = serviceModel[methodName].apply(serviceModel, routInfo.arguments);
+            if(typeof content === 'object') {
+                content = JSON.stringify(content);
+            }
 
             response.writeHead(200, {
                 'Content-Type': contentType
@@ -254,7 +270,50 @@ function routUserSettingPath(request, response, routList) {
  * @private
  */
 function routAutoPath(request, response, routList) {
+    var pathName = url.parse(request.url).pathname;
+    var modePath = config.requireServicePath + pathName;
+    var filePath = filePathRoot + config.servicePath + pathName;
 
+    fs.exists(filePath, function (exists) {
+        if (exists) {
+            writeResponse(modePath);
+        }
+        else {
+            fs.exists(filePath + '.js', function (exists) {
+                if (exists) {
+                    writeResponse(modePath + '.js');
+                }
+                else {
+                    routList.shift()(request, response, routList);
+                }
+            });
+        }
+    });
+
+    function writeResponse(modePath) {
+        try {
+
+            var serviceModel = require(modePath);
+            // 服务调用方法名
+            var methodName = config.serviceDefaultMethodName;
+            var contentType = serviceModel.contentType || serviceDefaultContentType;
+            contentType = getStaticFieldConfig(contentType).contentType;
+
+            var content = serviceModel[methodName](request, response);
+            if(typeof content === 'object') {
+                content = JSON.stringify(content);
+            }
+
+            response.writeHead(200, {
+                'Content-Type': contentType
+            });
+            response.write(content);
+        }
+        catch (err) {
+            response.writeHead(500);
+        }
+        response.end();
+    }
 }
 
 /**
