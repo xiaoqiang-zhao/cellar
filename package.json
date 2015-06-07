@@ -1,19 +1,17 @@
 {
   "name": "cellar",
-  "version": "0.0.1",
-  "description": "´óÇ°¶ËµÄÒ»Ğ©ÖªÊ¶ÀíÂÛÊµ¼ùµÄÕûÀí£¬²»½ö°üÀ¨ä¯ÀÀÆ÷Ò²°üÀ¨·şÎñÆ÷¶ËµÄnode£¬httpĞ­Òé£¬Éè¼ÆÄ£Ê½£¬¹¤³Ì»¯µÈÄÚÈİ",
+  "description": "cellarä¸­æ–‡æ„æ€é…’çª–ï¼Œå¸Œæœ›è¿™é‡Œçš„æ¯ä¸€ç¯‡åšæ–‡éƒ½æ˜¯ä¸€ç“¶ç¾é…’ä½³é…¿ã€‚é‡‡ç”¨nodeæ­å»ºï¼Œé›†æ¡†æ¶ä¸å†…å®¹ä¸ºä¸€ä½“çš„åšå®¢ç³»ç»Ÿ",
   "keywords": [
-    "Ç°¶Ë"
+    "cellar",
+    "longze",
+    "node",
+    "javascript"
   ],
-  "maintainers": [
-    {
-      "name": "longze",
-      "email": "longze_xq@163.com"
-    }
-  ],
-  "scripts": {
-    "start": "node server",
-    "test": ""
+  "version": "1.0",
+  "main": "server/lib/start-server.js",
+  "author": {
+    "name": "èµµæ™“å¼º",
+    "email": "longzeee@gmail.com"
   },
   "repository": {
     "type": "git",

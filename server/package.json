@@ -1,5 +1,16 @@
 {
-  "name": "server",
-  "version": "0.0.1",
-  "main": "lib/start-server.js"
+  "name": "cellar",
+  "description": "Web服务框架，提供静态文件路由，RESTful路由配置，通过请求路径映射服务，异常处理等功能",
+  "keywords": [
+    "cellar",
+    "longze",
+    "node",
+    "javascript"
+  ],
+  "version": "1.0",
+  "main": "lib/start-server.js",
+  "author": {
+    "name": "赵晓强",
+    "email": "longzeee@gmail.com"
+  }
 }
