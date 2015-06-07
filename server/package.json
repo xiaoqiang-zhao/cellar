@@ -7,7 +7,7 @@
     "node",
     "javascript"
   ],
-  "version": "1.0",
+  "version": "v1.0",
   "main": "lib/start-server.js",
   "author": {
     "name": "赵晓强",
