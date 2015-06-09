@@ -44,6 +44,7 @@
     <textarea name="textareaName">textarea内容</textarea>
 </div>
 <button id="btn">获取数据</button>
+<button id="btn2">获取数据,忽略空值和没有选中项的组</button>
 <div id="result"></div>
 </body>
 <script>
@@ -58,11 +59,12 @@
          * 获取表单数据
          *
          * @param {string|Object} form 要读取的表单，只接受两种格式：form的id，form的原生dom节点
-         * @param {string|object} noCheckedValue checkbox和radio组没有选中项时取得值
+         * @param {Boolean} isFilterEmpty 是否将空值（空字符串，没有选中项的组）从对象中过滤掉
+         * @param {string|Object} noCheckedValue checkbox和radio组没有选中项时取得值
          * @return {Object} formObj 获取到的数据对象
          * @public
          */
-        function getFromData(form, noCheckedValue) {
+        function getFromData(form, isFilterEmpty, noCheckedValue) {
             if (typeof form === 'string') {
                 form = g(form);
             }
@@ -89,18 +91,18 @@
 
             // 单键值元素
             formEleArr.single.forEach(function (ele) {
-                single(ele, formObj);
+                single(ele, formObj, isFilterEmpty);
             });
             // input情况比较复杂
             formEleArr.input.forEach(function (ele) {
                 var type = ele.type;
                 // 单键值处理
                 if (type === 'hidden' || type === 'text') {
-                    single(ele, formObj);
+                    single(ele, formObj, isFilterEmpty);
                 }
                 // 一组一值
                 else if (type === 'radio') {
-                    radio(ele, formObj, noCheckedValue);
+                    radio(ele, formObj, noCheckedValue, isFilterEmpty);
                 }
                 // 一组多值
                 else if (type === 'checkbox') {
@@ -111,10 +113,20 @@
             // 将一组多值合并会单键值
             for (var name in formCheckboxObj) {
                 if (formCheckboxObj[name].length > 0) {
-                    formObj[name] = formCheckboxObj[name].join(',');
+                    var checkboxVal = formCheckboxObj[name].join(',');
+                    if (isFilterEmpty === true) {
+                        if (checkboxVal !== '') {
+                            ormObj[name] = checkboxVal;
+                        }
+                    }
+                    else {
+                        formObj[name] = checkboxVal;
+                    }
                 }
                 else {
-                    formObj[name] = noCheckedValue;
+                    if (isFilterEmpty !== true) {
+                        formObj[name] = noCheckedValue;
+                    }
                 }
             }
 
@@ -122,40 +134,64 @@
         }
 
         // 单键值处理
-        function single(ele, formObj) {
-            var name = ele.name;
+        function single(ele, formObj, isFilterEmpty) {
+            var name = trim(ele.name);
+            var val = trim(ele.value);
             if (name !== '') {
-                formObj[name] = ele.value;
+                if (isFilterEmpty === true) {
+                    if (val !== '') {
+                        formObj[name] = ele.value;
+                    }
+                }
+                else {
+                    formObj[name] = val;
+                }
+
             }
         }
 
         // 一组一值
-        function radio(ele, formObj, noCheckedValue) {
-            var name = ele.name;
+        function radio(ele, formObj, noCheckedValue, isFilterEmpty) {
+            var name = trim(ele.name);
+            var val = trim(ele.value);
             if (name !== '') {
                 if (ele.checked) {
-                    formObj[name] = ele.value;
-                }
-                else {
-                    // 当一组radio没有选中值时，值为null
-                    if (formObj[name] === undefined) {
-                        formObj[name] = noCheckedValue;
+                    if (isFilterEmpty === true) {
+                        if (val !== '') {
+                            formObj[name] = val;
+                        }
                     }
+                    else {
+                        formObj[name] = val;
+                    }
+                }
+                else if (isFilterEmpty !== true && formObj[name] === undefined) {
+                    formObj[name] = noCheckedValue;
                 }
             }
         }
 
         // 一组多值
         function checkbox(ele, formCheckboxObj) {
-            var name = ele.name;
+            var name = trim(ele.name);
+            var val = trim(ele.value);
             if (name !== '') {
                 if (formCheckboxObj[name] === undefined) {
                     formCheckboxObj[name] = [];
                 }
 
                 if (ele.checked) {
-                    formCheckboxObj[name].push(ele.value);
+                    formCheckboxObj[name].push(val);
                 }
+            }
+        }
+
+        function trim(str) {
+            if (typeof str === 'string') {
+                return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+            }
+            else {
+                return str;
             }
         }
 
@@ -163,7 +199,10 @@
             var obj = getFromData('con');
             g('result').innerHTML = JSON.stringify(obj);
         };
-
+        g('btn2').onclick = function () {
+            var obj = getFromData('con', true, null);
+            g('result').innerHTML = JSON.stringify(obj);
+        };
         // 调试
         var obj = getFromData('con');
         g('result').innerHTML = JSON.stringify(obj);
