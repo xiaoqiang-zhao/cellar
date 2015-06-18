@@ -43,9 +43,22 @@ mac下如果用上面命令可能存在权限问题，如果出现错误无法�
     // 查看端口占用情况
     Mac:lsof -i -P    Win7:netstat -ano
 
+Git:[https://github.com/node-inspector/node-inspector](https://github.com/node-inspector/node-inspector)
+
 ## hotnode
 
-上面方案的不方便之处在于每次修改完都需要重启node服务，
+上面方案的不方便之处在于每次修改完源码并不会反映到调试窗口中，
+当然小的修改可以直接在天使窗口中进行，但是返回头还需要改源码。
+如果要在调试器中看到新代码需要手动关闭再启动node服务。
+找到一个开源工具可以热启动node，他的原理是监听文件改变，如果有改变自动重启node服务，并打出log。
+安装盒运行非常简单，命令如下：
+
+    // 安装
+    npm install -g hotnode
+    // 热启动应用
+    hotnode app
+
+Git:[https://github.com/saschagehlich/hotnode](https://github.com/saschagehlich/hotnode)
 
 ## 两种技术的结合
 
