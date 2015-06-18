@@ -2,6 +2,8 @@
 
 ## 调试环境
 
+### inspector
+
 Web开发使用 `inspector` 插件在chrome中调试，
 win7下命令行运行 `npm install -g node-inspector` 安装，
 mac下如果用上面命令可能存在权限问题，如果出现错误无法安装，尝试 `sudo npm install -g node-inspector` 并输入登录密码，
@@ -45,7 +47,7 @@ mac下如果用上面命令可能存在权限问题，如果出现错误无法�
 
 Git:[https://github.com/node-inspector/node-inspector](https://github.com/node-inspector/node-inspector)
 
-## hotnode
+### hotnode
 
 上面方案的不方便之处在于每次修改完源码并不会反映到调试窗口中，
 当然小的修改可以直接在天使窗口中进行，但是返回头还需要改源码。
@@ -60,9 +62,10 @@ Git:[https://github.com/node-inspector/node-inspector](https://github.com/node-i
 
 Git:[https://github.com/saschagehlich/hotnode](https://github.com/saschagehlich/hotnode)
 
-## 两种技术的结合
+### 两种技术的结合
 
-动态更新
+上面的准备已经做好，倒着一步就水到渠成了，
+将inspector中的 `node --debug-brk=5858 server` 换成 `hotnode --debug-brk=5858 server` 就可以了。
 
 ## 路径
 
