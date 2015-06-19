@@ -9,9 +9,10 @@ var url = require('url');
 var config = require('./config');
 
 /****  路径处理  ***/
+// 两层向上表示当前文件距项目根路径的深度是二
 config.requireServicePath = '../..' + config.servicePath; // 写死了，如果修改server的目录结构此处会有坑
-// 去开头
-var filePathRoot = __dirname.replace(process.cwd(), '');
+// 去开头 (文件路径需要将windows系统下的左“\”成"/")
+var filePathRoot = __dirname.replace(process.cwd(), '').replace(/\\/g, '/');
 // 去结尾
 filePathRoot = filePathRoot.replace(/\/server\/lib$/, '');
 // 加相对路径，去头之后是以斜杠开头的
