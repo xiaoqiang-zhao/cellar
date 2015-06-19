@@ -87,7 +87,8 @@ Git:[https://github.com/saschagehlich/hotnode](https://github.com/saschagehlich/
     
     // 通过掐头去尾，可以得到文件访问的统一参照路径，最好是指向和上面requirePathRoot相同的路径
     // 这样在模块引用和文件读取时就可以用相同的路径，当然前面加上各自的pathRoot
-    var filePathRoot = __dirname.replace(process.cwd(), ''); // 掐头
+    // 注意将windows下的左斜杠替换成右斜杠
+    var filePathRoot = __dirname.replace(process.cwd(), '').replace(/\\/g, '/'); // 掐头
     filePathRoot = filePathRoot.replace(/\/server\/lib$/, '');  // 去尾
     // 加相对路径，去头之后是以斜杠开头的
     filePathRoot = '.' + filePathRoot;
