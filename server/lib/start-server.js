@@ -11,15 +11,17 @@ var port = config.defaultPort;
 
 // TODO 端口占用检测
 
-http.createServer(function (request, response) {
+var server = http.createServer(function (request, response) {
     rout.routRequest(request, response);
-}).listen(port);
+});
+server.listen(port, function () {
+    // 监听失败(如端口冲突)不会执行此回调
+    console.log('本地服务器 http://localhost:' + port + ' 已经启动');
+    console.log('------ 服务器日志 ------');
 
-console.log('本地服务器 http://localhost:' + port + ' 已经启动');
-console.log('------ 服务器日志 ------');
-
-// 在默认浏览器中打开网站
-if (config.isAutoOpenDefaultPage) {
-    var cp = require('child_process');
-    cp.exec('start http://localhost:' + port + config.defaultPage);
-}
+    // 在默认浏览器中打开网站(Mac下无效)
+    if (config.isAutoOpenDefaultPage) {
+        var cp = require('child_process');
+        cp.exec('start http://localhost:' + port + config.defaultPage);
+    }
+});
