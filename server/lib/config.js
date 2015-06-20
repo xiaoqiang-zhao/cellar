@@ -7,7 +7,7 @@ var encoding = 'utf-8'; // 编码方式一定要在这里设置，下面很多�
 
 module.exports = {
     encoding: encoding,                       // 编码设置
-    defaultPort: 8899,                        // 服务启动的默认端口
+    defaultPort: 8888,                        // 服务启动的默认端口
     defaultPage: '/index.html',               // 默认页面
     servicePath: '/service',                  // 动态服务的路径，注意不要以斜杠结尾，相对路径是cellar（也就是当前的项目路径）
     serviceRoutConfigPath: '/rout-config.js', // service下，用户自定义服务路由，可支持RESTful
