@@ -57,21 +57,20 @@ function routRequest(request, response) {
         notFound
     ];
 
-    /* 异步编程的队列方案 */
-    routList.shift()(request, response, routList);
+    var rout = {
+        next: function () {
+            if (routList.length > 0) {
+                routList.shift()(request, response, rout);
+            }
+        },
+        last: function () {
+            // 拼接额外的参数
+            var arg = [request, response].concat(arguments);
+            routList.pop().call(null, arg);
+        }
+    };
 
-    /* 异步队列不能用循环
-     var result;
-     routList.some(function (item) {
-     try {
-     result = item(request, response);
-     }
-     catch (err) {
-     result = false;
-     }
-     return result;
-     });
-     */
+    rout.next();
 }
 
 /**
@@ -79,10 +78,10 @@ function routRequest(request, response) {
  *
  * @param {Object} request HTTP请求对象
  * @param {Object} response HTTP返回对象
- * @param {Array} routList 路由队列（不包含当前的路由规则）
+ * @param {Object} rout 路由对象，包含next和last两个方法来提供路由队列的操作
  * @private
  */
-function routStaticFile(request, response, routList) {
+function routStaticFile(request, response, rout) {
     // TODO 错误日志，异常处理
     // 请求路径
     var path = url.parse(request.url).pathname;
@@ -96,15 +95,11 @@ function routStaticFile(request, response, routList) {
         // 读取静态文件
         fs.readFile(filePathRoot + path, staticFieldConfig.encoding, function (err, data) {
             if (err) {
-                routList[routList.length - 1](
-                    request,
-                    response,
-                    {
-                        type: 'file',
-                        data: staticFieldConfig,
-                        msg: '未找到文件，或文件读取失败'
-                    }
-                );
+                rout.last({
+                    type: 'file',
+                    data: staticFieldConfig,
+                    msg: '未找到文件，或文件读取失败'
+                });
             }
             else {
                 response.writeHead(200, {
@@ -117,9 +112,7 @@ function routStaticFile(request, response, routList) {
     }
     // 不允许访问此扩展名的静态文件
     else {
-        if (routList.length > 0) {
-            routList.shift()(request, response, routList);
-        }
+        rout.next();
     }
 }
 
@@ -128,10 +121,10 @@ function routStaticFile(request, response, routList) {
  *
  * @param {Object} request HTTP请求对象
  * @param {Object} response HTTP返回对象
- * @param {Array} routList 路由队列（不包含当前的路由规则）
+ * @param {Object} rout 路由对象，包含next和last两个方法来提供路由队列的操作
  * @private
  */
-function routUserSettingPath(request, response, routList) {
+function routUserSettingPath(request, response, rout) {
     var serviceRoutConfig;
     var routInfo;
     var requireServicePath = config.requireServicePath;
@@ -141,12 +134,7 @@ function routUserSettingPath(request, response, routList) {
     }
     catch (err) {
         // 获取用户配置的路由失败，进入下一个分支
-        if (routList.length > 0) {
-            routList.shift()(request, response, routList);
-        }
-        else {
-            // 失败的抛出和日志
-        }
+        rout.next();
     }
 
     if (routInfo !== null) {
@@ -187,7 +175,7 @@ function routUserSettingPath(request, response, routList) {
         response.end();
     }
     else {
-        routList.shift()(request, response, routList);
+        rout.next();
     }
 
     /**
@@ -266,10 +254,10 @@ function routUserSettingPath(request, response, routList) {
  *
  * @param {Object} request HTTP请求对象
  * @param {Object} response HTTP返回对象
- * @param {Array} routList 路由队列（不包含当前的路由规则）
+ * @param {Object} rout 路由对象，包含next和last两个方法来提供路由队列的操作
  * @private
  */
-function routAutoPath(request, response, routList) {
+function routAutoPath(request, response, rout) {
     var pathName = url.parse(request.url).pathname;
     var modePath = config.requireServicePath + pathName;
     var filePath = filePathRoot + config.servicePath + pathName;
@@ -284,7 +272,7 @@ function routAutoPath(request, response, routList) {
                     writeResponse(modePath + '.js');
                 }
                 else {
-                    routList.shift()(request, response, routList);
+                    rout.next();
                 }
             });
         }
@@ -321,9 +309,10 @@ function routAutoPath(request, response, routList) {
  *
  * @param {Object} request HTTP请求对象
  * @param {Object} response HTTP返回对象
+ * @param {Object} notFoundMsg 未找到的一些信息反馈
  * @private
  */
-function notFound(request, response) {
+function notFound(request, response, notFoundMsg) {
     response.writeHead(404);
     response.end();
 }
