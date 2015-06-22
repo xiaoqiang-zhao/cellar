@@ -3,15 +3,22 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>研究</title>
+    <style rel="stylesheet">
+        span {
+            display: inline-block;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
 <script>
-    function getChildrenNameList() {
+    function getBabiesNameList() {
 
         var p = new Promise(function (resolve, reject) {
             // 获取姓名列表需要两秒
             setTimeout(function() {
+                // 此数据一般来自回调，这里用于模拟
                 var nameList = [
                     '天翔',
                     '占统',
@@ -25,9 +32,78 @@
         return p;
     }
 
+    function oneBabyDo (item) {
+        // 准备
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve(item);
+            }, 2000);
+        })
+
+        // 开始叫醒
+        .then(function (item) {
+            item.dom.innerHTML = item.name + 'waking';
+
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve(item);
+                }, 2000);
+            })
+        })
+
+        // 叫醒完毕
+        .then(function (item) {
+             item.dom.innerHTML = item.name + 'waked';
+        });
+    }
+
+    function everyBabyDo (items) {
+        var p = new Promise(function (resolve, reject) {
+            // 获取姓名列表需要两秒
+            setTimeout(function() {
+
+                resolve();
+            }, 2000);
+        });
+
+        // 用for不适合
+        for(var i = 0, len = items.length; i < len; i++) {
+
+        }
+
+        // 更适合用reduce
+        p = items.reduce(function (promise, item) {
+            return promise.then(function () {
+                return oneBabyDo (item);
+            });
+        }, Promise.resolve());
+
+        return p;
+    }
+
     function start() {
-        getChildrenNameList().then(function (data) {
-           console.log(data);
+        getBabiesNameList().then(function (data) {
+            console.log(data);
+            var conDom = document.getElementById('con');
+            var span;
+            var name;
+            var items = [];
+
+            for(var i = 0, len = data.length; i < len; i++) {
+                name = data[i];
+                span = document.createElement('span');
+                span.innerHTML = name + ':sleeping';
+                conDom.appendChild(span);
+                items[i] = {
+                    name: name,
+                    dom: span
+                };
+            }
+
+            // 还需要一个promise （可以放在then中）
+            return everyBabyDo(items);
+        }).then(function () {
+            console.log('完事儿');
         });
     }
     start();
