@@ -9,20 +9,18 @@
 <script>
     function getChildrenNameList() {
 
-        var p = new Promise(function () {
-            // resolve?
+        var p = new Promise(function (resolve, reject) {
+            // 获取姓名列表需要两秒
+            setTimeout(function() {
+                var nameList = [
+                    '天翔',
+                    '占统',
+                    '杨梅'
+                ];
+
+                resolve(nameList);
+            }, 2000);
         });
-
-        // 获取姓名列表需要两秒
-        setTimeout(function() {
-            var nameList = [
-                '天翔',
-                '占统',
-                '杨梅'
-            ];
-
-            p.resolve(nameList);
-        }, 2000);
 
         return p;
     }
@@ -32,6 +30,7 @@
            console.log(data);
         });
     }
+    start();
 </script>
 <button onclick="start()">开始</button>
 <div id="con"></div>
