@@ -9,7 +9,7 @@ module.exports = {
         return {
             status: 0,
             data: {},
-            inf: '登陆成功'
+            info: '登陆成功'
         };
     }
 };
