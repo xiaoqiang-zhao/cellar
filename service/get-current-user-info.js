@@ -12,13 +12,13 @@ module.exports = {
                 data: {
                     name: 'cellar'
                 },
-                inf: '当前登陆用户信息'
+                info: '当前登陆用户信息'
             };
         }
         else {
             data = {
                 status: 1,
-                inf: '未登录或登录超时'
+                info: '未登录或登录超时'
             };
         }
 
