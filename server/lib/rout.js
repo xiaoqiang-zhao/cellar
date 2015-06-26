@@ -65,8 +65,8 @@ function routRequest(request, response) {
         },
         last: function () {
             // 拼接额外的参数
-            var arg = [request, response].concat(arguments);
-            routList.pop().call(null, arg);
+            var arg = [request, response].concat([].slice.call(arguments));
+            routList.pop().apply(null, arg);
         }
     };
 
