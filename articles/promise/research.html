@@ -71,6 +71,10 @@
             setTimeout(function () {
                 resolve(item);
             }, 2000);
+
+            setTimeout(function () {
+                // reject(item);
+            }, 3000);
         })
 
         // 开始叫醒
@@ -82,6 +86,8 @@
                     resolve(item);
                 }, 2000);
             })
+        }, function () {
+            alert(123);
         })
 
         // 叫醒完毕
@@ -95,6 +101,8 @@
     function start() {
         var conDom = document.getElementById('con');
         getBabiesNameList().then(function (data) {
+//            var  a = data; // 如果这里添加一个then，后面的then就拿不到数据了
+//        }).then(function (data) {
             var span;
             var name;
             var items = [];
