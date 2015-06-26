@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试jQuery的Ajax 对 Promise的支持</title>
+    <script src="jquery-2.1.4.js"></script>
+</head>
+<body>
+<script>
+    $.ajax({
+        url: '/login'
+    }).then(function (data) {
+        console.log(data.info);
+    }).then(function () {
+        return $.ajax('/get-current-user-info');
+    }).then(function (data) {
+        console.log('用户名:' + data.data.name);
+    }).then(function (data) {
+        return $.ajax('/exit');
+    }).then(function (data) {
+        console.log(data.info);
+    });
+</script>
+</body>
+</html>
