@@ -143,6 +143,39 @@ then1在第一个异步数据请求收到服务器数据反馈后执行，上面
         return p;
     }
 
-可以向p添加属性和方法，注意不要覆盖then，catch，chain方法。
+可以向p添加属性和方法，注意不要覆盖then，catch，chain方法。还需要注意的一点就是浏览器原生Promise实例化的时候至少需要一个函数作为参数。
 
-综合的使用在research.html 和 research.js中，分别模拟浏览器端和node端。
+## jQuery.Deferred
+
+jQuery.Deferred是一个工厂方法，用以生产符合Promise规范的实例。Promise规范的内容相对简单，Deferred返回的东西是一个更加丰富的东西。
+
+    var p = $.Deferred(function (promise) {
+        // 异步
+        setTimeout(function () {
+            promise.resolve();
+        }, 2000);
+    });
+    
+    p.then(function () {
+        console.log('resolve1');
+    }, function () {
+        console.log('reject');
+    }).then(function () {
+        console.log('resolve2');
+    }).done(function () {
+        console.log('done1');
+    }).done(function () {
+        console.log('done2');
+    }).always(function () {
+        console.log('always1');
+    }).always(function () {
+        console.log('always2');
+    });
+
+resolve 可以触发then的第一个回调、done、always，触发的顺序和定义的顺序一致。另外resolve方法不是定义回调的，而是触发回调的。reject同理，always可被resolve和reject触发。
+
+## 最后
+
+本文地址：
+
+综合使用的研究在research.html 和 research.js中，分别模拟浏览器端和node端。research-jq.html 中是对jQuery中Promise的研究。
