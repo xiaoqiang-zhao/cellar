@@ -78,24 +78,12 @@ Git:[https://github.com/saschagehlich/hotnode](https://github.com/saschagehlich/
 如 `node cellar/server` 的路径是cellar文件夹所在的目录，而 `node server` 是server所在的路径，也就是cellar。
 
 以 `node cellar/server` 为例，
-我们可以通过 `process.cwd()` 来拿到启动路径 `直到盘符根路径/code`，
-通过全局变量下的属性 `__filename` 拿到当前文件路径 `直到盘符根路径/code/cellar/server/lib/所在的js文件`，
-通过全局变量下的属性 `__dirname` 拿到当前文件所在路径  `直到盘符根路径/code/cellar/server/lib`。
-可以看到一个特点，当前js所在的路径到项目根路径是固定的，而启动路径肯定是当前js的上层目录，
-利用这个特点，提供一种不完美的解决方案：
+通过全局变量下的属性 `__filename` 拿到当前文件所在文件夹路径，再通过设置相对于此文件向上几级目录是参考根路径拿到绝对路径作为参考。还有一个需要注意的地方就是将windows的左斜杠换成右斜杠。关键代码如下：
     
-    // 由于当前js到项目根路径（或者统一的参照路径）是固定的，
-    // 所以通过硬编码来定义一个参考路径，从上到下找文件符合人类思维代码更易读;
-    // 不好的是如果修改了目录结构此需要手动修改这里，会有坑在这里
-    var requirePathRoot = '../..';
-    
-    // 通过掐头去尾，可以得到文件访问的统一参照路径，最好是指向和上面requirePathRoot相同的路径
-    // 这样在模块引用和文件读取时就可以用相同的路径，当然前面加上各自的pathRoot
-    // 注意将windows下的左斜杠替换成右斜杠
-    var filePathRoot = __dirname.replace(process.cwd(), '').replace(/\\/g, '/'); // 掐头
-    filePathRoot = filePathRoot.replace(/\/server\/lib$/, '');  // 去尾
-    // 加相对路径，去头之后是以斜杠开头的
-    filePathRoot = '.' + filePathRoot;
+    // 根路径，config.rootLevel
+    rootPath = __dirname.replace(/\\/g, '/').split('/').slice(0, -1 * config.rootLevel).join('/');
+    // 然后把根路径加到前面，用的时候就好了
+    config.webRootPath = rootPath + config.webRootPath;
     
 ## 异步队列
 
