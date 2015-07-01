@@ -248,16 +248,16 @@ function routUserSettingPath(request, response, rout) {
  */
 function routAutoPath(request, response, rout) {
     var pathName = url.parse(request.url).pathname;
-    var modePath = config.serviceRootPath + pathName;
+    var modelPath = config.serviceRootPath + pathName;
 
-    fs.exists(modePath, function (exists) {
+    fs.exists(modelPath, function (exists) {
         if (exists) {
-            writeResponse(modePath);
+            writeResponse(modelPath);
         }
         else {
-            fs.exists(filePath + '.js', function (exists) {
+            fs.exists(modelPath + '.js', function (exists) {
                 if (exists) {
-                    writeResponse(modePath + '.js');
+                    writeResponse(modelPath + '.js');
                 }
                 else {
                     rout.next();
@@ -272,7 +272,7 @@ function routAutoPath(request, response, rout) {
             var serviceModel = require(modePath);
             // 服务调用方法名
             var methodName = config.serviceDefaultMethodName;
-            var contentType = serviceModel.contentType || serviceDefaultContentType;
+            var contentType = serviceModel.contentType || config.serviceDefaultContentType;
             contentType = getStaticFieldConfig(contentType).contentType;
 
             var content = serviceModel[methodName](request, response);
