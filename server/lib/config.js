@@ -5,11 +5,13 @@
  */
 var encoding = 'utf-8'; // 编码方式一定要在这里设置，下面很多地方会用到，切勿删除
 
-module.exports = {
+var config = {
     encoding: encoding,                       // 编码设置
     defaultPort: 8888,                        // 服务启动的默认端口
     defaultPage: '/index.html',               // 默认页面
-    servicePath: '/service',                  // 动态服务的路径，注意不要以斜杠结尾，相对路径是cellar（也就是当前的项目路径）
+    rootLevel: 2,                             // 参考根路径，以server下lib为基础向上几层目录，2对应cellar
+    serviceRootPath: '/service',              // 动态服务的路径，注意不要以斜杠结尾，相对路径是cellar（也就是当前的项目路径）
+    webRootPath: '/web',                      // 动态服务的路径，注意不要以斜杠结尾，相对路径是cellar（也就是当前的项目路径）
     serviceRoutConfigPath: '/rout-config.js', // service下，用户自定义服务路由，可支持RESTful
     serviceDefaultMethodName: 'data',         // 服务的默认方法
     serviceDefaultContentType: 'json',        // 服务默认数据格式（用于写在返回头中）
@@ -69,3 +71,10 @@ module.exports = {
     }
 };
 
+/****  路径处理  ***/
+// 文件路径需要将windows系统下的左“\”成"/"
+var rootPath = __dirname.replace(/\\/g, '/').split('/').slice(0, -1 * config.rootLevel).join('/');
+config.webRootPath = rootPath + config.webRootPath;
+config.serviceRootPath = rootPath + config.serviceRootPath;
+
+module.exports = config;

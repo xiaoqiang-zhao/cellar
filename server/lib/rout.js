@@ -8,17 +8,6 @@ var fs = require('fs');
 var url = require('url');
 var config = require('./config');
 
-/****  路径处理  ***/
-// 两层向上表示当前文件距项目根路径的深度是二
-config.requireServicePath = '../..' + config.servicePath; // 写死了，如果修改server的目录结构此处会有坑
-// 去开头 (文件路径需要将windows系统下的左“\”成"/")
-var filePathRoot = __dirname.replace(process.cwd(), '').replace(/\\/g, '/');
-// 去结尾
-filePathRoot = filePathRoot.replace(/\/server\/lib$/, '');
-// 加相对路径，去头之后是以斜杠开头的
-filePathRoot = '.' + filePathRoot;
-config.filePathRoot = filePathRoot;
-
 /**
  * 通过扩展名获取文件的配置信息
  *
@@ -93,7 +82,7 @@ function routStaticFile(request, response, rout) {
     // 允许访问此扩展名的静态文件
     if (staticFieldConfig !== undefined) {
         // 读取静态文件
-        fs.readFile(filePathRoot + path, staticFieldConfig.encoding, function (err, data) {
+        fs.readFile(config.webRootPath + path, staticFieldConfig.encoding, function (err, data) {
             if (err) {
                 rout.last({
                     type: 'file',
@@ -129,7 +118,7 @@ function routUserSettingPath(request, response, rout) {
     var routInfo;
     var requireServicePath = config.requireServicePath;
     try {
-        serviceRoutConfig = require(requireServicePath + config.serviceRoutConfigPath);
+        serviceRoutConfig = require(config.serviceRootPath + config.serviceRoutConfigPath);
         routInfo = getRoutInfo(request, serviceRoutConfig);
     }
     catch (err) {
@@ -259,17 +248,16 @@ function routUserSettingPath(request, response, rout) {
  */
 function routAutoPath(request, response, rout) {
     var pathName = url.parse(request.url).pathname;
-    var modePath = config.requireServicePath + pathName;
-    var filePath = filePathRoot + config.servicePath + pathName;
+    var modelPath = config.serviceRootPath + pathName;
 
-    fs.exists(filePath, function (exists) {
+    fs.exists(modelPath, function (exists) {
         if (exists) {
-            writeResponse(modePath);
+            writeResponse(modelPath);
         }
         else {
-            fs.exists(filePath + '.js', function (exists) {
+            fs.exists(modelPath + '.js', function (exists) {
                 if (exists) {
-                    writeResponse(modePath + '.js');
+                    writeResponse(modelPath + '.js');
                 }
                 else {
                     rout.next();
@@ -284,7 +272,7 @@ function routAutoPath(request, response, rout) {
             var serviceModel = require(modePath);
             // 服务调用方法名
             var methodName = config.serviceDefaultMethodName;
-            var contentType = serviceModel.contentType || serviceDefaultContentType;
+            var contentType = serviceModel.contentType || config.serviceDefaultContentType;
             contentType = getStaticFieldConfig(contentType).contentType;
 
             var content = serviceModel[methodName](request, response);
