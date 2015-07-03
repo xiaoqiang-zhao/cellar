@@ -1,7 +1,7 @@
 # WebStorm 的使用文档
 
 ## 概述
-号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到10，在设置上9到10又一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。
+号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到10，在设置上9到10有一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。
 
 ## 第一批设置
 
@@ -55,7 +55,7 @@ Win:Ctrl + Alt + L, Mac: Alt + Com + L
 Win:Ctrl + D; Mac: Com + D
 
 - 剪切，Cut，
-Win:Ctrl + X; Mac: Com + X，
+Win:Ctrl + X; Mac: Com + X
 
 - 删除，Delete Line，
 Win:Ctrl + Y; Mac: Com + Y，需要注意的是选中字符所在的行会被删掉
@@ -78,12 +78,9 @@ Appearance & Behavior/ System Settings/ Project Opening / Open project in new wi
 
 真的不建议把一行代码写的太长，嵌套太深也是要避免的，毕竟代码是给人看的，偶尔交给机器执行以下，所以代码的可读性非常重要。所以就有了代码长度参考线。在 /Editor/General/Appearance 中 勾选Show right margin 考线出现，取消勾选参考线消失。参考线的位置其实是字符数量的体现，在 /Editor/Code Style 中 Right Margin 中调整字符数量，个人建议120。
 
-- 默认CSS格式化之后会在两个样式块间加空行
-去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
+- 默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
 
-- 设置选中文字之后，点击双引号\单引号包围选中
-
-Editor / General / Smart keys，勾选surround selection on type quote or brace 
+- 设置选中文字之后，点击双引号\单引号包围选中，Editor / General / Smart keys，勾选surround selection on type quote or brace 
 
 ## 第二批快捷键 ##
 **编码Tab窗口的相关操作**
@@ -106,7 +103,7 @@ Win:Alt + 左右箭头; Mac:Ctl + 左右箭头，但是这和Mac系统左右切�
 **光标移动**
 
 - 前后跳单词
-Win:Ctr + 左右箭头; Mac:Alt + 左右键
+Win:Ctrl + 左右箭头; Mac:Alt + 左右键
 
 - 跳到行首行尾
 Win:Home/End; Mac:Com + 左右箭头，其实这是Mac系统的快捷键也补充到这里
@@ -115,6 +112,12 @@ Win:Home/End; Mac:Com + 左右箭头，其实这是Mac系统的快捷键也补�
 Win:Shift + Enter; Mac:Shift + Enter，当你在一行的中间部分改完代码需要进行下一行书写时次快捷键可以一步到位。比移先将光标到行尾再Enter换行感觉要好得多，速度也快得多
 
 - 在上一行书写
+Win:Ctrl + Alt + Enter; Mac:Alt + Com + Enter
+
+## 第四批快捷键 ##
+**折叠代码**
+
+- 折叠代码，Move Caret to Next Word
 Win:Ctrl + Alt + Enter; Mac:Alt + Com + Enter
 
 ## 牢骚
