@@ -40,8 +40,7 @@ Win:Alt + Shift + 上/下箭头;Mac:Alt + Shift + 上/下箭头
 - 上下移动代码块，Move Statement Up/Down
 ctrl + shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
 
-## 第二批快捷键 ##
-**编码Tab窗口的相关操作**
+## 2 - Tab操作 ##
 
 - 关闭当前的Tab，Close Active Tab，
 Win:Ctrl + F4; Mac:Com + F4
@@ -52,8 +51,7 @@ Win:Alt + 左右箭头; Mac:Ctrl + 左右箭头，但是这和Mac系统左右切
 - 最大化编辑窗口(隐藏所有工具窗口)，Hide All Toll Windows
 Win:Ctrl + Shift + F12; Mac:Com + Shift + F12，我超级喜欢的快捷方式，可以让我专注的写好当前代码块
 
-## 第三批快捷键 ##
-**光标移动**
+## 3 -  光标移动 ##
 
 - 前后跳单词，Move Caret to Previous/Next Word
 Win:Ctrl + 左右箭头; Mac:Alt + 左右键
@@ -70,8 +68,7 @@ Win:Ctrl + Alt + Enter; Mac:Alt + Com + Enter
 - 跳到指定行，
 Win:Ctrl + G; Mac:Com + G
 
-## 第四批快捷键 ##
-**折叠代码**
+## 4 - 折叠代码 ##
 
 - 折叠当前代码块，Collapse，
 Win:Ctrl + Num-; Mac:Com + Num-，Num-就是键盘顶部数字键旁边的减号
@@ -84,6 +81,14 @@ Win:Ctrl + Shift + Num-; Mac:Com + Shift + Num-，这也是我超喜欢的一个
 
 - 展开全部代码块，Expand All，
 Win:Ctrl + Shift + Num+; Mac:Com + Shift + Num+
+
+## 5 - 选中 ##
+
+- 选中的超级扩展，Extend Selection，
+Win:Ctrl + W; Mac:Com + W，请原谅我给这个快捷键起这么夸张的称谓，因为这个快捷方式是我超级超级喜欢的一个，按一次选中一个单词，两次一行，三次一个代码块，太好用了！！
+
+— 重命名，Rename，
+Win:Shift + F6; Mac:Shift + F6，这是一个有多张面孔的快捷键。在js代码中此快捷键是变量重命名，给变量起名真是一个费劲的事情，随着业务的变动变量名一定要跟着作调整，否则代码的寿命不好太长远；在html和css以及文档文件中，此快捷键重命名当前文件；在资源文件目录下，此快捷方式是给资源重命名，而且会智能同步引用。
 
 ## 第一批设置
 
