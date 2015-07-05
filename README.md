@@ -11,6 +11,32 @@ cellar中文意思酒窖，希望这里的每一篇博文都是一瓶美酒佳�
 目标是提供一个可以本地运行的web服务（用node搭建服务器），包括前端内容。前端的同行可以fork出来自己运行添加自己的内容。
 通过对知识维度的抽象，通过配置知识的维度，也适合拿来做通用的知识体系化建设。
 
+## 快速上手
+
+    // 启动
+    node cellar/server
+    
+    // mock服务，获取html
+    module.exports = {
+        contentType: 'html',
+        data: function (request, response) {
+            return '<h1>Cellar</h1>';
+        }
+    };
+    
+    // mock服务，获取json
+    module.exports = {
+        contentType: 'json',
+        data: function (request, response) {
+            return {
+                "status": 0,
+                "result": {},
+                "statusInfo": ""
+            };
+        }
+    };
+    
+
 ## 规划与脚步
 
 1.0 搭建Web服务框架
@@ -25,8 +51,8 @@ cellar中文意思酒窖，希望这里的每一篇博文都是一瓶美酒佳�
 
 2.0 补充服务与内容，成为可运行的网站
 
-- 支持动态路由配置   2015.7.4
-- 丰富内容，不少于10篇 
+- 端口占用自动非配功能   2015.6.20
+- 丰富内容，不少于10篇 2015.7.5
 - 支持md文档外链本站html格式的demo
 - 写http相关的内容，客户端发送、服务器端拼装、客户端解析三部曲
 
