@@ -23,17 +23,17 @@ portModel.getAvailablePort(port, function (port) {
 
         console.log('------ 服务器日志 ------');
 
-        // 在默认浏览器中打开网站(Mac下无效)
+        // 在默认浏览器中打开网站
         if (config.isAutoOpenDefaultPage) {
             var url = 'http://' + getIPAdress() + ':' + port + config.defaultPage;
-            var pc = require('child_process');
-            // Windows
+            var cp = require('child_process');
+            // Windows TODO 验证64位win7
             if (process.platform === 'win32' || process.platform === 'win64') {
-                pc.exec('start ' + url);
+                cp.exec('start ' + url);
             }
             // Mac，Linux
             else {
-                pc.spawn('open', [url]);
+                cp.spawn('open', [url]);
             }
         }
     });
