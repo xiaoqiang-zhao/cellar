@@ -276,6 +276,8 @@ function routAutoPath(request, response, rout) {
             contentType = getStaticFieldConfig(contentType).contentType;
 
             var content = serviceModel[methodName](request, response);
+
+            // TODO 异步请求
             if(typeof content === 'object') {
                 content = JSON.stringify(content);
             }

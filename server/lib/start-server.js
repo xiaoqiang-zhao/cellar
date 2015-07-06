@@ -25,7 +25,7 @@ portModel.getAvailablePort(port, function (port) {
 
         // 在默认浏览器中打开网站(Mac下无效)
         if (config.isAutoOpenDefaultPage) {
-            var url = 'http://localhost:' + port + config.defaultPage;
+            var url = 'http://' + getIPAdress() + ':' + port + config.defaultPage;
             // Windows
             // var cp = require('child_process');
             // cp.exec('start ' + url);
@@ -36,3 +36,16 @@ portModel.getAvailablePort(port, function (port) {
         }
     });
 });
+
+function getIPAdress(){
+    var interfaces = require('os').networkInterfaces();
+    for(var devName in interfaces){
+        var iface = interfaces[devName];
+        for(var i=0;i<iface.length;i++){
+            var alias = iface[i];
+            if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){
+                return alias.address;
+            }
+        }
+    }
+}
