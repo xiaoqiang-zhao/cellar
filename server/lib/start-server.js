@@ -27,8 +27,8 @@ portModel.getAvailablePort(port, function (port) {
         if (config.isAutoOpenDefaultPage) {
             var url = 'http://' + getIPAdress() + ':' + port + config.defaultPage;
             var cp = require('child_process');
-            // Windows TODO 验证64位win7
-            if (process.platform === 'win32' || process.platform === 'win64') {
+            // Windows
+            if (process.platform === 'win32') {
                 cp.exec('start ' + url);
             }
             // Mac，Linux
