@@ -176,6 +176,8 @@ resolve 可以触发then的第一个回调、done、always，触发的顺序和�
 
 ## 最后
 
-本文地址：
+本文Git地址：[https://github.com/longze/cellar/blob/dev/web/articles/promise/main.md](https://github.com/longze/cellar/blob/dev/web/articles/promise/main.md)
 
 综合使用的研究在research.html 和 research.js中，分别模拟浏览器端和node端。research-jq.html 中是对jQuery中Promise的研究。
+
+[一篇很不错的译文](http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/)
