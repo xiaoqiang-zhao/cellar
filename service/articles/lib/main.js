@@ -6,6 +6,6 @@
 
 module.exports = {
     data: function (articleName, request, response) {
-        return '临时';
+        return '临时，访问名：' + articleName;
     }
 };

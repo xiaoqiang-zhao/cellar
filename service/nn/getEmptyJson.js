@@ -4,6 +4,12 @@
 module.exports = {
     contentType: 'json', // 返回的数据类型
     data: function (request, response) {
-        return {name: 'cellar'};
+        return {
+            "status": 0,
+            "result": [
+
+            ],
+            "statusInfo": ""
+        };
     }
 };

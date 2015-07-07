@@ -17,26 +17,31 @@ http = http.createServer(function (request, response) {
 portModel.getAvailablePort(port, function (port) {
     // 启动web服务监听
     http.listen(port, function () {
-        // 监听失败(如端口冲突)不会执行此回调
-        console.log('本地服务器 http://localhost:' + port + ' 已经启动');
+        var url = 'http://' + getIPAdress() + ':' + port;
+        console.log('本地服务器 ' + url + ' 已经启动');
         console.log('------ 服务器日志 ------');
 
         // 在默认浏览器中打开网站
         if (config.isAutoOpenDefaultPage) {
-            var url = 'http://' + getIPAdress() + ':' + port + config.defaultPage;
+            var indexPageUrl = url + config.defaultPage;
             var cp = require('child_process');
             // Windows
             if (process.platform === 'win32') {
-                cp.exec('start ' + url);
+                cp.exec('start ' + indexPageUrl);
             }
             // Mac，Linux
             else {
-                cp.spawn('open', [url]);
+                cp.spawn('open', [indexPageUrl]);
             }
         }
     });
 });
 
+/**
+ * 获取本机IP
+ *
+ * @returns {string} ip地址
+ */
 function getIPAdress() {
     var interfaces = require('os').networkInterfaces();
     for (var devName in interfaces) {

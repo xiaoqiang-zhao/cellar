@@ -143,7 +143,7 @@ then1在第一个异步数据请求收到服务器数据反馈后执行，上面
         return p;
     }
 
-可以向p添加属性和方法，注意不要覆盖then，catch，chain方法。还需要注意的一点就是浏览器原生Promise实例化的时候至少需要一个函数作为参数。
+可以向p添加属性和方法，注意不要覆盖then，catch，chain方法。还需要注意的一点就是浏览器原生Promise实例化的时候至少需要一个函数作为参数。catch 方法用于捕获最后的异常，chain方法还没搞明白怎么用，欢迎补充。chain？
 
 ## jQuery.Deferred
 
