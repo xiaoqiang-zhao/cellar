@@ -77,4 +77,28 @@ var rootPath = __dirname.replace(/\\/g, '/').split('/').slice(0, -1 * config.roo
 config.webRootPath = rootPath + config.webRootPath;
 config.serviceRootPath = rootPath + config.serviceRootPath;
 
+
+/**
+ * 通过扩展名获取文件的配置信息
+ *
+ * @param {string} ext 文件扩展名
+ * @return {Object} configData 文件的配置信息，未找到匹配项返回undefined
+ * @private
+ */
+function getStaticFieldConfig(ext) {
+    var configData;
+    if (typeof ext === 'string' && ext.length > 0) {
+        // 对带点的做个容错
+        if (ext.charAt(0) === '.') {
+            ext = ext.slice(1);
+        }
+        // 转换为小写
+        ext = ext.toLowerCase();
+        configData = config.staticFieldConfig[ext];
+    }
+
+    return configData;
+}
+config.getStaticFieldConfig = getStaticFieldConfig;
+
 module.exports = config;

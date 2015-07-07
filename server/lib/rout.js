@@ -7,28 +7,7 @@
 var fs = require('fs');
 var url = require('url');
 var config = require('./config');
-
-/**
- * 通过扩展名获取文件的配置信息
- *
- * @param {string} ext 文件扩展名
- * @return {Object} configData 文件的配置信息，未找到匹配项返回undefined
- * @private
- */
-function getStaticFieldConfig(ext) {
-    var configData;
-    if (typeof ext === 'string' && ext.length > 0) {
-        // 对带点的做个容错
-        if (ext.charAt(0) === '.') {
-            ext = ext.slice(1);
-        }
-        // 转换为小写
-        ext = ext.toLowerCase();
-        configData = config.staticFieldConfig[ext];
-    }
-
-    return configData;
-}
+var getStaticFieldConfig = config.getStaticFieldConfig;
 
 /**
  * 路由请求
@@ -91,11 +70,7 @@ function routStaticFile(request, response, rout) {
                 });
             }
             else {
-                response.writeHead(200, {
-                    'Content-Type': staticFieldConfig.contentType
-                });
-                response.write(data, staticFieldConfig.encoding);
-                response.end();
+                response200(response, staticFieldConfig.contentType, data, staticFieldConfig.encoding);
             }
         });
     }
@@ -116,7 +91,6 @@ function routStaticFile(request, response, rout) {
 function routUserSettingPath(request, response, rout) {
     var serviceRoutConfig;
     var routInfo;
-    var requireServicePath = config.requireServicePath;
     try {
         serviceRoutConfig = require(config.serviceRootPath + config.serviceRoutConfigPath);
         routInfo = getRoutInfo(request, serviceRoutConfig);
@@ -129,7 +103,7 @@ function routUserSettingPath(request, response, rout) {
     if (routInfo !== null) {
         try {
             var contentType = getStaticFieldConfig(routInfo.contentType);
-            var serviceModel = require(requireServicePath + routInfo.modelPath);
+            var serviceModel = require(config.serviceRootPath + routInfo.modelPath);
             // 服务调用方法名
             var methodName = routInfo.methodName || config.serviceDefaultMethodName;
 
@@ -147,21 +121,20 @@ function routUserSettingPath(request, response, rout) {
             /**
              * 方案二，不污染服务对象，在服务对象的对外方法中需要显示声明参数
              */
-            routInfo.arguments.push(request, response);
+            routInfo.arguments.push(
+                request,
+                response,
+                // 给服务的异步准备的，服务走异步时请勿有返回值（或返回undefined）
+                function (contentType, content, encoding) {
+                    response200(response, contentType, content, encoding);
+                }
+            );
             var content = serviceModel[methodName].apply(serviceModel, routInfo.arguments);
-            if(typeof content === 'object') {
-                content = JSON.stringify(content);
-            }
-
-            response.writeHead(200, {
-                'Content-Type': contentType
-            });
-            response.write(content);
+            response200(response, contentType, content);
         }
         catch (err) {
-            response.writeHead(500);
+            response500(response);
         }
-        response.end();
     }
     else {
         rout.next();
@@ -275,22 +248,20 @@ function routAutoPath(request, response, rout) {
             var contentType = serviceModel.contentType || config.serviceDefaultContentType;
             contentType = getStaticFieldConfig(contentType).contentType;
 
-            var content = serviceModel[methodName](request, response);
-
-            // TODO 异步请求
-            if(typeof content === 'object') {
-                content = JSON.stringify(content);
-            }
-
-            response.writeHead(200, {
-                'Content-Type': contentType
-            });
-            response.write(content);
+            var content = serviceModel[methodName](
+                request,
+                response,
+                // 给服务的异步准备的，服务走异步时请勿有返回值（或返回undefined）
+                function (contentType, content, encoding) {
+                    response200(response, contentType, content, encoding);
+                }
+            );
+            // 同步返回
+            response200(response, contentType, content);
         }
         catch (err) {
-            response.writeHead(500);
+            response500(response);
         }
-        response.end();
     }
 }
 
@@ -306,6 +277,30 @@ function notFound(request, response, notFoundMsg) {
     response.writeHead(404);
     response.end();
 }
+
+function response200(response, contentType, content, encoding) {
+    // 沒有返回值时走异步回调
+    if (content !== undefined) {
+        if (typeof content === 'object') {
+            content = JSON.stringify(content);
+        }
+
+        response.writeHead(200, {
+            'Content-Type': contentType
+        });
+
+        encoding = encoding || config.encoding;
+
+        response.write(content, encoding);
+        response.end();
+    }
+}
+
+function response500(response) {
+    response.writeHead(500);
+    response.end();
+}
+
 module.exports = {
     routRequest: routRequest
 };
