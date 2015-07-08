@@ -127,6 +127,9 @@ function routUserSettingPath(request, response, rout) {
                 // 给服务的异步准备的，服务走异步时请勿有返回值（或返回undefined）
                 function (contentType, content, encoding) {
                     response200(response, contentType, content, encoding);
+                },
+                function () {
+                    response500(response);
                 }
             );
             var content = serviceModel[methodName].apply(serviceModel, routInfo.arguments);
@@ -254,6 +257,9 @@ function routAutoPath(request, response, rout) {
                 // 给服务的异步准备的，服务走异步时请勿有返回值（或返回undefined）
                 function (contentType, content, encoding) {
                     response200(response, contentType, content, encoding);
+                },
+                function () {
+                    response500(response);
                 }
             );
             // 同步返回

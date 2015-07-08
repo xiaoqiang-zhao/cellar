@@ -5,7 +5,7 @@
  */
 module.exports = {
     contentType: 'json',
-    data: function (request, response, response200) {
+    data: function (request, response, response200, response500) {
         setTimeout(function () {
             response200(
                 this.contentType,
