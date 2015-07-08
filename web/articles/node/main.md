@@ -4,10 +4,7 @@
 
 ### inspector
 
-Web开发使用 `inspector` 插件在chrome中调试，
-win7下命令行运行 `npm install -g node-inspector` 安装，
-mac下如果用上面命令可能存在权限问题，如果出现错误无法安装，尝试 `sudo npm install -g node-inspector` 并输入登录密码，
-输密码时只有一个光标闪，但你可能已经输入了，一口气输完然后回车。
+Web开发使用 `inspector` 插件在chrome中调试。win7下命令行运行 `npm install -g node-inspector` 安装，mac下如果用上面命令可能存在权限问题，如果出现错误无法安装，尝试 `sudo npm install -g node-inspector` 并输入登录密码，输密码时只有一个光标闪，但你可能已经输入了，一口气输完然后回车。
 
 启动调试的命令是 `node-debug 你的程序入口`，如本站的 `server` 可以这样开始调试 `node-debug server`。
 
@@ -53,11 +50,10 @@ Git:[https://github.com/node-inspector/node-inspector](https://github.com/node-i
 
 ### hotnode
 
-上面方案的不方便之处在于每次修改完源码并不会反映到调试窗口中，
-当然小的修改可以直接在天使窗口中进行，但是返回头还需要改源码。
-如果要在调试器中看到新代码需要手动关闭再启动node服务。
-找到一个开源工具可以热启动node，他的原理是监听文件改变，如果有改变自动重启node服务，并打出log。
-安装盒运行非常简单，命令如下：
+上面方案的不方便之处在于每次修改完源码并不会反映到调试窗口中，当然小的修改可以直接在天使窗口中进行，但是返回头还需要改源码。
+如果要在调试器中看到新代码需要手动关闭再启动node服务。找到一个开源工具可以热启动node，他的原理是监听文件改变，如果有改变自动重启node服务，并打出log。
+
+安装和运行非常简单，命令如下：
 
     // 安装
     npm install -g hotnode
@@ -65,6 +61,8 @@ Git:[https://github.com/node-inspector/node-inspector](https://github.com/node-i
     hotnode app
 
 Git:[https://github.com/saschagehlich/hotnode](https://github.com/saschagehlich/hotnode)
+
+相似的热启动还有 `node-dev` 、 `supervisor` 和 `nodemon`。
 
 ### 两种技术的结合
 
@@ -100,3 +98,10 @@ Git:[https://github.com/saschagehlich/hotnode](https://github.com/saschagehlich/
     /* 异步编程的队列方案 */
     routList.shift()(request, response, routList);
     
+## 进程守护
+
+由于node中任何地方报错都会导致退出进程，所以生产环境需要在进程退出后重启，可用的工具：`pm2` 、`forever`.
+
+pm2扩展资料: [http://www.douban.com/note/314200231/](http://www.douban.com/note/314200231/)
+
+forver扩展资料: [http://blog.fens.me/nodejs-server-forever/](http://blog.fens.me/nodejs-server-forever/)

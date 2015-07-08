@@ -92,6 +92,22 @@ Win:Ctrl + W; Mac:Com + W，请原谅我给这个快捷键起这么夸张的称�
 — 重命名，Rename，
 Win:Shift + F6; Mac:Shift + F6，这是一个有多张面孔的快捷键。在js代码中此快捷键是变量重命名，给变量起名真是一个费劲的事情，随着业务的变动变量名一定要跟着作调整，否则代码的寿命不好太长远；在html和css以及文档文件中，此快捷键重命名当前文件；在资源文件目录下，此快捷方式是给资源重命名，而且会智能同步引用。
 
+### 6 - 粘贴
+
+- 粘贴，Paste，
+Win:Ctrl + V; Mac:Com + V，一个很普通的粘贴
+
+- 从复制历史中粘贴，Paste form History，
+Win:Ctrl + Shift + V; Mac:Com + Shift + V，我超级喜欢的功能，有了它就不用反复的复制了
+
+### 7 - 文件
+
+- 保存全部，Save All，
+Win:Ctrl + S; Mac:Com + S
+
+- 新建文件，New...
+Win:Alt + N; Mac:Alt + N，在当前文件同级或者选中的文件夹下
+
 ## 设置
 
 ### 1 - 基本设置
