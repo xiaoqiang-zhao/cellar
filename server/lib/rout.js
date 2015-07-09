@@ -22,7 +22,7 @@ function routRequest(request, response) {
         routStaticFile,
         routUserSettingPath,
         routAutoPath,
-        notFound
+        response404
     ];
 
     var rout = {
@@ -128,6 +128,7 @@ function routUserSettingPath(request, response, rout) {
                 function (contentType, content, encoding) {
                     response200(response, contentType, content, encoding);
                 },
+                // 异常捕获回调
                 function () {
                     response500(response);
                 }
@@ -279,11 +280,19 @@ function routAutoPath(request, response, rout) {
  * @param {Object} notFoundMsg 未找到的一些信息反馈
  * @private
  */
-function notFound(request, response, notFoundMsg) {
+function response404(request, response, notFoundMsg) {
     response.writeHead(404);
     response.end();
 }
 
+/**
+ * HTTP返回200
+ *
+ * @param {Object} request HTTP请求对象
+ * @param {string} contentType 返回内容类型
+ * @param {Object | String} content 返回内容
+ * @param {string} encoding 编码
+ */
 function response200(response, contentType, content, encoding) {
     // 沒有返回值时走异步回调
     if (content !== undefined) {
@@ -302,6 +311,11 @@ function response200(response, contentType, content, encoding) {
     }
 }
 
+/**
+ * HTTP返回500
+ *
+ * @param {Object} response HTTP返回对象
+ */
 function response500(response) {
     response.writeHead(500);
     response.end();
