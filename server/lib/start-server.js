@@ -34,6 +34,9 @@ portModel.getAvailablePort(port, function (port) {
                 cp.spawn('open', [indexPageUrl]);
             }
         }
+
+        // 将http全局化，方便做WebSocket
+        global.http = http;
     });
 });
 
