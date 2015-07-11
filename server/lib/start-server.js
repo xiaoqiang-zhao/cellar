@@ -10,6 +10,7 @@ var portModel = require('./port');
 var port = config.defaultPort;
 
 http = http.createServer(function (request, response) {
+    // 接到客户端请求时走路由
     rout.routRequest(request, response);
 });
 
@@ -38,6 +39,9 @@ portModel.getAvailablePort(port, function (port) {
         // 将http全局化，方便做WebSocket
         global.http = http;
     });
+
+    // 将http全局化，方便做WebSocket
+    global.http = http;
 });
 
 /**
