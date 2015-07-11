@@ -93,4 +93,3 @@ data函数是一个普通的http服务所调用的函数，可以在[GitHub](htt
 
 为了简单起见，我们用jQuery的Ajax发起开启websocket的请求，我们用 `socket.send` 向服务器发送请求，用 `socket.onmessage` 监听服务器发来的信息。
 
-## 操作
