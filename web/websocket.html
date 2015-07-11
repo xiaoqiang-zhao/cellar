@@ -8,24 +8,23 @@
 <body>
 WebSocket
 <script>
-    var socket;
     $.ajax({
         url: 'mysocket',
         success: function (data) {
-            // socket 接口初始化完成
-            console.log(data);
+            var socket;
+            document.write(' ---- WebSocket接口初始化完成 ---- <br/>');
 
-            var host = 'ws://172.20.131.91:8888/';
+            var host = 'ws://' + location.host;
             // 和服务器建立socket连接，信道建立
             socket = new WebSocket(host);
             socket.onopen = function () {
                 socket.send('确认已开启WebSocket链接');
+                document.write(' ---- WebSocket已开启 ---- <br/>');
             };
 
             socket.onmessage = function (message) {
                 var msg = '来自服务器的WebSocket信息：' + message.data;
-                console.log(msg);
-                document.write(msg + '，');
+                document.write(msg + '，<br/>');
             };
 
             socket.onerror = function (error) {
@@ -35,7 +34,7 @@ WebSocket
         error: function (data) {
             console.log(data);
         }
-    })
+    });
 
 </script>
 </body>
