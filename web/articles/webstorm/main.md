@@ -19,6 +19,9 @@ Win:Ctrl + Shift + Z; Mac:Com + Shift + Z
 - 查找，Find，
 Win:Ctrl + F; Mac:Com + F
 
+- 在某一文件夹下查找内容，Find in Path，
+Win:Ctrl + Shift + F; Mac:Ctrl + Shift + F
+
 - 替换，Replace，
 Win:Ctrl + R; Mac:Com + R，
 
