@@ -59,7 +59,7 @@
         }
     };
 
-data函数是一个普通的http服务所调用的函数，可以在[GitHub](https://github.com/longze/cellar) 上 service/mysocket 下找到并运行。在服务器端用 `connection.send` 向客户端发信息，用 `connection.on('message', callback）` 监听客户端发来的信息，连接建立后每隔3秒会向客户端发送消息。
+data函数是一个普通的http服务所调用的函数，可以在[GitHub](https://github.com/longze/cellar) 上 service/websocket-demo 下找到并运行。在服务器端用 `connection.send` 向客户端发信息，用 `connection.on('message', callback）` 监听客户端发来的信息，连接建立后每隔3秒会向客户端发送消息。
 
 ## 前端
 
