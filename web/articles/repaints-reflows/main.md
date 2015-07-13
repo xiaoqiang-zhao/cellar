@@ -4,11 +4,57 @@
 
 ## 加载和渲染流程
 
-我们从浏览器加载HTML文档、CSS和js文件开始说起。浏览器从上
+我们从浏览器加载html文档、css和js文件开始说起。
+
+1. 浏览器从上到下依次对文档进行扫描。
+2. 现代浏览器中文件的请求是顺序发出的，不是等到上一个请求完成才请求下一个。
+3. 对于内嵌的js片段，如果前面有未加载完成的js或css，要等到前面的js和css都加在完成才执行；如果前面没有未加载完成的js和css文件，js片段立即执行。
+4. 对HTML解析后形成DOM树，通过第二条我们可以猜到对HTML的解析是从头执行到尾，中间并不会因为有文件未加载完成而停止生产DOM树，所以在Body的最末端（甚至在HTML之后，当然这并不规范也完全没有必要）就是DOM树完成的位置；但是各种框架ready或domReady并不是指这个，而是指所有的css和js文件都加载完成之后；对于判断的原理会涉及到`DOMContentLoaded`、`onreadystatechange`、`readyState`和IE9与FF3.6之前浏览器的各种坑，有机会再写篇专题吧。
+5. 渲染开始于DOM树生成完成，且所有的css文件加载完成之后，只有开始渲染页面上才开始出现东西，如果有css文件未完成加载那么页面一片空白。js写在慢css之前是可以执行的，但有什么用呢，让用户面对一片空白的页面，还不如js放在最后，给css的加载多留点时间。这也就是雅虎给的14条军规
+- 当遇到CSS的文件引用时，浏览器会停下来直到加载完成（此时页面一片空白）才会继续向后扫描。
+- 遇到其他节点时放入DOM树，如果是需要下载文件的节点，比如带有 `src` 属性的 `script`，或者    `img`标签，再或者 `iframe` 标签，把需要下载的文件让如一个下载队列中，如果遇到内嵌在页面中的js片段js会立即执行（可以用 `document.write` 方法输出html片段），
 
 ## 验证流程
 
-我们用实验的方法来验证流程
+通过服务器延时返回这里构造了对静态文件的慢请求，再配合调整顺序和肉眼观察，下面依次对上面的几条做验证。
+
+1. 这条比较基础稍作解释：上面的js片段不做回调处理访问不到下面的DOM节点，静态文件的引用反映在服务器上的响应顺序大体也是相同的，之所以说大体相同是因为网络的的不确定性会有后发先至的情况。实例 test-1.html。
+
+2. 我们在页面写入两个慢请求，分别是CSS文件请求和JS文件请求，在服务器端响应CSS慢请求并3秒后返回，JS慢请求5秒后返回，我们观察到服务器几乎同时接到浏览器的请求，同时浏览器端从刷新页面到JS执行的时间是5秒而不是8秒。实例 test-2.html。
+
+3. 验证这条稍微复杂一点，我们先验证**“如果js片段前面有未加载的css文件,js片段要等css文件加载完成才执行”**，这一条很多人会漏掉需要特别关注，讲一个慢请求的css放在js片段前面，刷新页面后发现只有css加载完成，才执行js，详细参见test-3-1.html；明白了上面一条，“如果js片段前面有未加载的js文件,js片段要等js文件加载完成才执行”这条就不多做解释了，参见test-3-2.html；“如果前面没有未加载完成的js和css文件，js片段立即执行”要验证这一条只需要把上面验证代码稍作顺序上的调整就可以，详情参见test-3-3.html 和 test-3-4.html。
+
+4. ready回调中的js在慢js执行后执行，详情参见test-4.html。
+
+5. ，详情参见test-5.html。
+
+>test-3-1.html 关键代码
+
+    <link rel="stylesheet" href="/demo/slowCSS3"/>
+    <script>
+        alert('?');
+        document.write('如果前面有未加载的css,js要等加载css加载完成才能执行');
+    </script>
+    
+>test-3-3.html 关键代码
+
+    <div class="a">
+        <script>
+        document.write('如果前面没有未加载完成的js和css文件，js片段立即执行。');
+        </script>
+    </div>
+    <script src="/demo/slowJS5"></script>
+
+> test-4.html 关键代码
+
+    <script>
+        $(document).ready(function () {
+            alert('$(document).ready');
+        });
+    </script>
+    <script src="/demo/slowJS5"></script>
+
+
 
     document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
     function subSomething() 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>加载测试</title>
+    <link rel="stylesheet" href="a.css"/>
+    <script src="jquery-2.1.3.js"></script>
+    <script>
+        $.ready(function () {
+            alert('$.ready');
+        });
+    </script>
+</head>
+<body>
+<div class="a">
+
+</div>
+</body>
+</html>
+<script>
+    console.log('不规范的js位置');
+    window.onload = function () {
+        console.log('onload');
+    };
+    document.onreadystatechange = function () {
+        console.log(document.readyState);
+        // return true;
+    };
+</script>
