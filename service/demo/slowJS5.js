@@ -14,7 +14,7 @@ module.exports = {
             // 返回异步执行后的结果
             response200(
                 contentType,
-                ''
+                'alert("慢js，5秒");'
                 // ,'utf-8' 编码格式，
             );
 

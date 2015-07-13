@@ -14,8 +14,8 @@ module.exports = {
             // 返回异步执行后的结果
             response200(
                 contentType,
-                '.a { background: #333; color: #fff0ff; padding: 30px; }'
+                '.a { background: #333; color: #fff0ff; padding: 30px; text-align: center;}'
             );
-        }, 5000);
+        }, 3000);
     }
 };
