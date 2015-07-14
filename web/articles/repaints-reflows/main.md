@@ -1,18 +1,20 @@
 # 浏览器的重绘(repaints)与重排(reflows)
 
-> 这是一篇从其他网站整理而来的文章，原文地址：[http://www.css88.com/archives/4991#more-4991](http://www.css88.com/archives/4991#more-4991)。写页面时间久一点（专职一年以上，或者间断积累购一年）开始注意到浏览器对页面的原理，DOM树、渲染树、重绘、重排、layout等概念开始进入视野，从零散的概念，到各种布局和Hack，到打通这些概念需要一个时间上的积累和思考。
+> 写页面时间久一点开始注意到浏览器对页面的原理，节点树(DOM Tree)、渲染树(Render Tree)、重绘(Repaint)、重排(Reflow)、HasLayout等概念开始进入视野，从零散的概念，到各种布局和Hack，到打通这些概念需要一个时间上的积累和思考。今天试试能不能打通这条筋脉。
 
 ## 加载和渲染流程
 
 我们从浏览器加载html文档、css和js文件开始说起。
 
 1. 浏览器从上到下依次对文档进行扫描。
+
 2. 现代浏览器中文件的请求是顺序发出的，不是等到上一个请求完成才请求下一个。
+
 3. 对于内嵌的js片段，如果前面有未加载完成的js或css，要等到前面的js和css都加在完成才执行；如果前面没有未加载完成的js和css文件，js片段立即执行。
+
 4. 对HTML解析后形成DOM树，通过第二条我们可以猜到对HTML的解析是从头执行到尾，中间并不会因为有文件未加载完成而停止生产DOM树，所以在Body的最末端（甚至在HTML之后，当然这并不规范也完全没有必要）就是DOM树完成的位置；但是各种框架ready或domReady并不是指这个，而是指所有的css和js文件都加载完成之后；对于判断的原理会涉及到`DOMContentLoaded`、`onreadystatechange`、`readyState`和IE9与FF3.6之前浏览器的各种坑，有机会再写篇专题吧。
-5. 渲染开始于DOM树生成完成，且所有的css文件加载完成之后。只有开始渲染（也可以说是开始生成渲染树），页面上才开始出现东西，如果有css文件未完成加载那么页面一片空白。js写在慢css之前是可以执行的，但有什么用呢，让用户面对一片空白的页面，还不如js放在最后，给css的加载多留点时间。这也就是雅虎给的14条军规第5条“将css放在页面的上方”和第6条“将脚本移到底部包括内敛脚本”的原理所在。
-- 当遇到CSS的文件引用时，浏览器会停下来直到加载完成（此时页面一片空白）才会继续向后扫描。
-- 遇到其他节点时放入DOM树，如果是需要下载文件的节点，比如带有 `src` 属性的 `script`，或者    `img`标签，再或者 `iframe` 标签，把需要下载的文件让如一个下载队列中，如果遇到内嵌在页面中的js片段js会立即执行（可以用 `document.write` 方法输出html片段），
+
+5. 渲染开始于DOM树生成完成，且所有的css文件加载完成之后。只有开始渲染（也可以说是开始生成渲染树），页面上才开始出现东西，如果有css文件未完成加载那么页面一片空白。js写在慢css之前是可以执行的，但有什么用呢，让用户面对一片空白的页面，还不如js放在最后，给css的加载多留点时间。这也就是雅虎给的14条军规第5条“将css放在页面的上方”和第6条“将脚本移到底部包括内敛脚本”的原理所在。 
 
 ## 验证流程
 
@@ -26,7 +28,7 @@
 
 4. ready回调中的js在慢js执行后执行，详情参见test-4.html。
 
-5. ，详情参见test-5.html。
+5. 顶部有一个慢css，整个页面在这个css加载完成前不会呈现任何内容，详情参见test-5.html。
 
 >test-3-1.html 关键代码
 
@@ -54,29 +56,41 @@
     </script>
     <script src="/demo/slowJS5"></script>
 
+## 渲染的补充
 
+渲染树的每个节点都有大小和边距等属性，类似于盒模型（由于隐藏元素不需要显示，渲染树中并不包含节点树中隐藏的元素）。当渲染树构建完成后，浏览器就可以将元素放置到正确的位置了，再根据渲染树节点的样式属性绘制出页面。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但 table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花3倍于同等元素的时间。这也是为什么我们要避免使用 table做布局的一个原因。
 
-    document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
-    function subSomething() 
-    { 
-        if(document.readyState == “complete”) //当页面加载状态 
-        myform.submit(); //表单提交 
-    } 
+确定节点的几何属性是一个复杂的过程，有的是从外向内来确定，像下面的常用模式
+
+    <div class="a" id="a">
+        A
+        <div class="b" id="b" style="width: 50%">B</div>
+    </div>
     
-    0: (Uninitialized) the send( ) method has not yet been invoked. 
-    1: (Loading) the send( ) method has been invoked, request in progress. 
-    2: (Loaded) the send( ) method has completed, entire response received. 看不到
-    3: (Interactive) the response is being parsed.  能看到
-    4: (Completed) the response has been parsed, is ready for harvesting. 能看到
-    
-    翻译成中文为: 
-    0 － （未初始化）还没有调用send()方法 
-    1 － （载入）已调用send()方法，正在发送请求 
-    2 － （载入完成）send()方法执行完成，已经接收到全部响应内容 
-    3 － （交互）正在解析响应内容 
-    4 － （完成）响应内容解析完成，可以在客户端调用了
+b的宽度需要参考a来计算。而b的高度需要通过b的宽度和内容共同决定，是一种从内向外的计算。另外渲染树的结构和节点树   
+ 
+## hasLayout
+ 
+ hasLayout是IE6 IE7浏览器的特性，当一个元素触发了hasLayout时，它就会计算自身及后代元素的定位、布局。假如一个元素没有触发hasLayout，那么它的布局和定位 就由其父元素（如果父元素也没有触发hasLayout，则寻找祖先级已触发了hasLayout的元素）计算。于是，被“代管”布局的子元素，就有可能因为父元素在递归计算布局时没有面面俱到而产生了布局问题。
+ 
+ 通常情况下，触发hasLayout可以解决大部分IE6 IE7中的布局问题。 触发hasLayout的方法，最简单无副作用的是zoom: 1;；如果这个不顶用，可以使用更为NB的position: relative;（但会带来副作用）。
+ 
+ “闭合”（清除）浮动
+ 
+ 前端布局时，少不了使用float属性，但是浮动之后，父容器高度会“塌陷”，所以通常情况下，需要“闭合”浮动。
+ 如何“闭合”浮动，请看这篇很NB的文章 一丝冰凉：[《那些年我们一起清除过的浮动》](http://www.iyunlu.com/view/css-xhtml/55.html)。
+ 文中除了详解7种清除浮动的方法外，还提到了hasLayout与BFC（block formatting contexts），很强大。
+
+此节摘自[一位友人的Git](https://github.com/java-sparrow/forGirl/blob/master/%E5%89%8D%E7%AB%AF%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E8%B7%B5.md)。
+
+## 重绘与重排
+
+重绘是一个元素非集合特性的改变所触发的浏览器行为，例如改变vidibility、outline、背景色、文字颜色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局。
+
+重排是更明显的一种改变，可以理解为渲染树需要重新计算。下面是常见的触发重排的操作：
+
+此节参考了愚人码头的文章[浏览器的重绘(repaints)与重排(reflows)](http://www.css88.com/archives/4991#more-4991)的大段内容。
 
 ## 牢骚
 
 上面这些是 HTML + CSS 的一个技术瓶颈，也是区别新手和成手的一个指标，因为这些是那些有关联样式的一个理论支撑。在这方面如果一个面试者可以从头到位给你解释清楚那给工资的时候就不要小气了。因为这种人不是一个经验用三年的那种，会主动思考，会把页面当成一种工业艺术，他工作通常不是只为了钱而是一种境界的追求。
-
