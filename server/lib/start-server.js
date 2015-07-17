@@ -23,7 +23,7 @@ portModel.getAvailablePort(port, function (port) {
         console.log('------ 服务器日志 ------');
 
         // 在默认浏览器中打开网站
-        if (config.isAutoOpenDefaultPage) {
+        if (config.isAutoOpenDefaultPage === true) {
             var indexPageUrl = url + config.defaultPage;
             var cp = require('child_process');
             // Windows
@@ -60,4 +60,9 @@ function getIPAdress() {
             }
         }
     }
+}
+
+// 开始添加“命令行参数指定是否打开网站首页”的功能
+function isOpenDefaultPage () {
+    // open page
 }
