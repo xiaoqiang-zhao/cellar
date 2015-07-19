@@ -61,8 +61,3 @@ function getIPAdress() {
         }
     }
 }
-
-// 开始添加“命令行参数指定是否打开网站首页”的功能
-function isOpenDefaultPage () {
-    // open page
-}

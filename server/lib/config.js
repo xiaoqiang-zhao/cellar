@@ -15,7 +15,7 @@ var config = {
     serviceRoutConfigPath: '/rout-config.js', // service下，用户自定义服务路由，可支持RESTful
     serviceDefaultMethodName: 'data',         // 服务的默认方法
     serviceDefaultContentType: 'json',        // 服务默认数据格式（用于写在返回头中）
-    isAutoOpenDefaultPage: false,              // 服务启动后是否在浏览器中打开默认页面
+    isAutoOpenDefaultPage: true,              // 服务启动后是否在浏览器中打开默认页面
     afterPortConflict: 'break',               // 端口冲突后：break停止启动，continue寻找可用端口继续启动
     staticFieldConfig: {                      // 静态文件配置
         html: {
