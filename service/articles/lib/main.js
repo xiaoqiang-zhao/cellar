@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-    data: function (articleName, request, response) {
+    getList: function (articleName, request, response) {
         return '临时，访问名：' + articleName;
     }
 };
