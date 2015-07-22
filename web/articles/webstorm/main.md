@@ -92,7 +92,7 @@ Win:Ctrl + Shift + Num+; Mac:Com + Shift + Num+
 - 选中的超级扩展，Extend Selection，
 Win:Ctrl + W; Mac:Com + W，请原谅我给这个快捷键起这么夸张的称谓，因为这个快捷方式是我超级超级喜欢的一个，按一次选中一个单词，两次一行，三次一个代码块，太好用了！！
 
-— 重命名，Rename，
+- 重命名，Rename，
 Win:Shift + F6; Mac:Shift + F6，这是一个有多张面孔的快捷键。在js代码中此快捷键是变量重命名，给变量起名真是一个费劲的事情，随着业务的变动变量名一定要跟着作调整，否则代码的寿命不好太长远；在html和css以及文档文件中，此快捷键重命名当前文件；在资源文件目录下，此快捷方式是给资源重命名，而且会智能同步引用。
 
 ### 6 - 粘贴
@@ -104,6 +104,9 @@ Win:Ctrl + V; Mac:Com + V，一个很普通的粘贴
 Win:Ctrl + Shift + V; Mac:Com + Shift + V，我超级喜欢的功能，有了它就不用反复的复制了
 
 ### 7 - 文件
+
+- 打开文件，File...
+Win:Ctrl + Shift + N; Mac:Com + Shift + N
 
 - 保存全部，Save All，
 Win:Ctrl + S; Mac:Com + S
@@ -175,4 +178,5 @@ Appearance & Behavior/ System Settings/ Project Opening / Open project in new wi
 
 ## 声明
 
-欢迎各方转载，单请注明出处：https://github.com/longze/cellar/blob/master/articles/webstorm/main.md
+欢迎各方转载，但请注明出处：
+[https://github.com/longze/cellar/blob/master/web/articles/webstorm/main.md](https://github.com/longze/cellar/blob/master/web/articles/webstorm/main.md)
