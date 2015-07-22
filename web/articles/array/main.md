@@ -4,11 +4,7 @@ Array：一种数据容器，存储有序。
 
 Array容量：2的32次方 - 2 = 4 294 967 294，约42.9亿。
 这是理论设计的最大容量，实际上在千万级的简单数据项冲击下，现代浏览器基本全部崩溃。
-在最新版的chrome浏览器 36.0.1985.125 m上做测试，数据到5千万就崩溃了。
-
-如果换成 `array.push(false)` ，3千万数据就崩溃了。这是为什么？
-
-    <div>div</div>
+在最新版的chrome浏览器 42.0 上做测试，数据到7千万就崩溃了。
     
     var array = [];
     var n = 10000 * 1000; // 千万
@@ -36,24 +32,25 @@ Array容量：2的32次方 - 2 = 4 294 967 294，约42.9亿。
     var array4 = []; // 与array1的创建等效
     // 直接量可以这样创建，但是构造函数Array('a', 'b', 'c', ,)是有语法错误的
     var array5 = [1, 2]; 
-    var array6 = [1, 2, , ]; // 变通写法：[1, 2, undefined, undefined] 
-
-最后一种创建方法很不规范，应当绝对避免。而且数组的长度会存在浏览器兼容问题。
 
 补充一点：
 
+    var array6 = [1, 2, , ]; // 变通写法：[1, 2, undefined, undefined]
     var array7 = [1, 2, , 4];
     var array8 = [1, 2, undefined, 4];
     2 in array7 // false
     2 in array8 // true
     array7[2] === array8[2]; // true
 
-## Array的常规方法
+逗号前不放值得这种方法很不规范，应当绝对避免。而且数组的长度会存在浏览器兼容问题，还存在其他一些隐藏的坑（比如上面的 `in` ）。
 
-###.push(new1,new2,...,newX)
+## ES3 下Array的方法
 
-接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度，
-该方法**会**改变数组。
+### push
+
+.push(new1,new2,...,newX)
+
+接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度，该方法**会**改变数组。
 
 示例：
 
@@ -61,7 +58,9 @@ Array容量：2的32次方 - 2 = 4 294 967 294，约42.9亿。
     array.push('a'); // 1
     array[0];        // 'a'
 
-### .pop()
+### pop
+
+.pop()
 
 移除并返回数组的最后一项，该方法**会**改变数组。
 
@@ -73,7 +72,9 @@ Array容量：2的32次方 - 2 = 4 294 967 294，约42.9亿。
     array.pop(); // 'a'
     array[0];    // undefined
     
-### .shift()
+### shift
+
+.shift()
 
 删除并返回数组的第一个元素，该方法**会**改变数组。
 
@@ -83,14 +84,18 @@ Array容量：2的32次方 - 2 = 4 294 967 294，约42.9亿。
     array.shift(); // a
     array[0];      // undefined
 
-### .unshift(new1,new2,...,newX)
+### unshift
+
+.unshift(new1,new2,...,newX)
 
 向数组的开头添加一个或更多元素，并返回新的长度（IE会返回undefined），该方法**会**改变数组。
 
     var array = [];
     array.unshift('a', 'b'); // 2
 
-### .slice(start,end)
+### slice
+
+.slice(start,end)
 
 从已有的数组中选择并返回选定的元素（以数组的形式）。
 返回的数组是原数组的部分拷贝（值类型，字符串或数字）或指向（对象类型）,
@@ -113,7 +118,9 @@ end:可选。规定从何处结束选取。
     array3[0].name = 'b';
     array[2].name; // 'b'
 
-### .splice(start, deleteCount, item1, ....., itemX)
+### splice
+
+.splice(start, deleteCount, item1, ....., itemX)
 
 先从数组中删除元素，然后添加元素，最后返回被删除的项目，
 该方法**会**改变数组。
@@ -132,7 +139,9 @@ item1, ..., itemX:	可选。向数组添加的新项目。
     ['a', 'b', 'c'].slice(-1,-2)  // []
     ['a', 'b', 'c'].slice(-2,-1)  // ["b"]
 
-### .concat(array1,array2,...,arrayX)
+### concat
+
+.concat(array1,array2,...,arrayX)
 
 方法用于连接两个或多个数组。
 该方法**不会**改变现有的数组，而仅仅会返回被连接数组的一个副本。
@@ -142,7 +151,9 @@ item1, ..., itemX:	可选。向数组添加的新项目。
     array.concat(['c']);       // ['a', 'c']
     array.concat('b', ['c']);  // ['a', 'b', 'c']
 
-### .sort(sortby)
+### sort
+
+.sort(sortby)
 
 对数组元素进行排序，并返回排序后的数组。该方法**会**改变现有的数组。
 
@@ -171,12 +182,16 @@ item1, ..., itemX:	可选。向数组添加的新项目。
         return item1.order > item2.order;
     }); // [{"order":1},{"order":2},{"order":3},{"order":5}] 
 
-### .reverse()
+### reverse
+
+.reverse()
 
 用于颠倒数组中元素的顺序。该方法**会**改变原来的数组，而不会创建新的数组。
 返回结果是颠倒后的数组
 
-### .join(separator)
+### join
+
+.join(separator)
 
 把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。
 
@@ -222,7 +237,7 @@ separator:可选。指定要使用的分隔符。如果省略该参数，则使�
 补充一下，另外还有 `.valueOf()` 和 `.toSource()` ，
 通常用于 JavaScript 在后台自动调用，这里不做过多解释。
 
-## ECMAScript5中的方法
+## ES5 下Array的方法
 
 ### Array.isArray(arg)
 
