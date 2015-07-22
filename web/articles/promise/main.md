@@ -175,9 +175,10 @@ jQuery.Deferred是一个工厂方法，用以生产符合Promise规范的实例�
 resolve 可以触发then的第一个回调、done、always，触发的顺序和定义的顺序一致。另外resolve方法不是定义回调的，而是触发回调的。reject同理，always可被resolve和reject触发。
 
 ## 最后
-
-本文Git地址：[https://github.com/longze/cellar/blob/dev/web/articles/promise/main.md](https://github.com/longze/cellar/blob/dev/web/articles/promise/main.md)
-
 综合使用的研究在research.html 和 research.js中，分别模拟浏览器端和node端。research-jq.html 中是对jQuery中Promise的研究。
 
 [一篇很不错的译文](http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/)
+
+## 声明
+
+欢迎各方转载，但请注明出处：[https://github.com/longze/cellar/blob/master/web/articles/promise/main.md](https://github.com/longze/cellar/blob/master/web/articles/promise/main.md)
