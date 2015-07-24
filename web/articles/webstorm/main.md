@@ -154,11 +154,17 @@ Appearance & Behavior/ System Settings/ Project Opening / Open project in new wi
 
 ### 3 - 代码格式
 
-- 代码长度参考线
+**代码长度参考线**
 
 真的不建议把一行代码写的太长，嵌套太深也是要避免的，毕竟代码是给人看的，偶尔交给机器执行以下，所以代码的可读性非常重要。所以就有了代码长度参考线。在 /Editor/General/Appearance 中 勾选Show right margin 考线出现，取消勾选参考线消失。参考线的位置其实是字符数量的体现，在 /Editor/Code Style 中 Right Margin 中调整字符数量，个人建议120。
 
-- 默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
+**CSS空行**
+
+默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
+
+**MD文档默认换行**
+
+MD文档默认不换行，可以在左边行号的位置右击勾选"Use Soft Wraps"，这种方式每次都要设置，还有一种一劳永逸的设置方法，Settings | Editor | General | Use soft wraps in editor
 
 ### 4 - 代码模板
 
