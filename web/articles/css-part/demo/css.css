@@ -32,6 +32,10 @@
 .data-empty:after {
     content: "数据为空";
 }
+/* 隐藏 */
+body .hide {
+    display: none;
+}
 /* 不被撑大的table */
 .t-f,
 .table-fixed {

@@ -48,6 +48,16 @@
     .data-empty:after {
         content: "数据为空";
     }
+
+## 隐藏
+
+隐藏元素推荐使用class来操作，这样便于显示时还原display的值，另外加上body来提高优先级使适用范围更广泛。
+
+    /* 隐藏 */
+    body .hide {
+        display: none;
+    }
+    
 ## 不被撑大的table
 
     /* 不被撑大的table */
