@@ -252,6 +252,12 @@ separator:可选。指定要使用的分隔符。如果省略该参数，则使�
 补充一下，另外还有 `.valueOf()` 和 `.toSource()` ，
 通常用于 JavaScript 在后台自动调用，这里不做过多解释。
 
+### length
+
+.length
+
+是数组的属性，可以通过改变属性值来截断或者加长数组，所加得项值为 undefined.
+
 ## ES5 下Array的方法
 
 ### isArray
