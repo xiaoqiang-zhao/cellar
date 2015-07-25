@@ -50,7 +50,13 @@ Array容量：2的32次方 - 2 = 4 294 967 294，约42.9亿。
 
 .length
 
-是数组的属性，可以通过改变属性值来截断或者加长数组，所加得项值为 undefined.
+是数组的属性，可以通过改变属性值来截断或者加长数组，所加得项值为 undefined。另外如果所赋的值不是正整数和零不一定会报错，下面是几种典型的不报错并且可以获得长度的情况。
+
+    var a = [1,2,3,4,5];
+    a.length = true; // a.length 为 1
+    a.length = false; // a.length 为 0
+    a.length = ''; // a.length 为 0
+    a.length = null; // a.length 为 0
 
 ### push
 
