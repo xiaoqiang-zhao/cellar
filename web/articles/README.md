@@ -8,25 +8,21 @@
 
 # 文章列表
 
+--------------------完善的文章----------------------
+
 1. [array](array/main.md)
 
-2. [avalon](avalon/main.md)
+- [string](string/main.md)
 
-- [backbone](backbone/main.md)
+- [regexp](regexp/main.md)
+
+- [avalon](avalon/main.md)
 
 - [css-reset](css-reset/main.md)
 
-- [data-type](data-type/main.md)
-
-- [form-to-obj](form-to-obj/main.md)
+- [css-part](css-part/main.md)
 
 - [git](git/main.md)
-
-- [html](html/main.md)
-
-- [jquery](jquery/main.md)
-
-- [jquery-promise](jquery-promise/main.md)
 
 - [node](node/main.md)
 
@@ -34,12 +30,24 @@
 
 - [promise](promise/main.md)
 
-- [regexp](regexp/main.md)
-
-- [string](string/main.md)
-
-- [template](template/main.md)
-
 - [websocket](websocket/main.md)
 
 - [webstorm](webstorm/main.md)
+
+--------------------部分腹稿未录入的文章----------------------
+
+- [html](html/main.md)
+
+- [form-to-obj](form-to-obj/main.md)
+
+--------------------残不忍读的文章----------------------
+
+- [backbone](backbone/main.md)
+
+- [data-type](data-type/main.md)
+
+- [jquery](jquery/main.md)
+
+- [jquery-promise](jquery-promise/main.md)
+
+- [template](template/main.md)
