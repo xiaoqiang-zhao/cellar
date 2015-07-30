@@ -40,6 +40,8 @@
 
 - [form-to-obj](form-to-obj/main.md)
 
+- [amd-cmd](amd-cmd/main.md)
+
 --------------------残不忍读的文章----------------------
 
 - [backbone](backbone/main.md)
