@@ -33,7 +33,9 @@ CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node
 
     define(id?, factory);
     
-id是可选参数，用来定义模块的key，在
+id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo-1.html](demo-1/html) 展示了这种错误。
+
+factory 是工厂函数，
 
 ## AMD
 
