@@ -29,6 +29,8 @@ CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node
 
 ## AMD 与 CMD 的共同点
 
+都是模块加规范，倡导模块化开发理念，核心价值是让 JavaScript 的模块化开发变得简单自然。
+
 对于不依赖其他模块的模块，在定义上是相同的：
 
     define(id?, factory);
@@ -52,3 +54,11 @@ factory 是工厂函数，
 [阮一峰 - Javascript模块化编程（二）：AMD规范](http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html)
 
 [http://blog.chinaunix.net/uid-26672038-id-4112229.html](http://blog.chinaunix.net/uid-26672038-id-4112229.html)
+
+[使用 AMD、CommonJS 及 ES Harmony 编写模块化的 JavaScript](http://justineo.github.io/singles/writing-modular-js/)
+
+http://www.zhihu.com/question/20351507
+
+https://github.com/seajs/seajs/issues/277
+
+http://www.douban.com/note/283566440/
