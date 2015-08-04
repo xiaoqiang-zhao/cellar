@@ -53,7 +53,7 @@ factory 是工厂函数，
 
 [阮一峰 - Javascript模块化编程（二）：AMD规范](http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html)
 
-[http://blog.chinaunix.net/uid-26672038-id-4112229.html](http://blog.chinaunix.net/uid-26672038-id-4112229.html)
+[ JavaSript模块规范 - AMD规范与CMD规范介绍 ](http://blog.chinaunix.net/uid-26672038-id-4112229.html)
 
 [使用 AMD、CommonJS 及 ES Harmony 编写模块化的 JavaScript](http://justineo.github.io/singles/writing-modular-js/)
 
