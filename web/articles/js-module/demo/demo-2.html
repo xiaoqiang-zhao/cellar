@@ -3,12 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="require.js"></script>
+    <script src="sea-debug.js"></script>
 </head>
 <body>
-123
 <script>
-    require(['a'], function (a) {
+    seajs.use(['a'], function (a) {
        console.log(a.name);
     });
 </script>
