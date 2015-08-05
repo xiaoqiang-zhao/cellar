@@ -35,7 +35,7 @@ CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node
 
     define(id?, factory);
     
-id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo-1.html](demo-1/html) 展示了这种错误。
+id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo/demo-1.html](demo/demo-1.html) 展示了这种错误。模块加载器都有缓存已加载模块的特性，二次加载的时候从缓存中拿，而其索引或依据就是这个id
 
 factory 是工厂函数，
 
@@ -57,8 +57,10 @@ factory 是工厂函数，
 
 [使用 AMD、CommonJS 及 ES Harmony 编写模块化的 JavaScript](http://justineo.github.io/singles/writing-modular-js/)
 
-http://www.zhihu.com/question/20351507
+[ES6新特性 - 刘哇勇](http://www.cnblogs.com/Wayou/p/es6_new_features.html)
 
-https://github.com/seajs/seajs/issues/277
+[AMD 和 CMD 的区别有哪些 - 知乎 - 玉伯](http://www.zhihu.com/question/20351507)
 
-http://www.douban.com/note/283566440/
+[与 RequireJS 的异同 - Git - Wiki](https://github.com/seajs/seajs/issues/277)
+
+[SeaJS与RequireJS最大的区别 - 豆瓣](http://www.douban.com/note/283566440/)
