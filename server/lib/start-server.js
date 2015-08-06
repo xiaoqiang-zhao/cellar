@@ -41,7 +41,7 @@ portModel.getAvailablePort(port, function (port) {
     });
 
     // 将http全局化，方便做WebSocket
-    global.http = http;
+    global.siteHttpServer = http;
 });
 
 /**

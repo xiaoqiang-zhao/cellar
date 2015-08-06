@@ -9,7 +9,7 @@ module.exports = {
 
         var server = require('websocket').server;
         var socket = new server({
-            httpServer: global.http
+            httpServer: global.siteHttpServer
         });
         var i = 1;
         var connection;
