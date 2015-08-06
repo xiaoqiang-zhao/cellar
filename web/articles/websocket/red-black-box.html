@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>红黑盒子 - WebSocket</title>
+    <style rel="stylesheet">
+        h3 {
+            text-align: center;
+        }
+        .con {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: red;
+            position: relative;
+        }
+        .con div {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: -20px;
+            top: 0;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            line-height: 100%;
+        }
+        #red {
+            background: red;
+        }
+        #black {
+            background: black;
+            top: 20px;
+        }
+    </style>
+    <script src="jquery-2.1.3.js"></script>
+</head>
+<body>
+    <h3>
+        <script>
+            var host = 'ws://' + location.host + '/red-black-box';
+        </script>
+    </h3>
+    <div class="con">
+        <div id="red">红</div>
+        <div id="black">黑</div>
+    </div>
+<script>
+    var host = 'ws://' + location.host + '/red-black-box';
+    // 和服务器建立socket连接，信道建立
+    socket = new WebSocket(host);
+    socket.onopen = function () {
+
+    };
+
+    // 接受来自服务器的消息
+    socket.onmessage = function (message) {
+        $('.con').css({
+            background: message.data
+        });
+    };
+
+    socket.onerror = function (error) {
+        console.log('WebSocket 链接错误: ' + error);
+    };
+    $('#red,#black').click(function () {
+        socket.send($(this).attr('id'));
+    });
+
+</script>
+</body>
+</html>
