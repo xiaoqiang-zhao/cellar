@@ -33,16 +33,63 @@ CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node
 
 对于不依赖其他模块的模块，在定义上是相同的：
 
-    define(id?, factory);
-    
-id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo/demo-1.html](demo/demo-1.html) 展示了这种错误。模块加载器都有缓存已加载模块的特性，二次加载的时候从缓存中拿，而其索引或依据就是这个id
+**字符串**
 
-factory 是工厂函数，
+可以直接把字符串作为一个模块，如果出现第二个参数，第一个是模块ID。
+
+    define('<div>{{data}}</div>');
+
+**JSON**
+
+无依赖模块可以直接使用对象字面量来定义。
 
     define({ 
         attr: 'attr',
         fun: function () {
         }
+    });
+
+**回调 / 工厂**
+
+这种方法最常见，变式也最多。
+
+    define(id?, factory);
+    
+id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo/demo-1.html](demo/demo-1.html) 展示了这种错误。模块加载器都有缓存已加载模块的特性，二次加载的时候从缓存中拿，而其索引或依据就是这个id。向外提供接口的几种形式：
+
+    // 直接用 return 返回
+    define(function () {
+        return { 
+            attr: 'attr',
+            fun: function () {
+            }
+        };
+    });
+
+    // 向 exports 逐项添加属性和方法
+    define(function (require, exports, module) {
+        exports.attr = 'attr';
+        exports.fun = function () {
+        };
+    });
+
+    // 通过 module.exports 整体赋值属性和方法
+    define(function (require, exports, module) {
+        module.exports = { 
+            attr: 'attr',
+            fun: function () {
+            }
+        };
+    });
+
+需要注意的是下面的方法是不可以的。
+
+    define(function (require, exports, module) {
+        exports = { 
+            attr: 'attr',
+            fun: function () {
+            }
+        };
     });
 
 ## AMD
