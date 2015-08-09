@@ -6,9 +6,11 @@
     <script src="sea-debug.js"></script>
 </head>
 <body>
+按需加载，只有执行到响应代码才加载相应模块。
 <script>
-    seajs.use(['a'], function (a) {
-       console.log(a.name);
+    seajs.use(['module-need-cmd'], function (module) {
+        window.model = module;
+        // module.fn();
     });
 </script>
 </body>
