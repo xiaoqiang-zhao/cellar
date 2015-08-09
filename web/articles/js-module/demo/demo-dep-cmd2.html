@@ -6,9 +6,11 @@
     <script src="sea-debug.js"></script>
 </head>
 <body>
+
 <script>
-    seajs.use(['a'], function (a) {
-       console.log(a.name);
+    seajs.use(['module-dep-amd'], function (moduleDep) {
+        window.module = moduleDep;
+        console.log(moduleDep.name);
     });
 </script>
 </body>

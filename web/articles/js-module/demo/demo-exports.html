@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="require-debug.js"></script>
+    <!-- 当然使用SeaJs也一样 -->
+    <!--<script src="sea-debug.js"></script>-->
+</head>
+<body>
+<script>
+    require(['module-exports'], function (moduleExports) {
+    // seajs.use(['module-exports'], function (moduleExports) {
+       console.log(moduleExports.attr);
+    });
+</script>
+</body>
+</html>
