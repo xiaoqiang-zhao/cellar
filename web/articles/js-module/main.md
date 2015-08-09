@@ -27,7 +27,7 @@
 
 CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node的模块化](../node-module/main.md)。本文最后给出兼容前后端的模块定义方法，如果想深入理解之一部分内容，或者多Node.js开发感兴趣建议移步阅读，当然对本文内容了解并不依赖于“node的模块化”。
 
-## AMD 与 CMD 的共同点
+## AMD 与 CMD 的相同点
 
 都是模块加规范，倡导模块化开发理念，核心价值是让 JavaScript 的模块化开发变得简单自然。
 
@@ -36,12 +36,14 @@ CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node
 **字符串**
 
 可以直接把字符串作为一个模块，如果出现第二个参数，第一个是模块ID。
+(demo参见[demo/demo-str.html](demo/demo-str.html))
 
     define('<div>{{data}}</div>');
 
 **JSON**
 
 无依赖模块可以直接使用对象字面量来定义。
+(demo参见[demo/demo-json.html](demo/demo-json.html))
 
     define({ 
         attr: 'attr',
@@ -55,7 +57,7 @@ CommonJs 属于服务器端的模块化规范，内容也较多，请移步[node
 
     define(id?, factory);
     
-id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo/demo-1.html](demo/demo-1.html) 展示了这种错误。模块加载器都有缓存已加载模块的特性，二次加载的时候从缓存中拿，而其索引或依据就是这个id。向外提供接口的几种形式：
+id是可选参数，用来定义模块的key，一般不推荐手动编辑id，而是压缩时自动产生。[demo/demo-id.html](demo/demo-id.html) 展示了这种错误。模块加载器都有缓存已加载模块的特性，二次加载的时候从缓存中拿，而其索引或依据就是这个id。向外提供接口的几种形式(demo参见[demo/demo-exports.html](demo/demo-exports.html))：
 
     // 直接用 return 返回
     define(function () {
@@ -92,15 +94,81 @@ id是可选参数，用来定义模块的key，一般不推荐手动编辑id，�
         };
     });
 
-## AMD
+##  AMD 与 CMD 的不同点
+    
+**提前加载/依赖管理**
 
-## CMD
+提前加载，或者叫依赖管理，就是当前模块要运行需要其他模块先就位，需要依赖其他模块，而不是简单的调用关系或触发模式。
 
-## 模块解析的流程
+在AMD下定义依赖如下：
+(demo参见[demo/demo-dep-amd.html](demo/demo-dep-amd.html))：
 
-## 压缩前后
+    define(['module-a'], function(moduleA){
+        return moduleA;
+    });
+    
+在CMD下定义依赖如下：
+    
+    define(function(require){
+        var moduleA = require('module-a');
+        return moduleA;
+    });
+
+AMD 的依赖是在 define 中提前定义好的，加载完成依赖后初始化当前模块；
+CMD初始化模块的第一步是扫描当前模块，将依赖提取出来并提前加载，加载完成后再从头开始执行回调完成模块初始化并返回对外调用的接口。CMD 下模块的回调函数的形参第一个参数是 require。如果上面AMD的代码段放在CMD的环境下执行，那么 moduleA 这一形参实际上是 require。
+
+异步中的同步：在AMD中，如果确定模块已经加载完成，可采用同步模式方式引入。下面的模块依赖于模块 b ，所以在执行下面模块的回调时 b 模块已经加载完成，所以可以采用同步模式。但是不推荐这种写法，因为他会使依赖变得不稳定。这里之所以提是因为事无绝对，在项目中可以使用这种方法来引入公共js库，但如果做业务无关的公共模块应该避免这种写法。
+
+    define(['b'], function(){
+        var b = require('b');
+        return b;
+    });
+
+上面这种写法很容易误解为CMD的写法，但是如果在以SeaJs作为模块管理器的CMD环境下运行会报 require 未被初始化。RequireJs 有局部 'require' 与 全局 'require' 之分（通过控制台可以查看，下面代码已给出示例），但是全局的 'require' 并不是 AMD 规范要求的，但是有了它可以少写一些代码，所以在具体的项目中可做为一种备选方案，但是如果开发公共模块则要尽量避免这样使用。
+ 
+**按需加载的方式**
+
+按需加载，也就是用到的时候再加载，此处的“用到”指类似用户从导航进入一个新模块，这种情况再大一点的项目中做模块拆分打包很有必要，因为 All in One 的打包方式会使首页加载很多暂时用不到的模块，系模块较多时首页加载会明显变慢。
+
+AMD 的按需加载形式：
+    
+    define(function (require, exports) {
+        // 按需加载
+        exports.fn = function () {
+            require(['module-json'], function (moduleJson) {
+                // 模块加载后执行的代码
+            });
+        }
+    });
+
+CMD 的按需加载形式：
+    
+    define(function (require) {
+        // 按需加载
+        return {
+            fn: function () {
+                require.async('module-json', function (moduleJson) {
+                    // 模块加载后执行的代码
+                    console.log(moduleJson.name);
+                });
+            }
+        }
+    });
+
+CMD 对于按需加载提的接口是 `require.async`，而 AMD 的接口是 `require`。
+
+补充：虽然 require 有全局变量作为补充，但是 exports 和 module 并没有，所以如果没有形参，那么 exports 和 module 也不可以在模块中使用。
+(demo参见
+[demo/demo-amd-need.html](demo/demo-amd-need.html)
+与
+[demo/demo-cmd-need.html](demo/demo-cmd-need.html)
+)
 
 ## 参考文章
+
+[AMD 规范](https://github.com/amdjs/amdjs-api/wiki/AMD)
+
+[CMD 规范](https://github.com/seajs/seajs/issues/242)
 
 [阮一峰 - Javascript模块化编程（一）：AMD规范](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
 
