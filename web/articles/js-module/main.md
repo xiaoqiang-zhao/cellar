@@ -100,14 +100,15 @@ id是可选参数，用来定义模块的key，一般不推荐手动编辑id，�
 
 提前加载，或者叫依赖管理，就是当前模块要运行需要其他模块先就位，需要依赖其他模块，而不是简单的调用关系或触发模式。
 
-在AMD下定义依赖如下：
+在AMD下定义依赖如下
 (demo参见[demo/demo-dep-amd.html](demo/demo-dep-amd.html))：
 
     define(['module-a'], function(moduleA){
         return moduleA;
     });
     
-在CMD下定义依赖如下：
+在CMD下定义依赖如下
+(demo参见[demo/demo-dep-cmd.html](demo/demo-dep-cmd.html))：
     
     define(function(require){
         var moduleA = require('module-a');
