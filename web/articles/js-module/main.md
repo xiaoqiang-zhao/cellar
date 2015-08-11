@@ -186,3 +186,9 @@ CMD 对于按需加载提的接口是 `require.async`，而 AMD 的接口是 `re
 [与 RequireJS 的异同 - Git - Wiki](https://github.com/seajs/seajs/issues/277)
 
 [SeaJS与RequireJS最大的区别 - 豆瓣](http://www.douban.com/note/283566440/)
+
+[LABjs、RequireJS、SeaJS 哪个最好用？为什么？](http://www.zhihu.com/question/20342350)
+
+[让我们再聊聊浏览器资源加载优化](http://qingbob.com/let-us-talk-about-resource-load/)
+
+[css 模块化插件](http://segmentfault.com/a/1190000002390643)
