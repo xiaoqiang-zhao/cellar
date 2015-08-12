@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>cellar</title>
+</head>
+<body>
+首页
+<script>
+    (function () {
+
+        var handler = function (e) {
+            // 这里应该是突破口
+            if (e.target == document) {
+                //
+            }
+        };
+
+        document.addEventListener('click', handler);
+
+        window.check = function (arg) {
+            if (arg == handler) {
+                alert('win');
+            }
+        };
+    })();
+
+    var originalDocument = document; // 保存原生document
+    // 手动触发事件
+    var event = new Event('click');
+
+    Object.defineProperty(
+            Event.prototype,
+            'target',
+            {
+                get: function () {
+                    window.abc = arguments.callee.caller
+                }
+            }
+    );
+
+    originalDocument.dispatchEvent(event);
+
+    window.check(window.abc);
+</script>
+</body>
+</html>

@@ -99,4 +99,5 @@
     .word-wrap-break-word {
         /*word-wrap: break-word;*/
     }
+    /* white-space: normal; nowrap;*/
     
