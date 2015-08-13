@@ -4,6 +4,9 @@
 
 ## 清除浮动
 
+这是一个很不错的解决方案，兼容IE6与现代浏览器，理论部分查看：
+[那些年我们一起清除过的浮动](http://www.iyunlu.com/view/css-xhtml/55.html)
+
     /* 清除浮动 */
     .c-f,
     .clear-float {
@@ -11,11 +14,10 @@
     }
     .c-f:after,
     .clear-float:after {
-        content: ".";
+        content: "\200B";
         display: block;
         height: 0;
         clear: both;
-        visibility: hidden;
     }
 
 ## 可点击
@@ -69,11 +71,12 @@
 
 ## 超出截断
 
-不折行，超出部分截断，并以三个点结尾
+不折行，超出部分截断，并以三个点结尾。`white-space` 是一个可以继承的属性（上层元素定义之后下层元素会自动继承），如果与 `word-wrap` 和 `word-break` 相遇，并且 `white-space: nowrap` 时，页面表现为不折行。
 
     /* 超长截断,只兼容到IE8及以上 */
     .to-e,
-    .text-overflow-ellipsis {
+    .text-overflow-ellipsis,
+    .ellipsis {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap; /* 强制不换行 */
@@ -97,7 +100,8 @@
     /* 自动折行 */
     .ww-bw,
     .word-wrap-break-word {
-        /*word-wrap: break-word;*/
+        word-wrap: break-word;
+        white-space: normal;
     }
-    /* white-space: normal; nowrap;*/
-    
+
+这里补充 `white-space: normal;` 是因为其继承的特性，为了使程序更健壮这一行在某些情况下会是冗余的。
