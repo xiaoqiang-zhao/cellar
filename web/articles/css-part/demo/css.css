@@ -5,11 +5,10 @@
 }
 .c-f:after,
 .clear-float:after {
-    content: ".";
+    content: "\200B";
     display: block;
     height: 0;
     clear: both;
-    visibility: hidden;
 }
 /* 可点击 */
 .c-p,

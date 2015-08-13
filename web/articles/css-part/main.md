@@ -4,6 +4,9 @@
 
 ## 清除浮动
 
+这是一个很不错的解决方案，兼容IE6与现代浏览器，理论部分查看：
+[那些年我们一起清除过的浮动](http://www.iyunlu.com/view/css-xhtml/55.html)
+
     /* 清除浮动 */
     .c-f,
     .clear-float {
@@ -11,11 +14,10 @@
     }
     .c-f:after,
     .clear-float:after {
-        content: ".";
+        content: "\200B";
         display: block;
         height: 0;
         clear: both;
-        visibility: hidden;
     }
 
 ## 可点击
