@@ -1,0 +1,100 @@
+/* 动画 */
+.button,
+.input-text {
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+/* 简单按钮 */
+.button {
+    display: inline-block;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 30px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #1B9AF7;
+    font-weight: 300;
+    cursor: pointer;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+.button:visited {
+    background-color: #1B9AF7;
+}
+.button:hover {
+    background-color: #4cb0f9;
+}
+.button:active {
+    background-color: #2798eb;
+    color: #0880d7;
+    border-color: #2798eb;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+/* 加号图标 */
+.icon-plus,
+.icon-minus {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    font-size: 12px; /* 如果不同意字号和行高，会出现基线对齐的问题 */
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+}
+/* 加号图标 - 横线 */
+.icon-plus:before,
+.icon-minus:before {
+    display: inline-block;
+    position: relative;
+    top: 15px;
+    left: 6px;
+    width: 18px;
+    height: 1px;
+    background: white;
+    content: "\200B";
+}
+/* 加号图标 - 竖线 */
+.icon-plus:after {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    left: -4px;
+    width: 1px;
+    height: 18px;
+    background: white;
+    content: "\200B";
+}
+.icon-plus:active:after,
+.icon-plus:active:before,
+.icon-minus:active:before {
+    background-color: #0880d7;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+/* 输入框 */
+.input-text {
+    display: inline-block;
+    outline: none;
+    border: 1px solid #dce4ec;
+    padding: 0 8px;
+    font-size: 12px;
+    height: 28px;
+    line-height: 30px;
+}
+.input-text:focus {
+    border-color: #1B9AF7;
+}
