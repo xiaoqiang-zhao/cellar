@@ -7,7 +7,7 @@
 
 一个看着干净简单的按钮，在动作上又够精致，鼠标移上、按下、抬起以及不可用都有样式响应，另外还有风骚的小动画。在技术上，由于 `active` 这一动态伪类只有在 链接 和 按钮 上才能响应，所以此样式的元素用在 `a`、`button`、`input type="button"` 上才能充分展示按钮的丰富。
 
-定义的顺序上遵循爱恨原则LoVe/HAte,也就是Link--visited--hover--active。
+定义的顺序上遵循爱恨原则LoVe/HAte,也就是link--visited--hover--active。
 
     /* 按钮 */
     
