@@ -23,51 +23,32 @@ module.exports = {
         });
         global.siteSocketServer = socket;
 
-        var i = 1;
-        var collectionList = [];
         var redBlackBox = [];
         // 服务监听
         socket.on('request', function (request) {
 
             var connection = request.accept(null, request.origin);
 
-            connection.on('close', function (webSocketConnectionNum) {
-                // TODO 从队列中移除
+            connection.on('close', function () {
+                // 从队列中移除已关闭的链接
+                for(var i = 0, len = redBlackBox.length; i < len; i++) {
+                    if (redBlackBox[i] === this) {
+                        redBlackBox.splice(i, 1);
+                        break;
+                    }
+                }
             });
-
-            var item = {
-                key: request.key,
-                connection: connection,
-                request: request
-            };
 
             // 超级简化的路由
             if (request.resource === '/red-black-box') {
                 connection.on('message', function (message) {
                     // 将消息分发
                     for(var i = 0, len = redBlackBox.length; i < len; i++) {
-                        redBlackBox[i].connection.send(message.utf8Data);
+                        redBlackBox[i].send(message.utf8Data);
                     }
                 });
-                redBlackBox.push(item);
+                redBlackBox.push(connection);
             }
-
-            collectionList.push(item);
-
-            //connection = request.accept(null, request.origin);
-            //
-            //connection.on('message', function (message) {
-            //    console.log(message.utf8Data);
-            //    // var i = 1;
-            //    setInterval(function () {
-            //        // 单点发送
-            //        connection.send('服务器端定时向客户端"单点"发送消息(' + i++ + ')');
-            //    }, 3000);
-            //});
-            //
-            //connection.on('close', function (webSocketConnectionNum) {
-            //    console.log('WebSocket连接已关闭');
-            //});
         });
 
         return {
