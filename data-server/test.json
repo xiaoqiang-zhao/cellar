@@ -1,0 +1,12 @@
+{
+  "lambeosaurus": {
+    "height" : 2.1,
+    "length" : 12.5,
+    "weight": 5000
+  },
+  "stegosaurus": {
+    "height" : 4,
+    "length" : 9,
+    "weight" : 2500
+  }
+}
