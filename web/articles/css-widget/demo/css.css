@@ -24,6 +24,9 @@
     box-sizing: border-box;
 
 }
+.button:focus {
+    background-color: #4cb0f9;
+}
 .button:visited {
     background-color: #1B9AF7;
 }
@@ -58,7 +61,7 @@
     display: inline-block;
     position: relative;
     top: 15px;
-    left: 6px;
+    left: 0px;
     width: 18px;
     height: 1px;
     background: white;
@@ -69,7 +72,7 @@
     display: inline-block;
     position: relative;
     top: 6px;
-    left: -4px;
+    left: -10px;
     width: 1px;
     height: 18px;
     background: white;
