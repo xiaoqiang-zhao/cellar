@@ -22,6 +22,8 @@
 
 - [css-part](css-part/main.md)
 
+- [css-widget](css-widget/main.md)
+
 - [git](git/main.md)
 
 - [node](node/main.md)
@@ -44,6 +46,8 @@
 
 - [amd-cmd](amd-cmd/main.md)
 
+- [yahoo-14](yahoo-14/main.md)
+
 --------------------残不忍读的文章----------------------
 
 - [backbone](backbone/main.md)
@@ -54,4 +58,12 @@
 
 - [jquery-promise](jquery-promise/main.md)
 
+- [jqui-sortable](jqui-sortable/main.md)
+
 - [template](template/main.md)
+
+- [node-module](node-module/main.md)
+
+- [nproxy](nproxy/main.md)
+
+- [read-open-sources](read-open-sources/main.md)
