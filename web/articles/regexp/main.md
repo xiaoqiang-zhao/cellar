@@ -464,6 +464,9 @@ js又不支持向前约束（专业术语叫“前瞻”），在《高性能jav
 待续...
 
 ## 参考
+
 [w3school的regexp部分](http://www.w3school.com.cn/jsref/jsref_obj_regexp.asp)
 
 [ECMA-262号官方文档](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf)
+
+[可视化正则](http://regexper.com/)
