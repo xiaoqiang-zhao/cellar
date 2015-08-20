@@ -39,11 +39,11 @@ Win:Ctrl + X; Mac: Com + X
 - 删除，Delete Line，
 Win:Ctrl + Y; Mac: Com + Y，需要注意的是选中字符所在的行会被删掉
 
-- 上下移动行，Move Line Up/Down
+- 上下移动行，Move Line Up/Down，
 Win:Alt + Shift + 上/下箭头;Mac:Alt + Shift + 上/下箭头
 
-- 上下移动代码块，Move Statement Up/Down
-ctrl + shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
+- 上下移动代码块，Move Statement Up/Down，
+Ctrl + Shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
 
 ### 2 - Tab操作
 
@@ -113,6 +113,9 @@ Win:Ctrl + S; Mac:Com + S
 
 - 新建文件，New...
 Win:Alt + N; Mac:Alt + N，在当前文件同级或者选中的文件夹下
+
+- 打开最近打开的文件，Recent Files
+Mac:Com + E，会给出一个最近打开的文件列表
 
 ## 设置
 
