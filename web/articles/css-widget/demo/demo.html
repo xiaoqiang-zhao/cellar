@@ -24,8 +24,18 @@
             height: 30px;
             background-color: #1B9AF7;
         }
+        /* 用 after 伪类添加内容，来解决无内容上浮的问题 */
         .test:after {
             content: "\200B";
+        }
+        /* TODO 研究字体基线解决方案 */
+
+        /* 默认基于底线对齐 */
+        .f-12 {
+            font-size: 12px;
+        }
+        .f-18 {
+            font-size: 18px;
         }
     </style>
 </head>
@@ -57,6 +67,9 @@
 <div class="region region-white">
     <input type="text" class="input-text"/>
     <button class="button">确认</button>
+</div>
+<div class="region">
+    <span class="f-12">十二像素文字</span><span class="f-18">十八像素文字</span><span class="f-12">十二像素文字</span>
 </div>
 </body>
 </html>
