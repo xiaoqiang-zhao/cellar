@@ -172,17 +172,24 @@ CMD 对于按需加载提的接口是 `require.async`，而 AMD 的接口是 `re
     (function (name, definition) {
         // 检查上下文是否为AMD或CMD
         var hasDefine = typeof define === 'function';
+        var hasExports = typeof module !== undefined && module.exports;
     
+        // AMD 或 CMD 环境
         if (hasDefine) {
             define(definition);
         }
-        // TODO 查证补充
+        // 定义为Node模块
+        else if (hasExports) {
+            module.exports = definition();
+        }
+        // 将模块的执行结果挂在this下（在浏览器中this指向window）
         else {
-            window[name] = definition();
+            this[name] = definition();
         }
     })('moduleName', function () {
         var module = {};
         // 业务代码...
+        // 将当前模块的对外方法和对外属性挂在 module 下
         
         return module;
     });
