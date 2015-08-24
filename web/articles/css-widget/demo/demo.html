@@ -14,6 +14,29 @@
             border: 1px solid #dddddd;
             background: white;
         }
+        .test {
+            display: inline-block;
+            position: relative;
+            padding: 0;
+            font-size: 12px; /* 如果不统一字号和行高，会出现基线对齐的问题 */
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            background-color: #1B9AF7;
+        }
+        /* 用 after 伪类添加内容，来解决无内容上浮的问题 */
+        .test:after {
+            content: "\200B";
+        }
+        /* TODO 研究字体基线解决方案 */
+
+        /* 默认基于底线对齐 */
+        .f-12 {
+            font-size: 12px;
+        }
+        .f-18 {
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -34,16 +57,19 @@
 </div>
 <h3>综合：</h3>
 <div class="region region-white">
-    <input type="text" class="input-text"/>
-    <button class="button icon-plus"></button>
+    <input type="text" class="input-text"/><button class="button icon-plus">.</button>
 </div>
 <div class="region region-white">
     <input type="text" class="input-text"/>
-    <button class="button icon-minus"></button>
+    <button class="button icon-minus">.</button>
+    <span class="test"></span>
 </div>
 <div class="region region-white">
     <input type="text" class="input-text"/>
     <button class="button">确认</button>
+</div>
+<div class="region">
+    <span class="f-12">十二像素文字</span><span class="f-18">十八像素文字</span><span class="f-12">十二像素文字</span>
 </div>
 </body>
 </html>

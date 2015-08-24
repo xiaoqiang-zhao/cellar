@@ -165,6 +165,35 @@ CMD 对于按需加载提的接口是 `require.async`，而 AMD 的接口是 `re
 [demo/demo-cmd-need.html](demo/demo-cmd-need.html)
 )
 
+## 兼容方案
+
+如果依赖其他模块，兼容方案并不可取，如果作为独立模块可以兼容AMD，CMD，CommonJs规范，这对于一些DOM无关的工具模块非常适用。下面是朴灵给出的兼容方案：
+
+    (function (name, definition) {
+        // 检查上下文是否为AMD或CMD
+        var hasDefine = typeof define === 'function';
+        var hasExports = typeof module !== undefined && module.exports;
+    
+        // AMD 或 CMD 环境
+        if (hasDefine) {
+            define(definition);
+        }
+        // 定义为Node模块
+        else if (hasExports) {
+            module.exports = definition();
+        }
+        // 将模块的执行结果挂在this下（在浏览器中this指向window）
+        else {
+            this[name] = definition();
+        }
+    })('moduleName', function () {
+        var module = {};
+        // 业务代码...
+        // 将当前模块的对外方法和对外属性挂在 module 下
+        
+        return module;
+    });
+
 ## 参考文章
 
 [AMD 规范](https://github.com/amdjs/amdjs-api/wiki/AMD)

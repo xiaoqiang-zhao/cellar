@@ -16,6 +16,8 @@
 
 - [regexp](regexp/main.md)
 
+- [js-module](js-module/main.md)
+
 - [avalon](avalon/main.md)
 
 - [css-reset](css-reset/main.md)
@@ -41,8 +43,6 @@
 - [html](html/main.md)
 
 - [form-to-obj](form-to-obj/main.md)
-
-- [js-module](js-module/main.md)
 
 - [amd-cmd](amd-cmd/main.md)
 
