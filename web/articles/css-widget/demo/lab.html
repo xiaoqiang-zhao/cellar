@@ -2,86 +2,60 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>CSS 常用样式库</title>
+    <title>CSS 常用样式库 - 实验，反例</title>
     <link rel="stylesheet" href="css.css"/>
     <style>
         .region {
             padding: 10px;
             margin: 10px;
-            background: #ddd;
+            background: #dddddd;
         }
         .region-white {
-            border: 1px solid #ddd;
+            border: 1px solid #dddddd;
             background: white;
         }
         .test {
             display: inline-block;
             position: relative;
             padding: 0;
-            font-s #1b9af7px; /* 如果不统一字号和行高，会出现基线对齐的问题 */
+            font-size: 12px; /* 如果不统一字号和行高，会出现基线对齐的问题 */
             line-height: 30px;
             width: 30px;
             height: 30px;
             background-color: #1B9AF7;
         }
-        /* 用 after 伪类添加内容，来解决无内容上浮的问题 */
-        .test:after {
-            content: "\200B";
-        }
-        /* TODO 研究字体基线解决方案 */
-
-        /* 默认基于底线对齐 */
-        .f-12 {
-            display: inline-block;
-            /*font-size: 12px;*/
-            height: 30px;
-            background: red;
-            width: 100px;
-        }
-        .f-18 {
-            height: 30px;
-            display: inline-block;
-            /*font-size: 18px;*/
-        }
-        .v {
-            vertical-align: middle;
-        }
     </style>
 </head>
 <body>
 <h3>按钮</h3>
-
 <div class="region">
     <button class="button">button按钮</button>
     <input type="button" value="input按钮" class="button"/>
     <a class="button">a按钮</a>
 </div>
 <h3>加号 减号</h3>
-
 <div class="region">
-    <label>button加减号：</label>
     <button class="button icon-plus"></button>
     <button class="button icon-minus"></button>
-    <label>a加减号：</label>
-    <a class="button icon-plus"></a>
-    <a class="button icon-minus"></a>
 </div>
 <h3>输入框</h3>
-
 <div class="region region-white">
     <input type="text" class="input-text"/>
 </div>
 <h3>综合：</h3>
-
 <div class="region region-white">
-    <input type="text" class="input-text"/>
-    <button class="button icon-plus">.</button>
+    <input type="text" class="input-text"/><button class="button icon-plus">.</button>
 </div>
 <div class="region region-white">
     123
     <input type="text" class="input-text"/>
-    <button class="button icon-minus"> \200B</button>
-    <span class="test">\200B</span>
+    <button class="button icon-minus"></button>
+    <span class="test"></span>
+</div>
+<div class="region region-white">
+    456
+    <button class="button icon-minus"></button>
+    <span class="test"></span>
 </div>
 <div class="region region-white">
     <input type="text" class="input-text"/>
