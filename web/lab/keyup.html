@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>keyup 事件的冒泡阻止</title>
+    <script src="jquery-2.1.4.js"></script>
+</head>
+<body>
+<div>首页</div>
+<script>
+//    $(document).keypress(function(event) {
+//        // 回车键事件
+//        if(event.which == 13) {
+//            console.log('1');
+//            return false;
+//        }
+//    });
+
+    $('div').keypress(function(event) {
+        // 回车键事件
+        if(event.which == 13) {
+            console.log('2');
+            return false;
+        }
+    });
+</script>
+</body>
+</html>
