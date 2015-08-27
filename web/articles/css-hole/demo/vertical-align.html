@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>基线对齐的坑 vertical-align </title>
+    <style rel="stylesheet">
+        .region {
+            padding: 10px;
+            margin: 10px;
+            background: #ddd;
+        }
+        .question {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            padding: 3px 5px;
+            background: green;
+            color: white;
+        }
+        .answer {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            padding: 3px 5px;
+            background: green;
+            color: white;
+            vertical-align: middle; /* 这是很关键的一行代码 */
+        }
+        .b {
+            height: 30px;
+        }
+
+        .success {
+            display: inline-block;
+            min-height: 40px;
+        }
+        .success .icon {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-image: url("msg.png");
+            vertical-align: middle;
+        }
+        .success .text {
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 200px; /* IE8+ 支持 */
+        }
+    </style>
+</head>
+<body>
+<div class="region">
+    <span class="question">A</span>
+    <span class="question">B</span>
+    <span class="question">C</span>
+    <span class="question"></span>
+    <span class="question b">E</span>
+</div>
+
+<div class="region">
+    <span class="answer">A</span>
+    <span class="answer">B</span>
+    <span class="answer">C</span>
+    <span class="answer"></span>
+    <span class="answer b">E</span>
+</div>
+
+<div class="region success">
+    <span class="icon"></span>
+    <span class="text">简短的文字</span>
+</div>
+<div class="region success">
+    <span class="icon"></span>
+    <span class="text">很多的文字，很多的文字，很多的文字，很多的文字，很多的文字.</span>
+</div>
+</body>
+</html>
