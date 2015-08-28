@@ -12,5 +12,5 @@
 
 **那个技巧**
 
-利用行内元素的垂直居中特性，可以实现不定高元素在不定高元素中的垂直居中。此Demo中 [demo/vertical-align.html](demo/vertical-align.html) 信息框展示了此技巧的使用。
+利用行内元素的垂直居中特性，可以实现不定高元素在不定高元素中的垂直居中，另外 checkbox 在 label 中的垂直居中也可使用该技巧。[Demo示例](demo/vertical-align.html) 
 
