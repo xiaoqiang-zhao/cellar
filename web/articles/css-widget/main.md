@@ -21,12 +21,9 @@
     <button class="button icon-minus"></button>
     <a class="button icon-plus"></a>
     <a class="button icon-minus"></a>
-    // 注意不可使用 <input type="button" class="button icon-minus"/> 做加减号按钮
-
-当一个元素内部为空时，会触发
-
-## 按钮进阶
-
-暂缺
 
 ## 输入框
+
+只做了样式上的修饰，用法如下：
+
+    <input type="text" class="input-text"/>
