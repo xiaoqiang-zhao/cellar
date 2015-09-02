@@ -73,3 +73,8 @@
 [React Native 简介：用 JavaScript 搭建 iOS 应用(2)](http://segmentfault.com/a/1190000003088452)
 
 [CSS规范 > 9 视觉格式化模型 Visual Formatting Model](http://segmentfault.com/a/1190000003096320)
+
+[极客学院 - 中级前端](http://www.jikexueyuan.com/course/834.html)
+
+[极客学院 - 高级前端](http://www.jikexueyuan.com/course/1248_1.html?ss=1)
+
