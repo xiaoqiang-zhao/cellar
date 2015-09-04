@@ -3,7 +3,6 @@
  *
  * Created by v_zhaoxiaoqiang on 2015/6/1.
  */
-
 module.exports = {
     data: function (articleName, request, response) {
         var result = [];
@@ -12,7 +11,6 @@ module.exports = {
         // 顺序提取json文件中的数据
 
         // 对数据排序
-
 
         return [];
     }
