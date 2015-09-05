@@ -271,20 +271,7 @@ function routAutoPath(request, response, rout) {
 }
 
 /**
- * 未找到资源或服务的处理（404）
- *
- * @param {Object} request HTTP请求对象
- * @param {Object} response HTTP返回对象
- * @param {Object} notFoundMsg 未找到的一些信息反馈
- * @private
- */
-function response404(request, response, notFoundMsg) {
-    response.writeHead(404);
-    response.end();
-}
-
-/**
- * HTTP返回200
+ * HTTP返回200，当 content 的值为 undefined 时走异步回调
  *
  * @param {Object} request HTTP请求对象
  * @param {string} contentType 返回内容类型
@@ -297,7 +284,7 @@ function response200(response, contentType, content, encoding) {
         if (staticFieldConfig === undefined) {
             staticFieldConfig = getStaticFieldConfig(config.serviceDefaultContentType);
         }
-        // 沒有返回值时走异步回调
+        // 有返回值时走同步调用
         if (content !== undefined) {
             if (typeof content === 'object') {
                 content = JSON.stringify(content);
@@ -312,10 +299,24 @@ function response200(response, contentType, content, encoding) {
             response.write(content, encoding);
             response.end();
         }
+        // 沒有返回值时走异步回调，在应用中调用，此处不做处理
     }
     catch (err) {
         console.log('有请求未正确响应');
     }
+}
+
+/**
+ * 未找到资源或服务的处理（404）
+ *
+ * @param {Object} request HTTP请求对象
+ * @param {Object} response HTTP返回对象
+ * @param {Object} notFoundMsg 未找到的一些信息反馈
+ * @private
+ */
+function response404(request, response, notFoundMsg) {
+    response.writeHead(404);
+    response.end();
 }
 
 /**
