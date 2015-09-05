@@ -87,3 +87,5 @@
 [一个牛人的课程](http://my.jikexueyuan.com/ijasonzj/)
 
 [CSS loading](http://www.jikexueyuan.com/course/1890.html)
+
+[HTML5 的介绍] (http://www.letv.com/ptv/vplay/22689186.html)
