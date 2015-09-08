@@ -45,15 +45,15 @@ Win:Alt + Shift + 上/下箭头;Mac:Alt + Shift + 上/下箭头
 - 上下移动代码块，Move Statement Up/Down，
 Ctrl + Shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
 
-### 2 - Tab操作
+### 2 - 操作编辑窗体
 
-- 关闭当前的Tab，Close Active Tab，
+- 关闭当前的编辑窗体，Close Active Tab，
 Win:Ctrl + F4; Mac:Com + F4
 
-- 左右切换Tab，Select Previous/Next Tab，
+- 左右切换编辑窗体，Select Previous/Next Tab，
 Win:Alt + 左右箭头; Mac:Ctrl + 左右箭头，但是这和Mac系统左右切屏的快捷键有冲突，另外左右切屏可以通过在触摸板上三指左右滑动来切屏，其实我平时也是这么用的，所以我禁用了系统切屏快捷键。禁用方式：系统偏好设置/快捷键/Mission Control/向左移动一个 space。
 
-- 最大化编辑窗口(隐藏所有工具窗口)，Hide All Toll Windows
+- 最大化编辑窗体(隐藏所有工具窗口)，Hide All Toll Windows
 Win:Ctrl + Shift + F12; Mac:Com + Shift + F12，我超级喜欢的快捷方式，可以让我专注的写好当前代码块
 
 ### 3 -  光标移动
