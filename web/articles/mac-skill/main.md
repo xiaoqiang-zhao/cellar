@@ -8,7 +8,7 @@
 
 - 打开新窗口        Com + N
 
-适用于打开新的 Finder 、 命令行 、QQ 
+> 适用于打开新的 Finder 、 命令行 、QQ 
 
 - 全屏窗口/退出全屏 Com + Ctl + F
 
