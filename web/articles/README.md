@@ -38,6 +38,8 @@
 
 - [webstorm](webstorm/main.md)
 
+- [mac-skill](mac-skill/main.md)
+
 --------------------部分腹稿未录入的文章----------------------
 
 - [html](html/main.md)
