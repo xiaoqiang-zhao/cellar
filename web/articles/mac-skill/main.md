@@ -5,23 +5,18 @@
 ## 通用快捷键
 
 - 在所有开启程序间跳转 Com + Tab
-
 - 打开新窗口 Com + N (特别适用于打开新的 Finder 、 命令行 、QQ) 
-
 - 全屏窗口/退出全屏 Com + Ctl + F
-
 - 最小化当前窗口 Com + M
-
 - 关闭当前窗口 Com + W   (对于浏览器是关闭当前Tab页的意思)
-
-- 退出程序 Com + Q
-
-对于 Finder 这样的系统程序无效
+- 退出程序 Com + Q (对于 Finder 这样的系统程序无效)
 
 ## chrome 浏览器快捷键
 
+- 打开历史记录 Com + Y
+- 打开收藏夹 Alt + Com + B
+- 隐藏/显示收藏夹 Shift + Com + B
 - 光标到地址栏 Com + L
-
 - 向左右切换页面 Alt + Com + 左右方向键
 
 ## host 的配置
