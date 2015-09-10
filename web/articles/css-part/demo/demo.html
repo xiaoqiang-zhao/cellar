@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS 常用样式库</title>
+    <link rel="stylesheet" href="css.css"/>
+    <style>
+        .region {
+            padding: 10px;
+            margin: 10px;
+            background: #dddddd;
+        }
+        .c-f span {
+            display: inline-block;
+            padding: 3px 5px;
+            background: #3c763d;
+            color: #ffffff;
+            margin: 5px;
+            float: left;
+        }
+        .width-300 {
+            width: 300px;
+        }
+        .model-a {
+            position: relative;
+            height: 32px;
+        }
+        .model-a .item {
+            position: absolute;
+            border: 2px solid #fff;
+            left: 10px;
+        }
+        .model-a .item-2 {
+            left: 50px;
+        }
+        .model-a .item:hover {
+            z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+<h3>清除浮动 + 可点击 + 可移动</h3>
+<div class="region c-f">
+    <span class="c-p" data="1">项 1 项</span>
+    <span class="c-m" data="2">项 2 项</span>
+    <span data="3">项 3 项</span>
+    <span data="4">项 4 项</span>
+</div>
+
+<h3>数据为空</h3>
+<div class="region">
+    <div class="d-e"></div>
+</div>
+
+<h3>不被撑大的table</h3>
+<table class="width-300 t-f">
+    <tr>
+        <td>豪</td>
+        <td>
+            http://172.20.131.142:8888/articlescsslabdemodemohtml
+        </td>
+    </tr>
+</table>
+
+<h3>超出截断</h3>
+<div class="region width-300 to-e">
+    不折行，超出部分截断，并以三个点结尾。
+</div>
+
+<h3>被激发元素上浮</h3>
+<div class="region c-f model-a">
+    <span class="item">项 1 项</span>
+    <span class="item item-2">项 2 项</span>
+</div>
+
+<h3>自动折行</h3>
+<div class="region width-300 ww-bw">
+    汉字    会自动折行，
+    English words at the same(英文同样也是默认折行)
+</div>
+<div class="region width-300 ww-bw">
+    http://172.20.131.142:8888/articlescsslabdemodemohtml
+</div>
+
+</body>
+</html>

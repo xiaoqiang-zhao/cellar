@@ -19,6 +19,9 @@ Win:Ctrl + Shift + Z; Mac:Com + Shift + Z
 - 查找，Find，
 Win:Ctrl + F; Mac:Com + F
 
+- 在某一文件夹下查找内容，Find in Path，
+Win:Ctrl + Shift + F; Mac:Ctrl + Shift + F
+
 - 替换，Replace，
 Win:Ctrl + R; Mac:Com + R，
 
@@ -36,21 +39,21 @@ Win:Ctrl + X; Mac: Com + X
 - 删除，Delete Line，
 Win:Ctrl + Y; Mac: Com + Y，需要注意的是选中字符所在的行会被删掉
 
-- 上下移动行，Move Line Up/Down
+- 上下移动行，Move Line Up/Down，
 Win:Alt + Shift + 上/下箭头;Mac:Alt + Shift + 上/下箭头
 
-- 上下移动代码块，Move Statement Up/Down
-ctrl + shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
+- 上下移动代码块，Move Statement Up/Down，
+Ctrl + Shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
 
-### 2 - Tab操作
+### 2 - 操作编辑窗体
 
-- 关闭当前的Tab，Close Active Tab，
+- 关闭当前的编辑窗体，Close Active Tab，
 Win:Ctrl + F4; Mac:Com + F4
 
-- 左右切换Tab，Select Previous/Next Tab，
+- 左右切换编辑窗体，Select Previous/Next Tab，
 Win:Alt + 左右箭头; Mac:Ctrl + 左右箭头，但是这和Mac系统左右切屏的快捷键有冲突，另外左右切屏可以通过在触摸板上三指左右滑动来切屏，其实我平时也是这么用的，所以我禁用了系统切屏快捷键。禁用方式：系统偏好设置/快捷键/Mission Control/向左移动一个 space。
 
-- 最大化编辑窗口(隐藏所有工具窗口)，Hide All Toll Windows
+- 最大化编辑窗体(隐藏所有工具窗口)，Hide All Toll Windows
 Win:Ctrl + Shift + F12; Mac:Com + Shift + F12，我超级喜欢的快捷方式，可以让我专注的写好当前代码块
 
 ### 3 -  光标移动
@@ -89,7 +92,7 @@ Win:Ctrl + Shift + Num+; Mac:Com + Shift + Num+
 - 选中的超级扩展，Extend Selection，
 Win:Ctrl + W; Mac:Com + W，请原谅我给这个快捷键起这么夸张的称谓，因为这个快捷方式是我超级超级喜欢的一个，按一次选中一个单词，两次一行，三次一个代码块，太好用了！！
 
-— 重命名，Rename，
+- 重命名，Rename，
 Win:Shift + F6; Mac:Shift + F6，这是一个有多张面孔的快捷键。在js代码中此快捷键是变量重命名，给变量起名真是一个费劲的事情，随着业务的变动变量名一定要跟着作调整，否则代码的寿命不好太长远；在html和css以及文档文件中，此快捷键重命名当前文件；在资源文件目录下，此快捷方式是给资源重命名，而且会智能同步引用。
 
 ### 6 - 粘贴
@@ -102,11 +105,17 @@ Win:Ctrl + Shift + V; Mac:Com + Shift + V，我超级喜欢的功能，有了它
 
 ### 7 - 文件
 
+- 打开文件，File...
+Win:Ctrl + Shift + N; Mac:Com + Shift + N
+
 - 保存全部，Save All，
 Win:Ctrl + S; Mac:Com + S
 
 - 新建文件，New...
 Win:Alt + N; Mac:Alt + N，在当前文件同级或者选中的文件夹下
+
+- 打开最近打开的文件，Recent Files
+Mac:Com + E，会给出一个最近打开的文件列表
 
 ## 设置
 
@@ -148,11 +157,17 @@ Appearance & Behavior/ System Settings/ Project Opening / Open project in new wi
 
 ### 3 - 代码格式
 
-- 代码长度参考线
+**代码长度参考线**
 
 真的不建议把一行代码写的太长，嵌套太深也是要避免的，毕竟代码是给人看的，偶尔交给机器执行以下，所以代码的可读性非常重要。所以就有了代码长度参考线。在 /Editor/General/Appearance 中 勾选Show right margin 考线出现，取消勾选参考线消失。参考线的位置其实是字符数量的体现，在 /Editor/Code Style 中 Right Margin 中调整字符数量，个人建议120。
 
-- 默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
+**CSS空行**
+
+默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
+
+**MD文档默认换行**
+
+MD文档默认不换行，可以在左边行号的位置右击勾选"Use Soft Wraps"，这种方式每次都要设置，还有一种一劳永逸的设置方法，Settings | Editor | General | Use soft wraps in editor
 
 ### 4 - 代码模板
 
@@ -172,4 +187,5 @@ Appearance & Behavior/ System Settings/ Project Opening / Open project in new wi
 
 ## 声明
 
-欢迎各方转载，单请注明出处：https://github.com/longze/cellar/blob/master/articles/webstorm/main.md
+欢迎各方转载，但请注明出处：
+[https://github.com/longze/cellar/blob/master/web/articles/webstorm/main.md](https://github.com/longze/cellar/blob/master/web/articles/webstorm/main.md)

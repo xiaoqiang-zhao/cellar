@@ -54,9 +54,9 @@ function routStaticFile(request, response, rout) {
     // 请求路径
     var path = url.parse(request.url).pathname;
 
-    // 取得后缀名
-    var ext = path.match(/(\.[^.]+|)$/)[0];
-    var staticFieldConfig = getStaticFieldConfig(ext);
+    // 取得后缀名作为文件类型
+    var contentType = path.match(/(\.[^.]+|)$/)[0];
+    var staticFieldConfig = getStaticFieldConfig(contentType);
 
     // 允许访问此扩展名的静态文件
     if (staticFieldConfig !== undefined) {
@@ -70,7 +70,7 @@ function routStaticFile(request, response, rout) {
                 });
             }
             else {
-                response200(response, staticFieldConfig.contentType, data, staticFieldConfig.encoding);
+                response200(response, contentType, data, staticFieldConfig.encoding);
             }
         });
     }
@@ -250,8 +250,6 @@ function routAutoPath(request, response, rout) {
             // 服务调用方法名
             var methodName = config.serviceDefaultMethodName;
             var contentType = serviceModel.contentType || config.serviceDefaultContentType;
-            contentType = getStaticFieldConfig(contentType).contentType;
-
             var content = serviceModel[methodName](
                 request,
                 response,
@@ -273,6 +271,42 @@ function routAutoPath(request, response, rout) {
 }
 
 /**
+ * HTTP返回200，当 content 的值为 undefined 时走异步回调
+ *
+ * @param {Object} request HTTP请求对象
+ * @param {string} contentType 返回内容类型
+ * @param {Object | String} content 返回内容
+ * @param {string} encoding 编码
+ */
+function response200(response, contentType, content, encoding) {
+    try {
+        var staticFieldConfig = getStaticFieldConfig(contentType);
+        if (staticFieldConfig === undefined) {
+            staticFieldConfig = getStaticFieldConfig(config.serviceDefaultContentType);
+        }
+        // 有返回值时走同步调用
+        if (content !== undefined) {
+            if (typeof content === 'object') {
+                content = JSON.stringify(content);
+            }
+
+            response.writeHead(200, {
+                'Content-Type': staticFieldConfig.contentType
+            });
+
+            encoding = encoding || config.encoding;
+
+            response.write(content, encoding);
+            response.end();
+        }
+        // 沒有返回值时走异步回调，在应用中调用，此处不做处理
+    }
+    catch (err) {
+        console.log('有请求未正确响应');
+    }
+}
+
+/**
  * 未找到资源或服务的处理（404）
  *
  * @param {Object} request HTTP请求对象
@@ -283,32 +317,6 @@ function routAutoPath(request, response, rout) {
 function response404(request, response, notFoundMsg) {
     response.writeHead(404);
     response.end();
-}
-
-/**
- * HTTP返回200
- *
- * @param {Object} request HTTP请求对象
- * @param {string} contentType 返回内容类型
- * @param {Object | String} content 返回内容
- * @param {string} encoding 编码
- */
-function response200(response, contentType, content, encoding) {
-    // 沒有返回值时走异步回调
-    if (content !== undefined) {
-        if (typeof content === 'object') {
-            content = JSON.stringify(content);
-        }
-
-        response.writeHead(200, {
-            'Content-Type': contentType
-        });
-
-        encoding = encoding || config.encoding;
-
-        response.write(content, encoding);
-        response.end();
-    }
 }
 
 /**

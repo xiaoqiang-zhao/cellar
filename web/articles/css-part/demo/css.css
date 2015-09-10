@@ -1,0 +1,60 @@
+/* 清除浮动 */
+.c-f,
+.clear-float {
+    zoom: 1; /* 兼容IE7及以下 */
+}
+.c-f:after,
+.clear-float:after {
+    content: "\200B";
+    display: block;
+    height: 0;
+    clear: both;
+}
+/* 可点击 */
+.c-p,
+.cursor-pointer {
+    cursor: pointer;
+}
+/* 可移动 */
+.c-m,
+.cursor-move {
+    cursor: move;
+}
+/* 数据为空,只兼容到IE8及以上 */
+.d-e,
+.data-empty {
+    text-align: center;
+    color: #a8a8a8;
+    padding: 5px 0;
+}
+.d-e:after,
+.data-empty:after {
+    content: "数据为空";
+}
+/* 隐藏 */
+body .hide {
+    display: none;
+}
+/* 不被撑大的table */
+.t-f,
+.table-fixed {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+/* 超长截断,只兼容到IE8及以上 */
+.to-e,
+.text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* 被激发元素上浮 */
+.zi-a,
+.z-index-active {
+    z-index: 2000;
+}
+/* 自动折行,兼容IE7及以上 */
+.ww-bw,
+.word-wrap-break-word {
+    word-wrap: break-word;
+}

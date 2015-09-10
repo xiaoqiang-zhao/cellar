@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>cellar</title>
+    <script src="https://cdn.wilddog.com/js/client/current/wilddog.js"></script>
+    <script src="jquery-2.1.4.js"></script>
+</head>
+<body>
+首页
+<div>
+    <script>
+        //        var ref = new Wilddog("https://longze.wilddogio.com/dinosaurs");
+        //
+        var ref = new Wilddog("https://longze.wilddogio.com/stegosaurus");
+        ref.set({
+            name: '龙则2'
+        });
+        ref.on("value", function(datasnapshot) {
+            console.log(datasnapshot.val());   // 结果会弹出信息"beijing"
+        });
+        //
+        //        $.ajax({
+        //            type: 'get',
+        //            dataType: 'jsonp',
+        //            url: 'https://longze.wilddogio.com/lambeosaurus',
+        //            success: function (data) {
+        //                console.log(data);
+        //            },
+        //            fail: function (data) {
+        //                console.log('Error - jack');
+        //                console.log(data);
+        //            }
+        //        });
+    </script>
+</div>
+</body>
+</html>

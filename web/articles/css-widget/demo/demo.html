@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS 常用样式库</title>
+    <link rel="stylesheet" href="css.css"/>
+    <style>
+        .region {
+            padding: 10px;
+            margin: 10px;
+            background: #ddd;
+        }
+        .region-white {
+            border: 1px solid #ddd;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<h3 id="button">按钮</h3>
+
+<div class="region">
+    <button class="button">button按钮</button>
+    <input type="button" value="input按钮" class="button"/>
+    <a class="button">a按钮</a>
+</div>
+<h3 id="button-plus-minus">加号 减号</h3>
+
+<div class="region">
+    <label>button加减号：</label>
+    <button class="button icon-plus"></button>
+    <button class="button icon-minus"></button>
+    <label>a加减号：</label>
+    <a class="button icon-plus"></a>
+    <a class="button icon-minus"></a>
+</div>
+<h3>输入框</h3>
+
+<div class="region region-white">
+    <input type="text" class="input-text"/>
+</div>
+<h3>综合：</h3>
+
+<div class="region region-white">
+    <input type="text" class="input-text"/>
+    <button class="button icon-plus"></button>
+    <input type="text" class="input-text"/><button class="button icon-plus"></button>
+</div>
+<div class="region region-white">
+    <input type="text" class="input-text"/>
+    <button class="button icon-minus"></button>
+    <input type="text" class="input-text"/><button class="button icon-minus"></button>
+</div>
+<div class="region region-white">
+    <input type="text" class="input-text"/>
+    <button class="button">确认</button>
+    <input type="text" class="input-text"/><input type="button" value="确认" class="button">
+</div>
+</body>
+</html>

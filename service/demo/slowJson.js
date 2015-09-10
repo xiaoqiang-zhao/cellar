@@ -6,13 +6,14 @@
 module.exports = {
     contentType: 'json',
     data: function (request, response, response200, response500) {
+        var contentType = this.contentType;
         setTimeout(function () {
             // 业务逻辑代码
             // ...
 
             // 返回异步执行后的结果
             response200(
-                this.contentType,
+                contentType,
                 {
                     "status": 0,
                     "result": {
