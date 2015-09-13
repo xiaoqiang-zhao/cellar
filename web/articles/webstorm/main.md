@@ -26,7 +26,7 @@ Win:Ctrl + Shift + F; Mac:Ctrl + Shift + F
 Win:Ctrl + R; Mac:Com + R，
 
 - 格式化代码，Reformat Code，
-Win:Ctrl + Alt + L, Mac: Alt + Com + L 
+Win:Ctrl + Alt + L, Mac:Option + Com + L 
 
 **对当前光标所在行 或者 选中部分做操作**
 
@@ -40,7 +40,7 @@ Win:Ctrl + X; Mac: Com + X
 Win:Ctrl + Y; Mac: Com + Y，需要注意的是选中字符所在的行会被删掉
 
 - 上下移动行，Move Line Up/Down，
-Win:Alt + Shift + 上/下箭头;Mac:Alt + Shift + 上/下箭头
+Win:Alt + Shift + 上/下箭头;Mac:Option + Shift + 上/下箭头
 
 - 上下移动代码块，Move Statement Up/Down，
 Ctrl + Shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
@@ -59,7 +59,7 @@ Win:Ctrl + Shift + F12; Mac:Com + Shift + F12，我超级喜欢的快捷方式�
 ### 3 -  光标移动
 
 - 前后跳单词，Move Caret to Previous/Next Word
-Win:Ctrl + 左右箭头; Mac:Alt + 左右键
+Win:Ctrl + 左右箭头; Mac:Option + 左右键
 
 - 跳到行首行尾，Move Caret to Line Start/End
 Win:Home/End; Mac:Com + 左右箭头，其实这是Mac系统的快捷键也补充到这里
@@ -68,7 +68,7 @@ Win:Home/End; Mac:Com + 左右箭头，其实这是Mac系统的快捷键也补�
 Win:Shift + Enter; Mac:Shift + Enter，当你在一行的中间部分改完代码需要进行下一行书写时次快捷键可以一步到位。比移先将光标到行尾再Enter换行感觉要好得多，速度也快得多
 
 - 在上一行书写，Start New Line Before Current，
-Win:Ctrl + Alt + Enter; Mac:Alt + Com + Enter
+Win:Ctrl + Alt + Enter; Mac:Option + Com + Enter
 
 - 跳到指定行，
 Win:Ctrl + G; Mac:Com + G
@@ -112,7 +112,7 @@ Win:Ctrl + Shift + N; Mac:Com + Shift + N
 Win:Ctrl + S; Mac:Com + S
 
 - 新建文件，New...
-Win:Alt + N; Mac:Alt + N，在当前文件同级或者选中的文件夹下
+Win:Alt + N; Mac:Option + N，在当前文件同级或者选中的文件夹下
 
 - 打开最近打开的文件，Recent Files
 Mac:Com + E，会给出一个最近打开的文件列表
