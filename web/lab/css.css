@@ -1,36 +1,4 @@
-
-.ui-fixed-table td {
-    padding: 9px 15px;
-    overflow: hidden;
-    line-height: 1.5em;
-    vertical-align: middle;
-    border-bottom: 1px solid #dddddd;
-    border-left: 1px solid #dddddd;
-    word-break: keep-all;
-    font-weight: 400;
-}
-.ui-fixed-table th:first-child,.ui-fixed-table td:first-child {
-    border-left: 0;
-}
-
-.ui-fixed-table th{
-    padding: 0 15px;
-    overflow: hidden;
-    line-height: 34px;
-    vertical-align: middle;
-    border-bottom: 1px solid #3a8ec4;
-    border-left: 1px solid #3a8ec4;
-    white-space: nowrap;
-    word-break: keep-all;
-    font-weight: 400;
-    text-align: center;
-    color: #fff;
-    font-size: 14px;
-}
-
-.ui-fixed-table .fixed-table-tbody-td{
-    display: block;
-    overflow: hidden;
-    /* 晓强添加 */
-    white-space: normal;
+body {
+    background: green;
+    color: white;
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>进制转换</title>
+</head>
+<body>
+<script>
+    var arr = [];
+    var aChart = 97; // 65:A,97:a
+    for (var i = 0; i < 26; i++) {
+        arr.push(String.fromCharCode(aChart + i));
+    }
+    aChart = 65; // 65:A,97:a
+    for (var i = 0; i < 26; i++) {
+        arr.push(String.fromCharCode(aChart + i));
+    }
+    for (var i = 0; i < 10; i++) {
+        arr.push(i);
+    }
+    // var time = (new Date()).getTime() - (new Date()).setFullYear(2000);
+    var time = (new Date()).getTime() - (new Date()).setFullYear(2010);
+    var len = arr.length;
+    var result = '';
+    do {
+        result = arr[time % len] + result;
+        time = parseInt(time / len, 10);
+    }
+    while (time > 0);
+    console.log(result);
+</script>
+</body>
+</html>
