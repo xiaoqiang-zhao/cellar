@@ -95,7 +95,8 @@
                 var singleImg = uploadImgArr[j];
                 var xhr = new XMLHttpRequest();
                 if (xhr.upload) {
-                    //进度条(见http://www.css119.com/archives/1476)
+                    // 进度条(见http://www.css119.com/archives/1476)
+                    // 进度条是根据发送出去的包
                     xhr.upload.addEventListener("progress",
                             function (e) {
                                 if (e.lengthComputable) {
@@ -135,6 +136,7 @@
                     };
                     var formdata = new FormData();
                     formdata.append("FileData", singleImg);
+                    formdata.append("customField", 'aaaaaa');
                     // 开始上传
                     xhr.open("POST", "/articles/upload-file", true);
                     xhr.send(formdata);

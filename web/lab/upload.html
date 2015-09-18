@@ -144,6 +144,9 @@
                     };
                     var formdata = new FormData();
                     formdata.append("FileData", singleImg);
+                    formdata.append("FileData2", singleImg);
+                    formdata.append("customField2222", 'aaaaaa');
+
                     // 开始上传
                     xhr.open("POST", "/articles/upload-file", true);
                     xhr.send(formdata);
