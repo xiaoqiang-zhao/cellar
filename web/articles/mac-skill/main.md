@@ -6,7 +6,7 @@
 
 - 在所有开启程序间跳转 Com + Tab
 - 打开新窗口 Com + N (特别适用于打开新的 Finder 、 命令行 、QQ) 
-- 全屏窗口/退出全屏 Com + Ctrl + F
+- 全屏窗口/退出全屏 Com + Ctrl + F (对QQ无效)
 - 最小化当前窗口 Com + M
 - 关闭当前窗口 Com + W   (对于浏览器是关闭当前Tab页的意思)
 - 退出程序 Com + Q (对于 Finder 这样的系统程序无效)
