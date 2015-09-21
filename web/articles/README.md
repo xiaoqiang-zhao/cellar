@@ -26,6 +26,8 @@
 
 - [css-widget](css-widget/main.md)
 
+- [css-hole](css-hole/main.md)
+
 - [git](git/main.md)
 
 - [node](node/main.md)
