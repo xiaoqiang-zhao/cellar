@@ -64,6 +64,14 @@
 
 为了避免错误，最好是再清除一次浏览器的cache。
 
+## 软件推荐
+
+- Dash 长按 Command 键出现当前软件的快捷键
+
+## 开发工具推荐
+
+- 前端神器 WebStorm，参见另一篇文章 [WebStorm 使用文档](../webstorm/main.md)
+
 ## 资料
 
 [16个OS X快捷键小技巧，至少应该了解一半](http://www.macx.cn/thread-2050934-1-1.html)
