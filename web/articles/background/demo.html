@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style rel="stylesheet">
+
+        .bg-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            border: solid 10px rgba(100, 100, 100, .5);
+        }
+        .bg-clip {
+            background-color: red;
+        }
+        .bg-clip-border-box {
+            background-clip: border-box;
+        }
+        .bg-clip-padding-box {
+            background-clip: padding-box;
+        }
+        .bg-clip-content-box {
+            background-clip: content-box;
+        }
+        .bg-clip-text {
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+<h3>background-clip</h3>
+<div>
+    border-box:<span class="bg-box bg-clip bg-clip-border-box">H</span>
+    padding-box:<span class="bg-box bg-clip bg-clip-padding-box">H</span>
+    content-box:<span class="bg-box bg-clip bg-clip-content-box">H</span>
+    text:<span class="bg-box bg-clip bg-clip-content-text">H</span>
+
+</div>
+</body>
+</html>
