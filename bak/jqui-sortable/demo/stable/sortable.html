@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <style rel="stylesheet">
+        .sortable {
+            background: #eeeeee;
+            padding: 20px;
+        }
+        span {
+            display: inline-block;
+            padding: 3px 5px;
+            background: #3c763d;
+            color: #ffffff;
+            margin: 5px;
+            float: left;
+        }
+        .region {
+            padding: 10px;
+            margin: 10px;
+            background: #dddddd;
+        }
+        .c-f {
+            zoom: 1;
+        }
+        .c-f:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        .region .ui-sortable-placeholder {
+            outline: dashed 1px #3c763d;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<div class="dragable">
+    <span>项 0 项</span>
+</div>
+<div class="sortable">
+    <div></div>
+    <div class="region c-f" id="region-1">
+        <span data="1">项 1 项</span>
+        <span data="2">项 2 项</span>
+        <span data="3">项 3 项</span>
+        <span data="4">项 4 项</span>
+    </div>
+
+    <div class="region c-f" id="region-2">
+        <span data="5">项 5 项</span>
+        <span data="6">项 6 项</span>
+        <span data="7">项 7 项</span>
+        <span data="8">项 8 项</span>
+    </div>
+</div>
+<script>
+    /* sort 出的东西 可否drop */
+
+    var r1 = $('#region-1');
+    r1.sortable({
+
+       items: 'span'
+    });
+
+    var r2 = $('#region-2');
+    r2.sortable({
+        appendTo: r1,
+       items: 'span'
+    });
+
+    r2.find('span').draggable({
+        connectToSortable: r2
+    });
+
+
+    /*
+     var s = $('#sortable');
+     s.sortable({
+     items: 'span',
+     start: function (event, ui) {
+     console.log(ui);
+     $(this).find('.ui-sortable-placeholder').css({
+     visibility: 'visible'
+     });
+     },
+     helper: 'clone',
+     out: function () {
+     console.log('out');
+     },
+     beforeStop: function () {
+     console.log('beforeStop');
+     }
+     });
+
+     $('.dragable span').draggable({
+     revert: "invalid", // when not dropped, the item will revert back to its initial position
+     containment: "document",
+     cancel: '.j-no-drag', //遇到什么选择器的时候放弃拖拽
+     connectToSortable: s, // 可以排序（要求helper必须是clone）
+     helper: "clone", // 如果被设为clone，则
+     opacity: 0.8, // 被拖拽元素的透明度
+     create: function (event, ui) {},
+     start: function (event, ui) {
+
+     },
+     stop: function (event, ui) {
+
+     }
+     });
+     */
+
+</script>
+</body>
+</html>
