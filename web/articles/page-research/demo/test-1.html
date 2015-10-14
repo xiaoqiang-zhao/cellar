@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>加载测试</title>
+    <link rel="stylesheet" href="a.css"/>
+    <link rel="stylesheet" href="b.css"/>
+</head>
+<body>
+<div class="a">
+    <script>
+
+        if (document.getElementById('target') === null) {
+            document.write('浏览器从上到下依次对文档进行扫描。上面的js片段不做回调处理访问不到下面的DOM节点。');
+        }
+
+    </script>
+</div>
+<div class="b" id="target">
+    Target DIV
+</div>
+</body>
+</html>

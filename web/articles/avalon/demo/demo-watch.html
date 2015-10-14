@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>入门Demo - watch 手机号码格式化</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <script src="avalon.js"></script>
+    <script>
+        var model = avalon.define({
+            $id: "mobile",
+            phone: ""
+        });
+        model.$watch("phone", function (a) {
+            var b = a.replace(/\s+/g, ""); // 去除空格
+            var array = b.split("");
+            var ret = "";
+            // 添加空格间距
+            for (var i = 0, n = array.length; i < n; i++) {
+                if (i > 10)//不能超过11位
+                    break;
+                if (i == 3) {
+                    ret += " ";
+                }
+                if (i == 7) {
+                    ret += " ";
+                }
+                ret += array[i];
+            }
+            // 回填
+            model.phone = ret;
+        });
+
+    </script>
+</head>
+<body>
+<div ms-controller="mobile">
+    <input ms-duplex="phone"/>
+</div>
+</body>
+</html>

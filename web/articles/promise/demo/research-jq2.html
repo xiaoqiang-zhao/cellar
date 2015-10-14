@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试jQuery的Deferred</title>
+    <script src="jquery-2.1.4.js"></script>
+</head>
+<body>
+<script>
+
+    function test1() {
+        var p = $.Deferred(function (promise) {
+            // 异步
+            setTimeout(function () {
+                promise.resolve();
+                //promise.reject();
+            }, 2000);
+        });
+        p.then(function () {
+            console.log('resolve1');
+        }, function () {
+            console.log('reject');
+        }).then(function () {
+            console.log('resolve2');
+        });
+
+        window.p = p;
+    }
+    // test1();
+
+    function test2() {
+        var p = $.Deferred(function (promise) {
+            // 异步
+            setTimeout(function () {
+                //promise.resolve();
+                //promise.reject();
+            }, 2000);
+        });
+        p.then(function () {
+            console.log('resolve1');
+        }, function () {
+            console.log('reject');
+        }).then(function () {
+            console.log('resolve2');
+        }).done(function () {
+            console.log('done1');
+        }).done(function () {
+            console.log('done2');
+        }).always(function () {
+            console.log('always1');
+        }).always(function () {
+            console.log('always2');
+        });
+
+        // resolve方法不是定义回调的，而是触发回调的
+//        p.resolve(function () {
+//            console.log('resolve');
+//        });
+
+        window.p = p;
+    }
+    // test2();
+
+    function test3() {
+        var p = $.Deferred(function (promise) {
+            // 异步
+            setTimeout(function () {
+                //promise.resolve();
+            }, 2000);
+        });
+
+        p.then(function () {
+            console.log('resolve');
+        }, function () {
+            console.log('reject');
+        })
+        p.resolveWith(1);
+    }
+    test3();
+
+    function test4() {
+
+    }
+    test4();
+
+    function test5() {
+
+
+    }
+    //test5();
+
+
+</script>
+</body>
+</html>

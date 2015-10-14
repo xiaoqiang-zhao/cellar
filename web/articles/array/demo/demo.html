@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    示例toString 和 toLocalString 方法：IE7 可以输出相同的值，需要做兼容的只有JSON对象了。
+</div>
+<script>
+    var array = [
+        {order: 1},
+        {
+            order: 2,
+            toLocaleString: function () {
+                var result;
+                if (window.JSON !== undefined) {
+                    result = JSON.stringify(this);
+                }
+                else {
+                    result = '{"order":2}';
+                }
+                return result;
+            },
+            toString: function () {
+                var result;
+                if (window.JSON !== undefined) {
+                    result = JSON.stringify(this);
+                }
+                else {
+                    result = '{"order":2}';
+                }
+                return result;
+            }
+        }
+    ];
+    var str1 = array.toLocaleString(); // '[object Object],{"order":2}'
+    var str2 = array.toString(); // "[object Object],[object Object]"
+
+    document.write(str1 + '<br />');
+    document.write(str2 + '<br />');
+
+</script>
+</body>
+</html>
