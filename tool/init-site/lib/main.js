@@ -10,9 +10,9 @@ rootPath = __dirname.replace(/\\/g, '/').split('/').slice(0, -1 * config.rootLev
 // 获取的路径是所配置根路径的本地绝对路径，使用时把根路径加到前面(用于对目标路径的操作)
 config.rootPath = rootPath + config.rootPath;
 
-var getArticlesPathList = require('./get-articles-path-list.js');
+var getArticlesList = require('./get-articles-list.js');
 
-var articlePathList = getArticlesPathList(config);
+var articleList = getArticlesList(config);
 
-console.log(articlePathList);
-console.log(articlePathList.length);
+console.log(articleList);
+console.log(articleList.length);

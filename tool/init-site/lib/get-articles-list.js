@@ -3,15 +3,17 @@
  *
  * Created by zhaoxiaoqiang on 15/10/14.
  */
+
 var fs = require('fs');
+
 /**
  * 获取文章的路径数组(本地绝对路径)
  * @param {Object} config 配置对象
  *
  * @return {Array} articlesPathArr 文件夹路径列表
  */
-function getArticlesPathList (config) {
-    var articlesPathArr = [];
+function getArticlesList (config) {
+    var getArticlesList = [];
     var root = config.rootPath + config.articlesPath;
 
     if (isExistFolder(root)) {
@@ -20,12 +22,14 @@ function getArticlesPathList (config) {
         files.forEach(function (file) {
             var filePath = root + '/'+ file;
             if (isExistFolder(filePath)) {
-                articlesPathArr.push(filePath);
+                getArticlesList.push({
+                    filePath: filePath
+                });
             }
         });
     }
 
-    return articlesPathArr;
+    return getArticlesList;
 }
 
 /**
@@ -48,4 +52,4 @@ function isExistFolder (filePath) {
     return result;
 }
 
-module.exports = getArticlesPathList;
+module.exports = getArticlesList;
