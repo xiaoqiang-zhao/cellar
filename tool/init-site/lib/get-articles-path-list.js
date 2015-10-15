@@ -13,16 +13,18 @@ var fs = require('fs');
 function getArticlesPathList (config) {
     var articlesPathArr = [];
     var root = config.rootPath + config.articlesPath;
-    if (isExistFile(root)) {//文件或文件夹存在
 
+    if (isExistFolder(root)) {
         var files = fs.readdirSync(root);
+
         files.forEach(function (file) {
             var filePath = root + '/'+ file;
-            if (isExistFile(filePath)) {
+            if (isExistFolder(filePath)) {
                 articlesPathArr.push(filePath);
             }
         });
     }
+
     return articlesPathArr;
 }
 
@@ -32,8 +34,9 @@ function getArticlesPathList (config) {
  * @param {String} filePath 文件夹路径
  * @returns {boolean} result 是否存在此文件夹
  */
-function isExistFile (filePath) {
+function isExistFolder (filePath) {
     var result = false;
+
     if (fs.existsSync(filePath)) {//文件或文件夹存在
         var stat = fs.lstatSync(filePath); // 对于不存在的文件或文件夹，此函数会报错
 
@@ -41,6 +44,7 @@ function isExistFile (filePath) {
             result = true;
         }
     }
+
     return result;
 }
 
