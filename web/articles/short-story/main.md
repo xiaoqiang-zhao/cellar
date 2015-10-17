@@ -19,6 +19,12 @@ css url  Uniform Resoure Locator:统一资源定位器
 
 resources 资源
 
+## objectList PK objectsList
+
+这个命名应该用前面的还是后面的确实折磨了我很久，每到用时就难受一次。其实解决这个问题很简单，看看语言系统中类似的场景怎么使用模仿就可以了，下面是找到的一些例子：
+
+
+
 ## 参考
 
 [为什么说命名和缓存失效是计算机科学里面最难应对的两件事？](http://www.zhihu.com/question/20665684)
