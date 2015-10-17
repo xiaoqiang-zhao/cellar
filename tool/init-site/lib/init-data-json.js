@@ -7,17 +7,17 @@
 var fs = require('fs');
 var config = require('./config.js');
 var defaultJson = {
-    "tags": [
+    "tags": [          // 文章标签
         "基础"
     ],
-    // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
-    //     [修正添加中]
-    "state": "",       // 腹稿,
+    "state": "",       // 文章状态
+                       // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
+                       // [修正添加中]
     "public": false,   // 是否处于公示状态
     "type": "md",      // md / html / none
     "createDate": "",
-    "md5": "",
-    "comment": [
+    "md5": "",         // 通过md5验证内容的改变
+    "comment": [       // 评论
         ""
     ]
 };
@@ -30,10 +30,9 @@ var defaultJson = {
  * @param {Array} articleArr 文章列表
  */
 function initDataJson (articleArr) {
-    var jsonStr = JSON.stringify(defaultJson);
+    var jsonStr = JSON.stringify(defaultJson, null, 2);
     articleArr.forEach(function (article) {
         var jsonDataFilePath = article.folderPath + '/data.json';
-        // TODO 研究json的格式化，应该有第三方模块
 
         // 文件不存在，直接添加文件
         if (!fs.existsSync(jsonDataFilePath)) {
