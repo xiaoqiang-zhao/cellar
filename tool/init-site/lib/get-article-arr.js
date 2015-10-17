@@ -10,26 +10,26 @@ var fs = require('fs');
  * 获取文章的路径数组(本地绝对路径)
  * @param {Object} config 配置对象
  *
- * @return {Array} articlesPathArr 文件夹路径列表
+ * @return {Array} articleArr 文件夹路径列表
  */
 function getArticlesList (config) {
-    var getArticlesList = [];
+    var articleArr = [];
     var root = config.rootPath + config.articlesPath;
 
     if (isExistFolder(root)) {
         var files = fs.readdirSync(root);
 
         files.forEach(function (file) {
-            var filePath = root + '/'+ file;
-            if (isExistFolder(filePath)) {
-                getArticlesList.push({
-                    filePath: filePath
+            var folderPath = root + '/'+ file;
+            if (isExistFolder(folderPath)) {
+                articleArr.push({
+                    folderPath: folderPath
                 });
             }
         });
     }
 
-    return getArticlesList;
+    return articleArr;
 }
 
 /**
