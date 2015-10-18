@@ -1,4 +1,6 @@
 {
+  "title": "对页面加载和渲染的研究",
+  "introduction": "写页面时间久一点开始注意到浏览器对页面的原理，文档树(DOM Tree)、渲染树(Render Tree)、重绘(Repaint)、重排(Reflow)、HasLayout等概念开始进入视野，从零散的概念，到各种布局和Hack，到打通这些概念需要一个时间上的积累和思考。今天试试能不能打通这条筋脉。",
   "tags": [
     "基础"
   ],
@@ -7,7 +9,8 @@
   "type": "md",
   "createDate": "",
   "md5": "",
-  "comment": [
+  "commentList": [
     ""
-  ]
+  ],
+  "todoList": []
 }

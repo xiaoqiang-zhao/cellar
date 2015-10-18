@@ -1,4 +1,6 @@
 {
+  "title": "background 全解",
+  "introduction": "指定对象的背景颜色。",
   "tags": [
     "基础"
   ],
@@ -7,7 +9,8 @@
   "type": "md",
   "createDate": "",
   "md5": "",
-  "comment": [
+  "commentList": [
     ""
-  ]
+  ],
+  "todoList": []
 }
