@@ -86,8 +86,9 @@ function initDataJson (articleArr) {
 
             var jsonDataStr = JSON.stringify(jsonData, null, 2);
             fs.writeFileSync(jsonDataFilePath, jsonDataStr, config.encoding);
+            // 将文章的数据写到文章列表中
+            article.jsonData = jsonData;
         }
-
     });
 
     console.log('data.json初始化完成');
