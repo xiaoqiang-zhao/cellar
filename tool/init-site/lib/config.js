@@ -11,7 +11,8 @@ var config = {
     // 监听的根目录（从此目录向下监听） 以tool的上级目录作为参考
     rootPath: '/web',
     // 跟目录下文章的目录
-    articlesPath: '/articles'
+    articlesPath: '/articles',
+    jsonDataRewrite: true
 };
 
 module.exports = config;

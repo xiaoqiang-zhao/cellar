@@ -16,5 +16,5 @@ var articleArr = getArticleArr(config);
 console.log(articleArr.length);
 
 // 初始化data.json
-var initDataJson = require('./init-data-json.js');
+var initDataJson = require('./init-json-data.js');
 initDataJson(articleArr);

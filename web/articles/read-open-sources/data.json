@@ -1,1 +1,16 @@
-{"tags":["基础"],"state":"","public":false,"type":"md","createDate":"","md5":"","comment":[""]}
+{
+  "title": "阅读JavaScript开源代码",
+  "introduction": "刚开始时题目是“阅读开源代码”，感觉题目有点大hold不住，后期可能会出姊妹篇“如何阅读前端UI库”。在网上搜了一些资料，发现后端的居多，偶尔有一篇前端的帖子，也基本上属于“指导思想”类型的，很少有具体的指导，于是就有了本文。本文从最高层次上介绍三个库的源码结构和思想：jQuery，使用面积最广，也代表了一个时代；Backbone，MVC框架，前端里程碑框架，这个框架之前前端在借鉴后端，这个框架之后前端走上了独立发展之路；Avalon，MVVM框架，之所以没选Angular是因为其职责更单一。",
+  "tags": [
+    "基础"
+  ],
+  "state": "",
+  "public": false,
+  "type": "md",
+  "createDate": "",
+  "md5": "",
+  "commentList": [
+    ""
+  ],
+  "todoList": []
+}

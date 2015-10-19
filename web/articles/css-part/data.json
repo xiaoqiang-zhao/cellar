@@ -1,1 +1,16 @@
-{"tags":["基础"],"state":"","public":false,"type":"md","createDate":"","md5":"","comment":[""]}
+{
+  "title": "常用 CSS 片段收集",
+  "introduction": "提供简写和非简写两种方式，有点小洁癖的可以采用了简写的方式，多人协作的长期项目建议采用非简写简明知意。另外简写容易造成冲突，按字母顺序排列样式能在一定层度上减少这种冲突，所以下面的样式都是按字母顺序排列的，另外简写的一般规则是 “属性-属性值-修饰”，表意的CSS片段取首字母缩写。可以更具自己的项目定制此文件的部分或全部，无需任何许可。一些实例：[DEMO](demo/demo.html)，也可下载[dem/css.css](demo/css.css)直接使用。",
+  "tags": [
+    "基础"
+  ],
+  "state": "",
+  "public": false,
+  "type": "md",
+  "createDate": "",
+  "md5": "",
+  "commentList": [
+    ""
+  ],
+  "todoList": []
+}
