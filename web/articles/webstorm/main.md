@@ -1,5 +1,7 @@
 # WebStorm 使用文档
 
+> 号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到10，在设置上9到10有一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。
+
 ## 概述
 号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到10，在设置上9到10有一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。
 
@@ -26,7 +28,7 @@ Win:Ctrl + Shift + F; Mac:Ctrl + Shift + F
 Win:Ctrl + R; Mac:Com + R，
 
 - 格式化代码，Reformat Code，
-Win:Ctrl + Alt + L, Mac: Alt + Com + L 
+Win:Ctrl + Alt + L, Mac:Option + Com + L 
 
 **对当前光标所在行 或者 选中部分做操作**
 
@@ -40,26 +42,26 @@ Win:Ctrl + X; Mac: Com + X
 Win:Ctrl + Y; Mac: Com + Y，需要注意的是选中字符所在的行会被删掉
 
 - 上下移动行，Move Line Up/Down，
-Win:Alt + Shift + 上/下箭头;Mac:Alt + Shift + 上/下箭头
+Win:Alt + Shift + 上/下箭头;Mac:Option + Shift + 上/下箭头
 
 - 上下移动代码块，Move Statement Up/Down，
 Ctrl + Shift + 上/下箭头，大括号内的，块状注释等都是代码块，遇到代码块也会一次跳到上面。代码块的识别有时会和想象中的不一样，所以比较适合跨代码块移动单行
 
-### 2 - Tab操作
+### 2 - 操作编辑窗体
 
-- 关闭当前的Tab，Close Active Tab，
-Win:Ctrl + F4; Mac:Com + F4
+- 关闭当前的编辑窗体，Close Active Tab，
+Win:Ctrl + F4; Mac:Com + F4 或 Com + W
 
-- 左右切换Tab，Select Previous/Next Tab，
+- 左右切换编辑窗体，Select Previous/Next Tab，
 Win:Alt + 左右箭头; Mac:Ctrl + 左右箭头，但是这和Mac系统左右切屏的快捷键有冲突，另外左右切屏可以通过在触摸板上三指左右滑动来切屏，其实我平时也是这么用的，所以我禁用了系统切屏快捷键。禁用方式：系统偏好设置/快捷键/Mission Control/向左移动一个 space。
 
-- 最大化编辑窗口(隐藏所有工具窗口)，Hide All Toll Windows
+- 最大化编辑窗体(隐藏所有工具窗口)，Hide All Toll Windows
 Win:Ctrl + Shift + F12; Mac:Com + Shift + F12，我超级喜欢的快捷方式，可以让我专注的写好当前代码块
 
 ### 3 -  光标移动
 
 - 前后跳单词，Move Caret to Previous/Next Word
-Win:Ctrl + 左右箭头; Mac:Alt + 左右键
+Win:Ctrl + 左右箭头; Mac:Option + 左右键
 
 - 跳到行首行尾，Move Caret to Line Start/End
 Win:Home/End; Mac:Com + 左右箭头，其实这是Mac系统的快捷键也补充到这里
@@ -68,7 +70,7 @@ Win:Home/End; Mac:Com + 左右箭头，其实这是Mac系统的快捷键也补�
 Win:Shift + Enter; Mac:Shift + Enter，当你在一行的中间部分改完代码需要进行下一行书写时次快捷键可以一步到位。比移先将光标到行尾再Enter换行感觉要好得多，速度也快得多
 
 - 在上一行书写，Start New Line Before Current，
-Win:Ctrl + Alt + Enter; Mac:Alt + Com + Enter
+Win:Ctrl + Alt + Enter; Mac:Option + Com + Enter
 
 - 跳到指定行，
 Win:Ctrl + G; Mac:Com + G
@@ -90,7 +92,8 @@ Win:Ctrl + Shift + Num+; Mac:Com + Shift + Num+
 ### 5 - 选中
 
 - 选中的超级扩展，Extend Selection，
-Win:Ctrl + W; Mac:Com + W，请原谅我给这个快捷键起这么夸张的称谓，因为这个快捷方式是我超级超级喜欢的一个，按一次选中一个单词，两次一行，三次一个代码块，太好用了！！
+Win:Ctrl + W; Mac:Ctrl + W，请原谅我给这个快捷键起这么夸张的称谓，因为这个快捷方式是我超级超级喜欢的一个，按一次选中一个单词，两次一行，三次一个代码块，太好用了！！
+(Mac 下默认的快捷方式是 Com + W，但是其他IDE和浏览器这个快捷方式是关闭Tab页，为了统一将这个改一下)
 
 - 重命名，Rename，
 Win:Shift + F6; Mac:Shift + F6，这是一个有多张面孔的快捷键。在js代码中此快捷键是变量重命名，给变量起名真是一个费劲的事情，随着业务的变动变量名一定要跟着作调整，否则代码的寿命不好太长远；在html和css以及文档文件中，此快捷键重命名当前文件；在资源文件目录下，此快捷方式是给资源重命名，而且会智能同步引用。
@@ -112,7 +115,7 @@ Win:Ctrl + Shift + N; Mac:Com + Shift + N
 Win:Ctrl + S; Mac:Com + S
 
 - 新建文件，New...
-Win:Alt + N; Mac:Alt + N，在当前文件同级或者选中的文件夹下
+Win:Alt + N; Mac:Option + N，在当前文件同级或者选中的文件夹下
 
 - 打开最近打开的文件，Recent Files
 Mac:Com + E，会给出一个最近打开的文件列表
@@ -183,7 +186,7 @@ MD文档默认不换行，可以在左边行号的位置右击勾选"Use Soft Wr
 
 ## 写在最后的牢骚
 
-每天都在写代码，应该花点时间培养一下和IDE的感情，快捷方式，代码补全，插件，是几个重要考察的点。没有那个IDE绝对的好，熟练使用是关键。业务代码写的快一点才有时间研究新的东西，不然就沦落到一个经验用三年这种悲催的境地了。快速的写代码也是一种不错的感觉。
+每天都在写代码，应该花点时间培养一下和IDE的感情，快捷方式，代码补全，插件，是几个重要考察的点。没有哪个IDE绝对的好，熟练使用是关键。业务代码写的快一点才有时间研究新的东西，不然就沦落到一个经验用三年这种悲催的境地了。快速的写代码也是一种不错的感觉。
 
 ## 声明
 

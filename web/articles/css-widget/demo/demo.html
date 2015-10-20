@@ -8,68 +8,53 @@
         .region {
             padding: 10px;
             margin: 10px;
-            background: #dddddd;
+            background: #ddd;
         }
         .region-white {
-            border: 1px solid #dddddd;
+            border: 1px solid #ddd;
             background: white;
-        }
-        .test {
-            display: inline-block;
-            position: relative;
-            padding: 0;
-            font-size: 12px; /* 如果不统一字号和行高，会出现基线对齐的问题 */
-            line-height: 30px;
-            width: 30px;
-            height: 30px;
-            background-color: #1B9AF7;
-        }
-        /* 用 after 伪类添加内容，来解决无内容上浮的问题 */
-        .test:after {
-            content: "\200B";
-        }
-        /* TODO 研究字体基线解决方案 */
-
-        /* 默认基于底线对齐 */
-        .f-12 {
-            font-size: 12px;
-        }
-        .f-18 {
-            font-size: 18px;
         }
     </style>
 </head>
 <body>
-<h3>按钮</h3>
+<h3 id="button">按钮</h3>
+
 <div class="region">
-    <button class="button">提交</button>
-    <input type="button" value="提交" class="button"/>
-    <a class="button">确定</a>
+    <button class="button">button按钮</button>
+    <input type="button" value="input按钮" class="button"/>
+    <a class="button">a按钮</a>
 </div>
-<h3>加号 减号</h3>
+<h3 id="button-plus-minus">加号 减号</h3>
+
 <div class="region">
+    <label>button加减号：</label>
     <button class="button icon-plus"></button>
     <button class="button icon-minus"></button>
+    <label>a加减号：</label>
+    <a class="button icon-plus"></a>
+    <a class="button icon-minus"></a>
 </div>
 <h3>输入框</h3>
+
 <div class="region region-white">
     <input type="text" class="input-text"/>
 </div>
 <h3>综合：</h3>
+
 <div class="region region-white">
-    <input type="text" class="input-text"/><button class="button icon-plus">.</button>
+    <input type="text" class="input-text"/>
+    <button class="button icon-plus"></button>
+    <input type="text" class="input-text"/><button class="button icon-plus"></button>
 </div>
 <div class="region region-white">
     <input type="text" class="input-text"/>
-    <button class="button icon-minus">.</button>
-    <span class="test"></span>
+    <button class="button icon-minus"></button>
+    <input type="text" class="input-text"/><button class="button icon-minus"></button>
 </div>
 <div class="region region-white">
     <input type="text" class="input-text"/>
     <button class="button">确认</button>
-</div>
-<div class="region">
-    <span class="f-12">十二像素文字</span><span class="f-18">十八像素文字</span><span class="f-12">十二像素文字</span>
+    <input type="text" class="input-text"/><input type="button" value="确认" class="button">
 </div>
 </body>
 </html>

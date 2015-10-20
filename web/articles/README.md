@@ -26,6 +26,8 @@
 
 - [css-widget](css-widget/main.md)
 
+- [css-hole](css-hole/main.md)
+
 - [git](git/main.md)
 
 - [node](node/main.md)
@@ -37,6 +39,8 @@
 - [websocket](websocket/main.md)
 
 - [webstorm](webstorm/main.md)
+
+- [mac-skill](mac-skill/main.md)
 
 --------------------部分腹稿未录入的文章----------------------
 
@@ -68,8 +72,24 @@
 
 - [read-open-sources](read-open-sources/main.md)
 
---------------------筹划中的文章----------------------
+--------------------筹划中的文章 和 参考资料----------------------
 
 [React Native 简介：用 JavaScript 搭建 iOS 应用(2)](http://segmentfault.com/a/1190000003088452)
 
 [CSS规范 > 9 视觉格式化模型 Visual Formatting Model](http://segmentfault.com/a/1190000003096320)
+
+[极客学院 - 中级前端](http://www.jikexueyuan.com/course/834.html)
+
+[极客学院 - 高级前端](http://www.jikexueyuan.com/course/1248_1.html?ss=1)
+
+[极客学院 - 资深前端](http://www.jikexueyuan.com/course/1643.html)
+
+[我是如何同时拿到阿里和腾讯offer的](http://segmentfault.com/a/1190000002627927)
+
+[圣杯布局和双飞翼布局的原理是什么？区别是什么？](http://segmentfault.com/q/1010000002709305)
+
+[一个牛人的课程](http://my.jikexueyuan.com/ijasonzj/)
+
+[CSS loading](http://www.jikexueyuan.com/course/1890.html)
+
+[HTML5 的介绍] (http://www.letv.com/ptv/vplay/22689186.html)
