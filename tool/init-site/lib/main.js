@@ -18,3 +18,7 @@ console.log(articleArr.length);
 // 初始化data.json
 var initDataJson = require('./init-json-data.js');
 initDataJson(articleArr);
+
+// 生成首页列表
+var initPage = require('./init-page.js');
+initPage(articleArr);

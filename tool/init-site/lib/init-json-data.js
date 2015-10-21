@@ -9,23 +9,23 @@ var config = require('./config.js');
 var marked = require('./marked.js');
 
 var defaultJson = {
-    "title": "",         // 标题
-    "introduction": "",  // 引言
-    "tags": [            // 文章标签
+    "title": "",           // 标题
+    "introduction": "",    // 引言
+    "tags": [              // 文章标签
         "基础"
     ],
-    "state": "",         // 文章状态
-                         // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
-                         // [修正添加中]
-    "public": false,     // 是否处于公示状态
-    "type": "md",        // md / html / none
-    "createDate": "",    // 创建时间(毫秒数)
-    "md5": "",           // 通过md5验证内容的改变
-    "commentList": [     // 评论
+    "state": "立项",        // 文章状态
+                           // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
+                           // [修正添加中]
+    "public": false,       // 是否处于公示状态
+    "type": "md",          // md / html / none
+    "createDate": "",      // 创建时间(毫秒数)
+    "md5": "",             // 通过md5验证内容的改变
+    "commentList": [       // 评论
         ""
     ],
-    "todoList": [        // 未来要做的
-
+    "todoList": [          // 未来要做的
+                           // 已收集了什么还要收集什么，还要集成什么等
     ]
 };
 
@@ -45,6 +45,10 @@ function initDataJson (articleArr) {
         if (!fs.existsSync(jsonDataFilePath) || config.jsonDataRewrite === true) {
             // 写文件
             fs.writeFileSync(jsonDataFilePath, jsonStr, config.encoding);
+        }
+        // merge 数据，以现有的为基础，初始化的对象向前合并，方便添加字段
+        else {
+
         }
 
         // 读取 data.json 的文件内容
@@ -75,7 +79,6 @@ function initDataJson (articleArr) {
             }
 
             // 提取描述
-            // var matchIntroductionResult = mdContent.match(/^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/);
             var execIntroductionResult = /^( *>[^\n]+(\n(?! *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$))[^\n]+)*\n*)+/m.exec(mdContent);
             if (execIntroductionResult !== null) {
                 jsonData.introduction = execIntroductionResult[0].replace(/(^ *> ?)|(\n$)/gm, '');
