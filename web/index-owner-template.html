@@ -27,9 +27,9 @@
     <% articleArr.forEach(function(article){ %>
     <article class="article-list-item">
         <a href="">
-            <h1 class="title"><% =article.jsonData.title %></h1>
+            <h1 class="title"><%=article.jsonData.title %></h1>
             <summary>
-                文章简介
+                <%=article.jsonData.introduction %>
             </summary>
         </a>
         <footer>
