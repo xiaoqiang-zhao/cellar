@@ -10,7 +10,12 @@ var ejs = require('ejs');
 
 function initPage(articleArr) {
     var template = fs.readFileSync(config.rootPath + '/index-owner-template.html', config.encoding);
-    var html = ejs.render(template, {articleArr: articleArr});
+    var html = ejs.render(
+        template,
+        {
+            articleArr: articleArr
+        }
+    );
     fs.writeFileSync(config.rootPath + '/index-owner.html', html, config.encoding);
 }
 

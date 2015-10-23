@@ -32,7 +32,6 @@ var defaultJson = {
 /**
  * 初始化每篇文章的 data.json 文件
  * (采用同步处理，因为后续操作需要依赖此结果)
- * (的)
  *
  * @param {Array} articleArr 文章列表
  */
@@ -67,8 +66,6 @@ function initDataJson (articleArr) {
             jsonData.type = 'md';
             var mdContent = fs.readFileSync(mdFilePath, config.encoding);
 
-            // var htmlContent = marked(mdContent);
-
             // 提取标题
             var matchTitleResult = mdContent.match(/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/);
             if (matchTitleResult !== null) {
@@ -87,11 +84,17 @@ function initDataJson (articleArr) {
                 jsonData.introduction = '未找到描述信息';
             }
 
-            var jsonDataStr = JSON.stringify(jsonData, null, 2);
-            fs.writeFileSync(jsonDataFilePath, jsonDataStr, config.encoding);
-            // 将文章的数据写到文章列表中
-            article.jsonData = jsonData;
         }
+        // md文件不存在
+        else {
+            jsonData.title = '未找到md文件';
+            jsonData.introduction = '未找到md文件';
+        }
+
+        var jsonDataStr = JSON.stringify(jsonData, null, 2);
+        fs.writeFileSync(jsonDataFilePath, jsonDataStr, config.encoding);
+        // 将文章的数据写到文章列表中
+        article.jsonData = jsonData;
     });
 
     console.log('data.json初始化完成');

@@ -23,23 +23,8 @@
         </menu>
     </nav>
 </header>
-<div class="page-body article-list-container">
-    <% articleArr.forEach(function(article){ %>
-    <article class="article-list-item">
-        <a href="<%=article.detailPagePath %>">
-            <h1 class="title"><%=article.jsonData.title %></h1>
-            <summary>
-                <%=article.jsonData.introduction %>
-            </summary>
-        </a>
-        <footer>
-            <section class="tags-container">
-                <i class="icon-tag" title="Tags"></i>
-                <a class="tag-item" href="">技术点</a>
-            </section>
-        </footer>
-    </article>
-    <% }) %>
+<div class="page-body article-detail-container">
+    <%-content%>
 </div>
 <footer class="page-footer"></footer>
 </body>

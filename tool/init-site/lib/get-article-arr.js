@@ -23,7 +23,10 @@ function getArticlesList (config) {
             var folderPath = root + '/'+ file;
             if (isExistFolder(folderPath)) {
                 articleArr.push({
-                    folderPath: folderPath
+                    folderPath: folderPath,
+                    detailFilePath: folderPath + '/main.html',
+                    detailPagePath: '/articles/' + file + '/main.html',
+                    enName: file
                 });
             }
         });
