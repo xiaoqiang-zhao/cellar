@@ -18,3 +18,11 @@ console.log(articleArr.length);
 // 初始化data.json
 var initDataJson = require('./init-json-data.js');
 initDataJson(articleArr);
+
+// 生成首页
+var initIndexPage = require('./init-index-page.js');
+initIndexPage(articleArr);
+
+// 生成文章详情页和数据片段
+var initArticleDetailPage = require('./init-article-detail.js');
+initArticleDetailPage(articleArr);

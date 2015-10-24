@@ -9,30 +9,29 @@ var config = require('./config.js');
 var marked = require('./marked.js');
 
 var defaultJson = {
-    "title": "",         // 标题
-    "introduction": "",  // 引言
-    "tags": [            // 文章标签
+    "title": "",           // 标题
+    "introduction": "",    // 引言
+    "tags": [              // 文章标签
         "基础"
     ],
-    "state": "",         // 文章状态
-                         // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
-                         // [修正添加中]
-    "public": false,     // 是否处于公示状态
-    "type": "md",        // md / html / none
-    "createDate": "",    // 创建时间(毫秒数)
-    "md5": "",           // 通过md5验证内容的改变
-    "commentList": [     // 评论
+    "state": "立项",        // 文章状态
+                           // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
+                           // [修正添加中]
+    "public": false,       // 是否处于公示状态
+    "type": "md",          // md / html / none
+    "createDate": "",      // 创建时间(毫秒数)
+    "md5": "",             // 通过md5验证内容的改变
+    "commentList": [       // 评论
         ""
     ],
-    "todoList": [        // 未来要做的
-
+    "todoList": [          // 未来要做的
+                           // 已收集了什么还要收集什么，还要集成什么等
     ]
 };
 
 /**
  * 初始化每篇文章的 data.json 文件
  * (采用同步处理，因为后续操作需要依赖此结果)
- * (的)
  *
  * @param {Array} articleArr 文章列表
  */
@@ -45,6 +44,10 @@ function initDataJson (articleArr) {
         if (!fs.existsSync(jsonDataFilePath) || config.jsonDataRewrite === true) {
             // 写文件
             fs.writeFileSync(jsonDataFilePath, jsonStr, config.encoding);
+        }
+        // merge 数据，以现有的为基础，初始化的对象向前合并，方便添加字段
+        else {
+
         }
 
         // 读取 data.json 的文件内容
@@ -63,8 +66,6 @@ function initDataJson (articleArr) {
             jsonData.type = 'md';
             var mdContent = fs.readFileSync(mdFilePath, config.encoding);
 
-            // var htmlContent = marked(mdContent);
-
             // 提取标题
             var matchTitleResult = mdContent.match(/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/);
             if (matchTitleResult !== null) {
@@ -75,7 +76,6 @@ function initDataJson (articleArr) {
             }
 
             // 提取描述
-            // var matchIntroductionResult = mdContent.match(/^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/);
             var execIntroductionResult = /^( *>[^\n]+(\n(?! *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$))[^\n]+)*\n*)+/m.exec(mdContent);
             if (execIntroductionResult !== null) {
                 jsonData.introduction = execIntroductionResult[0].replace(/(^ *> ?)|(\n$)/gm, '');
@@ -84,11 +84,17 @@ function initDataJson (articleArr) {
                 jsonData.introduction = '未找到描述信息';
             }
 
-            var jsonDataStr = JSON.stringify(jsonData, null, 2);
-            fs.writeFileSync(jsonDataFilePath, jsonDataStr, config.encoding);
-            // 将文章的数据写到文章列表中
-            article.jsonData = jsonData;
         }
+        // md文件不存在
+        else {
+            jsonData.title = '未找到md文件';
+            jsonData.introduction = '未找到md文件';
+        }
+
+        var jsonDataStr = JSON.stringify(jsonData, null, 2);
+        fs.writeFileSync(jsonDataFilePath, jsonDataStr, config.encoding);
+        // 将文章的数据写到文章列表中
+        article.jsonData = jsonData;
     });
 
     console.log('data.json初始化完成');

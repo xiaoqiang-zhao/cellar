@@ -12,7 +12,7 @@ var config = {
     rootPath: '/web',
     // 跟目录下文章的目录
     articlesPath: '/articles',
-    jsonDataRewrite: true
+    jsonDataRewrite: false
 };
 
 module.exports = config;
