@@ -4,6 +4,10 @@
 /* 网站基础样式，主要包括头尾导航等全局样式 */
 @import url(base.css);
 
+/* markdown 样式 */
+@import url(markdown-reader.css);
+@import url(prettify.css);
+
 /* 组件样式 */
 @import url(component.css);
 
