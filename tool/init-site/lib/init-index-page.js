@@ -9,14 +9,22 @@ var config = require('./config.js');
 var ejs = require('ejs');
 
 function initPage(articleArr) {
-    var template = fs.readFileSync(config.rootPath + '/index-owner-template.html', config.encoding);
-    var html = ejs.render(
-        template,
+    var indexOwnerTemplate = fs.readFileSync(config.rootPath + '/index-owner-template.html', config.encoding);
+    var indexOwnerHtml = ejs.render(
+        indexOwnerTemplate,
         {
             articleArr: articleArr
         }
     );
-    fs.writeFileSync(config.rootPath + '/index-owner.html', html, config.encoding);
+    fs.writeFileSync(config.rootPath + '/index-owner.html', indexOwnerHtml, config.encoding);
+    var indexTemplate = fs.readFileSync(config.rootPath + '/index-template.html', config.encoding);
+    var indexHtml = ejs.render(
+        indexTemplate,
+        {
+            articleArr: articleArr
+        }
+    );
+    fs.writeFileSync(config.rootPath + '/index.html', indexHtml, config.encoding);
 }
 
 module.exports = initPage;
