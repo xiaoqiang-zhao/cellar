@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body article-detail-container">
+    <h1 id="-css-">常用 CSS 片段收集</h1>
+<blockquote>
+<p>提供简写和非简写两种方式，有点小洁癖的可以采用了简写的方式，多人协作的长期项目建议采用非简写简明知意。另外简写容易造成冲突，按字母顺序排列样式能在一定层度上减少这种冲突，所以下面的样式都是按字母顺序排列的，另外简写的一般规则是 “属性-属性值-修饰”，表意的CSS片段取首字母缩写。可以更具自己的项目定制此文件的部分或全部，无需任何许可。一些实例：<a href="demo/demo.html">DEMO</a>，也可下载<a href="demo/css.css">dem/css.css</a>直接使用。</p>
+</blockquote>
+<h2 id="-">清除浮动</h2>
+<p>这是一个很不错的解决方案，兼容IE6与现代浏览器，理论部分查看：
+<a href="http://www.iyunlu.com/view/css-xhtml/55.html">那些年我们一起清除过的浮动</a></p>
+<pre><code>/* 清除浮动 */
+.c-f,
+.clear-float {
+    zoom: 1; /* 兼容IE7及以下 */
+}
+.c-f:after,
+.clear-float:after {
+    content: &quot;\200B&quot;;
+    display: block;
+    height: 0;
+    clear: both;
+}
+</code></pre><h2 id="-">可点击</h2>
+<p>其实就是鼠标以上后形状变成手型。</p>
+<pre><code>/* 可点击 */
+.c-p,
+.cursor-pointer {
+    cursor: pointer;
+}
+</code></pre><h2 id="-">可移动</h2>
+<p>其实就是鼠标以上后形状变成十字移动图形。</p>
+<pre><code>/* 可移动 */
+.c-m,
+.cursor-move {
+    cursor: move;
+}    
+</code></pre><h2 id="-">数据为空</h2>
+<p>只写一个空的div就可以实现数据为空的页面提示。</p>
+<pre><code>/* 数据为空,只兼容到IE8及以上 */
+.d-e,
+.data-empty {
+    text-align: center;
+    color: #a8a8a8;
+    padding: 5px 0;
+}
+.d-e:after,
+.data-empty:after {
+    content: &quot;数据为空&quot;;
+}
+</code></pre><h2 id="-">隐藏</h2>
+<p>隐藏元素推荐使用class来操作，这样便于显示时还原display的值，另外加上body来提高优先级使适用范围更广泛。</p>
+<pre><code>/* 隐藏 */
+body .hide {
+    display: none;
+}
+</code></pre><h2 id="-table">不被内容撑大的table</h2>
+<p>常用的table形式，不被撑大，内容优先自动折行。</p>
+<pre><code>/* 不被撑大的table */
+.t-f,
+.table-fixed {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+</code></pre><h2 id="-">超出截断</h2>
+<p>不折行，超出部分截断，并以三个点结尾。<code>white-space</code> 是一个可以继承的属性（上层元素定义之后下层元素会自动继承），如果与 <code>word-wrap</code> 和 <code>word-break</code> 相遇，并且 <code>white-space: nowrap</code> 时，页面表现为不折行。</p>
+<pre><code>/* 超长截断,只兼容到IE8及以上 */
+.to-e,
+.text-overflow-ellipsis,
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 强制不换行 */
+}
+</code></pre><h2 id="-">被激发元素上浮</h2>
+<p>鼠标hover、拖动等场景常遇到元素上浮使其不被覆盖的需求，通过z-index来实现，在一处定义可以避免不同模块之间相互覆盖。此CSS片段的命名是一种属性和表意的混合模式。因为直接命名“active”表意容易冲突，用属性模式的到的名会是“zi-2”丧失了良好的扩展性（如果要把2000提升到5000需要改页面）。另外如果业务逻辑中鼠标hover需要元素上浮可以直接往上加，</p>
+<pre><code>/* 被激发元素上浮 */
+.zi-a,
+.z-index-active,
+.model-a .item:hover/* 业务累加示例 */ {
+    z-index: 2000;
+}
+</code></pre><h2 id="-">自动折行</h2>
+<p>一般块式容器汉字和英文默认都会自动折行，只有url这种连续的英文字母片段需要设置折行，word-wrap单词结束折行，word-break不管单词是否结束到容器末尾立即折行。值得注意的是word-wrap也可以对连续英文字符串折行，所以实践中首选word-wrap。</p>
+<pre><code>/* 自动折行 */
+.ww-bw,
+.word-wrap-break-word {
+    word-wrap: break-word;
+    white-space: normal;
+}
+</code></pre><p>这里补充 <code>white-space: normal;</code> 是因为其继承的特性，为了使程序更健壮这一行在某些情况下会是冗余的。</p>
+
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>

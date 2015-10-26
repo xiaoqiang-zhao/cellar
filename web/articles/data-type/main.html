@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body article-detail-container">
+    <h1 id="js-">JS 数据类型</h1>
+<p>五种简单数据类型：Null、Undefined、Boolean、Number、String。</p>
+<p>一种复杂数据类型：Object（包括Function、Array、Date、Regexp四种衍生的数据类型）</p>
+<h2 id="undefined-null">undefined与null</h2>
+<p>Null与Undefined的值在整个浏览器中都只有一个实例，在跨frame的环境依然相等。另外Null与Undefined并不对浏览器开放，所以编码时并不能使用他们。</p>
+<pre><code>null === window.frames[&#39;frameName&#39;]._null;    // true
+// 需要注意的是在frame加载完成后再做判断
+// IE7+ 验证通过
+</code></pre><p>所以判断这两个值直接用 <code>===</code> 来判断。</p>
+<p>高级程序设计有这样的叙述，undefined派生自null， 所以 <code>==</code> 会相等。
+其中的派生一说应该是从语言的底层实现而言的。
+我试了很多办法都没有办法验证派生一说，JS中的派生（集成）可以用下面这种思路检验</p>
+<pre><code>function f() {};
+f instanceof Function;     // true
+f instanceof Object;       // true
+Function instanceof Object // true
+// 其他派生（集成）可以直接用这个验证，
+undefined instanceof null  // Throw Error
+// 但是用在undefined与null上报错
+</code></pre><p>undefined 与 null 在js中是一对特别的的宝贝儿，某些特性可以用编译语言的静态类类比，但又不完全等同于静态类。如果一定要按派生顺序排序的话，我猜大概是这样：Undefined，Null，Object。由于前两者不可访问，所以不能放在 instanceof 的右端。</p>
+<p>几个备忘</p>
+<pre><code>/* -------------  特别的undefined  -------------*/
+undefined instanceof Object;    // false
+typeof undefined;               // &quot;undefined&quot;  
+
+/* -------------  双面的undefined  -------------*/
+null instanceof Object;         // false
+typeof null;                    // &quot;object&quot;
+
+undefined instanceof null;      // 报错
+</code></pre><p>以上的技巧都是奇技淫巧，代码中劲量少用一些让人费解的判定。变量未声明或者未赋值时是 undefined，我们利用这个做参数的或者返回值的检查；而null是逻辑值，无论在什么情况下都没有将一个变量显式地赋值为 undefined，所以保存对象的变量或属性初始值应该设置为 null，这样做不仅可以体现null作为空对象指针的惯例，而且也有助于进一步区分 null 和 undefined。</p>
+<h2 id="boolean">boolean</h2>
+<p>类型判断 boolean <code>instance</code> 这条路并不好走：</p>
+<pre><code>1 instanceof Number;                // false
+new Object(1) instanceof Number;    // true
+</code></pre><p>这里有一个技巧如下：</p>
+<pre><code>Object.prototype.toString.call(1);              // &quot;[object Number]&quot;
+Object.prototype.toString.call(new Object(1));  // &quot;[object Number]&quot;
+Object.prototype.toString.call(NaN);            // &quot;[object Number]&quot;
+</code></pre><p>还有这样两个方法</p>
+<pre><code>var a = NaN; b = a; a == b;    // false
+isNaN(NaN);      // true 由于NaN与本身都不相等，所以判断NaN只有这一个函数可用
+isFinite(2);     // true
+isFinite(&#39;2&#39;);   // true
+isFinite(&#39;2a&#39;);  // false
+// 如果是有限数字（或可转换为有限数字），那么返回 true。
+// 否则，如果 number 是 NaN（非数字），或者是正、负无穷大的数，则返回 false。
+</code></pre><p>补充一点：对任何值调用 <code>Boolean()</code> 都会返回一个布尔值。</p>
+<pre><code>// 对于字符串，空字符串为false，其他的为true
+Boolean(&#39;&#39;);              // false
+Boolean(new String(&#39;&#39;));  // true，这样生成的空字符串对象绝对是个特例
+
+// 对于数字，0和NaN为false，其他的为true
+Boolean(NaN);           // false
+Boolean(new Number(0)); // true 字符串的特例在此处也适用
+
+// 对对象，null为false，其他的为true，上面两个特例可以归结于此
+Boolean(null);          // false
+
+// 对undefined恒定发了se
+Boolean(undefined);     // false
+</code></pre>
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>

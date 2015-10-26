@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body article-detail-container">
+    <h1 id="-">移动端站点开发入门</h1>
+<h2 id="-meta-">设置 Meta 标签</h2>
+<p>大多数移动浏览器将html页面放大为宽的视图（viewport）以符合屏幕分辨率。你可以使用视图的meta标签来进行重置。下面的视图标签告诉浏览器，使用设备的宽度作为视图宽度并禁止初始的缩放。在<head>标签里加入这个meta标签。</p>
+<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;&gt;
+// width=device-width - 设置页面宽度等于设备宽度
+// initial-scale=1    - 页面首次被显示是可视区域的缩放级别，取值1.0则页面按实际尺寸显示，无任何缩放
+// user-scalable=no   - 用户是否可以手动缩放
+//                      (能解决 iPad 切换横屏之后触摸才能回到具体尺寸的问题)
+// minimum-scale      - 允许用户缩放到的最小比例
+// maximum-scale      - 允许用户缩放到的最大比例
+</code></pre><p>移动Web页面，为什么都喜欢width=device-width，并且关闭系统缩放功能？</p>
+<p>这涉及到了移动设备（ios, android）的屏幕尺寸问题，device-width指的是设备的物理宽度，width是页面宽度，这么做是为了兼容更多的设备，当然只通过viewport标签还是不够的，还需要配合Media Query进行响应式设计。</p>
+<p>如果你觉得上面的答案不够解释的不过，那可能需要更多的概念和知识的铺垫，请移步进入下面来充电：</p>
+<p><a href="http://weizhifeng.net/viewports.html">两个viewport的故事（第一部分）</a></p>
+<p><a href="http://weizhifeng.net/viewports2.html">两个viewport的故事（第二部分）</a></p>
+<h2 id="-">调试技巧备忘</h2>
+<ul>
+<li>页面被缩小时，去掉 Zoom to fit 的勾选</li>
+</ul>
+
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>

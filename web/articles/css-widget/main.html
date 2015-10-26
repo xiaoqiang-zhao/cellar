@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body article-detail-container">
+    <h1 id="css-">CSS 小组件</h1>
+<blockquote>
+<p>这些年用过的一些小组件，整理收集在此。class命名很接地气，坏处就是容易冲突，如果和其他样式库公用注意冲突的问题。
+一些实例：<a href="demo/demo.html">DEMO</a>，也可下载<a href="demo/css.css">dem/css.css</a>直接使用。</p>
+</blockquote>
+<h2 id="-">文字按钮</h2>
+<p>一个看着干净简单的按钮，在动作上又够精致，鼠标移上、按下、抬起以及不可用都有样式响应，另外还有风骚的小动画。在技术上，由于 <code>active</code> 这一动态伪类只有在 链接 和 按钮 上才能响应，所以此样式的元素用在 <code>a</code>、<code>button</code>、<code>input type=&quot;button&quot;</code> 上才能充分展示按钮的丰富。下面是三种按钮的定义方法：</p>
+<pre><code>&lt;button class=&quot;button&quot;&gt;button按钮&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;input按钮&quot; class=&quot;button&quot;/&gt;
+&lt;a class=&quot;button&quot;&gt;a按钮&lt;/a&gt;
+</code></pre><p>注：伪类定义的顺序上遵循爱恨原则LoVe/HAte,也就是link--visited--hover--active。</p>
+<h2 id="-">加减号按钮</h2>
+<p>用伪类 <code>before</code> 和 <code>after</code> 做为内部元素来画加减号按钮，简单优雅，使用如下：</p>
+<pre><code>&lt;button class=&quot;button icon-plus&quot;&gt;&lt;/button&gt;
+&lt;button class=&quot;button icon-minus&quot;&gt;&lt;/button&gt;
+&lt;a class=&quot;button icon-plus&quot;&gt;&lt;/a&gt;
+&lt;a class=&quot;button icon-minus&quot;&gt;&lt;/a&gt;
+</code></pre><h2 id="-">输入框</h2>
+<p>只做了样式上的修饰，用法如下：</p>
+<pre><code>&lt;input type=&quot;text&quot; class=&quot;input-text&quot;/&gt;
+</code></pre><h2 id="-">下拉框</h2>
+
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>

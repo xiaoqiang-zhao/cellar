@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body article-detail-container">
+    <h1 id="-">对页面加载和渲染的研究</h1>
+<blockquote>
+<p>写页面时间久一点开始注意到浏览器对页面的原理，文档树(DOM Tree)、渲染树(Render Tree)、重绘(Repaint)、重排(Reflow)、HasLayout等概念开始进入视野，从零散的概念，到各种布局和Hack，到打通这些概念需要一个时间上的积累和思考。今天试试能不能打通这条筋脉。</p>
+</blockquote>
+<h2 id="-">加载和渲染流程</h2>
+<p>我们从浏览器加载html文档、css和js文件开始说起。</p>
+<ol>
+<li><p>浏览器从上到下依次对文档进行扫描。</p>
+</li>
+<li><p>现代浏览器中文件的请求是顺序发出的，不是等到上一个请求完成才请求下一个。</p>
+</li>
+<li><p>对于内嵌的js片段，如果前面有未加载完成的js或css，要等到前面的js和css都加在完成才执行；如果前面没有未加载完成的js和css文件，js片段立即执行。</p>
+</li>
+<li><p>对HTML解析后形成DOM树，通过第二条我们可以猜到对HTML的解析是从头执行到尾，中间并不会因为有文件未加载完成而停止生产DOM树，所以在Body的最末端（甚至在HTML之后，当然这并不规范也完全没有必要）就是DOM树完成的位置；但是各种框架ready或domReady并不是指这个，而是指所有的css和js文件都加载完成之后；对于判断的原理会涉及到<code>DOMContentLoaded</code>、<code>onreadystatechange</code>、<code>readyState</code>和IE9与FF3.6之前浏览器的各种坑，有机会再写篇专题吧。</p>
+</li>
+<li><p>渲染开始于DOM Tree生成完成，且所有的css文件加载完成之后。只有开始渲染（也可以说是开始生成渲染树），页面上才开始出现东西，如果有css文件未完成加载那么页面一片空白。js写在慢css之前是可以执行的，但有什么用呢，让用户面对一片空白的页面，还不如js放在最后，给css的加载多留点时间。这也就是雅虎给的14条军规第5条“将css放在页面的上方”和第6条“将脚本移到底部包括内敛脚本”的原理所在。 </p>
+</li>
+</ol>
+<h2 id="-">验证流程</h2>
+<p>通过服务器延时返回这里构造了对静态文件的慢请求，再配合调整顺序和肉眼观察，下面依次对上面的几条做验证。</p>
+<ol>
+<li><p>这条比较基础稍作解释：上面的js片段不做回调处理访问不到下面的DOM节点，静态文件的引用反映在服务器上的响应顺序大体也是相同的，之所以说大体相同是因为网络的的不确定性会有后发先至的情况。实例 test-1.html。</p>
+</li>
+<li><p>我们在页面写入两个慢请求，分别是CSS文件请求和JS文件请求，在服务器端响应CSS慢请求并3秒后返回，JS慢请求5秒后返回，我们观察到服务器几乎同时接到浏览器的请求，同时浏览器端从刷新页面到JS执行的时间是5秒而不是8秒。实例 test-2.html。</p>
+</li>
+<li><p>验证这条稍微复杂一点，我们先验证<strong>“如果js片段前面有未加载的css文件,js片段要等css文件加载完成才执行”</strong>，这一条很多人会漏掉需要特别关注，讲一个慢请求的css放在js片段前面，刷新页面后发现只有css加载完成，才执行js，详细参见test-3-1.html；明白了上面一条，“如果js片段前面有未加载的js文件,js片段要等js文件加载完成才执行”这条就不多做解释了，参见test-3-2.html；“如果前面没有未加载完成的js和css文件，js片段立即执行”要验证这一条只需要把上面验证代码稍作顺序上的调整就可以，详情参见test-3-3.html 和 test-3-4.html。</p>
+</li>
+</ol>
+<blockquote>
+<p>test-3-1.html 关键代码</p>
+</blockquote>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/demo/slowCSS3&quot;/&gt;
+&lt;script&gt;
+    alert(&#39;?&#39;);
+    document.write(&#39;如果前面有未加载的css,js要等加载css加载完成才能执行&#39;);
+&lt;/script&gt;
+</code></pre><blockquote>
+<p>test-3-3.html 关键代码</p>
+</blockquote>
+<pre><code>&lt;div class=&quot;a&quot;&gt;
+    &lt;script&gt;
+    document.write(&#39;如果前面没有未加载完成的js和css文件，js片段立即执行。&#39;);
+    &lt;/script&gt;
+&lt;/div&gt;
+&lt;script src=&quot;/demo/slowJS5&quot;&gt;&lt;/script&gt;
+</code></pre><p>4.ready回调中的js在慢js执行后执行，下面是部分关键代码，详情参见test-4.html。</p>
+<pre><code>&lt;script&gt;
+    $(document).ready(function () {
+        alert(&#39;$(document).ready&#39;);
+    });
+&lt;/script&gt;
+&lt;script src=&quot;/demo/slowJS5&quot;&gt;&lt;/script&gt;
+</code></pre><p>5.顶部有一个慢css，整个页面在这个css加载完成前不会呈现任何内容，详情参见test-5.html。</p>
+<h2 id="-">渲染的补充</h2>
+<p>渲染树的每个节点都有大小和边距等属性，类似于盒模型（由于隐藏元素不需要显示，渲染树中并不包含DOM Tree中隐藏的元素）。当渲染树构建完成后，浏览器就可以将元素放置到正确的位置了，再根据渲染树节点的样式属性绘制出页面。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但 table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花3倍于同等元素的时间。这也是为什么我们要避免使用 table做布局的一个原因。</p>
+<p>确定节点的几何属性是一个复杂的过程，有的是从外向内来确定，像下面的常用模式</p>
+<pre><code>&lt;div class=&quot;a&quot; id=&quot;a&quot;&gt;
+    A
+    &lt;div class=&quot;b&quot; id=&quot;b&quot; style=&quot;width: 50%&quot;&gt;B&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>b的宽度需要参考a来计算。而b的高度需要通过b的宽度和内容共同决定，是一种从内向外的计算。另外Render Tree的结构和DOM Tree在结构和顺序上并非一定一一对应，<code>display: none;</code> 的节点不会出现在Render Tree中，CSS样式 <code>float</code> 和 <code>position</code> 可能使节点脱离文档流从而改变Render Tree的结构。</p>
+<h2 id="-">重绘与重排</h2>
+<p>重绘是一个元素非几何特性的改变所触发的浏览器行为，例如改变vidibility、outline、背景色、文字颜色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重排是更明显的一种改变，可以理解为渲染树需要重新计算。我这么理解重绘就是改变原有节点的各种颜色和透明度，其他的变化都是重排。比如改变文字颜色是对文本节点(TextNode)的重绘，改变文字字号是对文本节点的重排，一个节点的重绘是局部的，但一个节点的重排可能引起其他元素的重排。所以在性能上重绘一般比重排要好。</p>
+<p>下面是常见的触发重排的操作：</p>
+<p>1.DOM元素的几何属性变化</p>
+<p>当DOM元素的几何属性变化时，渲染树中的相关节点就会失效，浏览器会根据DOM元素的变化重建构建渲染树中失效的节点。之后，会根据新的渲染树重新绘制这部分页面。而且，当前元素的重排也许会带来相关元素的重排。例如，容器节点的渲染树改变时，会触发子节点的重新计算，也会触发其后续兄弟节点的重排， 祖先节点需要重新计算子节点的尺寸也会产生重排。最后，每个元素都将发生重绘。可见，重排一定会引起浏览器的重绘，一个元素的重排通常会带来一系列的反应，甚至触发整个文档的重排和重绘，性能代价是高昂的。</p>
+<p>2.DOM树的结构变化</p>
+<p>当DOM树的 结构变化时，例如节点的增减、移动等，也会触发重排。浏览器引擎布局的过程，类似于树的前序遍历，是一个从上到下从左到右的过程。通常在这个过程中，当前 元素不会再影响其前面已经遍历过的元素。所以，如果在body最前面插入一个元素，会导致整个文档的重新渲染，而在其后插入一个元素，则不会影响到前面的元素。</p>
+<p>3.获取某些属性</p>
+<p>浏览器引擎可能会针对重排做了优化。比如Opera，它会等到有足够数量的变化发生，或者等到一定的时间，或者等一个线程结束，再一起处理，这样就只发生一次重排。但除了渲染树的直接变化，当获取一些属性时，浏览器为取得正确的值也会触发重排。这样就使得浏览器的优化失效了。这些属性包括：offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、 clientTop、clientLeft、clientWidth、clientHeight、getComputedStyle() (currentStyle in IE)。所以，在多次使用这些值时应进行缓存。</p>
+<p>4.调整浏览器窗口大小也都将触发重排。</p>
+<p>开发中，比较好的实践是尽量减少重排次数和缩小重排的影响范围。下面是几种常用的优化方式：</p>
+<p>1.将多次改变样式属性的操作合并成一次操作。例如，</p>
+<p>JS:</p>
+<pre><code>var changeDiv = document.getElementById(&#39;changeDiv&#39;); 
+changeDiv.style.color = &#39;#093&#39;; 
+changeDiv.style.background = &#39;#eee&#39;; 
+changeDiv.style.height = &#39;200px&#39;;
+</code></pre><p>可以合并为：</p>
+<p>CSS:</p>
+<pre><code>div.changeDiv {
+    background: #eee;
+    color: #093;
+    height: 200px;
+}
+</code></pre><p>JS:</p>
+<pre><code>document.getElementById(&#39;changeDiv&#39;).className = &#39;changeDiv&#39;;
+</code></pre><p>2.将需要多次重排的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。</p>
+<ol>
+<li><p>在内存中多次操作节点，完成后再添加到文档中去。例如要异步获取表格数据，渲染到页面。可以先取得数据后在内存中构建整个表格的html片段，再一次性添加到文档中去，而不是循环添加每一行。</p>
+</li>
+<li><p>由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排。</p>
+</li>
+<li><p>在需要经常取那些引起浏览器重排的属性值时，要缓存到变量。</p>
+</li>
+</ol>
+<p>此节参考了愚人码头的文章<a href="http://www.css88.com/archives/4991#more-4991">浏览器的重绘(repaints)与重排(reflows)</a>的大段内容。</p>
+<h2 id="haslayout">hasLayout</h2>
+<p> hasLayout是IE6 IE7浏览器的特性，当一个元素触发了hasLayout时，它就会计算自身及后代元素的定位、布局。假如一个元素没有触发hasLayout，那么它的布局和定位 就由其父元素（如果父元素也没有触发hasLayout，则寻找祖先级已触发了hasLayout的元素）计算。于是，被“代管”布局的子元素，就有可能因为父元素在递归计算布局时没有面面俱到而产生了布局问题。</p>
+<p> 通常情况下，触发hasLayout可以解决大部分IE6 IE7中的布局问题。 触发hasLayout的方法，最简单无副作用的是zoom: 1;；如果这个不顶用，可以使用更为NB的position: relative;（但会带来副作用）。</p>
+<p> “闭合”（清除）浮动</p>
+<p> 前端布局时，少不了使用float属性，但是浮动之后，父容器高度会“塌陷”，所以通常情况下，需要“闭合”浮动。
+ 如何“闭合”浮动，请看这篇很NB的文章 一丝冰凉：<a href="http://www.iyunlu.com/view/css-xhtml/55.html">《那些年我们一起清除过的浮动》</a>。
+ 文中除了详解7种清除浮动的方法外，还提到了hasLayout与BFC（block formatting contexts），很强大。</p>
+<p>此节摘自<a href="https://github.com/java-sparrow/forGirl/blob/master/%E5%89%8D%E7%AB%AF%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E8%B7%B5.md">一位友人的Git</a>。</p>
+<h2 id="-">牢骚</h2>
+<p>上面这些是 HTML + CSS 的一个技术瓶颈，也是区别新手和成手的一个指标，因为这些是那些有关联样式的一个理论支撑。在这方面如果一个面试者可以从头到位给你解释清楚那给工资的时候就不要小气了。因为这种人不是一个经验用三年的那种，会主动思考，会把页面当成一种工业艺术，他工作通常不是只为了钱而是一种境界的追求。</p>
+<p>另一篇好文：<a href="http://developer.51cto.com/art/201104/257345_all.htm">高性能WEB开发之页面呈现、重绘、回流</a></p>
+<p>相关工具:</p>
+<p><a href="http://www.cnblogs.com/meteoric_cry/archive/2010/12/14/1905373.html">强大的网页性能测试工具--Speed Tracer</a></p>
+<p><a href="http://www.w3cfuns.com/article-1248-1.html">使用Chrome工具来分析页面的绘制状态</a></p>
+
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>
