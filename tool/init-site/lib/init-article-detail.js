@@ -29,6 +29,7 @@ function initArticleDetail (articleArr) {
         //});
 
         var articleDetailPageHtml = ejs.render(articleDetailTemplateStr, {
+            title: article.jsonData.title,
             content: htmlContent
         });
 

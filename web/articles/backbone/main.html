@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Backbone 实践分享 - 龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body">
+    <div class="article-detail-container">
+    <h1 id="backbone-">Backbone 实践分享</h1>
+<p>序言：</p>
+<p>用<code>Backbone</code>做过两个项目了，走过一些弯路也发现一些较好的实践方案，在此写下来与大家分享：</p>
+<h2 id="collection-model">Collection 与 Model</h2>
+<p>很多应用都是从列表开始，到详情页面，详情页面必然又可以返回列表页，这就需要数据的支撑。</p>
+<p>传统的方案会进行多次数据的获取，已经获取过的数据没有很好的缓存机制，在这里分享一种数据管理的实践方案：</p>
+<p>一个<code>Collection</code>，多个<code>Model</code>，两个<code>View</code>配合实现从列表到详情再到列表，
+这里使用巧妙的数据的流转，可以达到的效果是数据没有重复请求，内存使用尽量小。</p>
+<p>第一步：准备工作：<code>ListView</code>关联<code>Collection</code>，<code>Model</code>作为<code>Collection</code>的数据对象</p>
+<pre><code>// ListView
+define([&#39;article/collection&#39;], function (ArticleCollection) {
+    return Backbone.View.extend({
+        initialize: function () {
+            this.collection = new ArticleCollection();
+        }
+    });
+});
+
+// Collection
+define([&#39;article/model&#39;], function (ArticleModel) {
+    return Backbone.Collection.extend({
+        url: &#39;/articles&#39;,
+        model: ArticleModel,
+        initialize: function () { }
+    });
+});
+
+// Model
+define(function () {
+    return Backbone.Model.extend({
+        initialize: function (attr, option) { }
+    });
+});
+</code></pre><p>第二步：准备列表数据</p>
+<p>下面的方法时<code>Collection</code>中获取列表数据的方法，通过<code>ListView</code>来调用，其中的回调函数<code>success</code>可以用来作为列表的渲染方法。
+<code>Collection</code>的<code>fetch</code>方法会将获取的数据实例化为<code>model</code>，然后填充到<code>Collection</code>的属性<code>models</code>中。
+下面代码中的<code>url</code>并非用于获取列表数据，而是为了<code>model</code>的<code>url</code>初始化做准备，具体请往下看。</p>
+<pre><code>// Collecting
+syncArticleList: function (success) {
+    this.fetch({
+        success: function(collection, data) {
+            success(data);
+        },
+        url: this.url
+    });
+}
+</code></pre><p>下面是<code>Model</code>的初始化，<code>Collection</code>的<code>fetch</code>方法会内调<code>Model</code>的<code>initialize</code>，
+并且传递两个参数，第一个参数attr是加载到的数据列表中的数据项，
+第二个参数<code>option</code>比较复杂，它是<code>Model</code>的初始化配置项，<code>fetch</code>中的配置与<code>Backbone.Model</code>默认值做合并，但是<code>success</code>是个例外。
+<code>option</code>中常用的内置属性还有<code>silent</code>，<code>reset</code>，<code>merge</code>,<code>add</code>等（这里不详述），还可以添加自定义的一些属性。
+说一下<code>url</code>因为这是数据交互中比较关键的一环。在以<code>restfull</code>风格定义</p>
+<pre><code>define(function () {
+    return Backbone.Model.extend({
+        initialize: function (attr, option) {
+            this.url = option.url + &#39;/&#39; + attr.path;
+        }
+    });
+});
+
+define([&#39;article/model&#39;], function (ArticleModel) {
+
+    return Backbone.Collection.extend({
+        url: &#39;/articles&#39;,
+        model: ArticleModel,
+        initialize: function () {  },
+        syncArticleList: function (success) {
+            this.fetch({
+                reset: true,
+                success: function(collection, data, options) {
+                    success(data);
+                },
+                url: this.url
+            });
+        }
+    });
+});
+</code></pre>
+    </div>
+    <div class="article-message-container"></div>
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>

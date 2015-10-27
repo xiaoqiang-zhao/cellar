@@ -3,7 +3,7 @@
 <head lang="zh-cn">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title><%-title%> - 龙则的博客站点</title>
+    <title>龙则的博客站点</title>
     <link href="/src/css/all.css" rel="stylesheet"/>
 </head>
 <body>
@@ -23,11 +23,25 @@
         </menu>
     </nav>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
-    <%-content%>
-    </div>
-    <div class="article-message-container"></div>
+<div class="page-body article-list-container">
+    <% articleArr.forEach(function(article){ %>
+        <%if(article.jsonData.public){%>
+    <article class="article-list-item">
+        <a href="<%=article.detailPagePath %>">
+            <h1 class="title"><%=article.jsonData.title %></h1>
+            <summary>
+                <%=article.jsonData.introduction %>
+            </summary>
+        </a>
+        <footer>
+            <section class="tags-container">
+                <i class="icon-tag" title="Tags"></i>
+                <a class="tag-item" href="">技术点</a>
+            </section>
+        </footer>
+    </article>
+        <%}%>
+    <% }) %>
 </div>
 <footer class="page-footer"></footer>
 </body>

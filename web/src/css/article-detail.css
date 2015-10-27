@@ -1,4 +1,6 @@
 /* 详情页 */
-.article-list-item.active {
-
+.article-detail-container {
+    background-color: #f2f2f2;
 }
+/* 留言 */
+.article-message-container {}

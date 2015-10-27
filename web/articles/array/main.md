@@ -1,6 +1,6 @@
 # Array那些事
 
-> Array，我们经常使用，却未见得知晓她的全部，这篇文章基本上是官方API(包括ES5中Array的全部方法)的整理再加一些代码示例，整理在此一方面是自我修养一方面是方便查阅。
+> Array，我们经常使用，却未见得知晓她的全部，这篇文章基本上是对官方API(包括ES5中Array的全部方法)的整理再加一些代码示例，整理在此一方面是自我修养一方面是方便查阅。
 
 Array：一种数据容器，存储有序。
 与其他语言最大的不同就是存储的数据项可以是不同数据类型的混搭。
@@ -208,7 +208,7 @@ item1, ..., itemX:	可选。向数组添加的新项目。
 
 .join(separator)
 
-把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。
+把数组中的所有元素转成字符串，然后以间隔符为间隔拼接。转换的时候调用每一项的 `toString` 方法，每一种数据类型都有默认的 `toString` 方法，用户可以通过自定义函数来覆盖系统默认函数，具体参见下面的 `toString` 示例。
 
 separator:可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。
 
@@ -224,13 +224,13 @@ separator:可选。指定要使用的分隔符。如果省略该参数，则使�
 
 .toString() 
 
-把数组转换为字符串返回。当数组用于字符串环境时，JavaScript 会调用这一方法将数组自动转换成字符串。转换的方式是调用数组没一项的 `toString` 方法(用户不声明时调用默认的 `toString` 方法)，然后以逗号为间隔拼起来。该方法**不会**改变原来的数组。
+把数组转换为字符串返回。当数组用于字符串环境时，JavaScript 会调用这一方法将数组自动转换成字符串。转换的方式是调用数组每一项的 `toString` 方法(用户不声明时调用默认的 `toString` 方法)，然后以逗号为间隔拼起来。该方法**不会**改变原来的数组。
 
 ### toLocaleString
 
 .toLocaleString()
 
-把数组转换为本地字符串返回。转换的方式是调用数组没一项的 `toLocaleString` 方法(用户不声明时调用默认的 `toLocaleString` 方法)，然后以逗号为间隔拼起来。该方法**不会**改变原来的数组。
+把数组转换为本地字符串返回。转换的方式是调用数组每一项的 `toLocaleString` 方法(用户不声明时调用默认的 `toLocaleString` 方法)，然后以逗号为间隔拼起来。该方法**不会**改变原来的数组。
 
     var array = [1, 2];
     array.toLocaleString(); // '1,2'
@@ -295,9 +295,7 @@ thisObject:在执行回调函数时定义的this对象。
 
 其中`callback` 支持三个参数 `callback(item, index, currentArray)`。
 
-every **不会**改变原有数组，注意：
-只有在回调函数执行前传入的数组元素才有效，在回调函数开始执行后才添加的元素将被忽略，
-而在回调函数开始执行到最后一个元素这一期间，数组元素被删除或者被更改的，将以回调函数访问到该元素的时间为准，被删除的元素将被忽略。
+every **不会**改变原有数组。
 
 另外关于返回值，如果每一项都返回布尔运算后为 `true` 那么 `every` 的执行结果是 `true`，
 否则返回 `false` 。当回调函数返回布尔运算为 `false` 时，后面的项不被回调处理。
@@ -312,6 +310,37 @@ every **不会**改变原有数组，注意：
         return null; // 因为 null 的布尔运算是 false，所以最后返回 false
     }, window); // false
     array[0].order; // 1
+
+注意：
+对于添加元素，只有在 `every` 执行前添加的数组元素才有效，在回调函数中添加的元素将被忽略，
+
+    var array = [
+        { order: 0 },
+        { order: 1 },
+        { order: 2 }
+    ];
+    var result = array.every(function (item, index, currentArray) {
+        if (array.length < 4) {
+            array.push({ order: 3 });
+        }
+        console.log(item.order);
+        return true;
+    }, window);
+    // 控制台只能看到 0 ， 1 ，2
+
+而在 `every` 开始执行到最后一个元素这一期间，数组元素被删除或者被更改的，将以回调函数访问到该元素的时间为准，被删除的元素将被忽略。
+
+    var array = [
+        { order: 0 },
+        { order: 1 },
+        { order: 2 }
+    ];
+    var result = array.every(function (item, index, currentArray) {
+        array.pop();
+        console.log(item.order);
+        return true;
+    }, window);
+    // 控制台可以看到 0 ， 1
 
 ### some
 

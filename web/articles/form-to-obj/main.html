@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>将form中的数据转为js对象 - 龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body">
+    <div class="article-detail-container">
+    <h1 id="-form-js-">将form中的数据转为js对象</h1>
+<p>我们经常需要从表单中提取数据，然后异步提交给服务器，需要做很多的定向开发，
+这是一个可以将form中的数据转换为js对象的工具。
+form元素的name属性是对象的key，checkbox的值以逗号间隔。</p>
+<h2 id="-">参数</h2>
+<p><strong>from</strong> 必选参数，要读取的表单，只接受两种格式：form的id，form的原生dom节点对象。</p>
+<p><strong>isFilterEmpty</strong> 可选参数，是否将空值（空字符串，没有选中项的组）从对象中过滤掉，默认不过滤。</p>
+<p><strong>noCheckedValue</strong> 可选参数，checkbox和radio组没有选中项时取得值，只有参数 <code>isFilterEmpty</code> 值为true时生效。</p>
+<h2 id="-">使用建议</h2>
+<p>在表单内容提交时建议设 <code>isFilterEmpty</code> 为 <code>false</code> 或者不设置，方便校验；
+如果想原样保存表单<code>isFilterEmpty</code> 为 <code>false</code>，将参数 <code>noCheckedValue</code> 设置为空字符串，
+这样可以将全部字段保存到服务器，这样方便服务器端统一处理。</p>
+<p>在提交查询表单时，尤其是多条件查询，将<code>isFilterEmpty</code> 为 <code>true</code>，可以过滤掉用户没有填写的字段。</p>
+<p>在写HTML时，可以将“全部”，“请选择”这样的选项的值设为空字符串，就可以很方便的使用上面的逻辑来验证或提交了。</p>
+<p>另外说明一点，<code>select</code> 的选项 <code>option</code> 如果不设置 <code>value</code>那么会将文本作为 <code>value</code> 来获取，
+这也是浏览器的默认行为，这里没有添加额外的控制。</p>
+<h2 id="-">测试页</h2>
+<p>测试页：<a href="./test.html">./test.html</a></p>
+<h2 id="-">核心代码</h2>
+<pre><code>var getFromData = (function () {
+
+    function g(id) {
+        return document.getElementById(id);
+    }
+
+    /**
+     * 获取表单数据
+     *
+     * @param {string|Object} form 要读取的表单，只接受两种格式：form的id，form的原生dom节点
+     * @param {Boolean} isFilterEmpty 是否将空值（空字符串，没有选中项的组）从对象中过滤掉
+     * @param {string|Object} noCheckedValue checkbox和radio组没有选中项时取得值
+     * @return {Object} formObj 获取到的数据对象
+     * @public
+     */
+    function getFromData(form, isFilterEmpty, noCheckedValue) {
+        if (typeof form === &#39;string&#39;) {
+            form = g(form);
+        }
+        if (form &amp;&amp; form.nodeType !== 1) {
+            return &#39;无法找到容器&#39;;
+        }
+
+        // 设置缺省值，因为传入的值可能是undefined所以通过参数组长度来设置缺省值
+        if (arguments.length == 1) {
+            noCheckedValue = null;
+        }
+
+        var formObj = {};
+        var formCheckboxObj = {};
+        var emptyArr = [];
+        // 准备表单元素列表，根据键值特性分为两类
+        var formEleArr = {
+            single: emptyArr.concat(
+                    emptyArr.slice.call(form.getElementsByTagName(&#39;select&#39;)),
+                    emptyArr.slice.call(form.getElementsByTagName(&#39;textarea&#39;))
+            ),
+            input: emptyArr.slice.call(form.getElementsByTagName(&#39;input&#39;))
+        };
+
+        // 单键值元素
+        formEleArr.single.forEach(function (ele) {
+            single(ele, formObj, isFilterEmpty);
+        });
+        // input情况比较复杂
+        formEleArr.input.forEach(function (ele) {
+            var type = ele.type;
+            // 单键值处理
+            if (type === &#39;hidden&#39; || type === &#39;text&#39;) {
+                single(ele, formObj, isFilterEmpty);
+            }
+            // 一组一值
+            else if (type === &#39;radio&#39;) {
+                radio(ele, formObj, noCheckedValue, isFilterEmpty);
+            }
+            // 一组多值
+            else if (type === &#39;checkbox&#39;) {
+                checkbox(ele, formCheckboxObj, noCheckedValue);
+            }
+        });
+
+        // 将一组多值合并会单键值
+        for (var name in formCheckboxObj) {
+            if (formCheckboxObj[name].length &gt; 0) {
+                var checkboxVal = formCheckboxObj[name].join(&#39;,&#39;);
+                if (isFilterEmpty === true) {
+                    if (checkboxVal !== &#39;&#39;) {
+                        ormObj[name] = checkboxVal;
+                    }
+                }
+                else {
+                    formObj[name] = checkboxVal;
+                }
+            }
+            else {
+                if (isFilterEmpty !== true) {
+                    formObj[name] = noCheckedValue;
+                }
+            }
+        }
+
+        return formObj;
+    }
+
+    // 单键值处理
+    function single(ele, formObj, isFilterEmpty) {
+        var name = trim(ele.name);
+        var val = trim(ele.value);
+        if (name !== &#39;&#39;) {
+            if (isFilterEmpty === true) {
+                if (val !== &#39;&#39;) {
+                    formObj[name] = ele.value;
+                }
+            }
+            else {
+                formObj[name] = val;
+            }
+
+        }
+    }
+
+    // 一组一值
+    function radio(ele, formObj, noCheckedValue, isFilterEmpty) {
+        var name = trim(ele.name);
+        var val = trim(ele.value);
+        if (name !== &#39;&#39;) {
+            if (ele.checked) {
+                if (isFilterEmpty === true) {
+                    if (val !== &#39;&#39;) {
+                        formObj[name] = val;
+                    }
+                }
+                else {
+                    formObj[name] = val;
+                }
+            }
+            else if (isFilterEmpty !== true &amp;&amp; formObj[name] === undefined) {
+                formObj[name] = noCheckedValue;
+            }
+        }
+    }
+
+    // 一组多值
+    function checkbox(ele, formCheckboxObj) {
+        var name = trim(ele.name);
+        var val = trim(ele.value);
+        if (name !== &#39;&#39;) {
+            if (formCheckboxObj[name] === undefined) {
+                formCheckboxObj[name] = [];
+            }
+
+            if (ele.checked) {
+                formCheckboxObj[name].push(val);
+            }
+        }
+    }
+
+    function trim(str) {
+        if (typeof str === &#39;string&#39;) {
+            return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, &#39;&#39;);
+        }
+        else {
+            return str;
+        }
+    }
+
+    return getFromData;
+})();
+</code></pre>
+    </div>
+    <div class="article-message-container"></div>
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>
