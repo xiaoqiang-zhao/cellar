@@ -1,4 +1,5 @@
-.page-body .article-list-item {
+.page-body .article-list-item,
+.page-body .article-detail-container {
     margin: 1em;
     background-color: #f2f2f2;
     font-size: 14px;

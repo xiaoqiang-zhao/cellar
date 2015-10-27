@@ -81,3 +81,13 @@ undefined 与 null 在js中是一对特别的的宝贝儿，某些特性可以�
     // 对undefined恒定发了se
     Boolean(undefined);     // false
 
+
+## 杂项
+
+不同类型数据间的转化，
+
+new Boolean('')
+
+arr.length = ''
+
+str / 1

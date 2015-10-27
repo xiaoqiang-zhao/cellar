@@ -170,7 +170,7 @@ array.sort(function (item1, item2) {
 返回结果是颠倒后的数组</p>
 <h3 id="join">join</h3>
 <p>.join(separator)</p>
-<p>把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。</p>
+<p>把数组中的所有元素转成字符串，然后以间隔符为间隔拼接。转换的时候调用每一项的 <code>toString</code> 方法，每一种数据类型都有默认的 <code>toString</code> 方法，用户可以通过自定义函数来覆盖系统默认函数，具体参见下面的 <code>toString</code> 示例。</p>
 <p>separator:可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。</p>
 <pre><code>var array = [1, 2];
 array.join(); // &#39;1,2&#39;
@@ -181,10 +181,10 @@ var array = [
 array.join(&#39;-&#39;); // &#39;[object Object]-[object Object]&#39;
 </code></pre><h3 id="tostring">toString</h3>
 <p>.toString() </p>
-<p>把数组转换为字符串返回。当数组用于字符串环境时，JavaScript 会调用这一方法将数组自动转换成字符串。转换的方式是调用数组没一项的 <code>toString</code> 方法(用户不声明时调用默认的 <code>toString</code> 方法)，然后以逗号为间隔拼起来。该方法<strong>不会</strong>改变原来的数组。</p>
+<p>把数组转换为字符串返回。当数组用于字符串环境时，JavaScript 会调用这一方法将数组自动转换成字符串。转换的方式是调用数组每一项的 <code>toString</code> 方法(用户不声明时调用默认的 <code>toString</code> 方法)，然后以逗号为间隔拼起来。该方法<strong>不会</strong>改变原来的数组。</p>
 <h3 id="tolocalestring">toLocaleString</h3>
 <p>.toLocaleString()</p>
-<p>把数组转换为本地字符串返回。转换的方式是调用数组没一项的 <code>toLocaleString</code> 方法(用户不声明时调用默认的 <code>toLocaleString</code> 方法)，然后以逗号为间隔拼起来。该方法<strong>不会</strong>改变原来的数组。</p>
+<p>把数组转换为本地字符串返回。转换的方式是调用数组每一项的 <code>toLocaleString</code> 方法(用户不声明时调用默认的 <code>toLocaleString</code> 方法)，然后以逗号为间隔拼起来。该方法<strong>不会</strong>改变原来的数组。</p>
 <pre><code>var array = [1, 2];
 array.toLocaleString(); // &#39;1,2&#39;
 var array = [
@@ -234,9 +234,7 @@ arg.constructor === Array // 当arg来自其他iframe中时，恒定为false
 <p>callback:要对每个数组元素执行的回调函数。
 thisObject:在执行回调函数时定义的this对象。</p>
 <p>其中<code>callback</code> 支持三个参数 <code>callback(item, index, currentArray)</code>。</p>
-<p>every <strong>不会</strong>改变原有数组，注意：
-只有在回调函数执行前传入的数组元素才有效，在回调函数开始执行后才添加的元素将被忽略，
-而在回调函数开始执行到最后一个元素这一期间，数组元素被删除或者被更改的，将以回调函数访问到该元素的时间为准，被删除的元素将被忽略。</p>
+<p>every <strong>不会</strong>改变原有数组。</p>
 <p>另外关于返回值，如果每一项都返回布尔运算后为 <code>true</code> 那么 <code>every</code> 的执行结果是 <code>true</code>，
 否则返回 <code>false</code> 。当回调函数返回布尔运算为 <code>false</code> 时，后面的项不被回调处理。</p>
 <pre><code>var array = [
@@ -249,6 +247,33 @@ var result = array.every(function (item, index, currentArray) {
     return null; // 因为 null 的布尔运算是 false，所以最后返回 false
 }, window); // false
 array[0].order; // 1
+</code></pre><p>注意：
+对于添加元素，只有在 <code>every</code> 执行前添加的数组元素才有效，在回调函数中添加的元素将被忽略，</p>
+<pre><code>var array = [
+    { order: 0 },
+    { order: 1 },
+    { order: 2 }
+];
+var result = array.every(function (item, index, currentArray) {
+    if (array.length &lt; 4) {
+        array.push({ order: 3 });
+    }
+    console.log(item.order);
+    return true;
+}, window);
+// 控制台只能看到 0 ， 1 ，2
+</code></pre><p>而在 <code>every</code> 开始执行到最后一个元素这一期间，数组元素被删除或者被更改的，将以回调函数访问到该元素的时间为准，被删除的元素将被忽略。</p>
+<pre><code>var array = [
+    { order: 0 },
+    { order: 1 },
+    { order: 2 }
+];
+var result = array.every(function (item, index, currentArray) {
+    array.pop();
+    console.log(item.order);
+    return true;
+}, window);
+// 控制台可以看到 0 ， 1
 </code></pre><h3 id="some">some</h3>
 <p>.some(callback[, thisObject])</p>
 <p>参数的使用与 <code>every</code> 相同。</p>
