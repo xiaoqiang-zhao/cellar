@@ -3,7 +3,7 @@
 <head lang="zh-cn">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>龙则的博客站点</title>
+    <title>CSS 中的坑 - 龙则的博客站点</title>
     <link href="/src/css/all.css" rel="stylesheet"/>
 </head>
 <body>
@@ -23,7 +23,8 @@
         </menu>
     </nav>
 </header>
-<div class="page-body article-detail-container">
+<div class="page-body">
+    <div class="article-detail-container">
     <h1 id="css-">CSS 中的坑</h1>
 <h2 id="-vertical-align">基线对齐 vertical-align</h2>
 <p><code>vertical-align</code> 的默认属性是 <code>baseline</code> —— 基线对齐，至于基线对齐是个鬼？看 <a href="http://www.ddcat.net/blog/?p=233">这篇文章</a>，这里说一个坑，再说一个使用的技巧。</p>
@@ -49,6 +50,8 @@
 <p>FireFox 在超过最大值时会数据溢出正负不定,但有一点可以肯定绝对不会高于2147483647</p>
 <p>注2：各个浏览器当两个层z-index相同时,按网页代码中层出现的顺序,后出现的层高于先出现的层。</p>
 
+    </div>
+    <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>
 </body>

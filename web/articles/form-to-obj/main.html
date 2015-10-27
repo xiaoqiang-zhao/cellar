@@ -3,7 +3,7 @@
 <head lang="zh-cn">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>龙则的博客站点</title>
+    <title>将form中的数据转为js对象 - 龙则的博客站点</title>
     <link href="/src/css/all.css" rel="stylesheet"/>
 </head>
 <body>
@@ -23,7 +23,8 @@
         </menu>
     </nav>
 </header>
-<div class="page-body article-detail-container">
+<div class="page-body">
+    <div class="article-detail-container">
     <h1 id="-form-js-">将form中的数据转为js对象</h1>
 <p>我们经常需要从表单中提取数据，然后异步提交给服务器，需要做很多的定向开发，
 这是一个可以将form中的数据转换为js对象的工具。
@@ -192,6 +193,8 @@ form元素的name属性是对象的key，checkbox的值以逗号间隔。</p>
     return getFromData;
 })();
 </code></pre>
+    </div>
+    <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>
 </body>
