@@ -5,6 +5,7 @@
  */
 
 var fs = require('fs');
+var config = require('./config.js');
 
 /**
  * 获取文章的路径数组(本地绝对路径)
@@ -24,8 +25,10 @@ function getArticlesList (config) {
             if (isExistFolder(folderPath)) {
                 articleArr.push({
                     folderPath: folderPath,
-                    detailFilePath: folderPath + '/main.html',
-                    detailPagePath: '/articles/' + file + '/main.html',
+                    // 文件路径，系统绝对路径
+                    detailFilePath: folderPath + config.htmlFileFilename,
+                    // 页面路径，相对于网站根目录
+                    detailPagePath: config.articlesPath + '/' + file + config.htmlFileFilename,
                     enName: file
                 });
             }
