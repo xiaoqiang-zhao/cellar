@@ -24,5 +24,13 @@ var initIndexPage = require('./init-index-page.js');
 initIndexPage(articleArr);
 
 // 生成文章详情页和数据片段
-var initArticleDetailPage = require('./init-article-detail.js');
+var initArticleDetailPage = require('./init-article-detail-page.js');
 initArticleDetailPage(articleArr);
+
+// 复制可公开的文章
+var copyPublicArticleDetailPage = require('./copy-public-article-detail-page.js');
+copyPublicArticleDetailPage(articleArr);
+
+// 前端文件合并压缩
+
+// 移动到个人站点项目
