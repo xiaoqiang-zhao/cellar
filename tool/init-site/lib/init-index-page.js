@@ -9,22 +9,29 @@ var config = require('./config.js');
 var ejs = require('ejs');
 
 function initPage(articleArr) {
-    var indexOwnerTemplate = fs.readFileSync(config.rootPath + '/index-owner-template.html', config.encoding);
+    // 主人首页
+    var indexOwnerPageTemplatePath = config.rootPath + config.indexOwnerPageTemplatePath;
+    var indexOwnerTemplate = fs.readFileSync(indexOwnerPageTemplatePath, config.encoding);
     var indexOwnerHtml = ejs.render(
         indexOwnerTemplate,
         {
             articleArr: articleArr
         }
     );
-    fs.writeFileSync(config.rootPath + '/index-owner.html', indexOwnerHtml, config.encoding);
-    var indexTemplate = fs.readFileSync(config.rootPath + '/index-template.html', config.encoding);
+    var indexOwnerPagePath = config.rootPath + config.indexOwnerPagePath;
+    fs.writeFileSync(indexOwnerPagePath, indexOwnerHtml, config.encoding);
+
+    // 首页
+    var indexPageTemplatePath = config.rootPath + config.indexPageTemplatePath;
+    var indexTemplate = fs.readFileSync(indexPageTemplatePath, config.encoding);
     var indexHtml = ejs.render(
         indexTemplate,
         {
             articleArr: articleArr
         }
     );
-    fs.writeFileSync(config.rootPath + '/index.html', indexHtml, config.encoding);
+    var indexPagePath = config.rootPath + config.indexPagePath;
+    fs.writeFileSync(indexPagePath, indexHtml, config.encoding);
 }
 
 module.exports = initPage;

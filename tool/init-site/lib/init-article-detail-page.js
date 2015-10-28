@@ -16,12 +16,11 @@ var marked = require('./marked.js');
  * @param {Array} articleArr 文章列表
  */
 function initArticleDetail (articleArr) {
-    var articleDetailTemplatePath = config.rootPath + '/article-detail-template.html';
+    var articleDetailTemplatePath = config.rootPath + config.articleDetailPageTemplatePath;
     var articleDetailTemplateStr = fs.readFileSync(articleDetailTemplatePath, config.encoding);
-    var articleDetailTemplate = ejs.compile(articleDetailTemplateStr);
 
     articleArr.forEach(function (article) {
-        var mdFilePath = article.folderPath + '/main.md';
+        var mdFilePath = article.folderPath + '/' + config.mdFileFilename;
         var mdContent = fs.readFileSync(mdFilePath, config.encoding);
         var htmlContent = marked(mdContent);
 
@@ -29,7 +28,6 @@ function initArticleDetail (articleArr) {
             title: article.jsonData.title,
             content: htmlContent
         });
-
         var articleDetailFilePath = article.detailFilePath;
 
         // 直接覆写文件，内容全部由md文档生成不容许修改
