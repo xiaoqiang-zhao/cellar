@@ -1,6 +1,5 @@
 /**
- * 初始化每篇文章的详情页和数据片段
- * (采用同步处理，因为后续操作需要依赖此结果)
+ * 复制可公开的文章到项目中
  *
  * Created by zhaoxiaoqiang on 15/10/23.
  */
@@ -21,25 +20,28 @@ function initArticleDetail (articleArr) {
     var articleDetailTemplate = ejs.compile(articleDetailTemplateStr);
 
     articleArr.forEach(function (article) {
-        var mdFilePath = article.folderPath + '/main.md';
-        var mdContent = fs.readFileSync(mdFilePath, config.encoding);
-        var htmlContent = marked(mdContent);
-        //var articleDetailPageHtml = articleDetailTemplate.render({
-        //    content: htmlContent
-        //});
 
         var articleDetailPageHtml = ejs.render(articleDetailTemplateStr, {
             title: article.jsonData.title,
             content: htmlContent
         });
-
-        var articleDetailFilePath = article.detailFilePath;
-
-        // 直接覆写文件，内容全部由md文档生成不容许修改
-        fs.writeFileSync(articleDetailFilePath, articleDetailPageHtml, config.encoding);
+        // 可公开的文章
+        if (article.jsonData.public === true) {
+            var htmlFilePath = article.folderPath + '/main.html';
+            var htmlContent = fs.readFileSync(htmlFilePath, config.encoding);
+            // 直接覆写文件，内容全部由md文档生成不容许修改
+            var targetPath = config.rootPath + config.publicSitePath + '/articles/' + article.enName;
+            console.log(targetPath);
+            debugger;
+            // 目录不存在
+            if (!fs.existsSync(targetPath)) {
+                fs.mkdirSync(targetPath);
+            }
+            fs.writeFileSync(targetPath + '/main.html', htmlContent, config.encoding);
+        }
     });
 
-    console.log('文章详情初始化完成');
+    console.log('公开文章复制完成');
 }
 
 module.exports = initArticleDetail;

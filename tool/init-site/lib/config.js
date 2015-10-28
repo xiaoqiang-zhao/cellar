@@ -12,7 +12,9 @@ var config = {
     rootPath: '/web',
     // 跟目录下文章的目录
     articlesPath: '/articles',
-    jsonDataRewrite: false
+    jsonDataRewrite: false,
+    // 公开网站的路径
+    publicSitePath: '/../../longze'
 };
 
 module.exports = config;
