@@ -26,9 +26,9 @@ function getArticlesList (config) {
                 articleArr.push({
                     folderPath: folderPath,
                     // 文件路径，系统绝对路径
-                    detailFilePath: folderPath + config.htmlFileFilename,
+                    detailFilePath: folderPath + '/' + config.htmlFileFilename,
                     // 页面路径，相对于网站根目录
-                    detailPagePath: config.articlesPath + '/' + file + config.htmlFileFilename,
+                    detailPagePath: config.articlesPath + '/' + file + '/' + config.htmlFileFilename,
                     enName: file
                 });
             }
