@@ -61,8 +61,22 @@
     
 问：噎，我加了问什么还是不行？
     
-答：需要给一下权限，代码如下，，这个命令的详细解释看[这篇](http://lucky16.iteye.com/blog/577182)文章。    
+答：需要给一下权限，代码如下，这个命令的详细解释看[这篇](http://lucky16.iteye.com/blog/577182)文章。    
     
     chmod a+x my.js
     
+问：直接这样吗？
     
+    my.js
+    
+答：需要下面这样：
+    
+    ./my.js
+    
+问：这次真的可以了吗？好麻烦，这么多坑
+    
+答：当然可以了！其实上面这些配置是在 `npm install xxx` 的时候就做好了不需要手动配置，如果你要开发命令行工具可以去查看[这篇文章](http://javascriptplayground.com/blog/2012/08/writing-a-command-line-node-tool/)。
+
+## 一些技巧
+
+持续集成中...
