@@ -1,0 +1,15 @@
+{
+  "name": "gulp-demo",
+  "description": "gulp的Demo",
+  "keywords": [
+    "gulp-demo",
+    "longze",
+    "龙则",
+    "node",
+    "javascript"
+  ],
+  "author": {
+    "name": "赵晓强",
+    "email": "longze_xq@163.com"
+  }
+ }
