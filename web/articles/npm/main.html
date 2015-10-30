@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>npm - 龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body">
+    <div class="article-detail-container">
+    <h1 id="npm">npm</h1>
+<blockquote>
+<p>NodeJs 的默认包管理器</p>
+</blockquote>
+<h2 id="-">常用命令</h2>
+<p>为新手注：如果是Mac，遇到权限问题前面加 <code>sudo</code>，如果需要密码则为开机密码。</p>
+<p>查看npm版本</p>
+<pre><code>npm -v
+</code></pre><p>更新NPM版本</p>
+<pre><code>npm install npm -g
+</code></pre><p>安装全局包(以gulp为例，下同)</p>
+<pre><code>npm install gulp -g
+</code></pre><p>局部安装</p>
+<pre><code>npm install gulp
+</code></pre><p>安装某一版本</p>
+<pre><code>npm install gulp@3.7.0 -g
+npm install gulp@3.7.0
+</code></pre><p>查看全局包是否被安装及版本号</p>
+<pre><code>gulp -v
+// 如果安装了会显示版本号，如果没有安装会显示
+// “bash: /usr/local/bin/gulp: No such file or directory”
+</code></pre><p>卸载全局包 <code>gulp</code></p>
+<pre><code>npm uninstall gulp -g
+</code></pre><h2 id="-">一些说明</h2>
+<p>只有全局安装的包才可以直接使用命令行，但是并不是所有包都提供命令行功能，在 <code>/usr/local/bin</code> 路径下有相关文件的才能提供命令行功能，但是该文件夹一般为隐藏文件夹。</p>
+<p>局部安装的包并非一定不能使用命令行，只是稍微间接一点，以gulp为例，可以在安装目录下这样使用命令行：</p>
+<pre><code> ./node_modules/gulp/bin/gulp.js
+</code></pre><p>来使用命令行。我们通过问答的形式将这个问题深入一下，</p>
+<p>问：明明是个js文件为什么可以当做命令来使用？</p>
+<p>答：因为js本身就是脚本，当然可以直接运行。</p>
+<p>问：那我写个js文件，比如my.js，内容如下，可以直接运行吗？</p>
+<pre><code>console.log(&#39;Hi&#39;);
+</code></pre><p>答：不行，需要做脚本声明才可以，你看一下gulp.js 第一行就是，代码如下：</p>
+<pre><code>#!/usr/bin/env node
+</code></pre><p>问：噎，我加了问什么还是不行？</p>
+<p>答：需要给一下权限，代码如下，这个命令的详细解释看<a href="http://lucky16.iteye.com/blog/577182">这篇</a>文章。    </p>
+<pre><code>chmod a+x my.js
+</code></pre><p>问：直接这样吗？</p>
+<pre><code>my.js
+</code></pre><p>答：需要下面这样：</p>
+<pre><code>./my.js
+</code></pre><p>问：这次真的可以了吗？好麻烦，这么多坑</p>
+<p>答：当然可以了！其实上面这些配置是在 <code>npm install xxx</code> 的时候就做好了不需要手动配置，如果你要开发命令行工具可以去查看<a href="http://javascriptplayground.com/blog/2012/08/writing-a-command-line-node-tool/">这篇文章</a>。</p>
+<h2 id="-">一些技巧</h2>
+<p>持续集成中...</p>
+
+    </div>
+    <div class="article-message-container"></div>
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>
