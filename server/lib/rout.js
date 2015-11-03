@@ -98,6 +98,7 @@ function routUserSettingPath(request, response, rout) {
     catch (err) {
         // 获取用户配置的路由失败，进入下一个分支
         rout.next();
+        return;
     }
 
     if (routInfo !== null) {

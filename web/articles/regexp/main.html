@@ -152,8 +152,9 @@ but do not includethose characters in the match.</p>
 Require that the following characters do not match the pattern p.</p>
 <p>我解释给大家听：</p>
 <p>上面的断言是对写在其之前的正则的约束，即向后约束，也就是要求后面必须有什么（或没什么），如下面正则中括号内的部分是对 <code>bed</code> 做约束，即 <code>bad</code> 之后必须是 <code>room</code> 才能形成匹配。</p>
-<pre><code>&#39;bedding&#39;.match(/bed(?=room)/g);    // null
-&#39;bedroom&#39;.match(/bed(?=room)/g);    // [&quot;bed&quot;]
+<pre><code>&#39;bedding&#39;.match(/.+(?=room)/g);    // null
+&#39;bedroom&#39;.match(/.+(?=room)/g);    // [&quot;bed&quot;]
+&#39;washroom&#39;.match(/.+(?=room)/g);   // [&quot;wash&quot;]
 </code></pre><p>下面是只有 <code>bad</code> 之后不是 <code>room</code> 才能形成匹配</p>
 <pre><code>&#39;bedding&#39;.match(/bed(?!room)/g);    // [&quot;bed&quot;]
 &#39;bedroom&#39;.match(/bed(?!room)/g);    // null
@@ -236,11 +237,12 @@ if (result &amp;&amp; result.length === 2) {
 解释一下：对于“@sb126.com”这一段是邮箱服务提供商确定的，如果你想恶心网易完全可以搭建一套邮箱系统提供一个这样的邮箱服务；
 对于前半段“1234jh”是邮箱名，各家邮箱的要求不一样，
 QQ邮箱全部是数字，网易的要求是“6~18个字符，可使用字母、数字、下划线，需以字母开头”，
+部分邮箱容许有英文句号出现，
 老外的邮箱（如gmail）支持“sky”这样的简短邮箱名。</p>
-<p>所以邮箱名部分我们抽象一下就是“字母、数字、下划线组成，长度最小为1最大不限”；
+<p>所以邮箱名部分我们抽象一下就是“字母、数字、下划线、英文句号组成，长度最小为1最大不限”；
 “@”字符是必须的，没什么好说的，“@”之后的就用“.”分成两部分，而且只有两部分；
 第一部分是多个数字或字母，所以我们用 <code>\w+</code> 作为匹配，第二部分一般是国际域名（只有字母）我们用 <code>[a-z]+</code> 匹配。</p>
-<pre><code>/^[\w_]+@\w+\.[a-z]+$/.test(&#39;nihao@163.com&#39;);    // true
+<pre><code>/^[\w_\.]+@\w+\.[a-z]+$/.test(&#39;nihao@163.com&#39;);    // true
 </code></pre><p>另外如果用户向提供一个假邮箱伪造是非常容易的，如果客户的邮箱对业务比较重要，
 一般采用邮件链接激活账户的方式而不是拒绝用户提供假邮箱。</p>
 <h3 id="-">匹配身份证</h3>

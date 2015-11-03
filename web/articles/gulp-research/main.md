@@ -23,6 +23,15 @@
 还需要安装各种插件，这样普通的合并压缩任务才能进行
 
     npm install gulp-minify-css gulp-uglify gulp-concat gulp-rename gulp-jshint --save-dev
+
+## API
+ 
+只有四个方法，详细解释参见[gulp API](http://www.gulpjs.com.cn/docs/api/)：
+
+- src 获取要处理的文件
+- dest 定义处理后的输出路径
+- task 定义处理方式
+- watch 监听文件
     
 ## 说明
     
@@ -39,13 +48,26 @@ gulpfile.js 文件中的default任务在没有参数的时候被调用，一般�
         // 处理任务的代码
     });
 
-gulp的任务都是异步执行的，如果一个任务依赖另一个，需要配置依赖。
+gulp的任务都是异步执行的，如果一个任务依赖另一个，需要配置依赖。下面是官网上的例子：
+
+    var gulp = require('gulp');
     
+    // 返回一个 callback，因此系统可以知道它什么时候完成
+    gulp.task('one', function(cb) {
+        // 做一些事 -- 异步的或者其他的
+        cb(err); // 如果 err 不是 null 或 undefined，则会停止执行，且注意，这样代表执行失败了
+    });
     
+    // 定义一个所依赖的 task 必须在这个 task 执行之前完成
+    gulp.task('two', ['one'], function() {
+        // 'one' 完成后
+    });
+    
+    gulp.task('default', ['one', 'two']);
     
 ## 技巧 + 实例
 
-在 [github]() 上可以找到相关Demo。
+在 [github](https://github.com/longze/cellar/tree/master/web/articles/gulp-research) 上可以找到相关Demo。
 
 ### CSS压缩
 
@@ -93,6 +115,9 @@ gulp的任务都是异步执行的，如果一个任务依赖另一个，需要�
             .pipe(concat('all.css'))
             .pipe(gulp.dest(outPutFolder));
     });
+    
+**移动图片**
+
 
 ## 参考资料
     
