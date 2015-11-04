@@ -118,3 +118,5 @@ GitHub是开源的圣地，但开源是靠不开源作为经济支撑的，因�
 ## 更多资料
 
 [GitHub详细教程](http://blog.csdn.net/showhilllee/article/details/27706679)
+
+[Sublime 下配置 GitHub](http://www.cnblogs.com/terrylin/archive/2013/04/04/2999465.html)
