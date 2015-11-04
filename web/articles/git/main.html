@@ -35,13 +35,15 @@
 狭义的Git是用“Git这套分布式版本控制系统”部署的一个平台，平台有一个网站，网址是<code>https://github.com/</code>，
 是全球最大的Git系统（国内的开源中国也有自己的Git系统，但我们不将其简称为Git），Git也可以被企业或个人单独来部署管理私有代码。</p>
 <p>GitHub，是一个网站，是一个社群，是一个代码托管平台（不一定是开源的）。
-没有GitHub就Git（狭义的）就不会有如此规模，github的主要作用就是展示开源项目，吸引越来越多的人进入到开源中，提供人与人人与项目之间的沟通桥梁。</p>
+没有GitHub就Git（狭义的）就不会有如此规模，GitHub的主要作用就是展示开源项目，吸引越来越多的人进入到开源中，提供人与人人与项目之间的沟通桥梁。</p>
 <p>GitHub是开源的圣地，但开源是靠不开源作为经济支撑的，因为不开源就要交代码托管费，这也是GitHub的运作模式。</p>
 <h2 id="git-">Git基础理念与概念</h2>
-<p><strong>Repository</strong> 直译为储藏室，国人一般称其为仓库，是存放代码的地方。
-和我们平时说的项目相近，由于git是代码托管平台所以需要一个托管单位，<code>Repository</code>就是这样一个单位。一季好粮，一仓代码。
+<h3 id="repository">Repository</h3>
+<p>直译为储藏室，国人一般称其为仓库，是存放代码的地方。
+和我们平时说的项目相近，由于git是代码托管平台所以需要一个托管单位，<code>Repository</code>就是这样一个单位。
 在github网站上<code>Repositories</code>是自己的仓库列表。</p>
-<p><strong>fork</strong> 直译为分叉，没有较好的中文翻译，所以大家一般直接用。fork这个概念是git很重要的一个理念--每人都可以做仓库的主人，是一种人人平等的理念。
+<h3 id="fork">fork</h3>
+<p>直译为分叉，没有较好的中文翻译，所以大家一般直接用。fork这个概念是git很重要的一个理念 -- 每人都可以做仓库的主人，是一种人人平等的理念。
 每一个 <code>Repository</code> 中有人提需求有人补代码，大家用一种松散的方式推动仓库的建设。
 为了避免控制权的争夺就提出了 <code>fork</code> 的概念。
 比如两兄弟盖房子，在封顶的时候发生了分歧，老大要尖顶的，老二要圆顶的怎么办？
@@ -54,45 +56,52 @@
 <li>fork出的项目可以发起<code>pull requests</code>，将修改推送给原始仓库；</li>
 <li>强烈建议不要将fork当收藏用</li>
 </ul>
-<p><strong>commit</strong> 提交，其实是本地提交，所以在没网的情况下也可以提交，所以提交之后仓库不会有反应。</p>
-<p><strong>push</strong> 推送到仓库，推送的内容就是上面<code>commit</code>过的内容，一次<code>push</code>操作可以推送多个<code>commit</code>。</p>
-<p><strong>pull</strong> 与<code>push</code>相反，将仓库中的代码拉到本地。</p>
-<p><strong>branch</strong> 分支，多用于开发新功能，防止干扰主干代码，分支功能开发完成后<code>pull requests</code>主干。
+<h3 id="commit">commit</h3>
+<p>提交，其实是本地提交，所以在没网的情况下也可以提交，所以提交之后仓库不会有反应。</p>
+<h3 id="push">push</h3>
+<p>推送到仓库，推送的内容就是上面<code>commit</code>过的内容，一次<code>push</code>操作可以推送多个<code>commit</code>。如果当前处于分支，需要<code>merge</code> 到主干(<code>master</code>)才会在 <code>Contributions</code> 中有体现。</p>
+<h3 id="pull">pull</h3>
+<p>与<code>push</code>相反，将仓库中的代码拉到本地。</p>
+<h3 id="branch">branch</h3>
+<p>分支，多用于开发新功能，防止干扰主干代码，分支功能开发完成后<code>pull requests</code>主干。
 主干默认为<code>master</code>。</p>
-<p><strong>release</strong> 公开发行，可以为公开发行的版本打标签，方便回溯历史。</p>
-<p><strong>tag</strong> 打标签，和在书本里加一个书签类似，常用来做里程碑。
+<h3 id="release">release</h3>
+<p>公开发行，可以为公开发行的版本打标签，方便回溯历史。</p>
+<h3 id="tag">tag</h3>
+<p>打标签，和在书本里加一个书签类似，常用来做里程碑。
 另外公开发行的版本肯定是某次提交之后的代码，tag通常是打在某一次push上的，而这次push之后的代码作为一个可发性版本。</p>
 <p>上面提到的操作可以用命令行实现也可以借助IDE或在GitHub网站上完成，
-这方面已经有很完善的文档了，请参考最后给出的资料，这里不再叙述。</p>
+这方面已经有很完善的文档了，请参考下面资料，这里不再叙述。</p>
+<p><a href="http://blog.csdn.net/showhilllee/article/details/27706679">GitHub详细教程</a></p>
 <h2 id="github-">GitHub上的一些操作</h2>
-<p><strong>个人主页</strong>
-登录GitHub后点击用户名到个人主页。</p>
-<p><strong>Repository</strong>
-仓库在个人主页下，有一个名为 <code>repositories</code> 的tab页，此tab页下是当前账户下所有仓库的列表。
+<h3 id="-">个人主页</h3>
+<p>登录GitHub后点右上角用户头像下拉框中的 “Your profile” 到个人主页。</p>
+<h3 id="repository">Repository</h3>
+<p>仓库在个人主页下，有一个名为 <code>repositories</code> 的tab页，此tab页下是当前账户下所有仓库的列表。
 当前账户自建的仓库和从别人那里fork出的仓库都可以在这里找到。</p>
-<p><strong>branch</strong>
-从上面 <code>repositories</code> 的列表可进入任一仓库，从当前仓库下的 <code>branches</code> 链接可进入分支管理页，
+<h3 id="branch">branch</h3>
+<p>从上面 <code>repositories</code> 的列表可进入任一仓库，从当前仓库下的 <code>branches</code> 链接可进入分支管理页，
 可以在此处删除分支，或者将分支合并回主干。</p>
-<p><strong>releases</strong> 
-公开发行的版本列表，
+<h3 id="releases">releases</h3>
+<p>公开发行的版本列表，
 删除某一发行版本可点击标题，在进入的页面中有删除按钮。</p>
 <h2 id="webstorm-">WebStorm 技巧备忘</h2>
-<p><strong>从git上拿项目</strong>
-工具栏VCS/Checkout/Git，
+<h3 id="-git-">从git上拿项目</h3>
+<p>工具栏VCS/Checkout/Git，
 填写git的地址仓库地址、本地路径、本地项目名称就可以将git上的仓库克隆到本地了。</p>
-<p><strong>更新分支</strong>
-右击项目文件，git/repository/pull 从git上获取新的分支信息。</p>
-<p><strong>切换分支</strong>
-右下角有编码和Git的版本信息，点击右下角的版本信息上下箭头会出现Git Branches列表，
+<h3 id="-">更新分支</h3>
+<p>右击项目文件，git/repository/pull 从git上获取新的分支信息。</p>
+<h3 id="-">切换分支</h3>
+<p>右下角有编码和Git的版本信息，点击右下角的版本信息上下箭头会出现Git Branches列表，
 其中Remote Branches就是Git上的分支列表，
 在展开下一级菜单中有Checkout，Compare，Merge，Delete。</p>
-<p><strong>提交</strong>
-右击要提交的文件夹，Git/Commit Directory/，填写Commit Message进行提交，也可以提交并推送。
-单个文件提交同理。快捷方式 Com + K</p>
-<p><strong>推送</strong>
-右击要提交的文件夹，Git/Repository/Push，选择之前提交过的进行推送。快捷方式 Com + Shift + K</p>
-<p><strong>主干修改后怎么同步到分支</strong>
-如果有紧急修复的bug，需要直接在主干修改(新拉一个分支再合并回主干也是一样的)，那么怎么同步到分支呢？</p>
+<h3 id="-">提交</h3>
+<p>右击要提交的文件夹，Git/Commit Directory/，填写Commit Message进行提交，也可以提交并推送。
+单个文件提交同理。WebStorm 快捷方式 Com + K。</p>
+<h3 id="-">推送</h3>
+<p>右击要提交的文件夹，Git/Repository/Push，选择之前提交过的进行推送。WebStorm快捷方式 Com + Shift + K。</p>
+<h3 id="-">主干修改后怎么同步到分支</h3>
+<p>如果有紧急修复的bug，需要直接在主干修改(新拉一个分支再合并回主干也是一样的)，那么怎么同步到分支呢？</p>
 <ul>
 <li>1 在点击 Git/Repository/Pull 弹出的对话框中选中所有分支(包括主干)进行更新操作</li>
 <li>2 在分支上点击右下角的分支控制按钮，找到主干点击后在二级弹窗中点击 Merge</li>
@@ -102,8 +111,8 @@
 <h2 id="-">命令行</h2>
 <p>发现大多数操作都可以在网站上操作，命令行就不学了...</p>
 <h2 id="-">其他</h2>
-<p><strong>忽略文件</strong>
-有一些中间文件，或者IDE生成的本地配置文件不需要Git托管，可以配置 <code>.gitignore</code> 文件进行忽略。 如果文件已经被托管，需要先删除索引: <code>git rm --cached （文件路径/）文件名</code>。
+<h3 id="-">忽略文件</h3>
+<p>有一些中间文件，或者IDE生成的本地配置文件不需要Git托管，可以配置 <code>.gitignore</code> 文件进行忽略。 如果文件已经被托管，需要先删除索引: <code>git rm --cached （文件路径/）文件名</code>。
 可以用 <code>git status</code> 对比操作前后文件的状态（是否有更改且需要提交）。
 如果已经不小心提交到了Git上，直接在GitHub网站上找到文件进行删除。</p>
 <h2 id="-">更多资料</h2>
