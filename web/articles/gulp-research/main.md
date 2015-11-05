@@ -33,7 +33,7 @@
 - task 定义处理方式
 - watch 监听文件
     
-## 说明
+## 作为命令行工具
     
 gulpfile.js 文件中的default任务在没有参数的时候被调用，一般会在default中以 `gulp.start` 的方式调用全部任务。也可以在命令行单独执行某个任务，如 `gulp MinCSS`。
 
@@ -66,7 +66,25 @@ gulp的任务都是异步执行的，如果一个任务依赖另一个，需要�
     gulp.task('default', ['one', 'two']);
 
 ## 作为node的模块
+
+将task这层壳去掉就是node的模块了，将下面的内容在 `node-gulp.js` 中，
     
+    var gulp = require('gulp');
+    var minifycss = require('gulp-minify-css');
+    var concat = require('gulp-concat');
+    var rename = require('gulp-rename');
+
+    var outPutFolder = 'asset/css';
+    gulp.src('css-1/*.css')
+        .pipe(concat('all.css'))
+        .pipe(gulp.dest(outPutFolder))
+        .pipe(minifycss())
+        .pipe(rename('all-min.css'))
+        .pipe(gulp.dest(outPutFolder));
+
+使用node调用，和下面的 “纯css按文件顺序合并压缩” 效果相同，调用方式如下：
+
+    node node-gulp
     
 ## 技巧 + 实例
 
