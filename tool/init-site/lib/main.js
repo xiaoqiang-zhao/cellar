@@ -13,7 +13,6 @@ config.rootPath = rootPath + config.rootPath;
 // 获取文章列表
 var getArticleArr = require('./get-article-arr.js');
 var articleArr = getArticleArr(config);
-console.log(articleArr.length);
 
 // 初始化data.json
 var initDataJson = require('./init-json-data.js');
@@ -31,6 +30,9 @@ initArticleDetailPage(articleArr);
 var copyPublicArticleDetailPage = require('./copy-public-article-detail-page.js');
 copyPublicArticleDetailPage(articleArr);
 
+// 复制首页
+var copyIndexPage = require('./copy-index-page.js');
+copyIndexPage();
 // 前端文件合并压缩
 
 // 移动到个人站点项目
