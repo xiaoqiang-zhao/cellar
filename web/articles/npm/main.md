@@ -79,4 +79,12 @@
 
 ## 一些技巧
 
-持续集成中...
+安装国内的镜像npm，可使安装更快，15分钟与国外同步一次
+
+    npm install -g cnpm --registry=http://registry.npm.taobao.org
+    
+## 参考资料
+
+[淘宝 NPM 镜像](http://segmentfault.com/a/1190000000471219)
+
+[npm国内镜像介绍](https://cnodejs.org/topic/4f9904f9407edba21468f31e)

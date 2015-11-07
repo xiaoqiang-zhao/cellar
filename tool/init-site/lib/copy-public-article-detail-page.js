@@ -9,12 +9,11 @@ var config = require('./config.js');
 var marked = require('./marked.js');
 
 /**
- * 初始化每篇文章的详情页和数据片段
- * (采用同步处理)
+ * 复制公开的文章详情页
  *
  * @param {Array} articleArr 文章列表
  */
-function initArticleDetail (articleArr) {
+function copyPublicArticleDetailPage (articleArr) {
 
     articleArr.forEach(function (article) {
 
@@ -35,4 +34,4 @@ function initArticleDetail (articleArr) {
     console.log('公开文章复制完成');
 }
 
-module.exports = initArticleDetail;
+module.exports = copyPublicArticleDetailPage;
