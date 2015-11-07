@@ -30,9 +30,10 @@ gulp.task('MinCSS', function () {
         .pipe(rename('all-min.css'))
         .pipe(gulp.dest(outPutFolder));
 });
-gulp.task('MinCSS', function () {
-    var outPutFolder = 'asset/css';
-    gulp.src(['css-2/!(import)*.css'])
-        .pipe(concat('all.css'))
-        .pipe(gulp.dest(outPutFolder));
-});
+
+//gulp.task('MinCSS', function () {
+//    var outPutFolder = 'asset/css';
+//    gulp.src(['css-2/!(import)*.css'])
+//        .pipe(concat('all.css'))
+//        .pipe(gulp.dest(outPutFolder));
+//});
