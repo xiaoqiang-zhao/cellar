@@ -36,7 +36,9 @@
         <footer>
             <section class="tags-container">
                 <i class="icon-tag" title="Tags"></i>
-                <a class="tag-item" href="">技术点</a>
+                <%article.jsonData.tags.forEach(function(tag){%>
+                <a class="tag-item" href=""><%=tag%></a>
+                <%})%>
             </section>
         </footer>
     </article>
