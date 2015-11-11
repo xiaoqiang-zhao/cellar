@@ -155,6 +155,19 @@ gulp.src(&#39;./css-4/*.css&#39;)
 <pre><code>.icon-1{background:url(img/sprite-1446802598452.png)}
 .icon-2{background:url(img/sprite-1446802598452.png) -13px 0}
 </code></pre><p>雪碧图的压缩不适合处理背景重复的样式，图片拼装后图片间相互干扰，所以写样式的时候需要将背景图装在一个只盛放背景图的容器中。如果有部分背景图不需要压缩可以抽取到单独的样式文件中，压缩背景图时排出此文件，也可以采用变通的方式 -- 直接使用图片元素。</p>
+<h3 id="-js">压缩松散的js</h3>
+<pre><code>var gulp = require(&#39;gulp&#39;);
+var concat = require(&#39;gulp-concat&#39;);
+var rename = require(&#39;gulp-rename&#39;);
+var uglify = require(&#39;gulp-uglify&#39;);
+
+gulp.src(&#39;./js/*.js&#39;)
+    .pipe(concat(&#39;all.js&#39;))
+    .pipe(gulp.dest(&#39;./asset&#39;))
+    .pipe(uglify())
+    .pipe(rename(&#39;min.js&#39;))
+    .pipe(gulp.dest(&#39;./asset&#39;));
+</code></pre><h3 id="-amd-">压缩Amd模块化代码</h3>
 <h2 id="-">参考资料</h2>
 <p><a href="http://www.gulpjs.com.cn/docs/api/">gulp API</a></p>
 <p><a href="http://www.open-open.com/lib/view/open1417068223049.html">gulp入门指南</a></p>
