@@ -221,3 +221,5 @@ CMD 对于按需加载提的接口是 `require.async`，而 AMD 的接口是 `re
 [让我们再聊聊浏览器资源加载优化](http://qingbob.com/let-us-talk-about-resource-load/)
 
 [css 模块化插件](http://segmentfault.com/a/1190000002390643)
+
+[玩转AMD(2) - 应用实践](http://div.io/topic/910)
