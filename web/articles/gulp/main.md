@@ -183,7 +183,29 @@ gulp的任务都是异步执行的，如果一个任务依赖另一个，需要�
         .pipe(rename('min.js'))
         .pipe(gulp.dest('./asset'));
 
-### 压缩Amd模块化代码 
+### 压缩AMD模块化代码 
+
+使用 gulp-amd-optimizer 这个插件,这个插件只能把某个或某些个文件夹下的AMD模块js倒腾在一起(做了依赖的排序),不能设置入口文件,适合all in one 的打包方式.下面是示例代码和插件地址
+
+    var gulp = require('gulp');
+    var amdOptimize = require('gulp-amd-optimizer');
+    var concat = require('gulp-concat-sourcemap');
+    
+    var requireConfig = {
+        baseUrl: './'
+    };
+    var options = {
+        umd: false
+    };
+    
+    gulp.src('js-amd/*.js', {base: requireConfig.baseUrl})
+        .pipe(amdOptimize(requireConfig, options))
+        .pipe(concat('modules.js'))
+        .pipe(gulp.dest('asset'));
+
+[gulp-amd-optimizer](https://www.npmjs.com/package/gulp-amd-optimizer)
+
+没有找到分块打包的办法,如果各分块之间按文件夹天然隔离可以多用几个任务配置不同的js文件筛选规则来解决这个问题,如果分块之间有交集建议采用RequireJs的官方打包工具r.js进行打包.
 
 ## 参考资料
     
@@ -196,3 +218,5 @@ gulp的任务都是异步执行的，如果一个任务依赖另一个，需要�
 [gulp-css-spriter 官网](https://www.npmjs.com/package/gulp-css-spriter)
 
 [gulp-css-spriter](http://www.codes51.com/article/detail_117947.html)
+
+[gulp-amd-optimizer](https://www.npmjs.com/package/gulp-amd-optimizer)
