@@ -85,6 +85,10 @@
 <h3 id="releases">releases</h3>
 <p>公开发行的版本列表，
 删除某一发行版本可点击标题，在进入的页面中有删除按钮。</p>
+<h3 id="-">分支向主干推送内容</h3>
+<p>切换到分支，右边有一个&quot;弯曲箭头和竖线&quot;的图标(文字标示为&quot;Pull requests&quot;)，点击此图标可将分之内容合并到主干。一般的开发流程都不建议直接在主干上修改。在分支开发、测试、review，所有的都没问题了再合并回主干，主干代码永远保持稳定版。</p>
+<h3 id="-">主干向分支推送更改内容</h3>
+<p>主干向分支推送更改内容很容易造成内容冲突，所以如果想这样逆向而行最好先和开发成员打个招呼。方式是在项目页面左边有一个&quot;绿色两个歪箭头按钮&quot;，点击之后到 &quot;Comparing changes&quot; 页面进行推送,多个分支需要推送多次.</p>
 <h2 id="webstorm-">WebStorm 技巧备忘</h2>
 <h3 id="-git-">从git上拿项目</h3>
 <p>工具栏VCS/Checkout/Git，
@@ -108,6 +112,8 @@
 <li>3 最后再 Git/Repository/Push 一次，将Merge结果同步到线上分支，这样主干和分支就回到了正常的状态</li>
 <li>4 如果不进行前三步操作，分支合并到主干时很可能因为冲突不能提交，另外在分支上开发建议先和主干Merge一下在开始开发</li>
 </ul>
+<h3 id="-webstorm-git-">用WebStorm管理Git目录</h3>
+<p>有些情况下你可能用其他方式下载了Git项目的目录,用WebStorm打开发现没有Git选项,不能Commit.面对这种情况只需在VCS菜单下点击&quot;Enable Version Control Integration...&quot;在弹出框中选&quot;Git&quot;,最后确定就可以了.</p>
 <h2 id="-">命令行</h2>
 <p>发现大多数操作都可以在网站上操作，命令行就不学了...</p>
 <h2 id="-">其他</h2>
