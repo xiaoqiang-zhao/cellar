@@ -186,6 +186,8 @@ gulp.src(&#39;js-amd/*.js&#39;, {base: requireConfig.baseUrl})
     .pipe(gulp.dest(&#39;asset&#39;));
 </code></pre><p><a href="https://www.npmjs.com/package/gulp-amd-optimizer">gulp-amd-optimizer</a></p>
 <p>没有找到分块打包的办法,如果各分块之间按文件夹天然隔离可以多用几个任务配置不同的js文件筛选规则来解决这个问题,如果分块之间有交集建议采用RequireJs的官方打包工具r.js进行打包.</p>
+<h2 id="-">感慨</h2>
+<p>前端的技术更新太快了,从 前年的 grunt 到去年的 gulp,眼看 gulp 也要过时了,webpack 已经兴起.真是无奈,在写这篇学习笔记的时候发现这个技术竟然有些更不上时代了,期待下一篇 webpack 吧...</p>
 <h2 id="-">参考资料</h2>
 <p><a href="http://www.gulpjs.com.cn/docs/api/">gulp API</a></p>
 <p><a href="http://www.open-open.com/lib/view/open1417068223049.html">gulp入门指南</a></p>
