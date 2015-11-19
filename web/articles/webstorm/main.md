@@ -153,20 +153,20 @@ KeyMap，可以选择快捷键整体的规则，支持了Visual Studio、Eclipse
 - 在新窗口打开工程
 
 webstorm的一个缺陷就是不能在一个IDE打开多个工程，这也是它快的一个代价。如果一定要多窗口那就多IDE那就设置一下吧：
-Appearance & Behavior/ System Settings/ Project Opening / Open project in new window
+Settings | Appearance & Behavior | System Settings | Project Opening | Open project in new window
 在新窗口中打开webstorm
 
-- 默认编码设置，Editor / File Encodings，IDE Encoding设置的是编辑器编辑的时候的时候按默认那种编码格式打开，Project Encoding设置的是新建一个项目此项目默认的编码格式，下面Default encoding for properties files设置上面选中的文件夹下新建文件时的默认编码格式。
+- 默认编码设置，Settings | Editor | File Encodings，IDE Encoding设置的是编辑器编辑的时候的时候按默认那种编码格式打开，Project Encoding设置的是新建一个项目此项目默认的编码格式，下面Default encoding for properties files设置上面选中的文件夹下新建文件时的默认编码格式。
 
 ### 3 - 代码格式
 
 **代码长度参考线**
 
-真的不建议把一行代码写的太长，嵌套太深也是要避免的，毕竟代码是给人看的，偶尔交给机器执行以下，所以代码的可读性非常重要。所以就有了代码长度参考线。在 /Editor/General/Appearance 中 勾选Show right margin 考线出现，取消勾选参考线消失。参考线的位置其实是字符数量的体现，在 /Editor/Code Style 中 Right Margin 中调整字符数量，个人建议120。
+真的不建议把一行代码写的太长，嵌套太深也是要避免的，毕竟代码是给人看的，偶尔交给机器执行以下，所以代码的可读性非常重要。所以就有了代码长度参考线。在 Settings | Editor | General | Appearance 中 勾选Show right margin 考线出现，取消勾选参考线消失。参考线的位置其实是字符数量的体现，在 Settings | Editor | Code Style 中 Right Margin 中调整字符数量，个人建议120。
 
 **CSS空行**
 
-默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Editor/Code Style/CSS/Other，将 Blank lines between blocks' 的值设为 0。
+默认CSS格式化之后会在两个样式块间加空行，去掉此空行的配置，Settings | Editor | Code Style | CSS | Other，将 Blank lines between blocks' 的值设为 0。
 
 **MD文档默认换行**
 
@@ -174,15 +174,17 @@ MD文档默认不换行，可以在左边行号的位置右击勾选"Use Soft Wr
 
 ### 4 - 代码模板
 
-- 编辑新文件模板，Editor / File and Code Templates，
+- 编辑新文件模板，Settings | Editor | File and Code Templates，
 设置新建文件中的默认内容，也可以添加自己的格式模板
 
-- 代码块模板，Editor / Live Templates,
+- 代码块模板，Settings | Editor | Live Templates,
 代码块的模板，如果你写一个for循环还从左码到右那就太out了。定义模板的时候有几点注意：在最下面一行修改 applicable （适用范围），范围要尽量小，否则容易冲突；定义变量默认值的时候注意要加引号，否则手工输入必不可少；建议勾选 Reformat，这样就不用手动调整格式。
 
 ### 5 - 其他零碎
 
-- 设置选中文字之后，点击双引号\单引号包围选中，Editor / General / Smart keys，勾选surround selection on type quote or brace 
+- 设置选中文字之后，点击双引号\单引号包围选中，Settings | Editor | General | Smart keys，勾选surround selection on type quote or brace 
+
+- 识别自定义文件，默认情况下 .vm .template .tl 文件是不能进行高亮显示的，在 Settings | Editor | File Types 下选择文件类型，通过下面的小加号可以添加想要识别的文件.
 
 ## 写在最后的牢骚
 
