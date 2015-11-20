@@ -27,7 +27,7 @@
     <div class="article-detail-container">
     <h1 id="webstorm-">WebStorm 使用文档</h1>
 <blockquote>
-<p>号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到10，在设置上9到10有一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。</p>
+<p>号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到11，在设置上9到10有一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。</p>
 </blockquote>
 <h2 id="-">概述</h2>
 <p>号称最好用的前端IDE，Win7 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到10，在设置上9到10有一次比较大的调整，下面的设置从10的使用中记录整理而来。WebStorm在下面简写为WS。</p>
@@ -52,7 +52,7 @@ Win:Ctrl + Shift + F; Mac:Ctrl + Shift + F</p>
 Win:Ctrl + R; Mac:Com + R，</p>
 </li>
 <li><p>格式化代码，Reformat Code，
-Win:Ctrl + Alt + L, Mac:Option + Com + L </p>
+Win:Ctrl + Alt + L， Mac:Option + Com + L </p>
 </li>
 </ul>
 <p><strong>对当前光标所在行 或者 选中部分做操作</strong></p>
@@ -146,7 +146,7 @@ Win:Ctrl + Shift + N; Mac:Com + Shift + N</p>
 Win:Ctrl + S; Mac:Com + S</p>
 </li>
 <li><p>新建文件，New...
-Win:Alt + N; Mac:Option + N，在当前文件同级或者选中的文件夹下</p>
+Win:Alt + N; Mac:Control + N，在当前文件同级或者选中的文件夹下</p>
 </li>
 <li><p>打开最近打开的文件，Recent Files
 Mac:Com + E，会给出一个最近打开的文件列表</p>
@@ -157,15 +157,15 @@ Mac:Com + E，会给出一个最近打开的文件列表</p>
 <ul>
 <li>打开设置</li>
 </ul>
-<p>Win:File/Settings, 快捷键: Ctrl + Alt + S    </p>
-<p>Mac:WebStorm/Preferences, 快捷键: Com + ,</p>
+<p>Win:File/Settings， 快捷键: Ctrl + Alt + S    </p>
+<p>Mac:WebStorm/Preferences， 快捷键: Com + ，</p>
 <p>下面的配置默认都在“设置”中设置，不再多述。</p>
 <ul>
 <li>皮肤</li>
 </ul>
 <p>代码高亮是很必要的，个人喜欢配色柔和一点的皮肤，WS的皮肤设置分两层，第一层是大框架，第二层是编辑窗口。需要两个配合设置，不然可能出现外白里黑或者里黑外白这种诡异的界面。</p>
-<p>第一层: Appearance &amp; Behavior/Appearance ,在Theme下选风格，Win 和 Mac选项不一样，Win多一些，Darcula是都有的，Darcula偏黑色风格。两外建议把“Override default fonts”选中，个人认为Win下微软雅黑比较好，Mac下Baghdad字体比较好看，Size设置成14或16对眼睛好。</p>
-<p>第二层：Editor/Colors &amp; Fonts, 在Scheme选风格，个人同样喜欢Darcula这一风格，另外提醒一句只有把Scheme另存为自己的风格才可以修改其中的一些更详细的配置，详细配置的修改在下面第二批设置中作解释。</p>
+<p>第一层: Appearance &amp; Behavior/Appearance ，在Theme下选风格，Win 和 Mac选项不一样，Win多一些，Darcula是都有的，Darcula偏黑色风格。两外建议把“Override default fonts”选中，个人认为Win下微软雅黑比较好，Mac下Baghdad字体比较好看，Size设置成14或16对眼睛好。</p>
+<p>第二层：Editor/Colors &amp; Fonts， 在Scheme选风格，个人同样喜欢Darcula这一风格，另外提醒一句只有把Scheme另存为自己的风格才可以修改其中的一些更详细的配置，详细配置的修改在下面第二批设置中作解释。</p>
 <ul>
 <li>快捷键</li>
 </ul>
@@ -194,7 +194,7 @@ Settings | Appearance &amp; Behavior | System Settings | Project Opening | Open 
 <li><p>编辑新文件模板，Settings | Editor | File and Code Templates，
 设置新建文件中的默认内容，也可以添加自己的格式模板</p>
 </li>
-<li><p>代码块模板，Settings | Editor | Live Templates,
+<li><p>代码块模板，Settings | Editor | Live Templates，
 代码块的模板，如果你写一个for循环还从左码到右那就太out了。定义模板的时候有几点注意：在最下面一行修改 applicable （适用范围），范围要尽量小，否则容易冲突；定义变量默认值的时候注意要加引号，否则手工输入必不可少；建议勾选 Reformat，这样就不用手动调整格式。</p>
 </li>
 </ul>
@@ -205,6 +205,11 @@ Settings | Appearance &amp; Behavior | System Settings | Project Opening | Open 
 <li><p>识别自定义文件，默认情况下 .vm .template .tl 文件是不能进行高亮显示的，在 Settings | Editor | File Types 下选择文件类型，通过下面的小加号可以添加想要识别的文件.</p>
 </li>
 </ul>
+<h2 id="-">支持正版</h2>
+<p>为什么支持就不说了，说说怎么支持。WebStorm 分三个版本企业版(For business and organizations)个人版(For individual customers)和学生版(Discounted and complimentary licenses)，三个版本功能上没有任何差别，根据自己的情况看着买吧，另外欢迎老板主动买单。如果老板不主动就自己买单吧，对于生产资料传统的方式是老板配置，但是在新的合作模式下可以自己协调配置，老板给工资买什么自己看着办是一种更高效的资源配置方式。</p>
+<p>前两种版本又有两种授权方式:新手授权(New Subscription)，特价版授权(Special Price for Perpetual License Holders*)。如果你是第一次购买，那对不起了，只能花59$=376￥买一年了;如果以前购买过永久版那就简单了，35$=223￥两年，相当于六折买两年。之前买一年可以一年内随便升级，一年后不能升级但可以随便使用，今年不知道是不是这么个卖法了。个人认为不用每年都升级，如果硬件不升级新版的软件可能会更慢。</p>
+<p>现在已经是 WebStorm 11 了，旧版本不是很好找(为了让人买新版把链接藏得够深得...)，现把旧版的下载地址贴出来就不用每年都升级了，尤其是那些有一点怀旧情结的童鞋们...</p>
+<p><a href="https://confluence.jetbrains.com/display/WI/Previous+WebStorm+Releases">WebStorm 10 下载</a></p>
 <h2 id="-">写在最后的牢骚</h2>
 <p>每天都在写代码，应该花点时间培养一下和IDE的感情，快捷方式，代码补全，插件，是几个重要考察的点。没有哪个IDE绝对的好，熟练使用是关键。业务代码写的快一点才有时间研究新的东西，不然就沦落到一个经验用三年这种悲催的境地了。快速的写代码也是一种不错的感觉。</p>
 <h2 id="-">声明</h2>
