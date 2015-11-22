@@ -1,16 +1,23 @@
-// 此代码处于编译失败状态
 #include <iostream>
 using namespace std;
 
+// 函数声明,
+int getArea(int width,int height);
+
 int main() {
-    char str = "need to output.";
-    printString(str);
+    int width,height,area;
+    cout<<"width:";
+    // 接受参数
+    cin>>width;
+    cout<<"height:";
+    cin>>height;
+    // 调用函数
+    area = getArea(width, height);
+    // 打印输出
+    cout<<"area:"<<area<<"\n";
 }
 
-/**
- * 打印字符串
- * @param char str 要打印的字符串
- */
-void printString(char str) {
-    cout<<str<<endl;
+// 函数定义
+int getArea(int width,int height) {
+    return width * height;
 }

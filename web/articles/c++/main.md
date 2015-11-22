@@ -18,21 +18,6 @@
     g++ -o a hello-world.cpp
     ./test
 
-## 函数
-
-main()是独特的 C++ 函数,因为程序启动时需要调用它, main 函数的数据类型必须是 int.
-
-函数的两个部分:函数头(函数名,参数,返回类型) 和 函数体;无返回类型时 用 void.下面是函数定义范例:
-
-    // function.app
-    /**
-     * 打印字符串
-     * @param char str 要打印的字符串
-     */
-    void printString(char str) {
-        cout<<str<<endl;
-    }
-
 ## 变量
 
 **变量类型**
@@ -100,8 +85,37 @@ bool 布尔类型
     
 符号运算和逻辑运算和其他语言类似
     
+
 ## 函数
+
+main()是独特的 C++ 函数,因为程序启动时需要调用它, main 函数的数据类型必须是 int.
+
+函数的两个部分:函数头(函数名,参数,返回类型) 和 函数体;无返回类型时用 void.下面是函数定义范例:
+
+    #include <iostream>
+    using namespace std;
     
+    // 函数声明,
+    int getArea(int width,int height);
+    
+    int main() {
+        int width,height,area;
+        cout<<"width:";
+        // 接受参数
+        cin>>width;
+        cout<<"height:";
+        cin>>height;
+        // 调用函数
+        area = getArea(width, height);
+        // 打印输出
+        cout<<"area:"<<area<<"\n";
+    }
+    
+    // 函数定义
+    int getArea(int width,int height) {
+        return width * height;
+    }
+
 
 
 
