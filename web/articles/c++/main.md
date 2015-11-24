@@ -125,4 +125,21 @@ C++ 函数的参数与 js 不同,不同的参数定义方式可对同名方法�
 
 ## 流程控制
 
+while,do-while,for
 
+break:结束循环,continue:跳到下一次循环
+
+switch
+
+    switch(name) {
+        case 'jack':
+            work = 'coder';
+            break;
+        case 'tony':
+            work = 'actor';
+            break;
+        default :
+            work = 'unknown';
+    }
+
+if else
