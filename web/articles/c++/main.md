@@ -118,6 +118,28 @@ main()是独特的 C++ 函数,因为程序启动时需要调用它, main 函数�
         return width * height;
     }
 
+C++ 函数的参数与 js 不同,不同的参数定义方式可对同名方法进行重载:
 
+    int store(int, int);
+    int store(long, long);
 
+## 流程控制
 
+while,do-while,for
+
+break:结束循环,continue:跳到下一次循环
+
+switch
+
+    switch(name) {
+        case 'jack':
+            work = 'coder';
+            break;
+        case 'tony':
+            work = 'actor';
+            break;
+        default :
+            work = 'unknown';
+    }
+
+if else
