@@ -259,4 +259,34 @@ if else
         mh370.speedDown(20);
     }
 
+怎样封装一个类供其他程序调用？在 Plane.hpp 中给出了示例，下面是关键代码：
 
+    // Plane.hpp
+    #include <iostream>
+    using namespace std;
+    
+    // 声明一个飞机类
+    class Plane {
+        public:
+        Plane(int speed);
+        {// 可以直接定义实现
+            return speed;
+        };
+    
+        private:
+        int speed;
+    };
+    
+    // 构造函数,用来初始化对象
+    Plane::Plane(int newSpeed) {
+        speed = newSpeed;
+    }
+    
+    // 在 test.cpp 中调用
+    #include "Plane.hpp"
+    
+    int main() {
+        Plane mh370(10);
+    }
+
+类的组合形成新类也非常简单，可直接将类看成 int 等原生对象即可，只要 #include 进来就可以。
