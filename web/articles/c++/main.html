@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>C++ - 龙则的博客站点</title>
+    <link href="/src/css/all.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="page-header">
+    <h1>
+        <span class="main-title">龙则的个人站点</span>
+        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+    </h1>
+    <nav class="nav">
+        <button class="icon-menu-button"></button>
+        <menu>
+            <a class="item">Home</a>
+            <a class="item">前端技术</a>
+            <a class="item">技术梳理</a>
+            <a class="item">本站成书</a>
+            <a class="item">本站 & 站主</a>
+        </menu>
+    </nav>
+</header>
+<div class="page-body">
+    <div class="article-detail-container">
+    <h1 id="c-">C++</h1>
+<blockquote>
+<p>作为一个 jser 怎么想起来学习 C++，无它 --- 情已。此篇只是学习笔记高手就飘过吧。</p>
+</blockquote>
+<h2 id="hello-world">Hello world</h2>
+<pre><code>// hello-world.app
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    cout&lt;&lt;&quot;Hello Word!&quot;&lt;&lt;endl;
+    return 0;
+}
+</code></pre><p>命令行编译，运行：</p>
+<pre><code>g++ -o a hello-world.cpp
+./test
+</code></pre><h2 id="-">变量</h2>
+<p><strong>变量类型</strong></p>
+<p>void 无返回值类型</p>
+<p>short 短整型(整数，2字节)</p>
+<p>unsigned short 零和正整数</p>
+<p>int 整型(4字节)</p>
+<p>long 长整型(8字节)</p>
+<p>chart 字符创类型</p>
+<p>bool 布尔类型</p>
+<p><strong>类型定义</strong></p>
+<pre><code>// 简化类型声明
+typedef unsigned short us;
+us age = 5;
+</code></pre><h2 id="-">常量</h2>
+<p>编码中一般将常量用全大写字母表示</p>
+<p><strong>符号常量</strong></p>
+<pre><code>// 指定数据类型的常量
+const int NUM = 5;
+// 不指定数据类型的常量，编译时直接替换，可能编译通过而运行报错
+#define NUM 5;
+</code></pre><p><strong>枚举常量</strong></p>
+<pre><code>// 常量值默认从 0 开始递增
+enum WEEK{Mon,Tue,Wed,Thu,Fri,San,Sun};
+// 也可以赋值，后面未赋值的递增
+enum WEEK{Mon=100,Tue,Wed,Thu,Fri,San=200,Sun};
+</code></pre><h2 id="-">输出</h2>
+<p>如果采用了 <code>using namespace std;</code> 来声明命名空间，可以直接使用 <code>cout</code> 来输出，否则需要在前面加 std::。
+字符串和变量之间的拼接可以使用 <code>&gt;&gt;</code>。</p>
+<pre><code>#include &lt;iostream&gt;
+int main () {
+    int age = 5;
+    std::cout&lt;&lt;&quot;My age is &quot;&lt;&lt;age&lt;&lt;&quot;\n&quot;;
+    return 0;
+}
+</code></pre><h2 id="-">运算</h2>
+<p>复杂语句</p>
+<pre><code>z = x = y + 13;
+// 这条语句有四个功效:
+// 1 计算 y + 13
+// 2 将上面的计算结果赋值给 x
+// 3 将 x 的值赋给 x
+// 返回 z 的值
+</code></pre><p>符号运算和逻辑运算和其他语言类似</p>
+<h2 id="-">函数</h2>
+<p>main()是独特的 C++ 函数，因为程序启动时需要调用它， main 函数的数据类型必须是 int。</p>
+<p>函数需要先声明在定义。</p>
+<p>函数的两个部分:函数头(函数名，参数，返回类型) 和 函数体;无返回类型时用 void。下面是函数定义范例:</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// 函数声明
+int getArea(int width,int height);
+
+int main() {
+    int width,height,area;
+    cout&lt;&lt;&quot;width:&quot;;
+    // 接受参数
+    cin&gt;&gt;width;
+    cout&lt;&lt;&quot;height:&quot;;
+    cin&gt;&gt;height;
+    // 调用函数
+    area = getArea(width, height);
+    // 打印输出
+    cout&lt;&lt;&quot;area:&quot;&lt;&lt;area&lt;&lt;&quot;\n&quot;;
+}
+
+// 函数定义
+int getArea(int width,int height) {
+    return width * height;
+}
+</code></pre><p>C++ 函数的参数与 js 不同，不同的参数定义方式可对同名方法进行重载:</p>
+<pre><code>int store(int, int);
+int store(long, long);
+</code></pre><h2 id="-">流程控制</h2>
+<p>while，do-while，for</p>
+<p>break:结束循环，continue:跳到下一次循环</p>
+<p>switch</p>
+<pre><code>switch(name) {
+    case &#39;jack&#39;:
+        work = &#39;coder&#39;;
+        break;
+    case &#39;tony&#39;:
+        work = &#39;actor&#39;;
+        break;
+    default :
+        work = &#39;unknown&#39;;
+}
+</code></pre><p>if else</p>
+<h2 id="-">数组</h2>
+<p>数组的初始化</p>
+<pre><code>// array.cpp
+// 一维数组初始化
+int arr[] = {1, 2, 3};
+// 二维数组初始化
+int arr2[2][3] = {1, 2, 3, 4, 5, 6};
+
+// 二维数组初始化，代码更可读
+int arr2[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+</code></pre><p>通过自带的字符串处理函数库使用数组来定义字符串。</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string.h&gt;
+using namespace std;
+
+int main() {
+    // 字符串
+    char str[] = &quot;I am a string&quot;;
+    cout&lt;&lt;&quot;str:&quot;&lt;&lt;str&lt;&lt;&quot;\n&quot;;
+}
+</code></pre><p>数组和字符串的的拼接需要借助指针来实现。</p>
+<h2 id="-">类</h2>
+<p>类定义，构造函数，析构函数，私有变量和方法，公有变量和方法，实例化对象，常量函数 等概念，语法如下就不一一介绍了。</p>
+<pre><code>// class.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+// 定义类，要放在 main 的前面
+class Plane {
+    public:
+    Plane(int speed);
+    //~Plane();
+    void setSpeed(int speed);
+    int getSpeed() const;
+    void printCurrentSpeed();
+    int speedUp(int num);
+    void speedDown(int num);
+
+    private:
+    int speed;
+    void doSomething();
+};
+
+// 构造函数，用来初始化对象
+Plane::Plane(int speed) {
+    setSpeed(speed);
+}
+
+// 析构函数，用来释放对象内存空间
+//Plane::~Plane() {
+//
+//}
+
+void Plane::setSpeed(int newSpeed) {
+    speed = newSpeed;
+}
+void Plane::printCurrentSpeed() {
+    cout&lt;&lt;&quot;current speed:&quot;&lt;&lt; speed &lt;&lt;&quot;\n&quot;;
+}
+int Plane::getSpeed() {
+    return speed;
+}
+
+/**
+ * 加速
+ *
+ * @param {int} num 要增加的速度
+ * @return {int} speed 增加之后的速度
+ */
+int Plane::speedUp(int num) {
+     speed += num;
+     doSomething();
+     return speed;
+}
+void Plane::speedDown(int num) {
+    speed -= num;
+    if (speed &lt; 0) {
+        speed = 0;
+        cout&lt;&lt;&quot;speed has benn zero.\n&quot;;
+    }
+    doSomething();
+}
+void Plane::doSomething() {
+    cout&lt;&lt;&quot;please bee careful, speed is changing.\n&quot;;
+}
+
+int main() {
+    // 像定义一个变量一样定义一个对象
+    Plane mh370(10);
+
+    // 读取当前速度
+    cout&lt;&lt;&quot;current speed:&quot;&lt;&lt; mh370.getSpeed()&lt;&lt;&quot;\n&quot;;
+
+    cout&lt;&lt;&quot;speed up 5&quot;&lt;&lt;&quot;\n&quot;;
+    mh370.speedUp(5);
+    mh370.printCurrentSpeed();
+
+    cout&lt;&lt;&quot;speed down 15&quot;&lt;&lt;&quot;\n&quot;;
+    mh370.speedDown(15);
+
+    mh370.printCurrentSpeed();
+    mh370.speedDown(20);
+}
+</code></pre>
+    </div>
+    <div class="article-message-container"></div>
+</div>
+<footer class="page-footer"></footer>
+</body>
+</html>
