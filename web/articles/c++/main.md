@@ -143,3 +143,33 @@ switch
     }
 
 if else
+
+## 数组
+
+数组的初始化
+
+    // array.cpp
+    // 一维数组初始化
+    int arr[] = {1, 2, 3};
+    // 二维数组初始化
+    int arr2[2][3] = {1, 2, 3, 4, 5, 6};
+    
+    // 二维数组初始化,代码更可读
+    int arr2[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+通过自带的字符串处理函数库使用数组来定义字符串.
+
+    #include <iostream>
+    #include <string.h>
+    using namespace std;
+    
+    int main() {
+        // 字符串
+        char str[] = "I am a string";
+        cout<<"str:"<<str<<"\n";
+    }
+
+数组和字符串的的拼接需要借助指针来实现.
