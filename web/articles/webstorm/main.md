@@ -113,8 +113,24 @@ Win:Ctrl + S; Mac:Com + S
 - 新建文件，New...
 Win:Alt + N; Mac:Control + N，在当前文件同级或者选中的文件夹下
 
-- 打开最近打开的文件，Recent Files
+- 打开最近打开的文件，Recent Files，
 Mac:Com + E，会给出一个最近打开的文件列表
+
+- 复制文件路径，Copy Paths，
+Mac: Com + Shift + C
+
+### 8 - 面板之间的切换
+
+- 打开/收起命令行面板，Terminal，
+Mac: Option + F12
+
+- 左边的文件栏，Send to Left, Project
+Mac: Com + 1
+
+### 9 - 单项
+
+- 两行变一行，Join Lines，
+Mac: Control + Shift + J
 
 ## 设置
 
@@ -180,9 +196,11 @@ MD文档默认不换行，可以在左边行号的位置右击勾选"Use Soft Wr
 
 - 设置选中文字之后，点击双引号\单引号包围选中，Settings | Editor | General | Smart keys，勾选surround selection on type quote or brace 
 
-- 识别自定义文件，默认情况下 .vm .template .tl 文件是不能进行高亮显示的，在 Settings | Editor | File Types 下选择文件类型，通过下面的小加号可以添加想要识别的文件.
+- 识别自定义文件，默认情况下 .vm .template .tl 文件是不能进行高亮显示的，在 Settings | Editor | File Types 下选择文件类型，通过下面的小加号可以添加想要识别的文件。
 
-- 无法输入中文标点：此问题是自定义 JDK 引起的，删除 /Applications/WebStorm.app/Contents/jre/ 文件夹可解决问题，因为此文件夹下有自定义 JDK 的信息，经测试没发现副作用，详情参考[https://youtrack.jetbrains.com/issue/IDEA-147358](https://youtrack.jetbrains.com/issue/IDEA-147358)
+- 无法输入中文标点：此问题是自定义 JDK 引起的，删除 /Applications/WebStorm.app/Contents/jre 文件夹可解决问题，因为此文件夹下有自定义 JDK 的信息，经测试没发现副作用，详情参考[https://youtrack.jetbrains.com/issue/IDEA-147358](https://youtrack.jetbrains.com/issue/IDEA-147358)
+
+- 添加第三方库的语法提示: Settings | Languages & FrameWorks | Javascript | Libraries，注意需要添加未压缩的源码。
 
 ## 支持正版
 
