@@ -347,4 +347,14 @@ const 指针
 ## 引用
 
 
+## 类库使用
 
+自定义一个类，类的定义写在 .hpp 文件中，类的实现写在 .cpp 文件中(记得在.cpp中 include .hpp)，编译目标文件的时候需要带上类文件，如下：
+
+    g++ -o a Plane-class-test.cpp Plane.cpp
+
+然后用下面命令直接运行：
+
+    ./a
+
+具体的代码在 Plane.hpp、Plane.cpp、Plane-class-test.cpp 三个文件中。 
