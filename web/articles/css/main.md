@@ -22,3 +22,8 @@ http://w3.org中有这个样子的吗？
 有规范的网站，还是个浏览器厂商有公示站点？
 
 还有发现 background-clip: text; 要加这样的浏览器前缀 -webkit-background-clip: text; 才生效，那么这个信息又怎么查，还是没有什么好的方法，只能打开关注的浏览器挨个测一遍？这个问题我目前找到的最好的解决方案是去这个网站查一下 Can I use... Support tables for HTML5, CSS3, etc ，还有更好的方案吗？
+
+## 我的答案
+
+
+
