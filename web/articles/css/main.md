@@ -25,5 +25,27 @@ http://w3.org中有这个样子的吗？
 
 ## 我的答案
 
+HTML、CSS、JS 的常用的东西在这里可以找到：
+
+[W3C HTML 网页标准教程](http://www.w3chtml.com/)
+
+中文不过瘾可以看英文的：[W3Schools Online Web Tutorials](http://www.w3schools.com/)
+
+查看浏览器兼容性的一个网站，更新较为及时[caniuse](http://caniuse.com/)
+
+CSS：
+
+[chrome 统计的 CSS 各属性的常用率](https://www.chromestatus.com/metrics/css/popularity)
+
+在开源基金会 Mozilla 官网上查找：
+[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+
+[验证 CSS 的有效性](http://jigsaw.w3.org/css-validator/#validate_by_input)
+JS：
+
+可以在这里找到官方的 pdf 文档，国际标准：
+[ecma 国际官网](http://www.ecma-international.org/)
+
+
 
 
