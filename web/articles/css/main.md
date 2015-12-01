@@ -22,3 +22,30 @@ http://w3.org中有这个样子的吗？
 有规范的网站，还是个浏览器厂商有公示站点？
 
 还有发现 background-clip: text; 要加这样的浏览器前缀 -webkit-background-clip: text; 才生效，那么这个信息又怎么查，还是没有什么好的方法，只能打开关注的浏览器挨个测一遍？这个问题我目前找到的最好的解决方案是去这个网站查一下 Can I use... Support tables for HTML5, CSS3, etc ，还有更好的方案吗？
+
+## 我的答案
+
+HTML、CSS、JS 的常用的东西在这里可以找到：
+
+[W3C HTML 网页标准教程](http://www.w3chtml.com/)
+
+中文不过瘾可以看英文的：[W3Schools Online Web Tutorials](http://www.w3schools.com/)
+
+查看浏览器兼容性的一个网站，更新较为及时[caniuse](http://caniuse.com/)
+
+CSS：
+
+[chrome 统计的 CSS 各属性的常用率](https://www.chromestatus.com/metrics/css/popularity)
+
+在开源基金会 Mozilla 官网上查找：
+[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+
+[验证 CSS 的有效性](http://jigsaw.w3.org/css-validator/#validate_by_input)
+JS：
+
+可以在这里找到官方的 pdf 文档，国际标准：
+[ecma 国际官网](http://www.ecma-international.org/)
+
+
+
+

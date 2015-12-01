@@ -56,7 +56,7 @@ function initDataJson (articleArr) {
             jsonData = JSON.parse(fs.readFileSync(jsonDataFilePath, config.encoding));
         }
         catch (err) {
-            console.log(jsonDataFilePath + '读取为json格式失败。');
+            console.log(jsonDataFilePath + '读取为json格式失败。       ');
             return;
         }
 
@@ -97,7 +97,7 @@ function initDataJson (articleArr) {
         article.jsonData = jsonData;
     });
 
-    console.log('data.json初始化完成');
+    console.log('data.json初始化完成     ');
 }
 
 module.exports = initDataJson;

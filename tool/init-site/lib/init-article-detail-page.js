@@ -34,7 +34,7 @@ function initArticleDetail (articleArr) {
         fs.writeFileSync(articleDetailFilePath, articleDetailPageHtml, config.encoding);
     });
 
-    console.log('文章详情初始化完成');
+    console.log('文章详情初始化完成         ');
 }
 
 module.exports = initArticleDetail;

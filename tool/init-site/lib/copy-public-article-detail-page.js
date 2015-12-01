@@ -31,7 +31,7 @@ function copyPublicArticleDetailPage (articleArr) {
         }
     });
 
-    console.log('公开文章复制完成');
+    console.log('公开文章复制完成        ');
 }
 
 module.exports = copyPublicArticleDetailPage;
