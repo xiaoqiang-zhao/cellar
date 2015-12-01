@@ -15,7 +15,7 @@ function copyIndexPage() {
     // 直接覆写文件
     var targetPath = config.rootPath + config.publicSitePath + config.indexPagePath;
     fs.writeFileSync(targetPath, htmlContent, config.encoding);
-    console.log('首页复制完成');
+    console.log('首页复制完成       ');
 }
 
 module.exports = copyIndexPage;
