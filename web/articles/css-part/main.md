@@ -28,6 +28,7 @@
     .cursor-pointer {
         cursor: pointer;
     }
+    
 ## 可移动
 其实就是鼠标以上后形状变成十字移动图形。
 
@@ -107,5 +108,8 @@
         word-wrap: break-word;
         white-space: normal;
     }
+    
+    word-wrap: break-word; 内容将在边界内换行。如果需要，单词内部允许断行。
+    word-break: keep-all; 只能在半角空格或连字符处换行。
 
-这里补充 `white-space: normal;` 是因为其继承的特性，为了使程序更健壮这一行在某些情况下会是冗余的。
+这里补充 `white-space: normal;` 是因为其继承的特性，为了使程序更健壮，这一行在某些情况下的冗余是值得的。
