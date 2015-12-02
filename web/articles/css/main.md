@@ -1,6 +1,5 @@
 # 资料问题
 
-学习CSS的时候遇到点困扰请教一下？修改
 学习CSS的时候遇到点困扰请教一下
 
 有没有一个网站提供CSS的全集
@@ -41,11 +40,12 @@ CSS：
 [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 
 [验证 CSS 的有效性](http://jigsaw.w3.org/css-validator/#validate_by_input)
+
 JS：
 
 可以在这里找到官方的 pdf 文档，国际标准：
 [ecma 国际官网](http://www.ecma-international.org/)
 
+## 结论
 
-
-
+CSS3 任需要选择性的使用，大部分支持不完全，只有一小部分可以兼容 IE9 以上的浏览器，稍微多一点的可兼容到 IE11，先把能支持 IE11 的 CSS3梳理一遍，对 JS 采取同样的策略，参考库函数封装原生，达到原始技术的积累。
