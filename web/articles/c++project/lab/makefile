@@ -1,28 +1,45 @@
+# ----------------------------------------------------------------
+# This is a makefile which automatically updates itself, 
+# using "$(CC) -MM -E" in linux.
+# linliu 2011-04-25
+# ----------------------------------------------------------------
+# $* ²»°üÀ¨À©Õ¹ÃûµÄÄ¿±êÎÄ¼şÃû³Æ
+# $+ ËùÓĞÒÀÀµÎÄ¼ş£¬ÒÔ¿Õ¸ñ·Ö¿ª£¬ÓĞË³Ğò£¬ÓĞÖØ¸´
+# $< µÚÒ»¸öÒÀÀµÎÄ¼şÃû³Æ
+# $? ËùÓĞÒÀÀµÎÄ¼ş£¬ĞŞ¸ÄÈÕÆÚ±ÈÄ¿±êÎÄ¼şÍí
+# $@ Ä¿±êµÄÍêÕûÃû³Æ
+# $^ ËùÓĞ²»ÖØ¸´ÒÀÀµÎÄ¼ş£¬ÒÔ¿Õ¸ñ·Ö¿ª
+# $% Èç¹ûÄ¿±êÊÇ¹éµµ³ÉÔ±£¬Ôò¸Ã±äÁ¿±íÊ¾Ä¿±êµÄ¹éµµ³ÉÔ±Ãû³Æ¡£ÈçÄ¿±êÎª
+#    mytarget.so(image.o)£¬Ôò $@ Îª mytarget.so, $% Îª image.o
+# ----------------------------------------------------------------
+###### common commands
+CC = gcc
+CFLAGS = -Wall -O2
+CXX = g++
+CXXFLAGS = -Wall -O2
+RM = rm
+###### targets and objects
+OBJS = $(patsubst %.cpp, %.o, $(shell ls *.cpp))
+EXEC = ksp
 
-# ç¬¬ä¸€è¡Œæ¥è°ƒç”¨è¦æ‰§è¡Œçš„ä»»åŠ¡
-edit : a b c /
-# è¯•éªŒæˆåŠŸ
-#	gcc -o a enter.cpp Wheel.o
-# å®éªŒå¤±è´¥
-#	gcc -g
-#	gcc -static
-	gcc main.o
-	gcc -o a main.o Plane.o Wheel.o
-# ç›´æ¥ä½¿ç”¨ g++ -o a main.cpp Plane.cpp Wheel.cpp æˆåŠŸ
+###### compiler rules
+.PHONY: all clean
 
-# å®šä¹‰ä»»åŠ¡ï¼šå°†æºä»£ç ç¼–è¯‘ç”Ÿæˆä¸­é—´æ–‡ä»¶ Plane.o
-a : Plane.hpp Plane.cpp
-	gcc -c Plane.cpp
-# å¯æŒ‡å®šè¾“å‡ºæ–‡ä»¶å
-#	gcc -c Plane.cpp -o PPP.o
+all: $(EXEC)
 
-# ä¸å†™ç›®æ ‡æ–‡ä»¶åŒæ ·èƒ½ç”Ÿæˆï¼
-b :
-	gcc -c Wheel.cpp Wheel.hpp
+$(EXEC): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $+
 
-c :
-	gcc -c main.cpp
+###### object file dependences
+DEPS = $(patsubst %.o, %.dep, $(OBJS))
 
-# é—®é¢˜ï¼š
-# åœ¨ main.cpp ä¸­ï¼Œåªè¦ä½¿ç”¨è¾“å‡ºè¯­å¥å°±ä¼š make å¤±è´¥ï¼Œæ˜¯éœ€è¦é“¾æ¥é™æ€èµ„æºå—ï¼Ÿæ€ä¹ˆé“¾æ¥
-#
+-include $(DEPS)
+
+%.dep: %.cpp
+	@rm -f $@; \
+	$(CXX) $(CXXFLAGS) -MM -E $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@: ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+clean:
+	-rm -f $(EXEC) $(OBJS) $(DEPS)

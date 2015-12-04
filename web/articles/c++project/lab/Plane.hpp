@@ -1,3 +1,9 @@
+#ifndef PLANE_H__
+#define PLANE_H__
+
+#include <iostream>
+using namespace std;
+
 // 这里定义一个类，在其他文件就可以引用了 #include "Plane.hpp"，测试方法在最末尾给出
 
 // 声明一个飞机类
@@ -20,3 +26,6 @@ class Plane {
     int speed;
     void doSomething();
 };
+
+#endif // PLANE_H__
+

@@ -14,7 +14,7 @@ void Plane::setSpeed(int newSpeed) {
     speed = newSpeed;
 }
 void Plane::printCurrentSpeed() {
-    // printf("current speed:%d\n", speed);
+    printf("current speed:%d\n", speed);
 }
 
 /**
@@ -32,10 +32,10 @@ void Plane::speedDown(int num) {
     speed -= num;
     if (speed < 0) {
         speed = 0;
-        // cout<<"speed has benn zero.\n";
+        cout<<"speed has benn zero.\n";
     }
     doSomething();
 }
 void Plane::doSomething() {
-    // cout<<"please bee careful, speed is changing.\n";
+    cout<<"please bee careful, speed is changing.\n";
 }
