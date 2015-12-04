@@ -1,3 +1,4 @@
+// 防止重复引入
 #ifndef PLANE_H__
 #define PLANE_H__
 
