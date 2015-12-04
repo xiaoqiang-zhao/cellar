@@ -3,8 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css" rel="stylesheet">
+        .c-f,
+        .clear-float {
+            zoom: 1; /* 兼容IE7及以下 */
+        }
+        .c-f:after,
+        .clear-float:after {
+            content: "\200B";
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        .container {
+            width: 100%;
+            padding: 10px;
+            border: 3px solid #333;
+            /* 宽度计算包含 padding */
+            moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            /* 将对象作为弹性和模型 */
+            display: -webkit-box;
+            display: -moz-box;
+            display: -o-box;
+            display: -ms-box;
+            display: box;
+        }
+        .main {
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -o-box-flex: 1;
+            -ms-box-flex: 1;
+            box-flex: 1;
+            line-height: 150px;
+            background: #ccb;
+        }
+        .nav {
+            display: inline-block;
+            float: right;
+        }
+        .nav .item {
+            display: block;
+            width: 100%;
+            line-height: 1.5em;
+            background: #ccc;
+            color: #fff;
+            /* 默认横向，需要改成纵向 */
+            /*-webkit-box-orient: vertical;*/
+            /*-moz-box-orient: vertical;*/
+            /*-o-box-orient: vertical;*/
+            /*-ms-box-orient: vertical; */
+            /*box-orient: vertical;*/
+        }
+    </style>
 </head>
 <body>
-
+<div style="width: 600px; border: 3px solid #ccc">
+    <div class="container c-f">
+        <div class="main">
+            主要内容
+        </div>
+        <div class="nav">
+            <span class="item"> 内容项</span>
+            <span class="item"> 内容项，多文字</span>
+            <span class="item"> 内容项</span>
+            <span class="item"> 内容项</span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
