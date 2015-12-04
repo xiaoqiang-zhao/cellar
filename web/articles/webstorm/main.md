@@ -202,6 +202,8 @@ MD文档默认不换行，可以在左边行号的位置右击勾选"Use Soft Wr
 
 - 添加第三方库的语法提示: Settings | Languages & FrameWorks | Javascript | Libraries，注意需要添加未压缩的源码。
 
+- 取消 Tab 自动转四个空格的设置: Settings | Editor | Code Style | Other File Types | Use tab character，在编写 makefile 之类的文件时需要 Tab，所以需要开启此功能。
+
 ## 支持正版
 
 为什么支持就不说了，说说怎么支持。WebStorm 分三个版本企业版(For business and organizations)个人版(For individual customers)和学生版(Discounted and complimentary licenses)，三个版本功能上没有任何差别，根据自己的情况看着买吧，另外欢迎老板主动买单。如果老板不主动就自己买单吧，对于生产资料传统的方式是老板配置，但是在新的合作模式下可以自己协调配置，老板给工资买什么自己看着办是一种更高效的资源配置方式。
