@@ -53,6 +53,9 @@ webpack 兼容 AMD 和 CMD 以及 CommonJs 规范，官方建议使用 CommonJS 
 
 ## 拒绝 js 中拼 html 片段
 
+	npm install webpack html-loader -g
+
+
 ## CSS也玩起来
 
 ## 有了CSS怎么能没有装饰图
@@ -60,4 +63,6 @@ webpack 兼容 AMD 和 CMD 以及 CommonJs 规范，官方建议使用 CommonJS 
 ## 参考资料
 
 [Webpack 入门指迷](http://sfau.lt/b5kR2G)
+
+[webpack 加载器](https://webpack.github.io/docs/list-of-loaders.html)
 

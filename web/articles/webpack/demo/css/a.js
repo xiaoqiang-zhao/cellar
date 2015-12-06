@@ -1,5 +1,5 @@
-var b = require('./b');
-var text = 'hello ' + b.text;
+var b = require('./css.css');
+var text = '<div>hello world.</div>';
 
 document.getElementsByTagName('body')[0].innerHTML = text;
 
