@@ -1,6 +1,6 @@
 {
   "title": "npm",
-  "introduction": "NodeJs 的默认包管理器\n \n## 常用命令",
+  "introduction": "NodeJs 的默认包管理器。",
   "tags": [
     "基础"
   ],
