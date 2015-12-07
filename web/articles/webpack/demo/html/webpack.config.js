@@ -1,4 +1,3 @@
-require('webpack/html-loader');
 module.exports = {
     entry: {
         main: './a.js'
