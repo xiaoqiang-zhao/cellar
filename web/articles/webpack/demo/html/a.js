@@ -1,8 +1,7 @@
 var b = require('./b.html');
-var text = 'hello ' + b.text;
 
-document.getElementsByTagName('body')[0].innerHTML = text;
+document.getElementById('container').innerHTML = b;
 
-exports.model = {
-    text: text
+model.exports = {
+    name: 'a'
 };

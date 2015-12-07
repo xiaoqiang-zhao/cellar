@@ -44,14 +44,19 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var b = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./b.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	var text = 'hello ' + b.text;
+	var b = __webpack_require__(1);
 
-	document.getElementsByTagName('body')[0].innerHTML = text;
+	document.getElementById('container').innerHTML = b;
 
-	exports.model = {
-	    text: text
+	model.exports = {
+	    name: 'a'
 	};
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    Hello world.\n</div>";
 
 /***/ }
 /******/ ]);

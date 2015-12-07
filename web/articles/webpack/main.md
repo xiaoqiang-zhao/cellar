@@ -56,11 +56,32 @@ webpack 兼容 AMD 和 CMD 以及 CommonJs 规范，官方建议使用 CommonJS 
 	webpack -d  
 	// shortcut for --debug --devtool sourcemap --output-pathinfo
 
-
+	$ webpack --watch   //监听变动并自动打包
+	
+	$ webpack -p    //压缩混淆脚本，这个非常非常重要！
+	
+	$ webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了
+	
 ## 拒绝 js 中拼 html 片段
 
-	npm install webpack html-loader -g
+使用 html-loader 插件可以使 html 片段转化成字符串模块，模块安装命令如下：
 
+	npm install html-loader
+
+html 模块示例如下：
+	
+	// b.html
+	<div>
+        Hello world.
+    </div>
+
+使用示例：
+	
+	// a.js
+	var b = require('./b.html');
+    document.getElementById('container').innerHTML = b;
+
+配置示例代码较长请自行到 html/webpack.config.js 中查看，[完整运行示例](./demo/html/index.html)。
 
 ## CSS也玩起来
 
@@ -71,6 +92,8 @@ webpack 兼容 AMD 和 CMD 以及 CommonJs 规范，官方建议使用 CommonJS 
 [webpack 官网](https://webpack.github.io/)
 
 [webpack GitHub](https://github.com/webpack/webpack)
+
+[加载器的使用方法](http://webpack.github.io/docs/using-loaders.html)
 
 [Webpack 入门指迷](http://sfau.lt/b5kR2G)
 
