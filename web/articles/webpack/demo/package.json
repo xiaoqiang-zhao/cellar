@@ -1,0 +1,18 @@
+{
+  "name": "demo",
+  "description": "研究 webpack 的 demo",
+  "keywords": [
+    "cellar",
+    "longze",
+    "node",
+    "javascript"
+  ],
+  "author": {
+    "name": "赵晓强",
+    "email": "longze_xq@163.com"
+  },
+  "dependencies": {
+    "webpack": "^1.12.9",
+    "css-loader": "^0.23.0"
+  }
+}
