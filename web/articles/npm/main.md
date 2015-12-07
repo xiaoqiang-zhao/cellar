@@ -1,6 +1,6 @@
 # npm
  
-> NodeJs 的默认包管理器
+> NodeJs 的默认包管理器。
  
 ## 常用命令
 
@@ -59,9 +59,9 @@
     
     #!/usr/bin/env node
     
-问：噎，我加了问什么还是不行？
+问：噎，我加了为什么还是不行？
     
-答：需要给一下权限，代码如下，这个命令的详细解释看[这篇](http://lucky16.iteye.com/blog/577182)文章。    
+答：需要赋权限，代码如下，这个命令的详细解释看[这篇](http://lucky16.iteye.com/blog/577182)文章。    
     
     chmod a+x my.js
     
@@ -76,6 +76,39 @@
 问：这次真的可以了吗？好麻烦，这么多坑
     
 答：当然可以了！其实上面这些配置是在 `npm install xxx` 的时候就做好了不需要手动配置，如果你要开发命令行工具可以去查看[这篇文章](http://javascriptplayground.com/blog/2012/08/writing-a-command-line-node-tool/)。
+
+## 一个包的基本构成
+
+package.json 描述文件，包括包的介绍，版本，依赖，作者，git 和 npm 等信息。
+
+CHANGELOG.md 存放包升级时个版本的改动。
+
+LICENCE 许可协议
+
+README.md 包的使用说明书
+
+bin 文件夹用来存放此包的实现代码。
+
+node_modules 文件夹用来存放当前包所以来的包。
+
+上面所有的这些都是可选的，一个符合 CommonJs 规范的 js 文件就可以作为一个包来使用，为了托管 npm 的统一制定了上面规范，如果你不考虑别人能不能看的懂 和 看的爽不爽 你可以忽略任何一条。
+
+npm WARN package.json demo@ No repository field.
+
+	"repository": {
+	  "type": "git",
+	  "url": "git://github.com/username/repository.git"
+	},
+	// 或者这样也可以
+	"private": true
+
+npm WARN package.json demo@ No README data
+
+npm WARN package.json demo@ No license field.
+
+## 写一个包贡献给全世界
+
+待续...
 
 ## 一些技巧
 
