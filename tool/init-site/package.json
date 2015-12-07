@@ -4,9 +4,7 @@
   "keywords": [
     "cellar",
     "longze",
-    "龙则",
-    "node",
-    "javascript"
+    "龙则"
   ],
   "version": "v1.0",
   "main": "lib/main.js",
