@@ -61,6 +61,11 @@ webpack 兼容 AMD 和 CMD 以及 CommonJs 规范，官方建议使用 CommonJS 
 	$ webpack -p    //压缩混淆脚本，这个非常非常重要！
 	
 	$ webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了
+
+## webpack 插件
+
+
+[加载器使用文档](http://webpack.github.io/docs/using-loaders.html)	
 	
 ## 拒绝 js 中拼 html 片段
 
