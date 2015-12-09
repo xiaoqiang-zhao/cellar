@@ -48,7 +48,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var b = __webpack_require__(/*! ./b */ 1);
-	var text = 'hello ' + b.text;
+	var text = 'hello ' + b.text + '~_~';
 	
 	document.getElementsByTagName('body')[0].innerHTML = text;
 	
