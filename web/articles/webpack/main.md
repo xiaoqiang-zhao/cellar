@@ -96,7 +96,7 @@ html 模块示例如下：
 
 任何前端模板引擎的本质都是将 html 片段转换为函数，然后再以数据为参数调用该函数再返回 html 片段。在实际项目中不结合数据的 html 片段是很少的，所以将 html 模块转换成模板模块有两点好处：
 
-- 不需要前端再加载模板引擎库
+- 不再需要前端加载模板引擎库
 
 - 不再需要将 html 解析成函数
 
@@ -104,7 +104,27 @@ webpack 的插件中提供了多种模板引擎解析器供选择，可选择适
 
 ## CSS也玩起来
 
-## 有了CSS怎么能没有装饰图
+需要两个插件:css-loader将 css 作为模块加载进来，style-loader 将样式写进页面。
+
+	 npm install style-loader css-loader
+
+IE8 及以下有一个 Style 个数超过32后面的不识别的 bug，在生成的 js 文件中可以看到对低版本的 IE 做了判断。下面是配置文件部分代码：
+
+	// webpack.config.js
+	module: {
+		loaders: [
+			{
+				test: /\.css$/,
+				loader: "style-loader!css-loader"
+			}
+		]
+	}
+
+在 js 模块中直接 require 就可以在当前页面创建 style 标签并将 css 文件的内容添加到其中。
+	
+	require('./css-1.css');
+	
+[完整示例](./demo/css/index.html)
 
 ## 参考资料
 

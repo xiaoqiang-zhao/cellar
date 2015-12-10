@@ -91,14 +91,28 @@ document.getElementById(&#39;container&#39;).innerHTML = b;
 </code></pre><p>配置示例代码较长请自行到 html/webpack.config.js 中查看，<a href="./demo/html/index.html">完整运行示例</a>。</p>
 <p>任何前端模板引擎的本质都是将 html 片段转换为函数，然后再以数据为参数调用该函数再返回 html 片段。在实际项目中不结合数据的 html 片段是很少的，所以将 html 模块转换成模板模块有两点好处：</p>
 <ul>
-<li><p>不需要前端再加载模板引擎库</p>
+<li><p>不再需要前端加载模板引擎库</p>
 </li>
 <li><p>不再需要将 html 解析成函数</p>
 </li>
 </ul>
 <p>webpack 的插件中提供了多种模板引擎解析器供选择，可选择适合自己项目的模板引擎集成到 webpack 打包工具中。</p>
 <h2 id="css-">CSS也玩起来</h2>
-<h2 id="-css-">有了CSS怎么能没有装饰图</h2>
+<p>需要两个插件:css-loader将 css 作为模块加载进来，style-loader 将样式写进页面。</p>
+<pre><code> npm install style-loader css-loader
+</code></pre><p>IE8 及以下有一个 Style 个数超过32后面的不识别的 bug，在生成的 js 文件中可以看到对低版本的 IE 做了判断。下面是配置文件部分代码：</p>
+<pre><code>// webpack.config.js
+module: {
+    loaders: [
+        {
+            test: /\.css$/,
+            loader: &quot;style-loader!css-loader&quot;
+        }
+    ]
+}
+</code></pre><p>在 js 模块中直接 require 就可以在当前页面创建 style 标签并将 css 文件的内容添加到其中。</p>
+<pre><code>require(&#39;./css-1.css&#39;);
+</code></pre><p><a href="./demo/css/index.html">完整示例</a></p>
 <h2 id="-">参考资料</h2>
 <p><a href="https://webpack.github.io/">webpack 官网</a></p>
 <p><a href="https://github.com/webpack/webpack">webpack GitHub</a></p>
