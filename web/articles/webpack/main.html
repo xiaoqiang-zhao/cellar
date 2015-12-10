@@ -113,7 +113,23 @@ module: {
 </code></pre><p>在 js 模块中直接 require 就可以在当前页面创建 style 标签并将 css 文件的内容添加到其中。</p>
 <pre><code>require(&#39;./css-1.css&#39;);
 </code></pre><p><a href="./demo/css/index.html">完整示例</a></p>
-<h2 id="-">参考资料</h2>
+<h2 id="-css-">有了CSS怎么能没有装饰图</h2>
+<p>使用 url-loader 加载器可以直接将图片文件转成 base64内容打包到 CSS 中，加载器安装：</p>
+<pre><code> npm install url-loader
+</code></pre><p>CSS 的写法和普通的一样，部分配置代码如下：</p>
+<pre><code>module: {
+    loaders: [
+        {
+            test: /\.css$/,
+            loader: &quot;style-loader!css-loader&quot;
+        },
+        {
+            test: /\.png$/,
+            loader: &quot;url-loader?limit=100000&quot;
+        }
+    ]
+}
+</code></pre><h2 id="-">参考资料</h2>
 <p><a href="https://webpack.github.io/">webpack 官网</a></p>
 <p><a href="https://github.com/webpack/webpack">webpack GitHub</a></p>
 <p><a href="http://webpack.github.io/docs/using-loaders.html">加载器的使用方法</a></p>

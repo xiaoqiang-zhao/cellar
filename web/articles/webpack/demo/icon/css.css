@@ -1,0 +1,6 @@
+/* css.css,编写注释有助于定位样式的位置 */
+ul li {
+    list-style: none;
+    background: url("./icon.png") no-repeat left center;
+    padding-left: 20px;
+}
