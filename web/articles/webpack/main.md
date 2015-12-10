@@ -126,6 +126,27 @@ IE8 及以下有一个 Style 个数超过32后面的不识别的 bug，在生成
 	
 [完整示例](./demo/css/index.html)
 
+## 有了CSS怎么能没有装饰图
+
+使用 url-loader 加载器可以直接将图片文件转成 base64内容打包到 CSS 中，加载器安装：
+	
+	 npm install url-loader
+
+CSS 的写法和普通的一样，部分配置代码如下：
+
+	module: {
+		loaders: [
+			{
+				test: /\.css$/,
+				loader: "style-loader!css-loader"
+			},
+			{
+				test: /\.png$/,
+				loader: "url-loader?limit=100000"
+			}
+		]
+	}
+
 ## 参考资料
 
 [webpack 官网](https://webpack.github.io/)
