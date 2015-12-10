@@ -1,4 +1,3 @@
-var css = require("css-loader");
 module.exports = {
     entry: {
         main: './a.js'
@@ -12,7 +11,10 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.css$/, loader: "css-loader?sourceMap" }
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
+            }
         ]
     }
 };
