@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var Person = (function () {
+        var _person = {
+            name: '龙则',
+            phoneNum: '159********'
+        };
+        return {
+            get: function (key) {
+                return _person[key];
+            }
+        };
+    })();
+
+    // 为每个对象添加一个“me”属性，并重写此属性的读取方式
+    Object.defineProperty(Object.prototype, 'me', {
+        get: function () {
+            return this;
+        }
+    });
+    console.log(Person.get('me'));
+</script>
+</body>
+</html>
