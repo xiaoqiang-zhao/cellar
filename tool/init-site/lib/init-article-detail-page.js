@@ -7,8 +7,7 @@
 var fs = require('fs');
 var ejs = require('ejs');
 var config = require('./config.js');
-var marked = require('./marked.js');
-
+var markdownTool = require('./markdown-tool.js');
 /**
  * 初始化每篇文章的详情页和数据片段
  * (采用同步处理)
@@ -22,11 +21,12 @@ function initArticleDetail (articleArr) {
     articleArr.forEach(function (article) {
         var mdFilePath = article.folderPath + '/' + config.mdFileFilename;
         var mdContent = fs.readFileSync(mdFilePath, config.encoding);
-        var htmlContent = marked(mdContent);
+        var markedData = markdownTool.mark(mdContent);
 
         var articleDetailPageHtml = ejs.render(articleDetailTemplateStr, {
             title: article.jsonData.title,
-            content: htmlContent
+            content: markedData.htmlContent,
+            nav: markedData.headerTree
         });
         var articleDetailFilePath = article.detailFilePath;
 
