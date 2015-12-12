@@ -25,10 +25,10 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="js-">JS 数据类型</h1>
+    <h1 id="header-1">JS 数据类型</h1>
 <p>五种简单数据类型：Null、Undefined、Boolean、Number、String。</p>
 <p>一种复杂数据类型：Object（包括Function、Array、Date、Regexp四种衍生的数据类型）</p>
-<h2 id="undefined-null">undefined与null</h2>
+<h2 id="header-1-1">undefined与null</h2>
 <p>Null与Undefined的值在整个浏览器中都只有一个实例，在跨frame的环境依然相等。另外Null与Undefined并不对浏览器开放，所以编码时并不能使用他们。</p>
 <pre><code>null === window.frames[&#39;frameName&#39;]._null;    // true
 // 需要注意的是在frame加载完成后再做判断
@@ -56,7 +56,7 @@ typeof null;                    // &quot;object&quot;
 
 undefined instanceof null;      // 报错
 </code></pre><p>以上的技巧都是奇技淫巧，代码中劲量少用一些让人费解的判定。变量未声明或者未赋值时是 undefined，我们利用这个做参数的或者返回值的检查；而null是逻辑值，无论在什么情况下都没有将一个变量显式地赋值为 undefined，所以保存对象的变量或属性初始值应该设置为 null，这样做不仅可以体现null作为空对象指针的惯例，而且也有助于进一步区分 null 和 undefined。</p>
-<h2 id="boolean">boolean</h2>
+<h2 id="header-1-2">boolean</h2>
 <p>类型判断 boolean <code>instance</code> 这条路并不好走：</p>
 <pre><code>1 instanceof Number;                // false
 new Object(1) instanceof Number;    // true
@@ -86,7 +86,7 @@ Boolean(null);          // false
 
 // 对undefined恒定发了se
 Boolean(undefined);     // false
-</code></pre><h2 id="-">杂项</h2>
+</code></pre><h2 id="header-1-3">杂项</h2>
 <p>不同类型数据间的转化，</p>
 <p>new Boolean(&#39;&#39;)</p>
 <p>arr.length = &#39;&#39;</p>

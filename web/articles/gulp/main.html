@@ -25,23 +25,23 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="gulp">Gulp</h1>
+    <h1 id="header-1">Gulp</h1>
 <blockquote>
 <p>我也来学学这个新玩意。</p>
 </blockquote>
-<h2 id="-">环境</h2>
+<h2 id="header-1-1">环境</h2>
 <p>全局安装(只有全局安装的包才可以直接使用命令行)：</p>
 <pre><code>$ npm install --global gulp
 </code></pre><p>然后添加文件 <code>gulpfile.js</code>，在此文件所在的文件夹下运行命令 <code>gulp</code>，截图如下：</p>
 <p><img src="img/1.jpg" alt="image"> </p>
 <p>局部安装</p>
 <pre><code>$ npm install gulp
-</code></pre><p>如果只局部安装，通过下面命令也可以运行，原理参见另一篇文章<a href="../npm/main.html">npm</a>。</p>
+</code></pre><p>如果只局部安装，通过下面命令也可以运行，原理参见另一篇文章<a href="../npm/main.html" target="_blank">npm</a>。</p>
 <pre><code>./node_modules/gulp/bin/gulp.js
 </code></pre><p>还需要安装各种插件，这样普通的合并压缩任务才能进行</p>
 <pre><code>npm install gulp-minify-css gulp-uglify gulp-concat gulp-rename gulp-jshint --save-dev
-</code></pre><h2 id="api">API</h2>
-<p>只有四个方法，详细解释参见<a href="http://www.gulpjs.com.cn/docs/api/">gulp API</a>：</p>
+</code></pre><h2 id="header-1-2">API</h2>
+<p>只有四个方法，详细解释参见<a href="http://www.gulpjs.com.cn/docs/api/" target="_blank">gulp API</a>：</p>
 <ul>
 <li>src 获取要处理的文件    </li>
 <li>dest 定义处理后的输出路径</li>
@@ -56,7 +56,7 @@ gulp.src([&#39;css/*.css&#39;, &#39;css/img/**&#39;])
 // 不包括的写法，文件名不是 “import”的css文件
 src([&#39;css/!(import)*.css&#39;])
 </code></pre><p>另外上面的参照路径是命令的启动路径而非文件所在路径。</p>
-<h2 id="-">作为命令行工具</h2>
+<h2 id="header-1-3">作为命令行工具</h2>
 <p>gulpfile.js 文件中的default任务在没有参数的时候被调用，一般会在default中以 <code>gulp.start</code> 的方式调用全部任务。也可以在命令行单独执行某个任务，如 <code>gulp MinCSS</code>。</p>
 <pre><code>// 任务入口
 gulp.task(&#39;default&#39;, function() {
@@ -83,7 +83,7 @@ gulp.task(&#39;two&#39;, [&#39;one&#39;], function() {
 });
 
 gulp.task(&#39;default&#39;, [&#39;one&#39;, &#39;two&#39;]);
-</code></pre><h2 id="-node-">作为node的模块</h2>
+</code></pre><h2 id="header-1-4">作为node的模块</h2>
 <p>将task这层壳去掉就是node的模块了，将下面的内容在 <code>node-gulp.js</code> 中，</p>
 <pre><code>var gulp = require(&#39;gulp&#39;);
 var minifycss = require(&#39;gulp-minify-css&#39;);
@@ -99,9 +99,9 @@ gulp.src(&#39;css-1/*.css&#39;)
     .pipe(gulp.dest(outPutFolder));
 </code></pre><p>使用node调用，和下面的 “纯css按文件顺序合并压缩” 效果相同，调用方式如下：</p>
 <pre><code>node node-gulp
-</code></pre><h2 id="-">实例</h2>
-<p>在 <a href="https://github.com/longze/cellar/tree/master/web/articles/gulp-research">github</a> 上可以找到相关Demo。</p>
-<h3 id="-css-">纯css按文件顺序合并压缩</h3>
+</code></pre><h2 id="header-1-5">实例</h2>
+<p>在 <a href="https://github.com/longze/cellar/tree/master/web/articles/gulp-research" target="_blank">github</a> 上可以找到相关Demo。</p>
+<h3 id="header-1-5-1">纯css按文件顺序合并压缩</h3>
 <pre><code>var gulp = require(&#39;gulp&#39;);
 var minifycss = require(&#39;gulp-minify-css&#39;);
 var concat = require(&#39;gulp-concat&#39;);
@@ -119,7 +119,7 @@ gulp.task(&#39;MinCSS&#39;, function () {
         .pipe(rename(&#39;all-min.css&#39;))
         .pipe(gulp.dest(outPutFolder));
 });
-</code></pre><h3 id="-import-">通过import文件合并压缩</h3>
+</code></pre><h3 id="header-1-5-2">通过import文件合并压缩</h3>
 <pre><code>@import url(a.css);
 @import url(b.css);
 </code></pre><p>一些项目会把所有的css通过一个import.css文件包含进去(像上面那样)，方便页面引用和某些打包工具。通过下面的方式直接对import.css进行压缩，会自动引入其他文件，还可以保证css的顺序。    </p>
@@ -138,7 +138,7 @@ gulp.task(&#39;MinCSS&#39;, function () {
         .pipe(concat(&#39;all.css&#39;))
         .pipe(gulp.dest(outPutFolder));
 });
-</code></pre><h3 id="css-sprite">css中的图片合并 - sprite</h3>
+</code></pre><h3 id="header-1-5-3">css中的图片合并 - sprite</h3>
 <p>可以把CSS中的小图片合并成一张大图，提高网页的加载速度，关键代码示例如下：</p>
 <pre><code>var timestamp = +new Date();
 gulp.src(&#39;./css-4/*.css&#39;)
@@ -155,7 +155,7 @@ gulp.src(&#39;./css-4/*.css&#39;)
 <pre><code>.icon-1{background:url(img/sprite-1446802598452.png)}
 .icon-2{background:url(img/sprite-1446802598452.png) -13px 0}
 </code></pre><p>雪碧图的压缩不适合处理背景重复的样式，图片拼装后图片间相互干扰，所以写样式的时候需要将背景图装在一个只盛放背景图的容器中。如果有部分背景图不需要压缩可以抽取到单独的样式文件中，压缩背景图时排出此文件，也可以采用变通的方式 -- 直接使用图片元素。</p>
-<h3 id="-js">压缩松散的js</h3>
+<h3 id="header-1-5-4">压缩松散的js</h3>
 <pre><code>var gulp = require(&#39;gulp&#39;);
 var concat = require(&#39;gulp-concat&#39;);
 var rename = require(&#39;gulp-rename&#39;);
@@ -167,7 +167,7 @@ gulp.src(&#39;./js/*.js&#39;)
     .pipe(uglify())
     .pipe(rename(&#39;min.js&#39;))
     .pipe(gulp.dest(&#39;./asset&#39;));
-</code></pre><h3 id="-amd-">压缩AMD模块化代码</h3>
+</code></pre><h3 id="header-1-5-5">压缩AMD模块化代码</h3>
 <p>使用 gulp-amd-optimizer 这个插件,这个插件只能把某个或某些个文件夹下的AMD模块js倒腾在一起(做了依赖的排序),不能设置入口文件,适合all in one 的打包方式.下面是示例代码和插件地址</p>
 <pre><code>var gulp = require(&#39;gulp&#39;);
 var amdOptimize = require(&#39;gulp-amd-optimizer&#39;);
@@ -184,17 +184,17 @@ gulp.src(&#39;js-amd/*.js&#39;, {base: requireConfig.baseUrl})
     .pipe(amdOptimize(requireConfig, options))
     .pipe(concat(&#39;modules.js&#39;))
     .pipe(gulp.dest(&#39;asset&#39;));
-</code></pre><p><a href="https://www.npmjs.com/package/gulp-amd-optimizer">gulp-amd-optimizer</a></p>
+</code></pre><p><a href="https://www.npmjs.com/package/gulp-amd-optimizer" target="_blank">gulp-amd-optimizer</a></p>
 <p>没有找到分块打包的办法,如果各分块之间按文件夹天然隔离可以多用几个任务配置不同的js文件筛选规则来解决这个问题,如果分块之间有交集建议采用RequireJs的官方打包工具r.js进行打包.</p>
-<h2 id="-">感慨</h2>
+<h2 id="header-1-6">感慨</h2>
 <p>前端的技术更新太快了,从 前年的 grunt 到去年的 gulp,眼看 gulp 也要过时了,webpack 已经兴起.真是无奈,在写这篇学习笔记的时候发现这个技术竟然有些更不上时代了,期待下一篇 webpack 吧...</p>
-<h2 id="-">参考资料</h2>
-<p><a href="http://www.gulpjs.com.cn/docs/api/">gulp API</a></p>
-<p><a href="http://www.open-open.com/lib/view/open1417068223049.html">gulp入门指南</a></p>
-<p><a href="http://www.ydcss.com/archives/26">gulp教程之gulp-imagemin</a></p>
-<p><a href="https://www.npmjs.com/package/gulp-css-spriter">gulp-css-spriter 官网</a></p>
-<p><a href="http://www.codes51.com/article/detail_117947.html">gulp-css-spriter</a></p>
-<p><a href="https://www.npmjs.com/package/gulp-amd-optimizer">gulp-amd-optimizer</a></p>
+<h2 id="header-1-7">参考资料</h2>
+<p><a href="http://www.gulpjs.com.cn/docs/api/" target="_blank">gulp API</a></p>
+<p><a href="http://www.open-open.com/lib/view/open1417068223049.html" target="_blank">gulp入门指南</a></p>
+<p><a href="http://www.ydcss.com/archives/26" target="_blank">gulp教程之gulp-imagemin</a></p>
+<p><a href="https://www.npmjs.com/package/gulp-css-spriter" target="_blank">gulp-css-spriter 官网</a></p>
+<p><a href="http://www.codes51.com/article/detail_117947.html" target="_blank">gulp-css-spriter</a></p>
+<p><a href="https://www.npmjs.com/package/gulp-amd-optimizer" target="_blank">gulp-amd-optimizer</a></p>
 
     </div>
     <div class="article-message-container"></div>

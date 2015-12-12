@@ -25,11 +25,11 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="-">对页面加载和渲染的研究</h1>
+    <h1 id="header-1">对页面加载和渲染的研究</h1>
 <blockquote>
 <p>写页面时间久一点开始注意到浏览器对页面的原理，文档树(DOM Tree)、渲染树(Render Tree)、重绘(Repaint)、重排(Reflow)、HasLayout等概念开始进入视野，从零散的概念，到各种布局和Hack，到打通这些概念需要一个时间上的积累和思考。今天试试能不能打通这条筋脉。</p>
 </blockquote>
-<h2 id="-">加载和渲染流程</h2>
+<h2 id="header-1-1">加载和渲染流程</h2>
 <p>我们从浏览器加载html文档、css和js文件开始说起。</p>
 <ol>
 <li><p>浏览器从上到下依次对文档进行扫描。</p>
@@ -43,7 +43,7 @@
 <li><p>渲染开始于DOM Tree生成完成，且所有的css文件加载完成之后。只有开始渲染（也可以说是开始生成渲染树），页面上才开始出现东西，如果有css文件未完成加载那么页面一片空白。js写在慢css之前是可以执行的，但有什么用呢，让用户面对一片空白的页面，还不如js放在最后，给css的加载多留点时间。这也就是雅虎给的14条军规第5条“将css放在页面的上方”和第6条“将脚本移到底部包括内敛脚本”的原理所在。 </p>
 </li>
 </ol>
-<h2 id="-">验证流程</h2>
+<h2 id="header-1-2">验证流程</h2>
 <p>通过服务器延时返回这里构造了对静态文件的慢请求，再配合调整顺序和肉眼观察，下面依次对上面的几条做验证。</p>
 <ol>
 <li><p>这条比较基础稍作解释：上面的js片段不做回调处理访问不到下面的DOM节点，静态文件的引用反映在服务器上的响应顺序大体也是相同的，之所以说大体相同是因为网络的的不确定性会有后发先至的情况。实例 test-1.html。</p>
@@ -78,7 +78,7 @@
 &lt;/script&gt;
 &lt;script src=&quot;/demo/slowJS5&quot;&gt;&lt;/script&gt;
 </code></pre><p>5.顶部有一个慢css，整个页面在这个css加载完成前不会呈现任何内容，详情参见test-5.html。</p>
-<h2 id="-">渲染的补充</h2>
+<h2 id="header-1-3">渲染的补充</h2>
 <p>渲染树的每个节点都有大小和边距等属性，类似于盒模型（由于隐藏元素不需要显示，渲染树中并不包含DOM Tree中隐藏的元素）。当渲染树构建完成后，浏览器就可以将元素放置到正确的位置了，再根据渲染树节点的样式属性绘制出页面。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但 table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花3倍于同等元素的时间。这也是为什么我们要避免使用 table做布局的一个原因。</p>
 <p>确定节点的几何属性是一个复杂的过程，有的是从外向内来确定，像下面的常用模式</p>
 <pre><code>&lt;div class=&quot;a&quot; id=&quot;a&quot;&gt;
@@ -86,7 +86,7 @@
     &lt;div class=&quot;b&quot; id=&quot;b&quot; style=&quot;width: 50%&quot;&gt;B&lt;/div&gt;
 &lt;/div&gt;
 </code></pre><p>b的宽度需要参考a来计算。而b的高度需要通过b的宽度和内容共同决定，是一种从内向外的计算。另外Render Tree的结构和DOM Tree在结构和顺序上并非一定一一对应，<code>display: none;</code> 的节点不会出现在Render Tree中，CSS样式 <code>float</code> 和 <code>position</code> 可能使节点脱离文档流从而改变Render Tree的结构。</p>
-<h2 id="-">重绘与重排</h2>
+<h2 id="header-1-4">重绘与重排</h2>
 <p>重绘是一个元素非几何特性的改变所触发的浏览器行为，例如改变vidibility、outline、背景色、文字颜色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重排是更明显的一种改变，可以理解为渲染树需要重新计算。我这么理解重绘就是改变原有节点的各种颜色和透明度，其他的变化都是重排。比如改变文字颜色是对文本节点(TextNode)的重绘，改变文字字号是对文本节点的重排，一个节点的重绘是局部的，但一个节点的重排可能引起其他元素的重排。所以在性能上重绘一般比重排要好。</p>
 <p>下面是常见的触发重排的操作：</p>
 <p>1.DOM元素的几何属性变化</p>
@@ -121,21 +121,21 @@ changeDiv.style.height = &#39;200px&#39;;
 <li><p>在需要经常取那些引起浏览器重排的属性值时，要缓存到变量。</p>
 </li>
 </ol>
-<p>此节参考了愚人码头的文章<a href="http://www.css88.com/archives/4991#more-4991">浏览器的重绘(repaints)与重排(reflows)</a>的大段内容。</p>
-<h2 id="haslayout">hasLayout</h2>
+<p>此节参考了愚人码头的文章<a href="http://www.css88.com/archives/4991#more-4991" target="_blank">浏览器的重绘(repaints)与重排(reflows)</a>的大段内容。</p>
+<h2 id="header-1-5">hasLayout</h2>
 <p> hasLayout是IE6 IE7浏览器的特性，当一个元素触发了hasLayout时，它就会计算自身及后代元素的定位、布局。假如一个元素没有触发hasLayout，那么它的布局和定位 就由其父元素（如果父元素也没有触发hasLayout，则寻找祖先级已触发了hasLayout的元素）计算。于是，被“代管”布局的子元素，就有可能因为父元素在递归计算布局时没有面面俱到而产生了布局问题。</p>
 <p> 通常情况下，触发hasLayout可以解决大部分IE6 IE7中的布局问题。 触发hasLayout的方法，最简单无副作用的是zoom: 1;；如果这个不顶用，可以使用更为NB的position: relative;（但会带来副作用）。</p>
 <p> “闭合”（清除）浮动</p>
 <p> 前端布局时，少不了使用float属性，但是浮动之后，父容器高度会“塌陷”，所以通常情况下，需要“闭合”浮动。
- 如何“闭合”浮动，请看这篇很NB的文章 一丝冰凉：<a href="http://www.iyunlu.com/view/css-xhtml/55.html">《那些年我们一起清除过的浮动》</a>。
+ 如何“闭合”浮动，请看这篇很NB的文章 一丝冰凉：<a href="http://www.iyunlu.com/view/css-xhtml/55.html" target="_blank">《那些年我们一起清除过的浮动》</a>。
  文中除了详解7种清除浮动的方法外，还提到了hasLayout与BFC（block formatting contexts），很强大。</p>
-<p>此节摘自<a href="https://github.com/java-sparrow/forGirl/blob/master/%E5%89%8D%E7%AB%AF%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E8%B7%B5.md">一位友人的Git</a>。</p>
-<h2 id="-">牢骚</h2>
+<p>此节摘自<a href="https://github.com/java-sparrow/forGirl/blob/master/%E5%89%8D%E7%AB%AF%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E8%B7%B5.md" target="_blank">一位友人的Git</a>。</p>
+<h2 id="header-1-6">牢骚</h2>
 <p>上面这些是 HTML + CSS 的一个技术瓶颈，也是区别新手和成手的一个指标，因为这些是那些有关联样式的一个理论支撑。在这方面如果一个面试者可以从头到位给你解释清楚那给工资的时候就不要小气了。因为这种人不是一个经验用三年的那种，会主动思考，会把页面当成一种工业艺术，他工作通常不是只为了钱而是一种境界的追求。</p>
-<p>另一篇好文：<a href="http://developer.51cto.com/art/201104/257345_all.htm">高性能WEB开发之页面呈现、重绘、回流</a></p>
+<p>另一篇好文：<a href="http://developer.51cto.com/art/201104/257345_all.htm" target="_blank">高性能WEB开发之页面呈现、重绘、回流</a></p>
 <p>相关工具:</p>
-<p><a href="http://www.cnblogs.com/meteoric_cry/archive/2010/12/14/1905373.html">强大的网页性能测试工具--Speed Tracer</a></p>
-<p><a href="http://www.w3cfuns.com/article-1248-1.html">使用Chrome工具来分析页面的绘制状态</a></p>
+<p><a href="http://www.cnblogs.com/meteoric_cry/archive/2010/12/14/1905373.html" target="_blank">强大的网页性能测试工具--Speed Tracer</a></p>
+<p><a href="http://www.w3cfuns.com/article-1248-1.html" target="_blank">使用Chrome工具来分析页面的绘制状态</a></p>
 
     </div>
     <div class="article-message-container"></div>

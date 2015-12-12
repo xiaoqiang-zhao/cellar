@@ -25,16 +25,16 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="css-reset">CSS Reset</h1>
+    <h1 id="header-1">CSS Reset</h1>
 <p>页网页在不同浏览器中有不同的表象来源于两个原因：</p>
 <ul>
 <li>1、各浏览器对部分CSS的默认值设置有差异；</li>
 <li>2、对属性的支持和解释不一致（如CSS3属性 和 display:inline-block;）。</li>
 </ul>
 <p>CSS清零可以解决第一个原因引发的问题，第二个原因所引起的问题目前业界还没有收到大众承认的解决方案（只能靠人工+经验）。本文档讨论的就是问题一的解决方案。对于有没有必要使用这个技术我的经验是这样：整站不超过5屏（人的直观记忆参数）的不需要使用，否则请选择使用下面的Reset方案。</p>
-<h2 id="-">方案一 清零</h2>
+<h2 id="header-1-1">方案一 清零</h2>
 <p>有代表性的是 Meyer Eric 给出的一个重置样式，代码清单如下
-（<a href="http://meyerweb.com/eric/tools/css/reset/">原文链接</a>）：</p>
+（<a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank">原文链接</a>）：</p>
 <pre><code>/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -84,9 +84,9 @@ table {
     border-spacing: 0;
 }
 </code></pre><p>其特点是：最简单，副作用比较大，功能有限。比较适合页面丰富的站点。</p>
-<h2 id="-">方案二 订制</h2>
+<h2 id="header-1-2">方案二 订制</h2>
 <p>Normalize.css 
-（<a href="ttp://necolas.github.io/normalize.css/">官网</a>）
+（<a href="ttp://necolas.github.io/normalize.css/" target="_blank">官网</a>）
 是一个可定制的 CSS 文件，使浏览器呈现的所有元素，更一致和符合现代标准。它正是针对只需要统一的元素样式。该项目依赖于研究浏览器默认元素风格之间的差异，精确定位需要重置的样式。这是一个现代的，HTML5-ready 的 CSS 重置样式集。</p>
 <p>代码清单：</p>
 <pre><code>/*! normalize.css v3.0.2 | MIT License | git.io/normalize */

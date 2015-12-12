@@ -25,11 +25,11 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="string-">String 这货</h1>
+    <h1 id="header-1">String 这货</h1>
 <blockquote>
 <p>项目中最常用的一种数据，没有之一，你真的了解它吗？看完这篇，写的都是基础中的基础 -- 那些一定要这道的基础！</p>
 </blockquote>
-<h2 id="-string-">创建String的两种方法</h2>
+<h2 id="header-1-1">创建String的两种方法</h2>
 <pre><code>var str1 = &#39;&#39;;
 var str2 = new String();
 </code></pre><p>两种创建方法创建出来的字符串会有这样的差别:</p>
@@ -40,12 +40,12 @@ typeof str2;  // &quot;object&quot;
 但是如果是写js库或者框架就需要用另一种方式来判断是否是字符串类型了：</p>
 <pre><code>Object.prototype.toString.call(str1) ;  // &quot;[object String]&quot;
 Object.prototype.toString.call(str2);   // &quot;[object String]&quot;
-</code></pre><h2 id="es3-">ES3 下的方法和属性</h2>
-<h3 id="length">length</h3>
+</code></pre><h2 id="header-1-2">ES3 下的方法和属性</h2>
+<h3 id="header-1-2-1">length</h3>
 <p>.length</p>
 <p>字符串的一个重要的只读属性</p>
 <pre><code>&#39;abc&#39;.length;    // 3
-</code></pre><h3 id="replace">replace</h3>
+</code></pre><h3 id="header-1-2-2">replace</h3>
 <p>.replace(regexp/substr, replacement)</p>
 <p>在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
 <p>regexp/substr
@@ -54,14 +54,14 @@ Object.prototype.toString.call(str2);   // &quot;[object String]&quot;
 <pre><code>&#39;a,b,c&#39;.replace(&#39;,&#39;, &#39;-&#39;);    // &quot;a-b,c&quot;
 &#39;a,b,c&#39;.replace(/,/, &#39;-&#39;);    // &quot;a-b,c&quot;
 &#39;a,b,c&#39;.replace(/,/g, &#39;-&#39;);   // &quot;a-b-c&quot;
-</code></pre><p>正则的解释在这里就不展开了，请看<a href="../regexp/main.md">另外一份文档RegExp</a></p>
-<h3 id="split">split</h3>
+</code></pre><p>正则的解释在这里就不展开了，请看<a href="../regexp/main.md" target="_blank">另外一份文档RegExp</a></p>
+<h3 id="header-1-2-3">split</h3>
 <p>.split(separator, howmany)</p>
 <p>把一个字符串分割成字符串数组。</p>
 <p>separator    必需。字符串或正则表达式，用该参数分割字符串。</p>
 <p>howmany    可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。</p>
 <pre><code>&#39;,a1a,b2b,c3c&#39;.split(&#39;,&#39;, 2);    // [&quot;&quot;, &quot;a1a&quot;]
-</code></pre><h3 id="slice">slice</h3>
+</code></pre><h3 id="header-1-2-4">slice</h3>
 <p>.slice(start,end)</p>
 <p>提取字符串的某个部分，并以新的字符串返回被提取的部分。</p>
 <p>start    要抽取的片断的起始下标。
@@ -75,7 +75,7 @@ Object.prototype.toString.call(str2);   // &quot;[object String]&quot;
 &#39;abc&#39;.slice(1);         // “bc&quot;
 &#39;abc&#39;.slice(-2, -1);    // &quot;b&quot;
 &#39;abc&#39;.slice(-1);        // &quot;c&quot;
-</code></pre><h3 id="substring">substring</h3>
+</code></pre><h3 id="header-1-2-5">substring</h3>
 <p>.substring(start,stop)</p>
 <p>提取字符串中介于两个指定下标之间的字符。</p>
 <p>start    必需。一个非负的整数，规定要提取的子串的起始位置。</p>
@@ -85,7 +85,7 @@ Object.prototype.toString.call(str2);   // &quot;[object String]&quot;
 &#39;abc&#39;.substring(1, 2);    // &quot;b&quot;
 &#39;abc&#39;.substring(2, 1);    // &quot;b&quot;
 </code></pre><p>start大于stop依然可以提取到字符串。start没有负数。</p>
-<h3 id="substr">substr</h3>
+<h3 id="header-1-2-6">substr</h3>
 <p>.substr(start,length)</p>
 <p>从起始索引号提取字符串中指定数目的字符。</p>
 <p>start    必需。要抽取的子串的起始下标。
@@ -94,7 +94,7 @@ Object.prototype.toString.call(str2);   // &quot;[object String]&quot;
 length    可选。子串中的字符数。必须是数值。
 如果省略了该参数，那么返回从开始位置到结尾的字串</p>
 <pre><code>&#39;abc&#39;.substr(2, 1);    // &quot;c&quot;
-</code></pre><h3 id="match">match</h3>
+</code></pre><h3 id="header-1-2-7">match</h3>
 <p>.match(searchvalue/regexp)</p>
 <p>在字符串内检索指定的字符串片段或正则匹配，另外如果参数不是正则会将参数转换成正则再继续，所以如果你只想匹配字符串，请注意转译的问题，参看下面代码的第5条。</p>
 <pre><code>&#39;abc&#39;.match(&#39;a&#39;);               // [&quot;a&quot;]
@@ -104,26 +104,26 @@ length    可选。子串中的字符数。必须是数值。
 &#39;[a-c]bd&#39;.match(&#39;\\[a\\-c\\]&#39;); // [&quot;[a-c]&quot;]  第5条
 &#39;abc&#39;.match(&#39;/[a-c]/g&#39;);        // null
 &#39;abc&#39;.match(/[a-c]/g);          // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
-</code></pre><h3 id="search">search</h3>
+</code></pre><h3 id="header-1-2-8">search</h3>
 <p>.search(stringObject/regexp)</p>
 <p>检索字符串中指定的子字符串，并返回位置，匹配方式和需要注意的点同上面的 <code>match</code>。另外如果你的目的就是获取字符串的位置，用下面的 <code>indexOf</code> 是一个更好的选择。</p>
 <pre><code>&#39;abc&#39;.search(/[a-c]/g);    // 0
 &#39;abc&#39;.search(&#39;a&#39;);         // 0
 &#39;abc&#39;.search(&#39;[a-c]&#39;);     // 0
 &#39;abc&#39;.search(&#39;d&#39;);         // -1
-</code></pre><h3 id="indexof">indexOf</h3>
+</code></pre><h3 id="header-1-2-9">indexOf</h3>
 <p>.indexOf(searchvalue,fromindex)</p>
 <p>searchvalue    必需。规定需检索的字符串值。</p>
 <p>fromindex    可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。</p>
 <pre><code>&#39;abc&#39;.indexOf(&#39;b&#39;, 0);    // 1
 &#39;abc&#39;.indexOf(&#39;b&#39;, 1);    // 1
 </code></pre><p>可以用第二个参数提高性能，fromindex 为非正整数时视为零。</p>
-<h3 id="lastindexof">lastIndexOf</h3>
+<h3 id="header-1-2-10">lastIndexOf</h3>
 <p>.lastIndexOf(searchvalue, fromindex)</p>
 <p>返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。</p>
 <p>searchvalue    必需。规定需检索的字符串值。</p>
 <p>fromindex    可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的最后一个字符处开始检索。</p>
-<h3 id="charat">charAt</h3>
+<h3 id="header-1-2-11">charAt</h3>
 <p>.charAt(index)</p>
 <p>返回指定位置的字符。</p>
 <p>index    必需。表示字符串中某个位置的数字，即字符在字符串中的下标。</p>
@@ -136,7 +136,7 @@ length    可选。子串中的字符数。必须是数值。
 &#39;abc&#39;.charAt(&#39;b&#39;);    // &quot;a&quot;
 &#39;abc&#39;.charAt();       // &quot;a&quot;
 &#39;abc&#39;.charAt(true);   // &quot;b&quot; ，true会被转为1
-</code></pre><h3 id="charcodeat">charCodeAt</h3>
+</code></pre><h3 id="header-1-2-12">charCodeAt</h3>
 <p>.charCodeAt(index)</p>
 <p>返回指定位置的字符的 Unicode 编码。这个返回值是 0 - 65535 之间的整数。</p>
 <p>index    必需。表示字符串中某个位置的数字，即字符在字符串中的下标。</p>
@@ -144,31 +144,31 @@ length    可选。子串中的字符数。必须是数值。
 &#39;a\na&#39;.charCodeAt(1);    //10
 &#39;a\na&#39;.charCodeAt(2);    //97
 </code></pre><p>转义字符会被当做一个字符来处理</p>
-<h3 id="tolowercase">toLowerCase</h3>
+<h3 id="header-1-2-13">toLowerCase</h3>
 <p>.toLowerCase()</p>
 <p>返回一个新的字符串，将所有大写字符全部被转换为了小写字符。</p>
 <pre><code>var a = &#39;AbC&#39;;
 var b = a.toLowerCase(); // a的值为AbC，b的值为abc
 </code></pre><p>另外还有个方法 <code>.toLocaleLowerCase()</code> 按照本地方式把字符串转换为小写。
 只有几种语言（如土耳其语）具有地方特有的大小写映射，所有该方法的返回值通常与 <code>.toLowerCase()</code> 一样。</p>
-<h3 id="touppercase">toUpperCase</h3>
+<h3 id="header-1-2-14">toUpperCase</h3>
 <p>.toUpperCase()</p>
 <p>返回一个新的字符串，将所有小写字符全部被转换为了大写字符。</p>
 <pre><code>var a = &#39;AbC&#39;;
 var b = a.toUpperCase(); // a的值任为AbC，b的值为ABC
 </code></pre><p>另外还有个方法 <code>.toLocaleUpperCase()</code> 按照本地方式把字符串转换为大写。
 只有几种语言（如土耳其语）具有地方特有的大小写映射，所有该方法的返回值通常与 <code>.toUpperCase()</code> 一样。</p>
-<h3 id="concat">concat</h3>
+<h3 id="header-1-2-15">concat</h3>
 <p>.concat(stringX, ..., stringX)</p>
 <p>连接两个或多个字符串。</p>
 <p>stringX    必需。将被连接为一个字符串的一个或多个字符串对象。</p>
 <pre><code>&#39;abc&#39;.concat(&#39;d&#39;, new String(&#39;e&#39;));    // &quot;abcde&quot;
 var a = &#39;abc&#39;; a.concat(&#39;d&#39;);          // a的值依然是abc
-</code></pre><h3 id="fromcharcode">fromCharCode</h3>
+</code></pre><h3 id="header-1-2-16">fromCharCode</h3>
 <p>String.fromCharCode(numX, ..., numX)</p>
 <p>接受一个指定的 Unicode 值，然后返回一个字符串。</p>
 <pre><code>String.fromCharCode(97, 98, 99);    // &quot;abc&quot;
-</code></pre><h3 id="localecompare">localeCompare</h3>
+</code></pre><h3 id="header-1-2-17">localeCompare</h3>
 <p>.localeCompare(target)</p>
 <p>用本地特定的顺序来比较两个字符串。</p>
 <p>（ECMAscript 标准并没有规定如何进行本地特定的比较操作，它只规定该函数采用底层操作系统提供的排序规则。）</p>
@@ -176,14 +176,14 @@ var a = &#39;abc&#39;; a.concat(&#39;d&#39;);          // a的值依然是abc
 &#39;b&#39;.localeCompare(&#39;b&#39;);    // 0
 &#39;b&#39;.localeCompare(&#39;c&#39;);    // -1
 &#39;b&#39;.localeCompare(&#39;B&#39;);    // -1
-</code></pre><h2 id="-html-">转为特定html的几个方法</h2>
+</code></pre><h2 id="header-1-3">转为特定html的几个方法</h2>
 <p>由原生方法转html要比拼接字符串或者用Array join要快很多。</p>
-<h3 id="link">link</h3>
+<h3 id="header-1-3-1">link</h3>
 <p>.link(url)</p>
 <p>添加a标签，参数为链接地址</p>
 <pre><code>&#39;abc&#39;.link(&#39;#name&#39;);             // &quot;&lt;a href=&quot;#name&quot;&gt;abc&lt;/a&gt;&quot;
 &#39;abc&#39;.link(&#39;http://baidu.com&#39;);  // &quot;&lt;a href=&quot;http://baidu.com&quot;&gt;abc&lt;/a&gt;&quot;
-</code></pre><h3 id="anchor">anchor</h3>
+</code></pre><h3 id="header-1-3-2">anchor</h3>
 <p>.anchor(anchorname)</p>
 <p>添加a标签，通过a标签的name生成锚点</p>
 <pre><code>&#39;abc&#39;.anchor(&#39;anchorName&#39;);    // &quot;&lt;a name=&quot;anchorName&quot;&gt;abc&lt;/a&gt;&quot;
@@ -197,53 +197,53 @@ var a = &#39;abc&#39;; a.concat(&#39;d&#39;);          // a的值依然是abc
 <pre><code>&lt;a href=&quot;#anchorName&quot;&gt;点击跳到锚点“abc”&lt;/a&gt;
 </code></pre><p>用js跳到锚点的方法</p>
 <pre><code>location.hash = &#39;anchorName&#39;;
-</code></pre><h3 id="italics">italics</h3>
+</code></pre><h3 id="header-1-3-3">italics</h3>
 <p>.italics()</p>
 <p>添加i标签，转为斜体</p>
 <pre><code>&#39;abc&#39;.italics();    // &quot;&lt;i&gt;abc&lt;/i&gt;&quot;
-</code></pre><h3 id="strike">strike</h3>
+</code></pre><h3 id="header-1-3-4">strike</h3>
 <p>.strike()</p>
 <p>添加strike标签，为文字添加删除线</p>
 <pre><code>&#39;abc&#39;.strike();    // &quot;&lt;strike&gt;abc&lt;/strike&gt;&quot;
-</code></pre><h3 id="big">big</h3>
+</code></pre><h3 id="header-1-3-5">big</h3>
 <p>.big()</p>
 <p>添加big标签，相当于font-size:larger;</p>
 <pre><code>&#39;abc&#39;.big();    // &lt;big&gt;abc&lt;/big&gt;
-</code></pre><h3 id="small">small</h3>
+</code></pre><h3 id="header-1-3-6">small</h3>
 <p>.small()</p>
 <p>添加small标签，缩小文字大小</p>
 <pre><code>&#39;abc&#39;.small();    // &quot;&lt;small&gt;abc&lt;/small&gt;&quot;
-</code></pre><h3 id="bold">bold</h3>
+</code></pre><h3 id="header-1-3-7">bold</h3>
 <p>.bold()</p>
 <p>添加b标签，加粗文字</p>
 <pre><code>&#39;abc&#39;.bold();    // &quot;&lt;b&gt;abc&lt;/b&gt;&quot;
-</code></pre><h3 id="fontcolor">fontcolor</h3>
+</code></pre><h3 id="header-1-3-8">fontcolor</h3>
 <p>.fontcolor()</p>
 <p>添加font标签，定义字体颜色</p>
 <pre><code>&#39;abc&#39;.fontcolor(&#39;red&#39;);    // &quot;&lt;font color=&quot;red&quot;&gt;abc&lt;/font&gt;&quot;
 &#39;abc&#39;.fontcolor(&#39;333&#39;);    // &quot;&lt;font color=&quot;333&quot;&gt;abc&lt;/font&gt;&quot;
-</code></pre><h3 id="fontsize">fontsize</h3>
+</code></pre><h3 id="header-1-3-9">fontsize</h3>
 <p>.fontsize()</p>
 <p>添加font标签，定义文字大小</p>
 <pre><code>&#39;abc&#39;.fontsize(&#39;14&#39;);      // &quot;&lt;font size=&quot;14&quot;&gt;abc&lt;/font&gt;&quot;
 &#39;abc&#39;.fontsize(&#39;14px&#39;);    // &quot;&lt;font size=&quot;14px&quot;&gt;abc&lt;/font&gt;&quot;
 &#39;abc&#39;.fontsize(&#39;14em&#39;);    // &quot;&lt;font size=&quot;14em&quot;&gt;abc&lt;/font&gt;&quot;
-</code></pre><h3 id="fixed">fixed</h3>
+</code></pre><h3 id="header-1-3-10">fixed</h3>
 <p>添加tt标签，显示为打印机字体</p>
 <pre><code>&#39;abc&#39;.fixed();    // &quot;&lt;tt&gt;abc&lt;/tt&gt;&quot;
-</code></pre><h3 id="blink">blink</h3>
+</code></pre><h3 id="header-1-3-11">blink</h3>
 <p>添加blink标签，使字体闪动。
 但是由于blink标签没有别列入规范，浏览器兼容性也无法保证，所以不建议使用</p>
 <pre><code>&#39;abc&#39;.blink();    //&quot;&lt;blink&gt;abc&lt;/blink&gt;&quot;
-</code></pre><h3 id="sup">sup</h3>
+</code></pre><h3 id="header-1-3-12">sup</h3>
 <p>添加sup标签，把字符串显示为上标。</p>
 <pre><code>&#39;abc&#39;.sup();    //&lt;sup&gt;abc&lt;/sup&gt;
-</code></pre><h3 id="sub">sub</h3>
+</code></pre><h3 id="header-1-3-13">sub</h3>
 <p>添加sup标签，把字符串显示为下标。</p>
 <pre><code>&#39;abc&#39;.sub();    //&lt;sub&gt;abc&lt;/sub&gt;
-</code></pre><h2 id="-">参考</h2>
-<p><a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp">w3school的array部分</a></p>
-<p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">ECMA-262号官方文档</a></p>
+</code></pre><h2 id="header-1-4">参考</h2>
+<p><a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank">w3school的array部分</a></p>
+<p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank">ECMA-262号官方文档</a></p>
 
     </div>
     <div class="article-message-container"></div>

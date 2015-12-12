@@ -25,10 +25,10 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="backbone-">Backbone 实践分享</h1>
+    <h1 id="header-1">Backbone 实践分享</h1>
 <p>序言：</p>
 <p>用<code>Backbone</code>做过两个项目了，走过一些弯路也发现一些较好的实践方案，在此写下来与大家分享：</p>
-<h2 id="collection-model">Collection 与 Model</h2>
+<h2 id="header-1-1">Collection 与 Model</h2>
 <p>很多应用都是从列表开始，到详情页面，详情页面必然又可以返回列表页，这就需要数据的支撑。</p>
 <p>传统的方案会进行多次数据的获取，已经获取过的数据没有很好的缓存机制，在这里分享一种数据管理的实践方案：</p>
 <p>一个<code>Collection</code>，多个<code>Model</code>，两个<code>View</code>配合实现从列表到详情再到列表，

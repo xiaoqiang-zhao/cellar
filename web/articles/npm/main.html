@@ -25,11 +25,11 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="npm">npm</h1>
+    <h1 id="header-1">npm</h1>
 <blockquote>
 <p>NodeJs 的默认包管理器。</p>
 </blockquote>
-<h2 id="-">常用命令</h2>
+<h2 id="header-1-1">常用命令</h2>
 <p>为新手注：如果是Mac，遇到权限问题前面加 <code>sudo</code>，如果需要密码则为开机密码。</p>
 <p>查看npm版本</p>
 <pre><code>npm -v
@@ -48,7 +48,7 @@ npm install gulp@3.7.0
 // “bash: /usr/local/bin/gulp: No such file or directory”
 </code></pre><p>卸载全局包 <code>gulp</code></p>
 <pre><code>npm uninstall gulp -g
-</code></pre><h2 id="-">一些说明</h2>
+</code></pre><h2 id="header-1-2">一些说明</h2>
 <p>只有全局安装的包才可以直接使用命令行，但是并不是所有包都提供命令行功能，在 <code>/usr/local/bin</code> 路径下有相关文件的才能提供命令行功能，但是该文件夹一般为隐藏文件夹。</p>
 <p>局部安装的包并非一定不能使用命令行，只是稍微间接一点，以gulp为例，可以在安装目录下这样使用命令行：</p>
 <pre><code> ./node_modules/gulp/bin/gulp.js
@@ -60,15 +60,15 @@ npm install gulp@3.7.0
 </code></pre><p>答：不行，需要做脚本声明才可以，你看一下gulp.js 第一行就是，代码如下：</p>
 <pre><code>#!/usr/bin/env node
 </code></pre><p>问：噎，我加了为什么还是不行？</p>
-<p>答：需要赋权限，代码如下，这个命令的详细解释看<a href="http://lucky16.iteye.com/blog/577182">这篇</a>文章。    </p>
+<p>答：需要赋权限，代码如下，这个命令的详细解释看<a href="http://lucky16.iteye.com/blog/577182" target="_blank">这篇</a>文章。    </p>
 <pre><code>chmod a+x my.js
 </code></pre><p>问：直接这样吗？</p>
 <pre><code>my.js
 </code></pre><p>答：需要下面这样：</p>
 <pre><code>./my.js
 </code></pre><p>问：这次真的可以了吗？好麻烦，这么多坑</p>
-<p>答：当然可以了！其实上面这些配置是在 <code>npm install xxx</code> 的时候就做好了不需要手动配置，如果你要开发命令行工具可以去查看<a href="http://javascriptplayground.com/blog/2012/08/writing-a-command-line-node-tool/">这篇文章</a>。</p>
-<h2 id="-">一个包的基本构成</h2>
+<p>答：当然可以了！其实上面这些配置是在 <code>npm install xxx</code> 的时候就做好了不需要手动配置，如果你要开发命令行工具可以去查看<a href="http://javascriptplayground.com/blog/2012/08/writing-a-command-line-node-tool/" target="_blank">这篇文章</a>。</p>
+<h2 id="header-1-3">一个包的基本构成</h2>
 <p>package.json 描述文件，包括包的介绍，版本，依赖，作者，git 和 npm 等信息。</p>
 <p>CHANGELOG.md 存放包升级时个版本的改动。</p>
 <p>LICENCE 许可协议</p>
@@ -85,14 +85,14 @@ npm install gulp@3.7.0
 &quot;private&quot;: true
 </code></pre><p>npm WARN package.json demo@ No README data</p>
 <p>npm WARN package.json demo@ No license field.</p>
-<h2 id="-">写一个包贡献给全世界</h2>
+<h2 id="header-1-4">写一个包贡献给全世界</h2>
 <p>待续...</p>
-<h2 id="-">一些技巧</h2>
+<h2 id="header-1-5">一些技巧</h2>
 <p>安装国内的镜像npm，可使安装更快，15分钟与国外同步一次</p>
 <pre><code>npm install -g cnpm --registry=http://registry.npm.taobao.org
-</code></pre><h2 id="-">参考资料</h2>
-<p><a href="http://segmentfault.com/a/1190000000471219">淘宝 NPM 镜像</a></p>
-<p><a href="https://cnodejs.org/topic/4f9904f9407edba21468f31e">npm国内镜像介绍</a></p>
+</code></pre><h2 id="header-1-6">参考资料</h2>
+<p><a href="http://segmentfault.com/a/1190000000471219" target="_blank">淘宝 NPM 镜像</a></p>
+<p><a href="https://cnodejs.org/topic/4f9904f9407edba21468f31e" target="_blank">npm国内镜像介绍</a></p>
 
     </div>
     <div class="article-message-container"></div>

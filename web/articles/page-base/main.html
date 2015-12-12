@@ -25,13 +25,13 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="-">页面的基础</h1>
-<h2 id="h5-">H5的文档类型标识</h2>
+    <h1 id="header-1">页面的基础</h1>
+<h2 id="header-1-1">H5的文档类型标识</h2>
 <pre><code>&lt;!DOCTYPE html&gt;
-</code></pre><h2 id="-css-">外部CSS的引入</h2>
+</code></pre><h2 id="header-1-2">外部CSS的引入</h2>
 <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/all.css&quot;/&gt;
 </code></pre><p>注意一定要有 <code>rel=&quot;stylesheet&quot;</code> 否则无法识别样式，另外将其放在前面显得整齐好看，有那个样式漏掉了此设置一目了然。</p>
-<h2 id="all-in-one">all in one</h2>
+<h2 id="header-1-3">all in one</h2>
 <p>如果采用 all in one(上线时将全部css打包压缩进一个css中的方式)打包，定义all.css文件并用 <code>@import</code> 的方式集中引入全部样式。</p>
 <pre><code>/* 重置样式 */
 @import url(reset.css);
@@ -42,7 +42,7 @@
 /* 组件样式 */
 
 /* 业务样式 */
-</code></pre><h2 id="-meta-">移动站设置 Meta 标签</h2>
+</code></pre><h2 id="header-1-4">移动站设置 Meta 标签</h2>
 <pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;&gt;
 // width=device-width - 设置页面宽度等于设备宽度
 // initial-scale=1    - 页面首次被显示是可视区域的缩放级别，取值1.0则页面按实际尺寸显示，无任何缩放

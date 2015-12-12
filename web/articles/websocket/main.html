@@ -25,20 +25,20 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="websocket">WebSocket</h1>
-<h2 id="-">概述</h2>
+    <h1 id="header-1">WebSocket</h1>
+<h2 id="header-1-1">概述</h2>
 <p>一个双向链接协议，本文主要介绍Node下的实例。更理论的东西请移步这篇知乎帖子：
-<a href="http://www.zhihu.com/question/20215561">http://www.zhihu.com/question/20215561</a></p>
-<h2 id="-">安装</h2>
+<a href="http://www.zhihu.com/question/20215561" target="_blank">http://www.zhihu.com/question/20215561</a></p>
+<h2 id="header-1-2">安装</h2>
 <p>全局安装 </p>
 <pre><code>npm install -g websocket
 </code></pre><p>局部安装 </p>
 <p>   npm install websocket</p>
 <p>需要注意的是安装目录需要有package.json文件，否则安装失败。</p>
-<h2 id="-">描述</h2>
+<h2 id="header-1-3">描述</h2>
 <p>做技术探索，从前端到后端搭建 websocket 的应用。建立双相连接，前端和后端互发信息。</p>
 <p>页面表现为通过不同的浏览器 或者 多台设备访问同一页面，在其中的一台设备上的操作一个div块的背景颜色会同步到其他浏览器或设备上。</p>
-<h2 id="-">后端</h2>
+<h2 id="header-1-4">后端</h2>
 <pre><code>var SocketServer = require(&#39;websocket&#39;).server;
 
 // 防止socket重复开启
@@ -87,8 +87,8 @@ return {
     status: 0,
     data: &#39;socket接口初始化完成&#39;
 };
-</code></pre><p>data函数是一个普通的http服务所调用的函数，可以在<a href="https://github.com/longze/cellar">GitHub</a> 上 service/websocket-demo 下找到并运行。在服务器端用 <code>connection.send</code> 向客户端发信息，用 <code>connection.on(&#39;message&#39;, callback）</code> 监听客户端发来的信息，连接建立后每隔3秒会向客户端发送消息。</p>
-<h2 id="-">前端脚本</h2>
+</code></pre><p>data函数是一个普通的http服务所调用的函数，可以在<a href="https://github.com/longze/cellar" target="_blank">GitHub</a> 上 service/websocket-demo 下找到并运行。在服务器端用 <code>connection.send</code> 向客户端发信息，用 <code>connection.on(&#39;message&#39;, callback）</code> 监听客户端发来的信息，连接建立后每隔3秒会向客户端发送消息。</p>
+<h2 id="header-1-5">前端脚本</h2>
 <pre><code>var host = &#39;ws://&#39; + location.host + &#39;/red-black-box&#39;;
 // 和服务器建立socket连接，信道建立
 socket = new WebSocket(host);
@@ -113,14 +113,14 @@ $(&#39;div div&#39;).click(function () {
     socket.send($(this).attr(&#39;id&#39;));
 });
 </code></pre><p>为了简单起见，我们用jQuery的Ajax发起开启websocket的请求，我们用 <code>socket.send</code> 向服务器发送请求，用 <code>socket.onmessage</code> 监听服务器发来的信息。</p>
-<h2 id="-">浏览器支持情况</h2>
+<h2 id="header-1-6">浏览器支持情况</h2>
 <p>Chrome 14 </p>
 <p>Firefox 7 </p>
 <p>IE 9 - via downloadable Silverlight extension</p>
 <p>IE 10 (from Windows 8 developer preview) </p>
 <p>Safari 5.0.2 </p>
 <p>iOS 4.2</p>
-<p>信息来源：<a href="http://stackoverflow.com/questions/1253683/what-browsers-support-html5-websocket-api">http://stackoverflow.com/questions/1253683/what-browsers-support-html5-websocket-api</a></p>
+<p>信息来源：<a href="http://stackoverflow.com/questions/1253683/what-browsers-support-html5-websocket-api" target="_blank">http://stackoverflow.com/questions/1253683/what-browsers-support-html5-websocket-api</a></p>
 
     </div>
     <div class="article-message-container"></div>

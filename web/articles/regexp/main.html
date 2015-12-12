@@ -25,48 +25,48 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="regexp-">RegExp 代码中的代码</h1>
+    <h1 id="header-1">RegExp 代码中的代码</h1>
 <blockquote>
 <p>正则一直是一块硬骨头，有很多写了几年代码的人依然搞不定这玩意，今天我来换个思路学正则。先给出“正则能做什么”，再传授“解析语法与技巧”，然后给出我收集整理的一些常用正则，最后从“原理与性能”出发对各种正则方案优中选优。</p>
 </blockquote>
-<h2 id="-">正则能做什么</h2>
+<h2 id="header-1-1">正则能做什么</h2>
 <p>我们先抛开语法与技巧，看看此兽究竟有什么神通。（此节中只做展示，技术细节会放在下一节分析）</p>
-<h3 id="-">检测格式</h3>
+<h3 id="header-1-1-1">检测格式</h3>
 <p>这是最常用的一个功能，比如下面判断某字符串是否全部由数字组成</p>
 <pre><code>/^\d+$/.test(&#39;0123&#39;);   // true
 /^\d+$/.test(&#39;123.&#39;);   // false
-</code></pre><h3 id="-">内容替换</h3>
+</code></pre><h3 id="header-1-1-2">内容替换</h3>
 <p>这个也比较常用，比如下面将字符串中的数字替换成#号</p>
 <pre><code>&#39;1a2b3c&#39;.replace(/\d/g, &#39;#&#39;);   // &quot;#a#b#c&quot;
 </code></pre><p>还有一些更灵活的字符串替换用法</p>
 <pre><code>&#39;a11,a12&#39;.replace(/[a-zA-Z]+(\d+)/g, function (matchStr, $1) {
     return $1;
 });  // 运行结果：11,12
-</code></pre><h3 id="-">提取内容</h3>
+</code></pre><h3 id="header-1-1-3">提取内容</h3>
 <p>字符串的 <code>match</code> 方法可以将匹配到的字符串片段复制到数据中并返回</p>
 <pre><code>&#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&gt;&lt;/div&gt;&#39;.match(/&lt;span&gt;.*?&lt;\/span&gt;/g);
 // [&quot;&lt;span&gt;aa&lt;/span&gt;&quot;, &quot;&lt;span&gt;bb&lt;/span&gt;&quot;]
 </code></pre><p>还有正则的 <code>exec</code> 方法在下面介绍。</p>
-<h3 id="-">确定位置</h3>
+<h3 id="header-1-1-4">确定位置</h3>
 <p>用下面两种方法可以获得被匹配字符串片段的起始和终止位置。</p>
 <pre><code>var regexp = /&lt;span&gt;.*?&lt;\/span&gt;/g;
 regexp.exec(&#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&gt;&lt;/div&gt;&#39;);
 // 运行结果是 [&quot;&lt;span&gt;aa&lt;/span&gt;&quot;] ,regexp.lastIndex的值是 20(从1数起，第一个span结尾&gt;的位置)
 &#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&gt;&lt;/div&gt;&#39;.search(regexp);
 // 5 （从0数起，第一个span的&lt;的位置）
-</code></pre><h3 id="-">分割字符串</h3>
+</code></pre><h3 id="header-1-1-5">分割字符串</h3>
 <p>一般的字符串分割都是基于固定的分隔符，但是在某些场景下需要用正则做更复杂的处理，
 比如用空格来分割字符串，如果有两个连续的空格出来的结果可能不是我们期待的，
 这时就要用正则来处理，如下例：</p>
 <pre><code>&#39;a  b c&#39;.split(&#39; &#39;);    // [&quot;a&quot;, &quot;&quot;, &quot;b&quot;, &quot;c&quot;]
 &#39;a  b c&#39;.split(/ +/);   // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
-</code></pre><h2 id="-">解析语法与技巧</h2>
+</code></pre><h2 id="header-1-2">解析语法与技巧</h2>
 <p>上面的5项内容其实可以分为两类，“检测格式” 和 “确定位置”都是在确定有还是没有，如果有的话位置在什么地方，其他的三项功能是和匹配内容密切相关的。下面我们将正则的各种语法与技巧溶入实例中来逐项的说明：</p>
-<h3 id="-">新建正则</h3>
+<h3 id="header-1-2-1">新建正则</h3>
 <p>两种方式等价，注意字符转译，代码如下：</p>
 <pre><code>new RegExp(&#39;\\d&#39;, &#39;g&#39;)
 /\d/g
-</code></pre><h3 id="-">简写字符与常用语法</h3>
+</code></pre><h3 id="header-1-2-2">简写字符与常用语法</h3>
 <p>我们以“检测合格”为例来探究匹配的技巧。</p>
 <p><code>\d</code> ：匹配数字，相当于 <code>[0-9]</code></p>
 <p><code>\w</code> ：匹配数字和字母，相当于 <code>[0-9a-zA-Z]</code></p>
@@ -84,7 +84,7 @@ regexp.exec(&#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&g
 /^\d+$/.test(&#39;a1a&#39;);    // false
 /^\d+$/.test(&#39;123&#39;);    // true
 </code></pre><p>细心的你可能注意到了示例二中的正则多了一个加号，对于这个加号在下一节中有详解。</p>
-<h3 id="-">重复与修饰符</h3>
+<h3 id="header-1-2-3">重复与修饰符</h3>
 <p><code>{n, m}</code> ：匹配前一项至少n次，但不能超过m次</p>
 <p><code>{n,}</code> ：匹配前一项n次或更多次</p>
 <p><code>{n}</code> ：匹配前一项n次</p>
@@ -111,7 +111,7 @@ regexp.exec(&#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&g
 <pre><code>/^\d+$/m.test(&#39;123.\n123&#39;);     // true
 // \n是换行符，上面的正则在第一行（\n前面的部分）没有找到匹配的字符串就接着在第二行（\n后面的部分）找
 // 并且找到了可以匹配的字符串，所以返回true
-</code></pre><h3 id="-">贪婪</h3>
+</code></pre><h3 id="header-1-2-4">贪婪</h3>
 <p>字符串的 <code>match</code> 方法：将匹配到的一个或多个字符串片段放入数组中并返回，如果没有匹配项返回 <code>null</code>。</p>
 <pre><code>&#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&gt;&lt;/div&gt;&#39;.match(/&lt;span&gt;.*?&lt;\/span&gt;/g);
 // [&quot;&lt;span&gt;aa&lt;/span&gt;&quot;, &quot;&lt;span&gt;bb&lt;/span&gt;&quot;]
@@ -139,7 +139,7 @@ regexp.exec(&#39;&lt;div&gt;&lt;span&gt;aa&lt;/span&gt;&lt;span&gt;bb&lt;/span&g
 <pre><code>&#39;aaab&#39;.match(/a+?b/);   // [&quot;aaab&quot;]
 </code></pre><p>我们解释一下这种现象：“尽可能少的匹配”可以被理解成只匹配 &quot;ab&quot;，但是正则是从左到右的匹配，“a+”匹配1到多个“a”再组合一个“b”，于是就得到了上面结果。在这种“非贪婪 + 固定匹配”模式的匹配中非贪婪部分会呈现出贪婪性，所以上面的正则与下面的正则结果相同。</p>
 <pre><code>&#39;aaab&#39;.match(/a+b/);    // [&quot;aaab&quot;]
-</code></pre><h3 id="-">断言</h3>
+</code></pre><h3 id="header-1-2-5">断言</h3>
 <p>语法：</p>
 <p><code>(?=p)</code> ：零宽正向先行断言，要求接下来的字符串都与 <code>p</code> 匹配，但不能包含匹配 <code>p</code> 的那些字符</p>
 <p><code>(?!p)</code> ：零宽负向先行断言，要求接下来的字符串不与 <code>p</code> 匹配</p>
@@ -170,7 +170,7 @@ Require that the following characters do not match the pattern p.</p>
 if (result &amp;&amp; result.length === 2) {
     result = result[1];                            // 如找到，赋值字符串
 }
-</code></pre><h3 id="-">选择、分组和引用</h3>
+</code></pre><h3 id="header-1-2-6">选择、分组和引用</h3>
 <p>选择最容易理解，就是条件“或”的意思，语法上采用 <code>|</code> （竖线），如下示例，正则匹配“字母或数字”</p>
 <pre><code>&#39;a1b2c345#-!d67&#39;.match(/\d+|[a-zA-Z]+/g);   // [&quot;a&quot;, &quot;1&quot;, &quot;b&quot;, &quot;2&quot;, &quot;c&quot;, &quot;345&quot;, &quot;d&quot;, &quot;67&quot;]
 // 语法解释：匹配多个数字 或 多个字母
@@ -211,7 +211,7 @@ if (result &amp;&amp; result.length === 2) {
 // &quot;11a,12a&quot;
 &#39;a11,a12&#39;.replace(/(?:[a-zA-Z]+)(\d+)/g, &#39;$2$1&#39;);
 // &quot;$211,$212&quot;可以看到排除引用语法(?:的作用，如果没有第二个引用$2被当做普通的字符串处理
-</code></pre><h2 id="-">常用正则</h2>
+</code></pre><h2 id="header-1-3">常用正则</h2>
 <p>因为理论讲多了看完也忘的差不多了，所以我们直接进入实践，这里的例子都是我工作中收集的，也还将继续收集下去，当然欢迎补充和指正。
 有些例子会有方案的进化，这就涉及到原理和优化技巧了，如果对其中提到的东西有疑问可以去下一节看看。</p>
 <p>正则的语法与技巧就如上面所言了，编写正则还有很重要的一环就是翻译，
@@ -222,7 +222,7 @@ if (result &amp;&amp; result.length === 2) {
 第二个阶段是语法的翻译阶段，这一阶段考验对语法的熟练程度和使用技巧，
 如上节提到的“字符串是否全部由数字组成”，翻译成“以数字开始，以数字结尾，且中间无其他字符”。
 这一节会给出很多日常开发中能用到实例，先看第一个：</p>
-<h3 id="qq-">QQ号</h3>
+<h3 id="header-1-3-1">QQ号</h3>
 <p>QQ最小号10000，这个容易查到，但最多几位呢？10位！这是我找到的十位账号：2,723,765,184。
 所以正则就简单了：</p>
 <pre><code>/^[1-9]\d{4,9}$/.test(&#39;2723765184&#39;);    // true
@@ -231,7 +231,7 @@ if (result &amp;&amp; result.length === 2) {
 /^[1-9]\d{4,}$/      // 这个已经和接近正确了，只是他能匹配11位即以上的QQ号，可能作者不能确定QQ最多几位吧
 </code></pre><p>可以把上面正则中的 “9”改成 “10” 来支持11位的QQ号，以兼容未来可能出11位的QQ号。</p>
 <p>PS：10000是腾讯公司的专线QQ，10001是马化腾的，10002是腾讯二号人物张志东。</p>
-<h3 id="-">邮箱</h3>
+<h3 id="header-1-3-2">邮箱</h3>
 <p>正则只能检测邮箱的格式，不能检测邮箱是否存在，
 网上有人问“1234jh@sb126.com”这种邮箱也能匹配成功很不能理解，于是大呼“有没有靠谱的邮箱正则”，
 解释一下：对于“@sb126.com”这一段是邮箱服务提供商确定的，如果你想恶心网易完全可以搭建一套邮箱系统提供一个这样的邮箱服务；
@@ -245,7 +245,7 @@ QQ邮箱全部是数字，网易的要求是“6~18个字符，可使用字母�
 <pre><code>/^[\w_\.]+@\w+\.[a-z]+$/.test(&#39;nihao@163.com&#39;);    // true
 </code></pre><p>另外如果用户向提供一个假邮箱伪造是非常容易的，如果客户的邮箱对业务比较重要，
 一般采用邮件链接激活账户的方式而不是拒绝用户提供假邮箱。</p>
-<h3 id="-">匹配身份证</h3>
+<h3 id="header-1-3-3">匹配身份证</h3>
 <p>先描述一下身份证的规则</p>
 <pre><code>15位身份证号码
 130503    670401    001
@@ -256,7 +256,7 @@ QQ邮箱全部是数字，网易的要求是“6~18个字符，可使用字母�
 150105    19871126    361                  1
 6为地区    8位生日      顺序码(未数男单女双)    校验码
 </code></pre><p>关于地区编码可以从
-<a href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201401/t20140116_501070.html">这里</a>
+<a href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201401/t20140116_501070.html" target="_blank">这里</a>
 查到，最小值北京（110000）最大值澳门特别行政区（820000）。</p>
 <p>由于二代身份证已经全国普及，所以如果不是做档案之类的向前收集数据的系统15位身份证号码基本可以忽略，
 所以我们这里只讨论18位身份证。</p>
@@ -276,11 +276,11 @@ QQ邮箱全部是数字，网易的要求是“6~18个字符，可使用字母�
 <pre><code>/^[1-8]\d{5}[1-2]\d{3}((0\d)|(1[0-2]))(([0-2]\d)|3[0-1])\d{3}[\d|X]$/.test(&#39;13018419860305106X&#39;);
 // true
 </code></pre><p>另外还有一种加权计算方法，最后一位验证码就是通过前17位加权计算得出，
-具体点击<a href="http://jingyan.baidu.com/article/7f41ececff944a593d095c8c.html">此链接</a>，
+具体点击<a href="http://jingyan.baidu.com/article/7f41ececff944a593d095c8c.html" target="_blank">此链接</a>，
 绕过加权计算的验证成本比较大。</p>
-<h3 id="-ip-">匹配ip地址</h3>
+<h3 id="header-1-3-4">匹配ip地址</h3>
 <pre><code>/\d+\.\d+\.\d+\.\d+/
-</code></pre><h3 id="-">匹配浮点数</h3>
+</code></pre><h3 id="header-1-3-5">匹配浮点数</h3>
 <p>先稍微简化一点：“匹配正浮点数”</p>
 <p>我们先进行第一阶段的翻译，即确定范围：
 十进制的浮点数，1，0.1是合法的，
@@ -293,7 +293,7 @@ QQ邮箱全部是数字，网易的要求是“6~18个字符，可使用字母�
 </code></pre><p>再加上正负号的匹配规则就是“匹配浮点数”了</p>
 <pre><code>/^[+-]?\d+(\.\d+)?$/.test(&#39;001&#39;);    // true
 /^[+-]?\d+(\.\d+)?$/.test(&#39;-0.01&#39;);  // true
-</code></pre><h3 id="-">中文</h3>
+</code></pre><h3 id="header-1-3-6">中文</h3>
 <p>硬知识，只能匹配中文，中文标点不被匹配</p>
 <pre><code>/[\u4e00-\u9fa5]/.test(&#39;你&#39;);    // true
 /[\u4e00-\u9fa5]/.test(&#39;。&#39;);    // false
@@ -303,7 +303,7 @@ QQ邮箱全部是数字，网易的要求是“6~18个字符，可使用字母�
 var str = &#39;abc你好&#39;;
 var matchArr = str.match(/[^\x00-\xff]/g);
 str.length + (matchArr === null ? 0 : matchArr.length);   // 7
-</code></pre><h3 id="-">匹配静态资源</h3>
+</code></pre><h3 id="header-1-3-7">匹配静态资源</h3>
 <p>范围：html页面，css和js文件，png图片和ico图标。支持问号来处理浏览器资源缓存。</p>
 <p>语法：以 <code>.扩展名</code> 结尾，如果有问号则问号及问号后的东西不参与结尾的计算。</p>
 <pre><code>/\.+[html|css|js|png|ico]+(\?.*)?$/ig.test(&#39;dfsdf.html?e&#39;);    // true
@@ -312,7 +312,7 @@ str.length + (matchArr === null ? 0 : matchArr.length);   // 7
 如果不加此约束像 “dfsdf.html.xml?e”这样的资源就可以被被匹配成功。
 另外可有可无的那部分是否可以重复出现也很关键，
 匹配浮点数时“.数字”不可以出现多次，但是匹配静态资源时“?任意字符串”是可以重复初出现的。</p>
-<h3 id="-3-">严格3个连续数字</h3>
+<h3 id="header-1-3-8">严格3个连续数字</h3>
 <p>范围：这次要求比较严格，只能是3个数字连续，多一个少一个都不行。</p>
 <p>语法：用断言来做</p>
 <pre><code>&#39;-12345-&#39;.match(/(\d{3})(?!\d)/g);    // [&quot;345&quot;]
@@ -324,12 +324,12 @@ js又不支持向前约束（专业术语叫“前瞻”），在《高性能jav
 </code></pre><p>如你所见正则将向前约束的字符也提取了出来（向前约束本应该是零宽的），
 但是返回的数据项是正确的，数据内容非常接近目标结果。</p>
 <p>这个case是从实际环境抽象而来，比如匹配短信中的电话号码，或者匹配地址中的邮编。</p>
-<h2 id="-">原理与性能</h2>
+<h2 id="header-1-4">原理与性能</h2>
 <p>待续...</p>
-<h2 id="-">参考</h2>
-<p><a href="http://www.w3school.com.cn/jsref/jsref_obj_regexp.asp">w3school的regexp部分</a></p>
-<p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">ECMA-262号官方文档</a></p>
-<p><a href="http://regexper.com/">可视化正则</a></p>
+<h2 id="header-1-5">参考</h2>
+<p><a href="http://www.w3school.com.cn/jsref/jsref_obj_regexp.asp" target="_blank">w3school的regexp部分</a></p>
+<p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank">ECMA-262号官方文档</a></p>
+<p><a href="http://regexper.com/" target="_blank">可视化正则</a></p>
 
     </div>
     <div class="article-message-container"></div>

@@ -25,11 +25,11 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="c-">C++ 语言层面学习笔记</h1>
+    <h1 id="header-1">C++ 语言层面学习笔记</h1>
 <blockquote>
-<p>作为一个 jser 怎么想起来学习 C++，无它 --- 为了帮媳妇写作业，但是学下来收获满满，不经多了一个装逼的技能，在语言层面上也多了一些感觉。此篇只是C++语言层面的学习笔记，高手就飘过吧，但如果你和我同样是 jser 出于某种目的想要了解 C++ 那此篇就再适合不过了，快速扫完此篇可进入下一篇 <a href="../../c++project.html">C++ 工程化学习笔记</a>。</p>
+<p>作为一个 jser 怎么想起来学习 C++，无它 --- 为了帮媳妇写作业，但是学下来收获满满，不经多了一个装逼的技能，在语言层面上也多了一些感觉。此篇只是C++语言层面的学习笔记，高手就飘过吧，但如果你和我同样是 jser 出于某种目的想要了解 C++ 那此篇就再适合不过了，快速扫完此篇可进入下一篇 <a href="../../c++project.html" target="_blank">C++ 工程化学习笔记</a>。</p>
 </blockquote>
-<h2 id="hello-world">Hello world</h2>
+<h2 id="header-1-1">Hello world</h2>
 <pre><code>// hello-world.app
 #include &lt;iostream&gt;
 using namespace std;
@@ -41,7 +41,7 @@ int main(){
 </code></pre><p>命令行编译，运行：</p>
 <pre><code>g++ -o a hello-world.cpp
 ./test
-</code></pre><h2 id="-">变量</h2>
+</code></pre><h2 id="header-1-2">变量</h2>
 <p><strong>变量类型</strong></p>
 <p>void 无返回值类型</p>
 <p>short 短整型(整数，2字节)</p>
@@ -54,7 +54,7 @@ int main(){
 <pre><code>// 简化类型声明
 typedef unsigned short us;
 us age = 5;
-</code></pre><h2 id="-">常量</h2>
+</code></pre><h2 id="header-1-3">常量</h2>
 <p>编码中一般将常量用全大写字母表示</p>
 <p><strong>符号常量</strong></p>
 <pre><code>// 指定数据类型的常量
@@ -66,7 +66,7 @@ const int NUM = 5;
 enum WEEK{Mon,Tue,Wed,Thu,Fri,San,Sun};
 // 也可以赋值，后面未赋值的递增
 enum WEEK{Mon=100,Tue,Wed,Thu,Fri,San=200,Sun};
-</code></pre><h2 id="-">输出</h2>
+</code></pre><h2 id="header-1-4">输出</h2>
 <p>如果采用了 <code>using namespace std;</code> 来声明命名空间，可以直接使用 <code>cout</code> 来输出，否则需要在前面加 std::。
 字符串和变量之间的拼接可以使用 <code>&gt;&gt;</code>。</p>
 <pre><code>#include &lt;iostream&gt;
@@ -75,7 +75,7 @@ int main () {
     std::cout&lt;&lt;&quot;My age is &quot;&lt;&lt;age&lt;&lt;&quot;\n&quot;;
     return 0;
 }
-</code></pre><h2 id="-">运算</h2>
+</code></pre><h2 id="header-1-5">运算</h2>
 <p>复杂语句</p>
 <pre><code>z = x = y + 13;
 // 这条语句有四个功效:
@@ -84,7 +84,7 @@ int main () {
 // 3 将 x 的值赋给 x
 // 返回 z 的值
 </code></pre><p>符号运算和逻辑运算和其他语言类似</p>
-<h2 id="-">函数</h2>
+<h2 id="header-1-6">函数</h2>
 <p>main()是独特的 C++ 函数，因为程序启动时需要调用它， main 函数的数据类型必须是 int。</p>
 <p>函数需要先声明在定义。</p>
 <p>函数的两个部分:函数头(函数名，参数，返回类型) 和 函数体;无返回类型时用 void。下面是函数定义范例:</p>
@@ -114,7 +114,7 @@ int getArea(int width,int height) {
 </code></pre><p>C++ 函数的参数与 js 不同，不同的参数定义方式可对同名方法进行重载:</p>
 <pre><code>int store(int, int);
 int store(long, long);
-</code></pre><h2 id="-">流程控制</h2>
+</code></pre><h2 id="header-1-7">流程控制</h2>
 <p>while，do-while，for</p>
 <p>break:结束循环，continue:跳到下一次循环</p>
 <p>switch</p>
@@ -129,7 +129,7 @@ int store(long, long);
         work = &#39;unknown&#39;;
 }
 </code></pre><p>if else</p>
-<h2 id="-">数组</h2>
+<h2 id="header-1-8">数组</h2>
 <p>数组的初始化</p>
 <pre><code>// array.cpp
 // 一维数组初始化
@@ -153,7 +153,7 @@ int main() {
     cout&lt;&lt;&quot;str:&quot;&lt;&lt;str&lt;&lt;&quot;\n&quot;;
 }
 </code></pre><p>数组和字符串的的拼接需要借助指针来实现。</p>
-<h2 id="-">类</h2>
+<h2 id="header-1-9">类</h2>
 <p>类定义，构造函数，析构函数，私有变量和方法，公有变量和方法，实例化对象，常量函数 等概念，语法如下就不一一介绍了。</p>
 <pre><code>// class.cpp
 #include &lt;iostream&gt;
@@ -264,7 +264,7 @@ int main() {
     Plane mh370(10);
 }
 </code></pre><p>类的组合形成新类也非常简单，可直接将类看成 int 等原生对象即可，只要 #include 进来就可以。</p>
-<h2 id="-">指针</h2>
+<h2 id="header-1-10">指针</h2>
 <p>编码规范：第一个字母是 p 第一个单词首字母大写。</p>
 <p>声明：</p>
 <pre><code>int *num = NULL;
@@ -298,9 +298,9 @@ const int *pOne;
 int * const pTow;
 // 上面两种的结合体
 const int * const pThree;
-</code></pre><h2 id="-">引用</h2>
+</code></pre><h2 id="header-1-11">引用</h2>
 <p>待续...</p>
-<h2 id="-">自定义类库</h2>
+<h2 id="header-1-12">自定义类库</h2>
 <p>自定义一个类，类的定义写在 .hpp 文件中，类的实现写在 .cpp 文件中(记得在.cpp中 include .hpp)，编译目标文件的时候需要带上类文件，如下：</p>
 <pre><code>g++ -o a Plane-class-test.cpp Plane.cpp
 </code></pre><p>然后用下面命令直接运行：</p>
