@@ -27,6 +27,22 @@
     <div class="article-detail-container">
     <%-content%>
     </div>
+    <%if(headerTree !== undefined){%>
+    <div class="article-detail-headers-container">
+        <p><strong>文章目录</strong></p>
+        <ul>
+            <%headerTree.children.forEach(function(item){%>
+            <li><%if(item.text){%><a href="#<%-item.id%>"><%-item.text%></a><%}%>
+                <ul>
+                    <%item.children.forEach(function(item){%>
+                    <li><a href="#<%-item.id%>"><%-item.text%></a></li>
+                    <%})%>
+                </ul>
+            </li>
+            <%})%>
+        </ul>
+    </div>
+    <%}%>
     <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>
