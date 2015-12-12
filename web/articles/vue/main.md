@@ -1,6 +1,6 @@
 # Vue
 
-vue偏轻量，适合移动端，ng适应pc端，avalon适合兼容老浏览器的项目。
+> vue偏轻量适合移动端，AngularJS适合pc端，avalon适合兼容老浏览器的项目。
 
 ## 参考资料
 

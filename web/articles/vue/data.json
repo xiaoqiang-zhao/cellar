@@ -1,6 +1,6 @@
 {
   "title": "Vue",
-  "introduction": "未找到描述信息",
+  "introduction": "vue偏轻量适合移动端，AngularJS适合pc端，avalon适合兼容老浏览器的项目。",
   "tags": [
     "基础"
   ],
