@@ -25,10 +25,10 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="promise">promise</h1>
-<h2 id="js-promise-">JS 中的 Promise 是什么？</h2>
+    <h1 id="header-1">promise</h1>
+<h2 id="header-1-1">JS 中的 Promise 是什么？</h2>
 <p>是符合Promise协议的对象。支持情况：浏览器方面最新版的 Chrome、Firefox、safari都已经原生支持；Node也原生支持；只有IE不支持。</p>
-<h2 id="-">要解决什么问题？</h2>
+<h2 id="header-1-2">要解决什么问题？</h2>
 <p>Callback hell，回调金字塔，回调黑洞，随便怎么叫吧，就是异步编程产生的回调层层嵌套。用前端常见的jQuery Ajax举例代码如下：</p>
 <pre><code>// 顶层回调
 ajax({
@@ -51,7 +51,7 @@ ajax({
         });
     }
 });
-</code></pre><h2 id="-jquery-">看看用jQuery在前端实现异步的几种方式</h2>
+</code></pre><h2 id="header-1-3">看看用jQuery在前端实现异步的几种方式</h2>
 <pre><code>$.ajax({
     url: &#39;/login2&#39;,
     success: function (data) {
@@ -88,7 +88,7 @@ ajax({
 }, function () {
     console.log(&#39;3--粗错鸟&#39;);
 });
-</code></pre><h2 id="-promise-">什么时候适合用Promise？</h2>
+</code></pre><h2 id="header-1-4">什么时候适合用Promise？</h2>
 <p>异步操作必须保证调用的先后顺序，而且是一项完成后才能执行下一项这种场景，最好是个个异步操作间没有数据交互的那种。举个简单的例子：登录是一个异步，获取当前登录用基本信息（用户名，头像等）户是一个异步，不用传参的方式可以降低耦合，而且这样定义接口更单例一些。</p>
 <p>下面是示例代码（为了方便解释用注释为then的回调函数做一下标记）：</p>
 <pre><code>$.ajax({
@@ -99,7 +99,7 @@ ajax({
 }).then(function (data) { // then2
     console.log(&#39;用户名:&#39; + data.data.name);
 });
-</code></pre><h2 id="-">有哪些坑？</h2>
+</code></pre><h2 id="header-1-5">有哪些坑？</h2>
 <p>上面代码的then是依次执行，然后形成回调队列，队列中的函数执行时机和细节有几个需要注意的点：</p>
 <ul>
 <li>参数 ：</li>
@@ -121,11 +121,11 @@ $.ajax({
 <p>第一个then中有return，把return删掉发现依然可以运行，只是获取不到当前登录用户的信息，这就是第二个坑。如果then中的回调函数不返回Promise实例后面的then中的回调函数就会继续执行，但我们的本意是上一个异步完成再执行下一个then，这样才符合回调金字塔的调用逻辑和顺序。对于这个坑有两点注意</p>
 <p>一、一个异步完成后做的操作要放在一个then中，放在多个then中会立即顺序执行，而且从异步后的第二个的then开始不能直接拿到异步返回的参数。</p>
 <p>二、then队列要返回Promise实例，否则后面的then就不是异步执行了。</p>
-<h2 id="-promise">不适合用Promise</h2>
+<h2 id="header-1-6">不适合用Promise</h2>
 <p>异步A 和 异步B，A B都完成后执行C。</p>
-<h2 id="-">勉强适用</h2>
+<h2 id="header-1-7">勉强适用</h2>
 <p>异步A，A完成后执行多个互不相干的异步。</p>
-<h2 id="-promise-">封装符合Promise协议的对象</h2>
+<h2 id="header-1-8">封装符合Promise协议的对象</h2>
 <pre><code>function Obj() {
 
     var p = new Promise(function (resolve, reject) {
@@ -141,7 +141,7 @@ $.ajax({
     return p;
 }
 </code></pre><p>可以向p添加属性和方法，注意不要覆盖then，catch，chain方法。还需要注意的一点就是浏览器原生Promise实例化的时候至少需要一个函数作为参数。catch 方法用于捕获最后的异常，chain方法还没搞明白怎么用，欢迎补充。chain？</p>
-<h2 id="jquery-deferred">jQuery.Deferred</h2>
+<h2 id="header-1-9">jQuery.Deferred</h2>
 <p>jQuery.Deferred是一个工厂方法，用以生产符合Promise规范的实例。Promise规范的内容相对简单，Deferred返回的东西是一个更加丰富的东西。</p>
 <pre><code>var p = $.Deferred(function (promise) {
     // 异步
@@ -166,13 +166,87 @@ p.then(function () {
     console.log(&#39;always2&#39;);
 });
 </code></pre><p>resolve 可以触发then的第一个回调、done、always，触发的顺序和定义的顺序一致。另外resolve方法不是定义回调的，而是触发回调的。reject同理，always可被resolve和reject触发。</p>
-<h2 id="-">最后</h2>
+<h2 id="header-1-10">最后</h2>
 <p>综合使用的研究在research.html 和 research.js中，分别模拟浏览器端和node端。research-jq.html 中是对jQuery中Promise的研究。</p>
-<p><a href="http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/">一篇很不错的译文</a></p>
-<h2 id="-">声明</h2>
-<p>欢迎各方转载，但请注明出处：<a href="https://github.com/longze/cellar/blob/master/web/articles/promise/main.md">https://github.com/longze/cellar/blob/master/web/articles/promise/main.md</a></p>
+<p><a href="http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/" target="_blank">一篇很不错的译文</a></p>
+<h2 id="header-1-11">声明</h2>
+<p>欢迎各方转载，但请注明出处：<a href="https://github.com/longze/cellar/blob/master/web/articles/promise/main.md" target="_blank">https://github.com/longze/cellar/blob/master/web/articles/promise/main.md</a></p>
 
     </div>
+    
+    <div class="article-detail-headers-container">
+        <p><strong>文章目录</strong></p>
+        <ul>
+            
+            <li><a href="#header-1-1">JS 中的 Promise 是什么？</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-2">要解决什么问题？</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-3">看看用jQuery在前端实现异步的几种方式</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-4">什么时候适合用Promise？</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-5">有哪些坑？</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-6">不适合用Promise</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-7">勉强适用</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-8">封装符合Promise协议的对象</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-9">jQuery.Deferred</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-10">最后</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-11">声明</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    
     <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>

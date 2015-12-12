@@ -25,9 +25,9 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="node-">node开发的坑坑洼洼</h1>
-<h2 id="-">调试环境</h2>
-<h3 id="inspector">inspector</h3>
+    <h1 id="header-1">node开发的坑坑洼洼</h1>
+<h2 id="header-1-1">调试环境</h2>
+<h3 id="header-1-1-1">inspector</h3>
 <p>Web开发使用 <code>inspector</code> 插件在chrome中调试。win7下命令行运行 <code>npm install -g node-inspector</code> 安装，mac下如果用上面命令可能存在权限问题，如果出现错误无法安装，尝试 <code>sudo npm install -g node-inspector</code> 并输入登录密码，输密码时只有一个光标闪，但你可能已经输入了，一口气输完然后回车。</p>
 <p>启动调试的命令是 <code>node-debug 你的程序入口</code>，如本站的 <code>server</code> 可以这样开始调试 <code>node-debug server</code>。</p>
 <p><strong>高级用法</strong> </p>
@@ -59,8 +59,8 @@ Mac:com + k   Win7:cls
 Mac:lsof -i:8899  Win7:netstat -ano|findstr &quot;8899&quot;
 // 查看端口占用情况
 Mac:lsof -i -P    Win7:netstat -ano
-</code></pre><p>Git:<a href="https://github.com/node-inspector/node-inspector">https://github.com/node-inspector/node-inspector</a></p>
-<h3 id="hotnode">hotnode</h3>
+</code></pre><p>Git:<a href="https://github.com/node-inspector/node-inspector" target="_blank">https://github.com/node-inspector/node-inspector</a></p>
+<h3 id="header-1-1-2">hotnode</h3>
 <p>上面方案的不方便之处在于每次修改完源码并不会反映到调试窗口中，当然小的修改可以直接在天使窗口中进行，但是返回头还需要改源码。
 如果要在调试器中看到新代码需要手动关闭再启动node服务。找到一个开源工具可以热启动node，他的原理是监听文件改变，如果有改变自动重启node服务，并打出log。</p>
 <p>安装和运行非常简单，命令如下：</p>
@@ -68,12 +68,12 @@ Mac:lsof -i -P    Win7:netstat -ano
 npm install -g hotnode
 // 热启动应用
 hotnode app
-</code></pre><p>Git:<a href="https://github.com/saschagehlich/hotnode">https://github.com/saschagehlich/hotnode</a></p>
+</code></pre><p>Git:<a href="https://github.com/saschagehlich/hotnode" target="_blank">https://github.com/saschagehlich/hotnode</a></p>
 <p>相似的热启动还有 <code>node-dev</code> 、 <code>supervisor</code> 和 <code>nodemon</code>。</p>
-<h3 id="-">两种技术的结合</h3>
+<h3 id="header-1-1-3">两种技术的结合</h3>
 <p>上面的准备已经做好，倒着一步就水到渠成了，
 将inspector中的 <code>node --debug-brk=5858 server</code> 换成 <code>hotnode --debug-brk=5858 server</code> 就可以了。</p>
-<h2 id="-">路径</h2>
+<h2 id="header-1-2">路径</h2>
 <p><code>require</code> 加载相对路径的模块时其参考路径是当前的执行文件所在的路径，
 <code>fs</code> 文件系统读取文件时参考路径是程序的启动路径，
 如 <code>node cellar/server</code> 的路径是cellar文件夹所在的目录，而 <code>node server</code> 是server所在的路径，也就是cellar。</p>
@@ -83,7 +83,7 @@ hotnode app
 rootPath = __dirname.replace(/\\/g, &#39;/&#39;).split(&#39;/&#39;).slice(0, -1 * config.rootLevel).join(&#39;/&#39;);
 // 然后把根路径加到前面，用的时候就好了
 config.webRootPath = rootPath + config.webRootPath;
-</code></pre><h2 id="-">异步队列</h2>
+</code></pre><h2 id="header-1-3">异步队列</h2>
 <p>下面是一个路由队列的方案，每个成功后调用下一个，在最后一个中做404处理。</p>
 <pre><code>// 路由队列（路由的优先顺序在此配置）
 var routList = [
@@ -95,12 +95,50 @@ var routList = [
 
 /* 异步编程的队列方案 */
 routList.shift()(request, response, routList);
-</code></pre><h2 id="-">进程守护</h2>
+</code></pre><h2 id="header-1-4">进程守护</h2>
 <p>由于node中任何地方报错都会导致退出进程，所以生产环境需要在进程退出后重启，可用的工具：<code>pm2</code> 、<code>forever</code>.</p>
-<p>pm2扩展资料: <a href="http://www.douban.com/note/314200231/">http://www.douban.com/note/314200231/</a></p>
-<p>forver扩展资料: <a href="http://blog.fens.me/nodejs-server-forever/">http://blog.fens.me/nodejs-server-forever/</a></p>
+<p>pm2扩展资料: <a href="http://www.douban.com/note/314200231/" target="_blank">http://www.douban.com/note/314200231/</a></p>
+<p>forver扩展资料: <a href="http://blog.fens.me/nodejs-server-forever/" target="_blank">http://blog.fens.me/nodejs-server-forever/</a></p>
 
     </div>
+    
+    <div class="article-detail-headers-container">
+        <p><strong>文章目录</strong></p>
+        <ul>
+            
+            <li><a href="#header-1-1">调试环境</a>
+                <ul>
+                    
+                    <li><a href="#header-1-1-1">inspector</a></li>
+                    
+                    <li><a href="#header-1-1-2">hotnode</a></li>
+                    
+                    <li><a href="#header-1-1-3">两种技术的结合</a></li>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-2">路径</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-3">异步队列</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-4">进程守护</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    
     <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>

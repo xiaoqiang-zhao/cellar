@@ -25,17 +25,17 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="css-">CSS 中的坑</h1>
-<h2 id="-vertical-align">基线对齐 vertical-align</h2>
-<p><code>vertical-align</code> 的默认属性是 <code>baseline</code> —— 基线对齐，至于基线对齐是个鬼？看 <a href="http://www.ddcat.net/blog/?p=233">这篇文章</a>，这里说一个坑，再说一个使用的技巧。</p>
+    <h1 id="header-1">CSS 中的坑</h1>
+<h2 id="header-1-1">基线对齐 vertical-align</h2>
+<p><code>vertical-align</code> 的默认属性是 <code>baseline</code> —— 基线对齐，至于基线对齐是个鬼？看 <a href="http://www.ddcat.net/blog/?p=233" target="_blank">这篇文章</a>，这里说一个坑，再说一个使用的技巧。</p>
 <p>注：对上面文章补充一点，当设置了行高，如 <code>line-height: 2em;</code> 时，<code>vertical-align: text-top;</code> 的对齐参考线在文字上方，而 <code>vertical-align: baseline;</code> 依然是文字基线。</p>
 <p><strong>那个坑</strong></p>
-<p>对于 <code>display: inline-block;</code> 的一组DOM节点，如果一部分有内容，另一部分没有内容，会出现没有内容的那一部分上移的情况，这对于用空DOM节点配合背景做装饰性图标会出现图标上偏移的问题，这就是“那个坑”，查看示例：<a href="demo/vertical-align.html">demo/vertical-align.html</a>。问题的成因在于没有内容的DOM节点与有内容的DOM节点中的文字进行了基线对齐，具体的说是无内容DOM节点的底部与有内容DOM节点中的文字的基线在一条线上。解决这个问题的方法很简单给无内容DOM节点加 <code>vertical-align: baseline;</code> 样式即可。</p>
+<p>对于 <code>display: inline-block;</code> 的一组DOM节点，如果一部分有内容，另一部分没有内容，会出现没有内容的那一部分上移的情况，这对于用空DOM节点配合背景做装饰性图标会出现图标上偏移的问题，这就是“那个坑”，查看示例：<a href="demo/vertical-align.html" target="_blank">demo/vertical-align.html</a>。问题的成因在于没有内容的DOM节点与有内容的DOM节点中的文字进行了基线对齐，具体的说是无内容DOM节点的底部与有内容DOM节点中的文字的基线在一条线上。解决这个问题的方法很简单给无内容DOM节点加 <code>vertical-align: baseline;</code> 样式即可。</p>
 <p><strong>那个技巧</strong></p>
-<p>利用行内元素的垂直居中特性，可以实现不定高元素在不定高元素中的垂直居中，另外 checkbox 在 label 中的垂直居中也可使用该技巧。<a href="demo/vertical-align.html">Demo示例</a> </p>
+<p>利用行内元素的垂直居中特性，可以实现不定高元素在不定高元素中的垂直居中，另外 checkbox 在 label 中的垂直居中也可使用该技巧。<a href="demo/vertical-align.html" target="_blank">Demo示例</a> </p>
 <p>扩展资料：</p>
-<p><a href="http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/">CSS深入理解vertical-align和line-height的基友关系</a></p>
-<h2 id="z-index-">z-index 的最大值</h2>
+<p><a href="http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/" target="_blank">CSS深入理解vertical-align和line-height的基友关系</a></p>
+<h2 id="header-1-2">z-index 的最大值</h2>
 <p>跨浏览器最大值：2147483647 = 2的31次方 - 1。</p>
 <p>z-index 的赋值因该有一个规划，要不然各个页面模块之间为了不被其他模块遮盖竞相提高 z-index 最后导致代码维护困难，给一个我之前项目中用过的规范：</p>
 <p>1、自然呈现的元素不设置 z-index，回到顶部也不设；</p>
@@ -51,6 +51,26 @@
 <p>注2：各个浏览器当两个层z-index相同时,按网页代码中层出现的顺序,后出现的层高于先出现的层。</p>
 
     </div>
+    
+    <div class="article-detail-headers-container">
+        <p><strong>文章目录</strong></p>
+        <ul>
+            
+            <li><a href="#header-1-1">基线对齐 vertical-align</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-2">z-index 的最大值</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    
     <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>

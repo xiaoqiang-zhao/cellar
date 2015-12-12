@@ -25,33 +25,33 @@
 </header>
 <div class="page-body">
     <div class="article-detail-container">
-    <h1 id="html-">HTML 模板研究</h1>
-<h2 id="-">知名的模板引擎收集</h2>
+    <h1 id="header-1">HTML 模板研究</h1>
+<h2 id="header-1-1">知名的模板引擎收集</h2>
 <p>按立项的时间大致排列如下：</p>
 <ul>
 <li><p>tmpl （jq的插件，2005.3.5立项）
-<a href="https://github.com/BorisMoore/jquery-tmpl">Git</a></p>
+<a href="https://github.com/BorisMoore/jquery-tmpl" target="_blank">Git</a></p>
 </li>
 <li><p>mustache（国外货，独立的模板引擎，2009.10.5立项）
-<a href="https://github.com/janl/mustache.js">Git</a></p>
+<a href="https://github.com/janl/mustache.js" target="_blank">Git</a></p>
 </li>
 <li><p>doT(国外货，2011.01.11，只支持v8，应该也可以支持其他现代浏览器)
-<a href="http://olado.github.io/doT">Git</a></p>
+<a href="http://olado.github.io/doT" target="_blank">Git</a></p>
 </li>
 <li><p>kissy template（阿里,kissy中的一部分，不具备时间参考性，可以看做是juicer的前身）
-<a href="https://github.com/kissyteam/kissy">Git</a></p>
+<a href="https://github.com/kissyteam/kissy" target="_blank">Git</a></p>
 </li>
 <li><p>juicer（也是一国产库，2011.6.27立项，貌似也是阿里系的）
-<a href="https://github.com/PaulGuo/Juicer">Git</a></p>
+<a href="https://github.com/PaulGuo/Juicer" target="_blank">Git</a></p>
 </li>
 <li><p>BaiduTemplate（百度,2012.04.28）
-<a href="http://baidufe.github.io/BaiduTemplate">Git</a></p>
+<a href="http://baidufe.github.io/BaiduTemplate" target="_blank">Git</a></p>
 </li>
 <li><p>artTemplate（腾讯，2012.06.03立项）
-<a href="https://github.com/aui/artTemplate">Git</a></p>
+<a href="https://github.com/aui/artTemplate" target="_blank">Git</a></p>
 </li>
 </ul>
-<h2 id="-">从预编译的角度研究</h2>
+<h2 id="header-1-2">从预编译的角度研究</h2>
 <p>tmpl，484行，从预编译的角度看采用的是分段数组push，使用语法如下（原理解释也在其中）：</p>
 <pre><code>var movies = [
     {Name: &quot;The Red Violin&quot;, ReleaseYear: &quot;1998&quot;}
@@ -73,6 +73,26 @@ $.tmpl(&quot;movieTemplate&quot;, movies).appendTo(&quot;#movieList&quot;);
 <p>artTemplate，将功能分在多个文件中，逻辑比较清晰，还支持include功能，主干最后更新日期是2014.9.1。</p>
 
     </div>
+    
+    <div class="article-detail-headers-container">
+        <p><strong>文章目录</strong></p>
+        <ul>
+            
+            <li><a href="#header-1-1">知名的模板引擎收集</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+            <li><a href="#header-1-2">从预编译的角度研究</a>
+                <ul>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    
     <div class="article-message-container"></div>
 </div>
 <footer class="page-footer"></footer>
