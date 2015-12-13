@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue - methods</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<h3>方法</h3>
+<div id="app">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">倒序上面的文本</button>
+</div>
+<script>
+    setTimeout(function () {
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        });
+    }, 2000);
+</script>
+<hr>
+<div id="app2">
+    <input v-model="newTodo" v-on:keyup.enter="addTodo">
+    <ul>
+        <li v-for="todo in todos">
+            <span>{{ todo.text }}</span>
+            <button v-on:click="removeTodo($index)">X</button>
+        </li>
+    </ul>
+</div>
+
+<script>
+    setTimeout(function () {
+        new Vue({
+            el: '#app2',
+            data: {
+                newTodo: '',
+                todos: [
+                    { text: 'Add some todos' }
+                ]
+            },
+            methods: {
+                addTodo: function () {
+                    var text = this.newTodo.trim()
+                    if (text) {
+                        this.todos.push({ text: text })
+                        this.newTodo = ''
+                    }
+                },
+                removeTodo: function (index) {
+                    this.todos.splice(index, 1)
+                }
+            }
+        });
+    }, 2000);
+</script>
+</body>
+</html>
