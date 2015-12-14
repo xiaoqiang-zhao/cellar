@@ -32,12 +32,17 @@
         <p><strong>文章目录</strong></p>
         <ul>
             <%headerTree.children.forEach(function(item){%>
-            <li><%if(item.text){%><a href="#<%-item.id%>"><%-item.text%></a><%}%>
+            <li>
+                <%if(item.text){%>
+                <a href="#<%-item.id%>"><%-item.text%></a>
+                <%}%>
+                <%if(item.children.length > 0){%>
                 <ul>
                     <%item.children.forEach(function(item){%>
                     <li><a href="#<%-item.id%>"><%-item.text%></a></li>
                     <%})%>
                 </ul>
+                <%}%>
             </li>
             <%})%>
         </ul>
