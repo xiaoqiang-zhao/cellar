@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue - event</title>
+    <style rel="stylesheet">
+        .article-list-item {
+            margin: 1em;
+            background-color: #f2f2f2;
+            font-size: 14px;
+            padding: 1em 1em .5em 1em;
+        }
+        .article-list-item .title {
+            font-size: inherit;
+            line-height: 17px;
+            font-weight: 700;
+        }
+        .article-list-item summary {
+            font-size: 14px;
+            color: #696566;
+        }
+        .article-list-item footer {
+            border-top: 1px solid #d6d6d6;
+            margin-top: 10px;
+        }
+        .article-list-item .tags-container {
+            padding-top: 6px;
+        }
+        .article-list-item .tags-container .icon-tag {
+            top: 3px;
+        }
+        .article-list-item .tags-container .tag-item {
+            background: #c3bfbf;
+            padding: 2px 5px;
+            margin-left: 5px;
+            color: #fff;
+            font-size: 12px;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<article class="article-list-item">
+    <a v-on:click="toDetail">
+        <h1 v-on:click.stop="changeTitle" class="title">{{ title }}</h1>
+        <summary>
+            {{ introduction }}
+        </summary>
+    </a>
+    <footer>
+        <section class="tags-container">
+            <i class="icon-tag" title="Tags"></i>
+            <a v-for="tag in tags" v-on:click="toSameTag('{tag}', $event)" data-tag="{{tag}}" class="tag-item">
+                {{tag}}
+            </a>
+        </section>
+    </footer>
+</article>
+<script>
+    var vm = new Vue({
+        el: '.article-list-item',
+        data: {
+            id: 'webpack',
+            title: '一步一步学习 webpack',
+            introduction: 'webpack 是什么？一个命令行打包工具，把 js、css 甚至图片打成一个或多个包供页面引用。我们从简单到复杂通过一个一个的例子来学习 webpack，所有实例都可以在我的 git 上下载到源码。',
+            'tags': [
+                "基础",
+                "工具"
+            ]
+        },
+        methods: {
+            toDetail: function () {
+                // 可以直接拿到 data 上的数据
+                console.log(this.$data.id);
+            },
+            // 配置了阻止冒泡
+            changeTitle: function () {
+                this.$data.title = '改变 title';
+            },
+            toSameTag: function (tag, event) {
+                // 此处想直接将 tag 传递进来有困难，
+                // vue 并没有提供动态参数功能
+                // 所以只能通过变通的方法，比如直接拿 innerHTML，或者自定义属性
+                console.log(''
+                        + 'tag:' + tag + '\n'
+                        + 'event.target.innerHTML:' + event.target.innerHTML + '\n'
+                        + 'event.target.textContent:' + event.target.textContent + '\n'
+                        + 'event.target.getAttribute("data-tag"):' + event.target.getAttribute('data-tag'));
+            }
+        }
+    });
+</script>
+</body>
+</html>
