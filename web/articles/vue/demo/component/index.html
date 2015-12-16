@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件嵌套使用</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="title">
+    <header-c v-bind:t.sync="title"></header-c>
+</div>
+<script>
+    // 单例组件
+    var headerC = Vue.extend({
+        template: '<h3 v-on:click="fn">title:{{ t }}</h3>',
+        props: ['t'], // 需要在这里声明才可以拿到父组件的数据
+        methods: {
+            fn: function () {
+                console.log(this.$data.t);
+                this.$data.t += ' - ';
+            }
+        }
+    });
+
+    // 可用作循环的组件
+    var li = '<li>{{a}}-{{b}}</li>';
+    var liC = Vue.extend({
+        template: li,
+        props: ['t'],
+        methods: {
+            fn: function () {
+                console.log(this.$data);
+            }
+        }
+    });
+    var html = ''
+            + '<header-c></header-c>'
+            + '<ul>'
+            + '</ul>';
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            title: 'Title - Title'
+        },
+        components: {
+            // <my-component> 只能用在父组件模板内
+            'header-c': headerC
+        }
+    });
+</script>
+</body>
+</html>
