@@ -9,6 +9,14 @@
 <div id="app">
     <input type="text" v-model="title">
     <header-c v-bind:t.sync="title"></header-c>
+    <!-- is 指定此货是自定义组件 -->
+    <ul>
+        <li-c is="my-component"
+            v-for="item in list"
+            :item="item"
+            :index="$index">
+        </li-c>
+    </ul>
 </div>
 <script>
     // 单例组件
@@ -24,16 +32,17 @@
     });
 
     // 可用作循环的组件
-    var li = '<li>{{a}}-{{b}}</li>';
+    var li = '<li>{{index}}.{{item.m}}-{{item.n}}</li>';
     var liC = Vue.extend({
         template: li,
-        props: ['t'],
+        props: ['item', 'index'],
         methods: {
             fn: function () {
                 console.log(this.$data);
             }
         }
     });
+
     var html = ''
             + '<header-c></header-c>'
             + '<ul>'
@@ -41,12 +50,26 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            title: 'Title - Title'
+            title: 'Title - Title',
+            list: [{
+                m: 'A',
+                n: 'B'
+            },{
+                m: 'C',
+                n: 'D'
+            }]
         },
         components: {
             // <my-component> 只能用在父组件模板内
-            'header-c': headerC
+            'header-c': headerC,
+            'li-c': liC
         }
+    });
+
+    // 这样一个组件怎么放到页面上？
+    // 这样一个东西有哪几种方法可将其放到页面上？
+    var a = new Vue({
+       template: '<div>A</div>'
     });
 </script>
 </body>
