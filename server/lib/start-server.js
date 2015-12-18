@@ -18,7 +18,13 @@ http = http.createServer(function (request, response) {
 portModel.getAvailablePort(port, function (port) {
     // 启动web服务监听
     http.listen(port, function () {
-        var url = 'http://' + getIPAdress() + ':' + port;
+        var ip = getIPAdress();
+        // 断网情况下拿不到 DNS 分配的 IP 地址
+        if (ip === undefined) {
+            ip = 'localhost';
+        }
+
+        var url = 'http://' + ip + ':' + port;
         console.log('本地服务器 ' + url + ' 已经启动');
         console.log('------ 服务器日志 ------');
 
