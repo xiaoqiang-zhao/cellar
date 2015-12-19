@@ -12,6 +12,7 @@
     <!-- is 指定此货是自定义组件 -->
     <ul>
         <li-c is="my-component"
+              v-ref:li-component
               v-for="item in list"
               :item="item"
               :index="$index">
@@ -22,7 +23,21 @@
     // 单例组件
     var headerC = Vue.extend({
         template: '<h3 v-on:click="fn">title:{{ t }}</h3>',
-        props: ['t'], // 需要在这里声明才可以拿到父组件的数据
+        // 简单设置
+        // props: ['t'], // 需要在这里声明才可以拿到父组件的数据
+        // 复杂设置，可以设置数据类型，验证过则等
+        props: {
+            t: {
+                type: String,
+                required: true,
+                default: '',
+                twoWay: true, // 双向绑定
+                // 验证规则
+                validator: function (value) {
+                    return value > 10
+                }
+            }
+        },
         methods: {
             fn: function () {
                 console.log(this.$data.t);
@@ -74,10 +89,6 @@
         },
         methods: {
             fn: function () {
-                // 父组件中可以从 this.$children 列表中拿到全部的子组件
-                // 也可以在引用子组件时指定一个 ID
-                console.log('this.$refs.header === this.$children[0]');
-                console.log(this.$refs.header === this.$children[0]);
             }
         },
         // 对于事件采取依赖返转的形式：
@@ -94,12 +105,15 @@
             console.log('ready event');
             // 父组件中可以从 this.$children 列表中拿到全部的子组件
             // 也可以在引用子组件时指定一个 ID
+            // 需要注意写在后面的组件在 $children 的索引反而靠前
             console.log('this.$refs.header === this.$children[2]');
             console.log(this.$refs.header === this.$children[2]);
-            // 需要注意写在后面的组件在 $children 的索引反而靠前
+
+            // 和 v-for 一起用时，ref 是一个数组或对象，包含相应的子组件
+            console.log('this.$refs.liComponent');
+            console.log(this.$refs.liComponent);
         }
     });
-
 
 </script>
 </body>
