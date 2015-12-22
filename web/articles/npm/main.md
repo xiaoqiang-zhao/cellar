@@ -158,6 +158,16 @@ npm WARN package.json demo@ No license field.
 
 至于配置文件区分这俩部分， 是用于区别开发依赖模块和产品依赖模块，devDepandencies主要是配置测试框架， 例如jshint、mocha。
 
+## 更新 node
+
+node有一个模块叫n（这名字可够短的。。。），是专门用来管理node.js的版本的。首先安装n模块：
+
+	npm install -g n
+
+然后升级node.js到最新稳定版
+
+	n stable
+
 ## 参考资料
 
 [淘宝 NPM 镜像](http://segmentfault.com/a/1190000000471219)
