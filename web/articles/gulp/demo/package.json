@@ -13,7 +13,7 @@
     "email": "longze_xq@163.com"
   },
   "dependencies": {
-    "gulp": "",
+    "gulp": "^3.9.0",
     "gulp-amd-optimizer": "",
     "gulp-concat": "",
     "gulp-concat-sourcemap": "",
