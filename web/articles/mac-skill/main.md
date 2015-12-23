@@ -46,6 +46,8 @@
 
 - 回到上一级目录 cd .. (注意 cd 后面要跟一个空格，和windows的不同；另外有一个插件Go2Shell可以让你从Finder中直接进入当前目录命令行，在appStore中就可以找到)
 - 查看当前目录下的文件 ls (加 “空格-a” 可现实隐藏文件)
+- 删除文件 rm filename
+- 删除文件夹 rmdir dirname
 - 清屏 Com + K
 
 ## host 的配置
