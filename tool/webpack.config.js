@@ -1,4 +1,3 @@
-var htmlLoader = require('html-loader');
 module.exports = {
     entry: {
         main: '../web/src/main.js'
@@ -15,6 +14,14 @@ module.exports = {
             {
                 test: /\.tpl$/,
                 loader: 'html-loader'
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
+            },
+            {
+                test: /\.png$/,
+                loader: "url-loader?limit=100000"
             }
         ]
     }

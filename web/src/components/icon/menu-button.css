@@ -1,0 +1,32 @@
+/* component/icon/menu-button.css */
+
+/* Menu 按钮图标 */
+.icon-menu-button {
+    position: relative;
+    width: 35px;
+    height: 30px;
+    padding: 14px 5px;
+    background-color: #006a00;
+    -webkit-background-clip: content-box;
+    -moz-background-clip: content-box;
+    background-clip: content-box;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+.icon-menu-button:before,
+.icon-menu-button:after {
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #006a00;
+    content: "\200B";
+}
+
+.icon-menu-button:before {
+    top: 6px;
+}
+.icon-menu-button:after {
+    bottom: 6px;
+}
