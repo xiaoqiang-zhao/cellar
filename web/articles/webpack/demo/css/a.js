@@ -3,6 +3,6 @@ require('./css-2.css');
 var text = '<div>hello world.</div>';
 document.getElementsByTagName('body')[0].innerHTML = text;
 
-exports.model = {
+module.exports = {
     text: text
 };
