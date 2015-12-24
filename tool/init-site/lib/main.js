@@ -26,6 +26,10 @@ initIndexPage(articleArr);
 var initArticleDetailPage = require('./init-article-detail-page.js');
 initArticleDetailPage(articleArr);
 
+// 将文章列表写入 json 文件
+var writeArticleListInJsonFile = require('./write-article-list-in-json-file');
+writeArticleListInJsonFile(articleArr);
+
 // 复制可公开的文章
 var copyPublicArticleDetailPage = require('./copy-public-article-detail-page.js');
 copyPublicArticleDetailPage(articleArr);

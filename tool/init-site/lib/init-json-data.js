@@ -9,15 +9,16 @@ var config = require('./config.js');
 var marked = require('./marked.js');
 
 var defaultJson = {
+    "enName": "",
     "title": "",           // 标题
     "introduction": "",    // 引言
     "tags": [              // 文章标签
         "基础"
     ],
+    "isPublished": false,  // 是否处于发布状态
     "state": "立项",        // 文章状态
                            // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
                            // [修正添加中]
-    "public": false,       // 是否处于公示状态
     "type": "md",          // md / html / none
     "createDate": "",      // 创建时间(毫秒数)
     "md5": "",             // 通过md5验证内容的改变

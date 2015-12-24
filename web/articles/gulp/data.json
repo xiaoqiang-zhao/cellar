@@ -5,7 +5,6 @@
     "工具"
   ],
   "state": "立项",
-  "public": true,
   "type": "md",
   "createDate": "1447724448978",
   "createDateStr": "",
@@ -13,5 +12,6 @@
   "commentList": [
     ""
   ],
-  "todoList": []
+  "todoList": [],
+  "isPublished": true
 }
