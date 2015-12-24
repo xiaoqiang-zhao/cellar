@@ -7,12 +7,12 @@
     "手册"
   ],
   "state": "立项",
-  "public": true,
   "type": "md",
   "createDate": "1447831921937",
   "md5": "",
   "commentList": [
     ""
   ],
-  "todoList": []
+  "todoList": [],
+  "isPublished": true
 }

@@ -1,0 +1,666 @@
+[
+  {
+    "title": "先将avalon用起来",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "avalon"
+  },
+  {
+    "title": "Backbone 实践分享",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "backbone"
+  },
+  {
+    "title": "background 全解",
+    "introduction": "指定对象的背景颜色。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "background"
+  },
+  {
+    "title": "C++ 语言层面学习笔记",
+    "introduction": "作为一个 jser 怎么想起来学习 C++，无它 --- 为了帮媳妇写作业，但是学下来收获满满，不经多了一个装逼的技能，在语言层面上也多了一些感觉。此篇只是C++语言层面的学习笔记，高手就飘过吧，但如果你和我同样是 jser 出于某种目的想要了解 C++ 那此篇就再适合不过了，快速扫完此篇可进入下一篇 [C++ 工程化学习笔记](../../c++project.html)。",
+    "tags": [
+      "基础",
+      "c++"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "c++lanusge"
+  },
+  {
+    "title": "C++ 工程化学习笔记",
+    "introduction": "学了了C++的语法之后就需要用起来，学校和一般的教材不会教我们怎么选择IDE，怎么和其他语言跨界合作，甚至第三方库的使用也只停留在了“在VS上怎么点”，但这些是非常重要的，没有这些就不可能工业化生产代码，所以此篇来记录 C++的工程化，放心不会很难，因为我也是个初学者。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "c++project"
+  },
+  {
+    "title": "资料问题",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css"
+  },
+  {
+    "title": "CSS 中的颜色",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-color-system"
+  },
+  {
+    "title": "CSS 中的坑",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-hole"
+  },
+  {
+    "title": "CSS 布局研究",
+    "introduction": "布局书一个页面的呈现基础，这里结合过往的项目，提取一些我个人在项目中常用的布局。没有一种布局能搞定所有的需求，每种布局有各有优缺点，多个模块在一起又会相互影响，所以布局的存在不得不对子模块和同级兄弟模块产生影响，我们能做的是明确各布局的种种影响，这种影响在某种需求下是副作用，需要采用其它办法来消除，但在另一种需求下又是目的，然而这种需求转换可能存在于响应式布局和 CSS3 动画被触发的瞬间。趁现在有时间梳理一下，并不断修改和增加中...",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-layout"
+  },
+  {
+    "title": "常用 CSS 片段收集",
+    "introduction": "提供简写和非简写两种方式，有点小洁癖的可以采用了简写的方式，多人协作的长期项目建议采用非简写简明知意。另外简写容易造成冲突，按字母顺序排列样式能在一定层度上减少这种冲突，所以下面的样式都是按字母顺序排列的，另外简写的一般规则是 “属性-属性值-修饰”，表意的CSS片段取首字母缩写。可以更具自己的项目定制此文件的部分或全部，无需任何许可。一些实例：[DEMO](demo/demo.html)，也可下载[dem/css.css](demo/css.css)直接使用。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-part"
+  },
+  {
+    "title": "CSS Reset",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-reset"
+  },
+  {
+    "title": "CSS 中的尺寸",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-size-system"
+  },
+  {
+    "title": " ",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-transform"
+  },
+  {
+    "title": "CSS 小组件",
+    "introduction": "这些年用过的一些小组件，整理收集在此。class命名很接地气，坏处就是容易冲突，如果和其他样式库公用注意冲突的问题。\n一些实例：[DEMO](demo/demo.html)，也可下载[dem/css.css](demo/css.css)直接使用。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "css-widget"
+  },
+  {
+    "title": "JS 数据类型",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "data-type"
+  },
+  {
+    "title": "将form中的数据转为js对象",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "form-to-obj"
+  },
+  {
+    "title": "HTML那些元素",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "html"
+  },
+  {
+    "title": "资料",
+    "introduction": "技术是用来做事的，学的时间长了走得远了可能忘了初心。身在其中不只是好是坏，好在技术有了信念和精神，坏在各种奇技淫巧丢了方向。技术的本源我觉得可以归于两点：一规范，二API。规范存于思想有些飘渺，API却是我们每天写代码用到的，通过对API的研究可以捕获那些飘渺的思想，也可以让思想落到代码中。网上和书上的文章大多是二手资料(当然包括我这篇)，一手的资料不多，就是那些静静地躺在那里的API，每个大牛都从那里得到过灵感。学大牛成小牛，成大牛学API...",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "information"
+  },
+  {
+    "title": "js 模块化",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "js-module"
+  },
+  {
+    "title": "js 试题",
+    "introduction": "遇到一些 js 试题，有的考验功底，有的考验思维，有的则考验一些语言的细节，这里收集和解答那些个我遇到过的有意思的试题，从技术点和如何获得这个技术点以及如何使用这个技术点的视角来解释，这里不谈那些个纯为压工资难为人的淫技。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "js-questions"
+  },
+  {
+    "title": "移动端站点开发入门",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "mobile-develope-abc"
+  },
+  {
+    "title": "node开发的坑坑洼洼",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "node"
+  },
+  {
+    "title": "node fs",
+    "introduction": "NodeJs 下的文件操作模块，各种扩展都基于此模块。各种工具的开发都少不了文件操作...",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "node-fs"
+  },
+  {
+    "title": "页面的基础",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "page-base"
+  },
+  {
+    "title": "对页面加载和渲染的研究",
+    "introduction": "写页面时间久一点开始注意到浏览器对页面的原理，文档树(DOM Tree)、渲染树(Render Tree)、重绘(Repaint)、重排(Reflow)、HasLayout等概念开始进入视野，从零散的概念，到各种布局和Hack，到打通这些概念需要一个时间上的积累和思考。今天试试能不能打通这条筋脉。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "page-research"
+  },
+  {
+    "title": "promise",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "promise"
+  },
+  {
+    "title": "阅读JavaScript开源代码",
+    "introduction": "刚开始时题目是“阅读开源代码”，感觉题目有点大hold不住，后期可能会出姊妹篇“如何阅读前端UI库”。在网上搜了一些资料，发现后端的居多，偶尔有一篇前端的帖子，也基本上属于“指导思想”类型的，很少有具体的指导，于是就有了本文。本文从最高层次上介绍三个库的源码结构和思想：jQuery，使用面积最广，也代表了一个时代；Backbone，MVC框架，前端里程碑框架，这个框架之前前端在借鉴后端，这个框架之后前端走上了独立发展之路；Avalon，MVVM框架，之所以没选Angular是因为其职责更单一。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "read-open-sources"
+  },
+  {
+    "title": "前端路由",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "router"
+  },
+  {
+    "title": "短篇集",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "short-story"
+  },
+  {
+    "title": "站点说明",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "site-explanation"
+  },
+  {
+    "title": "HTML 模板研究",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "template"
+  },
+  {
+    "title": "测试",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "test"
+  },
+  {
+    "title": "软件工具",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "tool-software"
+  },
+  {
+    "title": "Unicode 常用编码",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "unicode"
+  },
+  {
+    "title": "Vue 简明学习笔记",
+    "introduction": "vue偏轻量适合移动端，AngularJS适合pc端，avalon适合兼容老浏览器的项目。",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "vue"
+  },
+  {
+    "title": "vue-router",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "vue-router"
+  },
+  {
+    "title": "WebSocket",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "websocket"
+  },
+  {
+    "title": "记录自己的和别人的只言片语(a single sentence or words;)",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "word-or-two"
+  },
+  {
+    "title": "YaHoo Web优化的14条法则",
+    "introduction": "未找到描述信息",
+    "tags": [
+      "基础"
+    ],
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": [],
+    "isPublished": false,
+    "enName": "yahoo-14"
+  }
+]

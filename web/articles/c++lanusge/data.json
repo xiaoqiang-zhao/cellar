@@ -6,12 +6,12 @@
     "c++"
   ],
   "state": "立项",
-  "public": false,
   "type": "md",
   "createDate": "",
   "md5": "",
   "commentList": [
     ""
   ],
-  "todoList": []
+  "todoList": [],
+  "isPublished": false
 }
