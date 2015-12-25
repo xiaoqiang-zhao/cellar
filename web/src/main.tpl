@@ -1,2 +1,2 @@
 <header-c></header-c>
-<div>---</div>
+<router-view></router-view>

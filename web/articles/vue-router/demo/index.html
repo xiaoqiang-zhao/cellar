@@ -21,7 +21,10 @@
 <script>
     // 定义组件
     var Foo = Vue.extend({
-        template: '<p>This is foo!</p>'
+        data: {
+           name: 'jack'
+        },
+        template: '<p>This is foo!<a v-link="/aaaa/{{name}}">aaaa</a></p>'
     });
 
     var Bar = Vue.extend({

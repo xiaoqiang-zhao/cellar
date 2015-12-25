@@ -24,7 +24,7 @@
     </nav>
 </header>
 <div class="page-body article-list-container">
-    <% articleArr.forEach(function(article){ if(article.jsonData.public){%>
+    <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
     <article class="article-list-item">
         <a href="<%=article.detailPagePath %>">
             <h1 class="title"><%=article.jsonData.title %></h1>
