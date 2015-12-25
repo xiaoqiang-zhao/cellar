@@ -33,17 +33,15 @@ var articleDetail = Vue.extend({
         });
 
         return {
-            enName: this.$route.params.id,
             htmlContent: '',
             headerTree: []
         };
     },
-    route: {
-        activate: function () {
-            // 控制滚动条
-            console.log(this);
-            console.log(this.$route);
-            console.log('hook-example activated!');
+    methods: {
+        scroll: function (event) {
+            var headerId = event.target.getAttribute('data-value');
+            var headerDom = document.getElementById(headerId);
+            document.body.scrollTop = headerDom.offsetTop - 20;
         }
     }
 });

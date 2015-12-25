@@ -39,9 +39,6 @@ router.map({
     },
     '/articles/:id': {
         component: articleDetail
-    },
-    '/articles/:id/:header': {
-        component: articleDetail
     }
 });
 

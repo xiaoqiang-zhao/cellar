@@ -2,10 +2,10 @@
     <p><strong>文章目录</strong></p>
     <ul>
         <li v-for="item in headerTree">
-            <a href="#!/articles/{{enName}}/{{item.id}}">{{item.text}}</a>
+            <a v-on:click="scroll" data-value="{{item.id}}">{{item.text}}</a>
             <ul v-if="item.children.length > 0">
                 <li v-for="item in item.children">
-                    <a href="#!/articles/{{enName}}/{{item.id}}">{{item.text}}</a>
+                    <a v-on:click="scroll" data-value="{{item.id}}">{{item.text}}</a>
                 </li>
             </ul>
         </li>

@@ -85,9 +85,6 @@
 	    },
 	    '/articles/:id': {
 	        component: articleDetail
-	    },
-	    '/articles/:id/:header': {
-	        component: articleDetail
 	    }
 	});
 
@@ -21803,17 +21800,15 @@
 	        });
 
 	        return {
-	            enName: this.$route.params.id,
 	            htmlContent: '',
 	            headerTree: []
 	        };
 	    },
-	    route: {
-	        activate: function () {
-	            // 控制滚动条
-	            console.log(this);
-	            console.log(this.$route);
-	            console.log('hook-example activated!');
+	    methods: {
+	        scroll: function (event) {
+	            var headerId = event.target.getAttribute('data-value');
+	            var headerDom = document.getElementById(headerId);
+	            document.body.scrollTop = headerDom.offsetTop - 20;
 	        }
 	    }
 	});
@@ -21824,7 +21819,7 @@
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"article-detail-headers-container\">\n    <p><strong>文章目录</strong></p>\n    <ul>\n        <li v-for=\"item in headerTree\">\n            <a href=\"#!/articles/{{enName}}/{{item.id}}\">{{item.text}}</a>\n            <ul v-if=\"item.children.length > 0\">\n                <li v-for=\"item in item.children\">\n                    <a href=\"#!/articles/{{enName}}/{{item.id}}\">{{item.text}}</a>\n                </li>\n            </ul>\n        </li>\n    </ul>\n</div>\n<div class=\"article-detail-container\">{{{htmlContent}}}</div>\n";
+	module.exports = "<div class=\"article-detail-headers-container\">\n    <p><strong>文章目录</strong></p>\n    <ul>\n        <li v-for=\"item in headerTree\">\n            <a v-on:click=\"scroll\" data-value=\"{{item.id}}\">{{item.text}}</a>\n            <ul v-if=\"item.children.length > 0\">\n                <li v-for=\"item in item.children\">\n                    <a v-on:click=\"scroll\" data-value=\"{{item.id}}\">{{item.text}}</a>\n                </li>\n            </ul>\n        </li>\n    </ul>\n</div>\n<div class=\"article-detail-container\">{{{htmlContent}}}</div>\n";
 
 /***/ },
 /* 24 */
@@ -23376,7 +23371,7 @@
 
 
 	// module
-	exports.push([module.id, "/* 详情页 */\n.article-detail-container {\n    max-width: 800px;\n    margin: 1em auto;\n    padding: 1em 1em .5em 1em;\n    background-color: #f2f2f2;\n    font-size: 14px;\n}\n/* 文章目录 */\n.article-detail-headers-container {\n    display: none;\n    position: fixed;\n    bottom: 8px;\n    right: 0;\n    max-width: 260px;\n    min-width: 120px;\n    margin-left: 600px;\n    border: 1px solid #e2e2e2;\n    padding: 6px;\n    font-size: 14px;\n    line-height: 1.5em;\n}\n.article-detail-headers-container p {\n    margin: 0;\n    padding: 0 4px;\n}\n.article-detail-headers-container strong {\n    border-bottom: 1px solid #e2e2e2;\n    display: block;\n}\n.article-detail-headers-container ul {\n    margin: .5em 1em .5em 1.5em;\n}\n.article-detail-headers-container a {\n    color: #2479CC;\n    text-decoration: none;\n}\n.article-detail-headers-container ul ul {\n    margin-top: 0;\n    margin-bottom: 0;\n}\n/* 大于800时显示文章目录 */\n@media screen and (min-width: 800px) {\n    .article-detail-headers-container {\n        display: block;\n    }\n    .page-body {\n        max-width: 600px;\n    }\n    .page-body .article-detail-container {\n        margin-left: -100px;\n    }\n}\n\n/* 留言 */\n.article-message-container {}", ""]);
+	exports.push([module.id, "/* 详情页 */\n.article-detail-container {\n    max-width: 800px;\n    margin: 1em auto;\n    padding: 1em 1em .5em 1em;\n    background-color: #f2f2f2;\n    font-size: 14px;\n}\n/* 文章目录 */\n.article-detail-headers-container {\n    display: none;\n    position: fixed;\n    bottom: 8px;\n    right: 0;\n    max-width: 260px;\n    min-width: 120px;\n    margin-left: 600px;\n    border: 1px solid #e2e2e2;\n    padding: 6px;\n    font-size: 14px;\n    line-height: 1.5em;\n}\n.article-detail-headers-container p {\n    margin: 0;\n    padding: 0 4px;\n}\n.article-detail-headers-container strong {\n    border-bottom: 1px solid #e2e2e2;\n    display: block;\n}\n.article-detail-headers-container ul {\n    margin: .5em 1em .5em 1.5em;\n}\n.article-detail-headers-container a {\n    color: #2479CC;\n    text-decoration: none;\n    cursor: pointer;\n}\n.article-detail-headers-container ul ul {\n    margin-top: 0;\n    margin-bottom: 0;\n}\n/* 大于800时显示文章目录 */\n@media screen and (min-width: 800px) {\n    .article-detail-headers-container {\n        display: block;\n    }\n    .page-body {\n        max-width: 600px;\n    }\n    .page-body .article-detail-container {\n        margin-left: -100px;\n    }\n}\n\n/* 留言 */\n.article-message-container {}", ""]);
 
 	// exports
 
