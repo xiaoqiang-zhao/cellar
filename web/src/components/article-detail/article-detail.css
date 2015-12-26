@@ -1,0 +1,59 @@
+/*
+ * src/components/article-detail/article-detail.css
+ *
+ * 文章详情页样式
+ */
+
+/* 内容部分 */
+.article-detail-container {
+    margin: 1em 0 0;
+    padding: 1em 1em .5em 1em;
+    background-color: #f2f2f2;
+}
+/* 文章目录 */
+.article-detail-headers-container {
+    position: absolute;
+    right: 0;
+    overflow: scroll;
+    max-width: 260px;
+    min-width: 120px;
+    border: 1px solid #e2e2e2;
+    padding: 6px;
+    font-size: 14px;
+    line-height: 1.5em;
+    background: white;
+    opacity: .9;
+}
+.article-detail-headers-container p {
+    margin: 0;
+    padding: 0 4px;
+}
+.article-detail-headers-container strong {
+    border-bottom: 1px solid #e2e2e2;
+    display: block;
+}
+.article-detail-headers-container ul {
+    margin: .5em 1em .5em 1.5em;
+}
+.article-detail-headers-container a {
+    color: #2479CC;
+    text-decoration: none;
+    cursor: pointer;
+    /* 不折行 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 强制不换行 */
+}
+.article-detail-headers-container ul ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/* 小于800时隐藏文章目录 */
+@media screen and (max-width: 800px) {
+    .article-detail-headers-container {
+        display: none;
+    }
+}
+
+/* 留言 */
+.article-message-container {}

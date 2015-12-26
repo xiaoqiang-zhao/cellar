@@ -1,0 +1,43 @@
+/*
+ * src/components/article-list/article-list.css
+ *
+ * 文章列表页样式
+ */
+.article-list-container {
+
+}
+.article-list-container a {
+    color: inherit;
+    text-decoration: none;
+}
+.article-list-item {
+    margin: 1em 0;
+    padding: 1em 1em .5em 1em;
+    background-color: #f2f2f2;
+}
+.article-list-item .title {
+    font-size: inherit;
+    line-height: 17px;
+    font-weight: 700;
+}
+.article-list-item summary {
+    font-size: 14px;
+    color: #696566;
+}
+.article-list-item footer {
+    border-top: 1px solid #d6d6d6;
+    margin-top: 10px;
+}
+.article-list-item .tags-container {
+    padding-top: 6px;
+}
+.article-list-item .tags-container .icon-tag {
+    top: 3px;
+}
+.article-list-item .tags-container .tag-item {
+    background: #c3bfbf;
+    padding: 2px 5px;
+    margin-left: 5px;
+    color: #fff;
+    font-size: 12px;
+}

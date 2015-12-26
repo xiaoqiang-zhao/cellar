@@ -1,0 +1,17 @@
+/*
+ * src/components/main.css
+ *
+ * 组织组件时需要一个容器，这里定义容器的样式(包括响应式)
+ */
+
+.page-body {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.5;
+    color: #333;
+}
+.page-body a {
+    color: inherit;
+    text-decoration: none;
+}

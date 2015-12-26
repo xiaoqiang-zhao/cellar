@@ -1,0 +1,34 @@
+/* component/icon/tag.css */
+
+/* Tag 图标 */
+.icon-tag {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: #c3bfbf;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.icon-tag::before {
+    position: absolute;
+    right: -5px;
+    top: 2px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: inherit;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    content: "\200B";
+}
+.icon-tag::after {
+    position: absolute;
+    right: -2px;
+    top: 5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background: #fff;
+    content: "\200B";
+}
