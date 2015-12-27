@@ -11,14 +11,20 @@
     background-color: #f2f2f2;
 }
 /* 文章目录 */
-.article-detail-headers-container {
+.article-detail-headers-container,
+.article-detail-headers-container.open {
     position: absolute;
+    top: 0;
     right: 0;
     overflow: scroll;
+    box-sizing: border-box;
+    width: auto;
     max-width: 260px;
     min-width: 120px;
+    height: auto;
     border: 1px solid #e2e2e2;
     padding: 6px;
+    border-radius: 0;
     font-size: 14px;
     line-height: 1.5em;
     background: white;
@@ -36,7 +42,7 @@
     margin: .5em 1em .5em 1.5em;
 }
 .article-detail-headers-container a {
-    color: #2479CC;
+    color: #2479cc;
     text-decoration: none;
     cursor: pointer;
     /* 不折行 */
@@ -48,12 +54,96 @@
     margin-top: 0;
     margin-bottom: 0;
 }
-/* 小于800时隐藏文章目录 */
+.article-detail-headers-container .icon-catalogue {
+    display: none; /* 宽屏隐藏 */
+    box-sizing: border-box;
+    margin: -6px -6px;
+    width: 38px;
+    height: 38px;
+    padding: 5px 6px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.article-detail-headers-container .icon-close {
+    display: none;
+    float: right;
+    margin: -2px;
+}
+/* 文章列表图标 */
+.icon-catalogue {
+    display: inline-block;
+}
+.icon-catalogue i,
+.icon-catalogue i:before,
+.icon-catalogue i:after {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    height: 2px;
+    width: 20px;
+    border-left: 2px solid #006a00;
+    border-right: 15px solid #006a00;
+    margin: 13px 2px;
+}
+.icon-catalogue i:before,
+.icon-catalogue i:after {
+    position: absolute;
+    margin: 0;
+    content: "\200B";
+    left: -2px;
+}
+.icon-catalogue i:before {
+    top: -6px;
+}
+.icon-catalogue i:after {
+    bottom: -6px;
+}
+/* 关闭按钮图标 */
+.icon-close {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+}
+.icon-close:before,
+.icon-close:after {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    background: #006a00;
+    content: "\200B";
+}
+.icon-close:before {
+    transform: rotate(45deg);
+}
+.icon-close:after {
+    transform: rotate(-45deg);
+}
+/* 小于800时文章目录显示为图标 */
 @media screen and (max-width: 800px) {
     .article-detail-headers-container {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 20px;
+        right: 0;
+    }
+    .article-detail-headers-container.open {
+        height: auto;
+    }
+    .article-detail-headers-container .icon-catalogue {
+        display: inline-block;
+    }
+    .article-detail-headers-container.open .icon-catalogue {
         display: none;
     }
+    .article-detail-headers-container.open .icon-close {
+        display: inline-block;
+    }
 }
-
 /* 留言 */
-.article-message-container {}
+.article-message-container { }

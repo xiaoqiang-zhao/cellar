@@ -30,19 +30,20 @@ var articleDetail = Vue.extend({
                     headerTree = data.headerTree[0].children;
                     me.$data.headerTree = headerTree;
                 }
-                if ($(window).width() > 800) {
-                    // 数据改变触发异步回调，所以需要将命令加入异步队列
-                    window.setTimeout(function () {
+                window.setTimeout(function () {
+                    if ($(window).width() > 800) {
+                        // 数据改变触发异步回调，所以需要将命令加入异步队列
                         resizeHeaderAndDetailWidth();
-                        listenWindowScrollEvent();
-                    });
-                }
+                    }
+                    listenWindowScrollEvent(me);
+                });
             }
         });
 
         return {
             htmlContent: '',
-            headerTree: []
+            headerTree: [],
+            isOpenHeaders: false
         };
     },
     methods: {
@@ -52,10 +53,19 @@ var articleDetail = Vue.extend({
             var headerDom = document.getElementById(headerId);
             // 可做动画 TODO
             document.body.scrollTop = headerDom.offsetTop - 20;
+        },
+        // 展开目录
+        openHeaders: function () {
+            this.$data.isOpenHeaders = true;
+            $('.article-detail-headers-container').css('height', 'auto');
+        },
+        // 关闭目录
+        closeHeaders: function () {
+            this.$data.isOpenHeaders = false;
+            $('.article-detail-headers-container').css('height', '40px');
         }
     }
 });
-
 
 // 从新调整标题和内容的尺寸
 function resizeHeaderAndDetailWidth() {
@@ -72,34 +82,53 @@ function resizeHeaderAndDetailWidth() {
 }
 
 // 监听 body 滚动条
-function listenWindowScrollEvent() {
+function listenWindowScrollEvent(vm) {
     var articleDetailHeadersContainer$ = $('.article-detail-headers-container');
     var window$ = $(window);
     window$.scroll(function () {
         var scrollTop = window$.scrollTop();
         var headerHeight = $('.page-header').height();
+        var windowWidth = window$.width();
+        var windowHeight = window$.height();
         // 临界值
-        var criticalValue = headerHeight;
-        // 20是随便写的，找个时间再思考这个怎么做
-
+        var criticalValue = headerHeight + 15;
+        var css = {};
         // 悬挂布局
         if (scrollTop > criticalValue) {
             var height = window$.height();
-            articleDetailHeadersContainer$.css({
+            css = {
                 position: 'fixed',
-                top: '1em',
                 right: 'auto',
-                height: (height - 40) + 'px'
-            });
+                height: height + 'px'
+            };
+
         }
         // 还原
         else {
-            articleDetailHeadersContainer$.css({
+            css = {
                 position: 'absolute',
-                height: 'auto',
-                top: '0'
-            });
+                height: 'auto'
+            };
         }
+
+        // 处理移动端
+        if (vm.$data.isOpenHeaders) {
+            var ulHeight = articleDetailHeadersContainer$.find('>ul').outerHeight(true);
+            if (ulHeight + 30 > windowHeight) {
+                css.height = windowHeight + 'px';
+            }
+            else {
+                css.height = 'auto';
+            }
+        }
+        else if (windowWidth < 800) {
+            css.height = '40px';
+        }
+        if (windowWidth < 800 ) {
+            css.right = 0;
+        }
+
+        articleDetailHeadersContainer$.css(css);
     });
 }
 

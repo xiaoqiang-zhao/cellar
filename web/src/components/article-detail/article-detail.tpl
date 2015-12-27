@@ -1,4 +1,8 @@
-<div class="article-detail-headers-container">
+<div class="article-detail-headers-container" v-bind:class="{ 'open': isOpenHeaders}">
+    <span class="icon-catalogue" v-on:click="openHeaders">
+        <i></i>
+    </span>
+    <i class="icon-close" v-on:click="closeHeaders"></i>
     <p><strong>文章目录</strong></p>
     <ul>
         <li v-for="item in headerTree">
