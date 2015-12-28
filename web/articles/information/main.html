@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>资料 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">资料</h1>
 <blockquote>
 <p>技术是用来做事的，学的时间长了走得远了可能忘了初心。身在其中不只是好是坏，好在技术有了信念和精神，坏在各种奇技淫巧丢了方向。技术的本源我觉得可以归于两点：一规范，二API。规范存于思想有些飘渺，API却是我们每天写代码用到的，通过对API的研究可以捕获那些飘渺的思想，也可以让思想落到代码中。网上和书上的文章大多是二手资料(当然包括我这篇)，一手的资料不多，就是那些静静地躺在那里的API，每个大牛都从那里得到过灵感。学大牛成小牛，成大牛学API...</p>
@@ -33,24 +31,6 @@
 <p><a href="http://www.w3.org/Consortium/siteindex.html#technologies" target="_blank">W3C SITE MAP</a></p>
 <p><a href="http://www.w3chtml.com/css3/" target="_blank">CSS3API</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1"> </a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

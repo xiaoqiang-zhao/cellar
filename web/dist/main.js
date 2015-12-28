@@ -12456,7 +12456,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/*\n * src/components/header/header.css\n *\n * 头部的标题和导航\n */\n/* TODO 高度143px，一个前端工程师的自我修养 */\n.page-header {\n    font-size: 16px;\n    background-color: #f2f2f2;\n    overflow: hidden;\n}\n.page-header h1 {\n    box-sizing: border-box;\n    -webkit-box-sizing: border-box;\n    height: 64px;\n    max-width: 800px;\n    margin: 10px auto;\n    padding: 3px 0 3px 77px;\n    font-weight: 200;\n    background: center left url(" + __webpack_require__(/*! ./picture.png */ 14) + ") no-repeat;\n    background-size: contain;\n}\n.page-header h1 .main-title {\n    font-size: 16px;\n    line-height: 20px;\n    color: #333;\n}\n.page-header h1 .subtitle {\n    display: block;\n    font-size: 14px;\n    line-height: 26px;\n    color: #666;\n}\n.page-header .icon-menu-button {\n    position: absolute;\n    top: 5px;\n    right: 10px;\n}\n/* 导航 */\n.page-header .nav {\n    width: 800px;\n    position: absolute;\n    top: 25px;\n    left: 50%;\n    margin-left: -400px;\n}\n.page-header .nav menu {\n    display: none;\n    position: absolute;\n    top: 54px;\n    right: 0;\n    margin: 0;\n    padding: 0;\n    background-color: #f2f2f2;\n    border: solid 1px #fff;\n    border-top: none;\n}\n.page-header .nav .item {\n    display: block;\n    line-height: 2.8em;\n    margin: 0 15px;\n    padding: 0 2em;\n    border-bottom: 1px solid #f8f8f8;\n    color: #606566;\n    font-size: 14px;\n}\n.page-header .nav .item:last-child {\n    border: none;\n}\n\n/* 小于 500 像素时 调整样式为移动端 */\n@media screen and (max-width: 500px) {\n    .page-header h1 .main-title {\n        line-height: 64px;\n    }\n    .page-header h1 .subtitle {\n        display: none;\n    }\n}\n/* 小于800时需调整导航方案 */\n@media screen and (max-width: 800px) {\n    .page-header .nav {\n        width: auto;\n        max-width: 800px;\n        right: 0;\n        margin-left: 0;\n    }\n}", ""]);
+	exports.push([module.id, "/*\n * src/components/header/header.css\n *\n * 头部的标题和导航\n */\n/* TODO 高度143px，一个前端工程师的自我修养 */\n.page-header {\n    font-size: 16px;\n    background-color: #f2f2f2;\n    overflow: hidden;\n}\n.page-header h1 {\n    box-sizing: border-box;\n    -webkit-box-sizing: border-box;\n    height: 64px;\n    max-width: 800px;\n    margin: 10px auto;\n    padding: 3px 0 3px 77px;\n    font-weight: 200;\n    background: center left url(" + __webpack_require__(/*! ./picture.png */ 14) + ") no-repeat;\n    background-size: contain;\n}\n.page-header h1 .main-title {\n    font-size: 16px;\n    line-height: 20px;\n    color: #333;\n}\n.page-header h1 .subtitle {\n    display: block;\n    font-size: 14px;\n    line-height: 26px;\n    color: #666;\n}\n.page-header .icon-menu-button {\n    position: absolute;\n    top: 5px;\n    right: 10px;\n}\n/* 导航 */\n.page-header .nav {\n    width: 800px;\n    position: absolute;\n    top: 25px;\n    left: 50%;\n    margin-left: -400px;\n    display: none; /* 暂时隐藏 */\n}\n.page-header .nav menu {\n    display: none;\n    position: absolute;\n    top: 54px;\n    right: 0;\n    margin: 0;\n    padding: 0;\n    background-color: #f2f2f2;\n    border: solid 1px #fff;\n    border-top: none;\n}\n.page-header .nav .item {\n    display: block;\n    line-height: 2.8em;\n    margin: 0 15px;\n    padding: 0 2em;\n    border-bottom: 1px solid #f8f8f8;\n    color: #606566;\n    font-size: 14px;\n}\n.page-header .nav .item:last-child {\n    border: none;\n}\n\n/* 小于 500 像素时 调整样式为移动端 */\n@media screen and (max-width: 500px) {\n    .page-header h1 .main-title {\n        line-height: 64px;\n    }\n    .page-header h1 .subtitle {\n        display: none;\n    }\n}\n/* 小于800时需调整导航方案 */\n@media screen and (max-width: 800px) {\n    .page-header .nav {\n        width: auto;\n        max-width: 800px;\n        right: 0;\n        margin-left: 0;\n    }\n}", ""]);
 	
 	// exports
 
@@ -21992,19 +21992,20 @@
 	                    headerTree = data.headerTree[0].children;
 	                    me.$data.headerTree = headerTree;
 	                }
-	                if ($(window).width() > 800) {
-	                    // 数据改变触发异步回调，所以需要将命令加入异步队列
-	                    window.setTimeout(function () {
+	                window.setTimeout(function () {
+	                    if ($(window).width() > 800) {
+	                        // 数据改变触发异步回调，所以需要将命令加入异步队列
 	                        resizeHeaderAndDetailWidth();
-	                        listenWindowScrollEvent();
-	                    });
-	                }
+	                    }
+	                    listenWindowScrollEvent(me);
+	                });
 	            }
 	        });
 	
 	        return {
 	            htmlContent: '',
-	            headerTree: []
+	            headerTree: [],
+	            isOpenHeaders: false
 	        };
 	    },
 	    methods: {
@@ -22014,10 +22015,19 @@
 	            var headerDom = document.getElementById(headerId);
 	            // 可做动画 TODO
 	            document.body.scrollTop = headerDom.offsetTop - 20;
+	        },
+	        // 展开目录
+	        openHeaders: function () {
+	            this.$data.isOpenHeaders = true;
+	            $('.article-detail-headers-container').css('height', 'auto');
+	        },
+	        // 关闭目录
+	        closeHeaders: function () {
+	            this.$data.isOpenHeaders = false;
+	            $('.article-detail-headers-container').css('height', '40px');
 	        }
 	    }
 	});
-	
 	
 	// 从新调整标题和内容的尺寸
 	function resizeHeaderAndDetailWidth() {
@@ -22034,34 +22044,53 @@
 	}
 	
 	// 监听 body 滚动条
-	function listenWindowScrollEvent() {
+	function listenWindowScrollEvent(vm) {
 	    var articleDetailHeadersContainer$ = $('.article-detail-headers-container');
 	    var window$ = $(window);
 	    window$.scroll(function () {
 	        var scrollTop = window$.scrollTop();
 	        var headerHeight = $('.page-header').height();
+	        var windowWidth = window$.width();
+	        var windowHeight = window$.height();
 	        // 临界值
-	        var criticalValue = headerHeight;
-	        // 20是随便写的，找个时间再思考这个怎么做
-	
+	        var criticalValue = headerHeight + 15;
+	        var css = {};
 	        // 悬挂布局
 	        if (scrollTop > criticalValue) {
 	            var height = window$.height();
-	            articleDetailHeadersContainer$.css({
+	            css = {
 	                position: 'fixed',
-	                top: '1em',
 	                right: 'auto',
-	                height: (height - 40) + 'px'
-	            });
+	                height: height + 'px'
+	            };
+	
 	        }
 	        // 还原
 	        else {
-	            articleDetailHeadersContainer$.css({
+	            css = {
 	                position: 'absolute',
-	                height: 'auto',
-	                top: '0'
-	            });
+	                height: 'auto'
+	            };
 	        }
+	
+	        // 处理移动端
+	        if (vm.$data.isOpenHeaders) {
+	            var ulHeight = articleDetailHeadersContainer$.find('>ul').outerHeight(true);
+	            if (ulHeight + 30 > windowHeight) {
+	                css.height = windowHeight + 'px';
+	            }
+	            else {
+	                css.height = 'auto';
+	            }
+	        }
+	        else if (windowWidth < 800) {
+	            css.height = '40px';
+	        }
+	        if (windowWidth < 800 ) {
+	            css.right = 0;
+	        }
+	
+	        articleDetailHeadersContainer$.css(css);
 	    });
 	}
 	
@@ -22074,7 +22103,7 @@
   \***************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"article-detail-headers-container\">\n    <p><strong>文章目录</strong></p>\n    <ul>\n        <li v-for=\"item in headerTree\">\n            <a v-on:click=\"scrollToHeaderContent\" data-value=\"{{item.id}}\">{{item.text}}</a>\n            <ul v-if=\"item.children.length > 0\">\n                <li v-for=\"item in item.children\">\n                    <a v-on:click=\"scrollToHeaderContent\" data-value=\"{{item.id}}\">{{item.text}}</a>\n                </li>\n            </ul>\n        </li>\n    </ul>\n</div>\n<div class=\"article-detail-container\">{{{htmlContent}}}</div>\n";
+	module.exports = "<div class=\"article-detail-headers-container\" v-bind:class=\"{ 'open': isOpenHeaders}\">\n    <span class=\"icon-catalogue\" v-on:click=\"openHeaders\">\n        <i></i>\n    </span>\n    <i class=\"icon-close\" v-on:click=\"closeHeaders\"></i>\n    <p><strong>文章目录</strong></p>\n    <ul>\n        <li v-for=\"item in headerTree\">\n            <a v-on:click=\"scrollToHeaderContent\" data-value=\"{{item.id}}\">{{item.text}}</a>\n            <ul v-if=\"item.children.length > 0\">\n                <li v-for=\"item in item.children\">\n                    <a v-on:click=\"scrollToHeaderContent\" data-value=\"{{item.id}}\">{{item.text}}</a>\n                </li>\n            </ul>\n        </li>\n    </ul>\n</div>\n<div class=\"article-detail-container\">{{{htmlContent}}}</div>\n";
 
 /***/ },
 /* 30 */
@@ -23650,7 +23679,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/*\n * src/components/article-detail/article-detail.css\n *\n * 文章详情页样式\n */\n\n/* 内容部分 */\n.article-detail-container {\n    margin: 1em 0 0;\n    padding: 1em 1em .5em 1em;\n    background-color: #f2f2f2;\n}\n/* 文章目录 */\n.article-detail-headers-container {\n    position: absolute;\n    right: 0;\n    overflow: scroll;\n    max-width: 260px;\n    min-width: 120px;\n    border: 1px solid #e2e2e2;\n    padding: 6px;\n    font-size: 14px;\n    line-height: 1.5em;\n    background: white;\n    opacity: .9;\n}\n.article-detail-headers-container p {\n    margin: 0;\n    padding: 0 4px;\n}\n.article-detail-headers-container strong {\n    border-bottom: 1px solid #e2e2e2;\n    display: block;\n}\n.article-detail-headers-container ul {\n    margin: .5em 1em .5em 1.5em;\n}\n.article-detail-headers-container a {\n    color: #2479CC;\n    text-decoration: none;\n    cursor: pointer;\n    /* 不折行 */\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap; /* 强制不换行 */\n}\n.article-detail-headers-container ul ul {\n    margin-top: 0;\n    margin-bottom: 0;\n}\n/* 小于800时隐藏文章目录 */\n@media screen and (max-width: 800px) {\n    .article-detail-headers-container {\n        display: none;\n    }\n}\n\n/* 留言 */\n.article-message-container {}", ""]);
+	exports.push([module.id, "/*\n * src/components/article-detail/article-detail.css\n *\n * 文章详情页样式\n */\n\n/* 内容部分 */\n.article-detail-container {\n    margin: 1em 0 0;\n    padding: 1em 1em .5em 1em;\n    background-color: #f2f2f2;\n}\n/* 文章目录 */\n.article-detail-headers-container,\n.article-detail-headers-container.open {\n    position: absolute;\n    top: 0;\n    right: 0;\n    overflow: scroll;\n    box-sizing: border-box;\n    width: auto;\n    max-width: 260px;\n    min-width: 120px;\n    height: auto;\n    border: 1px solid #e2e2e2;\n    padding: 6px;\n    border-radius: 0;\n    font-size: 14px;\n    line-height: 1.5em;\n    background: white;\n    opacity: .9;\n}\n.article-detail-headers-container p {\n    margin: 0;\n    padding: 0 4px;\n}\n.article-detail-headers-container strong {\n    border-bottom: 1px solid #e2e2e2;\n    display: block;\n}\n.article-detail-headers-container ul {\n    margin: .5em 1em .5em 1.5em;\n}\n.article-detail-headers-container a {\n    color: #2479cc;\n    text-decoration: none;\n    cursor: pointer;\n    /* 不折行 */\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap; /* 强制不换行 */\n}\n.article-detail-headers-container ul ul {\n    margin-top: 0;\n    margin-bottom: 0;\n}\n.article-detail-headers-container .icon-catalogue {\n    display: none; /* 宽屏隐藏 */\n    box-sizing: border-box;\n    margin: -6px -6px;\n    width: 38px;\n    height: 38px;\n    padding: 5px 6px;\n    border-radius: 20px;\n    cursor: pointer;\n}\n.article-detail-headers-container .icon-close {\n    display: none;\n    float: right;\n    margin: -2px;\n}\n/* 文章列表图标 */\n.icon-catalogue {\n    display: inline-block;\n}\n.icon-catalogue i,\n.icon-catalogue i:before,\n.icon-catalogue i:after {\n    position: relative;\n    box-sizing: border-box;\n    display: block;\n    height: 2px;\n    width: 20px;\n    border-left: 2px solid #006a00;\n    border-right: 15px solid #006a00;\n    margin: 13px 2px;\n}\n.icon-catalogue i:before,\n.icon-catalogue i:after {\n    position: absolute;\n    margin: 0;\n    content: \"\\200B\";\n    left: -2px;\n}\n.icon-catalogue i:before {\n    top: -6px;\n}\n.icon-catalogue i:after {\n    bottom: -6px;\n}\n/* 关闭按钮图标 */\n.icon-close {\n    position: relative;\n    box-sizing: border-box;\n    display: inline-block;\n    height: 18px;\n    width: 18px;\n    cursor: pointer;\n}\n.icon-close:before,\n.icon-close:after {\n    position: absolute;\n    width: 100%;\n    height: 2px;\n    top: 50%;\n    background: #006a00;\n    content: \"\\200B\";\n}\n.icon-close:before {\n    transform: rotate(45deg);\n}\n.icon-close:after {\n    transform: rotate(-45deg);\n}\n/* 小于800时文章目录显示为图标 */\n@media screen and (max-width: 800px) {\n    .article-detail-headers-container {\n        width: 40px;\n        min-width: 40px;\n        height: 40px;\n        overflow: hidden;\n        border-radius: 20px;\n        right: 0;\n    }\n    .article-detail-headers-container.open {\n        height: auto;\n    }\n    .article-detail-headers-container .icon-catalogue {\n        display: inline-block;\n    }\n    .article-detail-headers-container.open .icon-catalogue {\n        display: none;\n    }\n    .article-detail-headers-container.open .icon-close {\n        display: inline-block;\n    }\n}\n/* 留言 */\n.article-message-container { }", ""]);
 	
 	// exports
 

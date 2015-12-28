@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>一步一步学习 webpack - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">一步一步学习 webpack</h1>
 <blockquote>
 <p>webpack 是什么？一个命令行打包工具，把 js、css 甚至图片打成一个或多个包供页面引用。我们从简单到复杂通过一个一个的例子来学习 webpack，所有实例都可以在我的 git 上下载到源码。</p>
@@ -137,80 +135,6 @@ module: {
 <p><a href="https://webpack.github.io/docs/list-of-loaders.html" target="_blank">webpack 加载器</a></p>
 <p><a href="https://developer.chrome.com/devtools/docs/javascript-debugging#source-maps" target="_blank">chrome source Maps官方资料</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">webpack 是什么？</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">2分钟跑起来</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">简单解释几句</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">调试</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-5">webpack 插件</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-6">拒绝 js 中拼 html 片段</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-7">CSS也玩起来</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-8">有了CSS怎么能没有装饰图</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-9">参考资料</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

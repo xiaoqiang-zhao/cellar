@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>短篇集 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">短篇集</h1>
 <h2 id="header-1-1">As it is</h2>
 <p>代码中的 As it is 就是自然，就是见名知意。从命名到框架都应该有所体现，函数内合理的命名能够使代码更易读，从而减少维护成本，最重要的是可以提升程序员的幸福感，项目的文件系统如果合理那就像女人有了苗条的身材和甜美的脸蛋。那么问题来了，什么是“合理”？</p>
@@ -53,52 +51,6 @@ css url  Uniform Resoure Locator:统一资源定位器</p>
 <p><a href="http://www.zhihu.com/question/20665684" target="_blank">为什么说命名和缓存失效是计算机科学里面最难应对的两件事？</a></p>
 <p>命名要考虑时空带来的逻辑问题。可以看看《命名与必然性》。</p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">As it is</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">史上最糟糕的一个变量名</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">objectList PK objectsList</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">带人</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-5">参考</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

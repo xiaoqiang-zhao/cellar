@@ -256,6 +256,23 @@
     "enName": "data-type"
   },
   {
+    "enName": "dialog-in-frame-vertical-align-middle",
+    "title": "弹框在 frame 中的垂直居中",
+    "introduction": "弹框在可视区域内的居中比较容易，一般的组件也都做了处理，但是在一些通过 iframe 集成的系统中就悲剧了，真个 iframe 都被识别为可视区，如果 iframe 的高度大于一屏，弹框很可能定位到用户看不到的地方。写一个函数来解决这个问题，并将原理做简单解释。",
+    "tags": [
+      "基础"
+    ],
+    "isPublished": false,
+    "state": "立项",
+    "type": "md",
+    "createDate": "",
+    "md5": "",
+    "commentList": [
+      ""
+    ],
+    "todoList": []
+  },
+  {
     "title": "将form中的数据转为js对象",
     "introduction": "未找到描述信息",
     "tags": [
