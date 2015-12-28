@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>js 模块化 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">js 模块化</h1>
 <h2 id="header-1-1">杂谈</h2>
 <p>模块化是指在解决某一个复杂问题或者一系列的杂糅问题时，依照一种分类的思维把问题进行系统性的分解以之处理。模块化是一种处理复杂系统分解为代码结构更合理，可维护性更高的可管理的模块的方式。可以想象一个巨大的系统代码，被整合优化分割成逻辑性很强的模块时，对于软件是一种何等意义的存在。对于软件行业来说：解耦软件系统的复杂性，使得不管多么大的系统，也可以将管理，开发，维护变得“有理可循”。</p>
@@ -188,59 +186,6 @@ CMD初始化模块的第一步是扫描当前模块，将依赖提取出来并�
 <p><a href="http://segmentfault.com/a/1190000002390643" target="_blank">css 模块化插件</a></p>
 <p><a href="http://div.io/topic/910" target="_blank">玩转AMD(2) - 应用实践</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">杂谈</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">CommonJs</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">AMD 与 CMD 的相同点</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">AMD 与 CMD 的不同点</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-5">兼容方案</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-6">参考文章</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

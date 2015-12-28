@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Git 简易概念 与 简易操作手册 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">Git 简易概念 与 简易操作手册</h1>
 <blockquote>
 <p>开源项目的协作利器，学这些开源项目可以从这里开始。</p>
@@ -125,126 +123,6 @@
 <p><a href="http://blog.csdn.net/showhilllee/article/details/27706679" target="_blank">GitHub详细教程</a></p>
 <p><a href="http://www.cnblogs.com/terrylin/archive/2013/04/04/2999465.html" target="_blank">Sublime 下配置 GitHub</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">Git 与 GitHub</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">Git基础理念与概念</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-2-1">Repository</a></li>
-                    
-                    <li><a href="#header-1-2-2">fork</a></li>
-                    
-                    <li><a href="#header-1-2-3">commit</a></li>
-                    
-                    <li><a href="#header-1-2-4">push</a></li>
-                    
-                    <li><a href="#header-1-2-5">pull</a></li>
-                    
-                    <li><a href="#header-1-2-6">branch</a></li>
-                    
-                    <li><a href="#header-1-2-7">release</a></li>
-                    
-                    <li><a href="#header-1-2-8">tag</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">GitHub上的一些操作</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-3-1">个人主页</a></li>
-                    
-                    <li><a href="#header-1-3-2">Repository</a></li>
-                    
-                    <li><a href="#header-1-3-3">branch</a></li>
-                    
-                    <li><a href="#header-1-3-4">releases</a></li>
-                    
-                    <li><a href="#header-1-3-5">分支向主干推送内容</a></li>
-                    
-                    <li><a href="#header-1-3-6">主干向分支推送更改内容</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">WebStorm 技巧备忘</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-4-1">从git上拿项目</a></li>
-                    
-                    <li><a href="#header-1-4-2">更新分支</a></li>
-                    
-                    <li><a href="#header-1-4-3">切换分支</a></li>
-                    
-                    <li><a href="#header-1-4-4">提交</a></li>
-                    
-                    <li><a href="#header-1-4-5">推送</a></li>
-                    
-                    <li><a href="#header-1-4-6">主干修改后怎么同步到分支</a></li>
-                    
-                    <li><a href="#header-1-4-7">用WebStorm管理Git目录</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-5">命令行</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-6">其他</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-6-1">忽略文件</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-7">更多资料</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

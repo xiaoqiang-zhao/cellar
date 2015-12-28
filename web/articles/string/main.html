@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>String 这货 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">String 这货</h1>
 <blockquote>
 <p>项目中最常用的一种数据，没有之一，你真的了解它吗？看完这篇，写的都是基础中的基础 -- 那些一定要这道的基础！</p>
@@ -245,113 +243,6 @@ var a = &#39;abc&#39;; a.concat(&#39;d&#39;);          // a的值依然是abc
 <p><a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank">w3school的array部分</a></p>
 <p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank">ECMA-262号官方文档</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">创建String的两种方法</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">ES3 下的方法和属性</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-2-1">length</a></li>
-                    
-                    <li><a href="#header-1-2-2">replace</a></li>
-                    
-                    <li><a href="#header-1-2-3">split</a></li>
-                    
-                    <li><a href="#header-1-2-4">slice</a></li>
-                    
-                    <li><a href="#header-1-2-5">substring</a></li>
-                    
-                    <li><a href="#header-1-2-6">substr</a></li>
-                    
-                    <li><a href="#header-1-2-7">match</a></li>
-                    
-                    <li><a href="#header-1-2-8">search</a></li>
-                    
-                    <li><a href="#header-1-2-9">indexOf</a></li>
-                    
-                    <li><a href="#header-1-2-10">lastIndexOf</a></li>
-                    
-                    <li><a href="#header-1-2-11">charAt</a></li>
-                    
-                    <li><a href="#header-1-2-12">charCodeAt</a></li>
-                    
-                    <li><a href="#header-1-2-13">toLowerCase</a></li>
-                    
-                    <li><a href="#header-1-2-14">toUpperCase</a></li>
-                    
-                    <li><a href="#header-1-2-15">concat</a></li>
-                    
-                    <li><a href="#header-1-2-16">fromCharCode</a></li>
-                    
-                    <li><a href="#header-1-2-17">localeCompare</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">转为特定html的几个方法</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-3-1">link</a></li>
-                    
-                    <li><a href="#header-1-3-2">anchor</a></li>
-                    
-                    <li><a href="#header-1-3-3">italics</a></li>
-                    
-                    <li><a href="#header-1-3-4">strike</a></li>
-                    
-                    <li><a href="#header-1-3-5">big</a></li>
-                    
-                    <li><a href="#header-1-3-6">small</a></li>
-                    
-                    <li><a href="#header-1-3-7">bold</a></li>
-                    
-                    <li><a href="#header-1-3-8">fontcolor</a></li>
-                    
-                    <li><a href="#header-1-3-9">fontsize</a></li>
-                    
-                    <li><a href="#header-1-3-10">fixed</a></li>
-                    
-                    <li><a href="#header-1-3-11">blink</a></li>
-                    
-                    <li><a href="#header-1-3-12">sup</a></li>
-                    
-                    <li><a href="#header-1-3-13">sub</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">参考</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

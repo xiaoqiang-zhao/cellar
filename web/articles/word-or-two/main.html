@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>记录自己的和别人的只言片语(a single sentence or words;) - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">记录自己的和别人的只言片语(a single sentence or words;)</h1>
 <h2 id="header-1-1">项目的成功</h2>
 <p>前端圈子，甚至是码农圈子里，有个怪现象：一个项目成功，就总会有一群人追着问/宣传“用XXX（语言/框架/库）做的”。仿佛一个项目的成功并不是它自身的成功，而是XXX（语言/框架/库）的成功似的。</p>
@@ -33,24 +31,6 @@
 <p>model: 模型，MVC 的数据部分</p>
 <p>module: 模块，一个项目的拆分单元</p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">项目的成功</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>RegExp 代码中的代码 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">RegExp 代码中的代码</h1>
 <blockquote>
 <p>正则一直是一块硬骨头，有很多写了几年代码的人依然搞不定这玩意，今天我来换个思路学正则。先给出“正则能做什么”，再传授“解析语法与技巧”，然后给出我收集整理的一些常用正则，最后从“原理与性能”出发对各种正则方案优中选优。</p>
@@ -331,102 +329,6 @@ js又不支持向前约束（专业术语叫“前瞻”），在《高性能jav
 <p><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank">ECMA-262号官方文档</a></p>
 <p><a href="http://regexper.com/" target="_blank">可视化正则</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">正则能做什么</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-1-1">检测格式</a></li>
-                    
-                    <li><a href="#header-1-1-2">内容替换</a></li>
-                    
-                    <li><a href="#header-1-1-3">提取内容</a></li>
-                    
-                    <li><a href="#header-1-1-4">确定位置</a></li>
-                    
-                    <li><a href="#header-1-1-5">分割字符串</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">解析语法与技巧</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-2-1">新建正则</a></li>
-                    
-                    <li><a href="#header-1-2-2">简写字符与常用语法</a></li>
-                    
-                    <li><a href="#header-1-2-3">重复与修饰符</a></li>
-                    
-                    <li><a href="#header-1-2-4">贪婪</a></li>
-                    
-                    <li><a href="#header-1-2-5">断言</a></li>
-                    
-                    <li><a href="#header-1-2-6">选择、分组和引用</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">常用正则</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-3-1">QQ号</a></li>
-                    
-                    <li><a href="#header-1-3-2">邮箱</a></li>
-                    
-                    <li><a href="#header-1-3-3">匹配身份证</a></li>
-                    
-                    <li><a href="#header-1-3-4">匹配ip地址</a></li>
-                    
-                    <li><a href="#header-1-3-5">匹配浮点数</a></li>
-                    
-                    <li><a href="#header-1-3-6">中文</a></li>
-                    
-                    <li><a href="#header-1-3-7">匹配静态资源</a></li>
-                    
-                    <li><a href="#header-1-3-8">严格3个连续数字</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">原理与性能</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-5">参考</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>

@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>WebStorm 使用文档 - 龙则的博客站点</title>
-    <link href="/src/css/all.css" rel="stylesheet"/>
+    <script>
+        // 用户通过搜索引擎到文章详情页时，跳到首页并进行哈希路由
+        var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+            return matchStr + 'index.html#!';
+        });
+        window.location.href = href.replace('/main.html', '');
+    </script>
 </head>
 <body>
-<header class="page-header">
+<header>
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        龙则个人站点
     </h1>
-    <nav class="nav">
-        <button class="icon-menu-button"></button>
-        <menu>
-            <a class="item">Home</a>
-            <a class="item">前端技术</a>
-            <a class="item">技术梳理</a>
-            <a class="item">本站成书</a>
-            <a class="item">本站 & 站主</a>
-        </menu>
-    </nav>
+
+    <h2>
+        记录工作与生活的所得所感
+    </h2>
 </header>
-<div class="page-body">
-    <div class="article-detail-container">
+<div>
     <h1 id="header-1">WebStorm 使用文档</h1>
 <blockquote>
 <p>号称最好用的前端IDE，Windows 和 Mac 上各用了一段时间，感觉确实不错分享出来。版本上从8一直用到11，在设置上9到10有一次比较大的调整，下面的设置大部分是从10的使用中记录整理而来，也有一小部分来自于11的使用经验，但是不用做任何区分，因为他们是兼容的。WebStorm在下面简写为WS。</p>
@@ -237,88 +235,6 @@ Settings | Appearance &amp; Behavior | System Settings | Project Opening | Open 
 <p>欢迎各方转载，但请注明出处：
 <a href="https://github.com/longze/cellar/blob/master/web/articles/webstorm/main.md" target="_blank">https://github.com/longze/cellar/blob/master/web/articles/webstorm/main.md</a></p>
 
-    </div>
-    
-    <div class="article-detail-headers-container">
-        <p><strong>文章目录</strong></p>
-        <ul>
-            
-            <li>
-                
-                <a href="#header-1-1">快捷键</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-1-1">1 - 基本</a></li>
-                    
-                    <li><a href="#header-1-1-2">2 - 操作编辑窗体</a></li>
-                    
-                    <li><a href="#header-1-1-3">3 -  光标移动</a></li>
-                    
-                    <li><a href="#header-1-1-4">4 - 折叠代码</a></li>
-                    
-                    <li><a href="#header-1-1-5">5 - 选中</a></li>
-                    
-                    <li><a href="#header-1-1-6">6 - 粘贴</a></li>
-                    
-                    <li><a href="#header-1-1-7">7 - 文件</a></li>
-                    
-                    <li><a href="#header-1-1-8">8 - 面板之间的切换</a></li>
-                    
-                    <li><a href="#header-1-1-9">9 - 单项</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-2">设置</a>
-                
-                
-                <ul>
-                    
-                    <li><a href="#header-1-2-1">1 - 基本设置</a></li>
-                    
-                    <li><a href="#header-1-2-2">2 - 工程</a></li>
-                    
-                    <li><a href="#header-1-2-3">3 - 代码格式</a></li>
-                    
-                    <li><a href="#header-1-2-4">4 - 代码模板</a></li>
-                    
-                    <li><a href="#header-1-2-5">5 - 其他零碎</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-3">支持正版</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-4">写在最后的牢骚</a>
-                
-                
-            </li>
-            
-            <li>
-                
-                <a href="#header-1-5">声明</a>
-                
-                
-            </li>
-            
-        </ul>
-    </div>
-    
-    <div class="article-message-container"></div>
 </div>
-<footer class="page-footer"></footer>
 </body>
 </html>
