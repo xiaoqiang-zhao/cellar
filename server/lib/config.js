@@ -8,7 +8,7 @@ var encoding = 'utf-8'; // 编码方式一定要在这里设置，下面很多�
 var config = {
     encoding: encoding,                       // 编码设置
     defaultPort: 9999,                        // 服务启动的默认端口
-    defaultPage: '/index-owner.html',               // 默认页面
+    defaultPage: '/index.html',                // 默认页面
     rootLevel: 2,                             // 参考根路径，以server下lib为基础向上几层目录，2对应cellar（借助此属性服务可以放在更深的目录下）
     serviceRootPath: '/service',              // 动态服务的路径，注意不要以斜杠结尾，相对路径是cellar（也就是当前的项目路径）
     webRootPath: '/web',                      // 静态文件的路径，注意不要以斜杠结尾，相对路径是cellar（也就是当前的项目路径）
