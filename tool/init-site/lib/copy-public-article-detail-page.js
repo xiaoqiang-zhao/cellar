@@ -4,9 +4,9 @@
  * Created by zhaoxiaoqiang on 15/10/27.
  */
 var fs = require('fs');
-var ejs = require('ejs');
 var config = require('./config.js');
-var marked = require('./marked.js');
+var gulp = require('gulp');
+var clean = require('gulp-clean');
 
 /**
  * 复制公开的文章详情页
@@ -14,22 +14,36 @@ var marked = require('./marked.js');
  * @param {Array} articleArr 文章列表
  */
 function copyPublicArticleDetailPage (articleArr) {
+    var rootPath = config.rootPath;
+    var publicSitePath = config.publicSitePath;
+    var articlesFolderPath = rootPath + publicSitePath + config.articlesPath + '/';
 
     articleArr.forEach(function (article) {
 
         // 可公开的文章
-        if (article.jsonData.public === true) {
+        if (article.jsonData.isPublished === true) {
             var htmlFilePath = article.folderPath + '/' + config.htmlFileFilename;
-            var htmlContent = fs.readFileSync(htmlFilePath, config.encoding);
+            var mdFilePath = article.folderPath + '/' + config.mdFileFilename;
             // 直接覆写文件，内容全部由md文档生成不容许修改
-            var targetPath = config.rootPath + config.publicSitePath + config.articlesPath + '/' + article.enName;
-            // 目录不存在
-            if (!fs.existsSync(targetPath)) {
-                fs.mkdirSync(targetPath);
-            }
-            fs.writeFileSync(targetPath + '/' + config.htmlFileFilename, htmlContent, config.encoding);
+            var targetPath = articlesFolderPath + article.enName;
+            // 复制 md 文档 和 html
+            gulp.src([htmlFilePath, mdFilePath])
+                .pipe(gulp.dest(targetPath + '/'));
+            // 复制文章引用的图片
+            gulp.src([article.folderPath + '/img/*'])
+                .pipe(gulp.dest(targetPath + '/img/'));
+            // 复制 demo
+            gulp.src([article.folderPath + '/demo/**'])
+                .pipe(gulp.dest(targetPath + '/demo/'));
         }
     });
+
+    // 复制已发布文章的json数据
+    gulp.src([rootPath + '/articles/published-articles.json'])
+        .pipe(gulp.dest(rootPath + publicSitePath + '/articles/'));
+    // 复制压缩后的 js 资源文件
+    gulp.src([rootPath + '/dist/*.js'])
+        .pipe(gulp.dest(rootPath + publicSitePath + '/dist/'));
 
     console.log('公开文章复制完成        ');
 }

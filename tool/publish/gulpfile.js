@@ -6,6 +6,6 @@
 var gulp = require('gulp');
 
 // 提取文件
-gulp.src('../web/src/css/*')
+gulp.src(['../../web/articles/array/main.md', '../../web/articles/array/demo/*'])
     // 复制文件
-    .pipe(gulp.dest('../../longze/src/css'));
+    .pipe(gulp.dest('../../../longze/articles/'));
