@@ -31,7 +31,7 @@ var config = {
     // html文件文件名
     htmlFileFilename: 'main.html',
     // 公开网站的路径
-    publicSitePath: '/../../longze2'
+    publicSitePath: '/../../my-blog'
 };
 
 module.exports = config;
