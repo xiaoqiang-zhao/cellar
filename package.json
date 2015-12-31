@@ -7,7 +7,6 @@
     "node",
     "javascript"
   ],
-  "version": "v1.0",
   "main": "server/lib/start-server.js",
   "author": {
     "name": "赵晓强",
@@ -18,5 +17,13 @@
     "url": "git://github.com/longze/cellar.git"
   },
   "dependencies": {
+    "css-loader": "^0.23.0",
+    "ejs": "^1.0.0",
+    "file-loader": "^0.8.5",
+    "gulp": "^3.9.0",
+    "html-loader": "^0.4.0",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.9"
   }
 }
