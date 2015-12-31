@@ -12,10 +12,15 @@ var gulp = require('gulp');
  *
  * @param {Array} articleArr 文章列表
  */
-function copyPublicArticleDetailPage (articleArr) {
+function publishCopy (articleArr) {
     var rootPath = config.rootPath;
     var publicSitePath = config.publicSitePath;
     var articlesFolderPath = rootPath + publicSitePath + config.articlesPath + '/';
+
+    // 复制首页
+    gulp.src([rootPath + '/index.html'])
+        .pipe(gulp.dest(rootPath + publicSitePath + '/'));
+    console.log('首页复制完成       ');
 
     articleArr.forEach(function (article) {
 
@@ -47,4 +52,4 @@ function copyPublicArticleDetailPage (articleArr) {
     console.log('公开文章复制完成        ');
 }
 
-module.exports = copyPublicArticleDetailPage;
+module.exports = publishCopy;

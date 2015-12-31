@@ -30,13 +30,6 @@ initArticleDetailPage(articleArr);
 var writeArticleListInJsonFile = require('./write-article-list-in-json-file');
 writeArticleListInJsonFile(articleArr);
 
-// 复制可公开的文章
-var copyPublicArticleDetailPage = require('./copy-public-article-detail-page.js');
-copyPublicArticleDetailPage(articleArr);
-
-// 复制首页
-var copyIndexPage = require('./copy-index-page.js');
-copyIndexPage();
-// 前端文件合并压缩
-
-// 移动到个人站点项目
+// 进行发布复制
+var publishCopy = require('./publish-copy.js');
+publishCopy(articleArr);
