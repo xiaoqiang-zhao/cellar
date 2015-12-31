@@ -27,7 +27,8 @@ function initPage(articleArr) {
     var indexHtml = ejs.render(
         indexTemplate,
         {
-            articleArr: articleArr
+            articleArr: articleArr,
+            siteData: config.siteData
         }
     );
     var indexPagePath = config.rootPath + config.indexPagePath;

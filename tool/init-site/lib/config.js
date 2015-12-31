@@ -31,7 +31,17 @@ var config = {
     // html文件文件名
     htmlFileFilename: 'main.html',
     // 公开网站的路径
-    publicSitePath: '/../../my-blog'
+    publicSitePath: '/../../my-blog',
+
+    // 网站的配置
+    siteData: {
+        // 网页的 title
+        title: '网站 title',
+        // 网站的主标题
+        mainHead: '网站的主标题',
+        // 网站的副标题
+        subhead: '网站的副标题'
+    }
 };
 
 module.exports = config;
