@@ -1,7 +1,0 @@
-{
-  "name": "cellar",
-  "main": "lib/main.js",
-  "dependencies": {
-    "wilddog": "^0.1.1"
-  }
-}

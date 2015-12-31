@@ -1,7 +1,7 @@
 <header class="page-header">
     <h1>
-        <span class="main-title">龙则的个人站点</span>
-        <span class="subtitle">记录我在北京的生活与感悟，记录在某大公司的技术(主要是前端)研究</span>
+        <span class="main-title">网站的主标题</span>
+        <span class="subtitle">网站的副标题</span>
     </h1>
     <nav class="nav">
         <button class="icon-menu-button"></button>
