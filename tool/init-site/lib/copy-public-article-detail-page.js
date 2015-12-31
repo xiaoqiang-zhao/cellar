@@ -6,7 +6,6 @@
 var fs = require('fs');
 var config = require('./config.js');
 var gulp = require('gulp');
-var clean = require('gulp-clean');
 
 /**
  * 复制公开的文章详情页
