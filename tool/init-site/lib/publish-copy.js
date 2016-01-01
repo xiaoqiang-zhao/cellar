@@ -3,7 +3,6 @@
  *
  * Created by zhaoxiaoqiang on 15/10/27.
  */
-var fs = require('fs');
 var config = require('./config.js');
 var gulp = require('gulp');
 
