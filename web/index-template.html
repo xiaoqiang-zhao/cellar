@@ -21,7 +21,7 @@
         <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
         <article>
             <a href="<%=article.detailPagePath %>">
-                <h1 class="title"><%=article.jsonData.title %></h1>
+                <h1><%=article.jsonData.title %></h1>
                 <summary>
                     <%=article.jsonData.introduction %>
                 </summary>
