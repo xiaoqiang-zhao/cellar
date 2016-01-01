@@ -9,7 +9,9 @@ var config = require('./config.js');
  * 初始化 header，通过 webpack 压缩资源
  */
 function initSrc () {
-    // TODO 待完善
+    // TODO 初始化 header.tpl 移动 header.tpl
+
+    // TODO 调用 webpack 打包
 }
 
 module.exports = initSrc;

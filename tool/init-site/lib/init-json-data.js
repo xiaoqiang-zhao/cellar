@@ -12,9 +12,9 @@ var defaultJson = {
     "enName": "",
     "title": "",           // 标题
     "introduction": "",    // 引言
-    "tags": [              // 文章标签
-        "基础"
-    ],
+    "tags": [],            // 文章标签
+
+
     "isPublished": true,   // 是否处于发布状态
     "state": "立项",        // 文章状态
                            // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
