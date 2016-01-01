@@ -5,6 +5,20 @@
  */
 
 var config = {
+    // 公开网站的路径
+    publicSitePath: '/../../my-blog',
+
+    // 网站的配置
+    siteData: {
+        // 网页的 title
+        title: '网站 title',
+        // 网站的主标题
+        mainHead: '网站的主标题',
+        // 网站的副标题
+        subhead: '网站的副标题'
+    },
+
+    /**** 下面为开发配置 ****/
     encoding: 'utf-8',
     jsonDataRewrite: false,
 
@@ -29,19 +43,7 @@ var config = {
     // md文件文件名
     mdFileFilename: 'main.md',
     // html文件文件名
-    htmlFileFilename: 'main.html',
-    // 公开网站的路径
-    publicSitePath: '/../../my-blog',
-
-    // 网站的配置
-    siteData: {
-        // 网页的 title
-        title: '网站 title',
-        // 网站的主标题
-        mainHead: '网站的主标题',
-        // 网站的副标题
-        subhead: '网站的副标题'
-    }
+    htmlFileFilename: 'main.html'
 };
 
 module.exports = config;
