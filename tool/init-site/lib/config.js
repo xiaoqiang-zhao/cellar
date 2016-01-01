@@ -5,7 +5,7 @@
  */
 
 var config = {
-    // 公开网站的路径
+    // 公开网站的路径（下面表示和 cellar 同级的 my-blog 文件夹）
     publicSitePath: '/../../my-blog',
 
     // 网站的配置
@@ -23,6 +23,7 @@ var config = {
     jsonDataRewrite: false,
 
     // 从init-site算起参考根路径向上的级别，1对应init-site
+    // (此模块需要读取文件和文件夹，为了更具移植性采取了此种配置方法)
     rootLevel: 3,
     // 监听的根目录（从此目录向下监听） 以tool的上级目录作为参考
     rootPath: '/web',
