@@ -1,3 +1,4 @@
+var path = require('path');
 module.exports = {
     entry: {
         main: '../web/src/components/main/main.js'
@@ -7,6 +8,12 @@ module.exports = {
         path: '../web/dist/',
         publicPath: '/js/',
         filename: '[name].js'
+    },
+
+    resolve: {
+        alias: {
+            vue: path.join(__dirname, '../web/src/dep/vue.js')
+        }
     },
 
     module: {

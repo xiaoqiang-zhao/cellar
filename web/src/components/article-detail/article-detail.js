@@ -4,7 +4,7 @@
  * Created by zhaoxiaoqiang on 15/12/23.
  */
 
-var Vue = require('../../dep/vue.js');
+var Vue = require('vue');
 var $ = require('../../dep/jquery-2.1.4.js');
 var template = require('./article-detail.tpl');
 var markdownTool = require('./markdown-tool.js');
