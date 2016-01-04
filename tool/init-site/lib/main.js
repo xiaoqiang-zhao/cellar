@@ -3,37 +3,108 @@
  *
  * 初始化网站(遗漏或更改后可以二次初始化)
  */
+
+var fs = require('fs');
+var ejs = require('ejs');
+ejs.open = '{{';
+ejs.close = '}}';
 var config = require('./config.js');
+var libPath = __dirname + '/';
+// 根路径
+rootPath = libPath.replace('tool/init-site/lib/', '');
 
-// 根路径，config.rootLevel
-rootPath = __dirname.replace(/\\/g, '/').split('/').slice(0, -1 * config.rootLevel).join('/');
-// 获取的路径是所配置根路径的本地绝对路径，使用时把根路径加到前面(用于对目标路径的操作)
-config.rootPath = rootPath + config.rootPath;
+// 初始化网站全局部分
+var encoding = config.encoding;
+var versionMapPath = libPath + 'version-map.json';
+var versionMap = JSON.parse(fs.readFileSync(versionMapPath, encoding));
+var lastVersion = versionMap[versionMap.length - 1];
+config.siteData.version = lastVersion.version;
+config.templates.forEach(function (item) {
+    renderTemplateAndCopy(item);
+});
 
-// 获取文章列表
-var getArticleArr = require('./get-article-arr.js');
-var articleArr = getArticleArr(config);
+function renderTemplateAndCopy(item) {
+    var fromPath = libPath + item.from;
+    var toPath = rootPath + item.to;
+    var template = fs.readFileSync(fromPath, encoding);
+    var content = ejs.render(
+        template,
+        config.siteData
+    );
+    fs.writeFileSync(toPath, content, encoding);
+}
+console.log('模板初始化完成             ');
+console.log('资源压缩中...             ');
+// 压缩
+var webpack = require('webpack');
+webpack({
+    entry: {
+        main: rootPath + 'web/src/components/main/main.js'
+    },
+    optimize: {
+        // 是否压缩
+        minimize: true
+    },
+    resolve: {
+        alias: {
+            vue: rootPath +  '/web/src/dep/vue.js'
+        }
+    },
+    output: {
+        path: rootPath + '/web/dist/',
+        filename: '[hash].js'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.tpl$/,
+                loader: 'html-loader'
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
+            },
+            {
+                test: /\.png$/,
+                loader: "url-loader?limit=100000"
+            }
+        ]
+    }
+}, function (err, stats) {
+    if (err) {
+        throw new gutil.PluginError("webpack", err);
+    }
+    var hash = stats.hash;
+    var distPath = rootPath + 'web/dist/';
 
-// 初始化data.json
-var initDataJson = require('./init-json-data.js');
-initDataJson(articleArr);
+    // 有新版，自动更新
+    if (lastVersion.hash !== hash) {
+        var date = new Date();
+        var arr = lastVersion.version.split('.');
+        arr[arr.length - 1] = parseInt(arr[arr.length - 1]) + 1;
+        var version = arr.join('.');
+        lastVersion = {
+            version: version,
+            hash: hash,
+            time: (new Date).getTime(),
+            timeStr: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getUTCDate(),
+        };
 
-// 初始化资源文件
-var initSrc = require('./init-src.js');
-initSrc();
+        // 回写 version-map.json
+        versionMap.push(lastVersion);
+        var versionMapStr = JSON.stringify(versionMap, null, 2);
+        fs.writeFileSync(versionMapPath, versionMapStr, config.encoding);
 
-// 生成首页
-var initIndexPage = require('./init-index-page.js');
-initIndexPage(articleArr);
-
-// 生成文章详情页和数据片段
-var initArticleDetailPage = require('./init-article-detail-page.js');
-initArticleDetailPage(articleArr);
-
-// 将文章列表写入 json 文件
-var writeArticleListInJsonFile = require('./write-article-list-in-json-file');
-writeArticleListInJsonFile(articleArr);
-
-// 进行发布复制
-var publishCopy = require('./publish-copy.js');
-publishCopy(articleArr);
+        // 重命名压缩后的资源文件
+        fs.renameSync(distPath + hash + '.js', distPath + version + '.js');
+    }
+    else {
+        // 删除压缩后的资源文件(用 hash 命名的那一个)
+        fs.unlinkSync(distPath + hash + '.js');
+    }
+    // 暂不提供大版本更新，可手动修改 version-map.json 和 dist 下对应的 js 压缩包
+    console.log('资源压缩完成             ');
+    config.siteData.version = lastVersion.version;
+    renderTemplateAndCopy(config.templates[0]);
+    console.log('网站整体初始化完成，版本：' + lastVersion.version + '               ');
+});

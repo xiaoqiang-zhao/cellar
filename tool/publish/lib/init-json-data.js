@@ -84,7 +84,6 @@ function initDataJson (articleArr) {
             else {
                 jsonData.introduction = '未找到描述信息';
             }
-
         }
         // md文件不存在
         else {

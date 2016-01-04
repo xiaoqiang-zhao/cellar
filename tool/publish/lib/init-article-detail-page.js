@@ -26,8 +26,7 @@ function initArticleDetail (articleArr) {
         var articleDetailPageHtml = ejs.render(articleDetailTemplateStr, {
             title: article.jsonData.title,
             content: markedData.htmlContent,
-            headerTree: markedData.headerTree[0],
-            siteData: config.siteData
+            headerTree: markedData.headerTree[0]
         });
         var articleDetailFilePath = article.detailFilePath;
 

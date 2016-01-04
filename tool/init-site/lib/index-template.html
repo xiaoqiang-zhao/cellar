@@ -3,39 +3,39 @@
 <head lang="zh-cn">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>网站 title</title>
+    <title>{{=title}}</title>
 </head>
 <body>
-<script src="dist/v1.0.js"></script>
+<script src="dist/{{=version}}.js"></script>
 <!-- 给搜索引擎看的 -->
 <noscript>
     <header>
         <h1>
-            网站的主标题
+            {{=mainHead}}
         </h1>
         <h2>
-            网站的副标题
+            {{=subhead}}
         </h2>
     </header>
     <div>
-        
+        <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
         <article>
-            <a href="/articles/example/main.html">
-                <h1>示例文章</h1>
+            <a href="<%=article.detailPagePath %>">
+                <h1><%=article.jsonData.title %></h1>
                 <summary>
-                    文章说明，出现在文章列表页。
+                    <%=article.jsonData.introduction %>
                 </summary>
             </a>
             <footer>
                 <section>
                     <i>Tags:</i>
-                    
-                    <a href="">示例 Tag</a>
-                    
+                    <%article.jsonData.tags.forEach(function(tag){%>
+                    <a href=""><%=tag%></a>
+                    <%})%>
                 </section>
             </footer>
         </article>
-        
+        <%}})%>
     </div>
 </noscript>
 </body>
