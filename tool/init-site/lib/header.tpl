@@ -1,7 +1,7 @@
 <header class="page-header">
     <h1>
-        <span class="main-title"><%=siteData.mainHead%></span>
-        <span class="subtitle"><%=siteData.subhead%></span>
+        <span class="main-title">{{=mainHead}}</span>
+        <span class="subtitle">{{=subhead}}</span>
     </h1>
     <nav class="nav">
         <button class="icon-menu-button"></button>

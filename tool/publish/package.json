@@ -1,0 +1,15 @@
+{
+  "name": "publish",
+  "description": "将 md 文档转化成网站，可持续集成。",
+  "keywords": [
+    "cellar",
+    "longze",
+    "龙则"
+  ],
+  "version": "v1.0",
+  "main": "lib/main.js",
+  "author": {
+    "name": "赵晓强",
+    "email": "longze_xq@163.com"
+  }
+}

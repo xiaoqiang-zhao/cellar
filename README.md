@@ -8,13 +8,13 @@
 
 ## 快速上手
 
-首先安装 node，具体怎么安装请自行问度娘；
+首先安装 node，像安装 QQ 一样简单，具体怎么安装请自行问度娘；
 
 其次安装本项目需要的 node 模块，在本项目根路径下运行下面命令:
 
     npm install
 
-启动网站(依然在本项目根路径下运行)
+启动网站(依然在本项目根路径下运行)，到此为止你的个人博客已经运行起来了。
        
     node server
 
@@ -30,16 +30,9 @@
 
 ### 设置头像等信息
 
-头像的图片是 `cellar/web/src/components/header/picture.png`，请同名替换成你自己的。其他网站的全局信息可以在 `cellar/tool/init-site/bin/config.js` 中配置。需要注意的是需要执行下面命令才生效。
+头像的图片位置： `cellar/web/src/components/header/picture.png`，请同名替换成你自己的。其他网站的全局信息可以在 `cellar/tool/init-site/bin/config.js` 中配置。运行下面命令生效。
 
-	// 全局安装 webpack
-	npm install webpack -g
-	// 在 cellar/tool 下运行
-	webpack -p
-	// 生成页面
 	node tool/init-site
-
-注：此过程有些复杂，可以找办法优化。
 
 ### 发布网上
 
