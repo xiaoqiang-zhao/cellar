@@ -22,9 +22,9 @@
 
 ### 写文章
 
-在 `web/articles` 下新建文件夹，在此文件夹下新建 main.md 文件，参考示例编写你的内容。写完之后，运行下面命令(依然在本项目根路径下运行)，此命令会将文章生成到首页，同时将整个博客的对外发布部分拷贝到与 cellar 同级的 `my-blog` 文件夹下，如果想要发布到本地的其他地方，可在 `cellar/tool/init/lib/config.js` 中配置。
+在 `web/articles` 下新建文件夹，在此文件夹下新建 main.md 文件，参考示例编写你的内容。写完之后，运行下面命令(依然在本项目根路径下运行)，此命令会将文章生成到首页，同时将整个博客的对外发布部分拷贝到与 cellar 同级的 `my-blog` 文件夹下，如果想要发布到本地的其他地方，可在 `cellar/tool/init-site/lib/config.js` 中配置。
 
-    node tool/init-site
+    node tool/publish
 
 只需要写 md 文件就可以，`data.json` 和 `main.html` 可由上面命令生成。在 `data.json` 中可以通过  `isPublished` 配置文章是否发布出去，通过 `tags` 可以配置文章标签；`main.html` 是为搜索引擎生成的静态页面。  
 
