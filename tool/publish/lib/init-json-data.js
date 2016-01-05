@@ -6,8 +6,6 @@
  */
 var fs = require('fs');
 var config = require('./config.js');
-var marked = require('./marked.js');
-
 var defaultJson = {
     "enName": "",
     "title": "",           // 标题
@@ -20,8 +18,7 @@ var defaultJson = {
                            // 立项,[腹稿中],[资料收集中],[自我持续集成中],[公示持续集成中],[完结],
                            // [修正添加中]
     "type": "md",          // md / html / none
-    "createDate": "",      // 创建时间(毫秒数)
-    "md5": "",             // 通过md5验证内容的改变
+    "createDate": 0,       // 创建时间(毫秒数)
     "commentList": [       // 评论
         ""
     ],
@@ -37,14 +34,17 @@ var defaultJson = {
  * @param {Array} articleArr 文章列表
  */
 function initDataJson (articleArr) {
-    var jsonStr = JSON.stringify(defaultJson, null, 2);
+
     articleArr.forEach(function (article) {
         var jsonDataFilePath = article.folderPath + '/data.json';
 
         // 文件不存在或设置了覆写，直接添加或覆写文件
         if (!fs.existsSync(jsonDataFilePath) || config.jsonDataRewrite === true) {
+            defaultJson.createDate = new Date().getTime();
+            defaultJson.enName = article.enName;
+            var defaultJsonStr = JSON.stringify(defaultJson, null, 2);
             // 写文件
-            fs.writeFileSync(jsonDataFilePath, jsonStr, config.encoding);
+            fs.writeFileSync(jsonDataFilePath, defaultJsonStr, config.encoding);
         }
         // merge 数据，以现有的为基础，初始化的对象向前合并，方便添加字段
         else {
@@ -76,7 +76,7 @@ function initDataJson (articleArr) {
                 jsonData.title = '标题缺失';
             }
 
-            // 提取描述
+            // 提取描述，从 marked 中提取的正则，还没看懂什么意思
             var execIntroductionResult = /^( *>[^\n]+(\n(?! *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$))[^\n]+)*\n*)+/m.exec(mdContent);
             if (execIntroductionResult !== null) {
                 jsonData.introduction = execIntroductionResult[0].replace(/(^ *> ?)|(\n$)/gm, '');
