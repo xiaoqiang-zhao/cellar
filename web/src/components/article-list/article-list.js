@@ -17,7 +17,10 @@ var articleList = Vue.extend({
         $.ajax({
             url: '/articles/published-articles.json',
             success: function (data) {
-                //me.$set('list', data);// 下面的效率更高
+                // 按时间排序
+                data.sort(function (item1, item2) {
+                    return item1.createDate > item2.createDate;
+                });
                 me.$data.list = data;
             }
         });
