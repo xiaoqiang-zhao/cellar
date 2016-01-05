@@ -93,14 +93,14 @@ webpack({
         // 回写 version-map.json
         versionMap.push(lastVersion);
         var versionMapStr = JSON.stringify(versionMap, null, 2);
-        fs.writeFileSync(versionMapPath, versionMapStr, config.encoding);
+        fs.writeFile(versionMapPath, versionMapStr, config.encoding);
 
         // 重命名压缩后的资源文件
-        fs.renameSync(distPath + hash + '.js', distPath + version + '.js');
+        fs.rename(distPath + hash + '.js', distPath + version + '.js');
     }
     else {
         // 删除压缩后的资源文件(用 hash 命名的那一个)
-        fs.unlinkSync(distPath + hash + '.js');
+        fs.unlink(distPath + hash + '.js');
     }
     // 暂不提供大版本更新，可手动修改 version-map.json 和 dist 下对应的 js 压缩包
     console.log('资源压缩完成             ');
