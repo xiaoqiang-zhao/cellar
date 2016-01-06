@@ -96,10 +96,16 @@ function listenWindowScrollEvent(vm) {
         // 悬挂布局
         if (scrollTop > criticalValue) {
             var height = window$.height();
+            if (articleDetailHeadersContainer$.height() < height) {
+                height = 'auto';
+            }
+            else {
+                height += 'xp';
+            }
             css = {
                 position: 'fixed',
                 right: 'auto',
-                height: height + 'px'
+                height: height
             };
 
         }
