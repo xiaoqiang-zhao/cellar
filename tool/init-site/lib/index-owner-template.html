@@ -23,6 +23,7 @@
                 <%=article.jsonData.introduction %>
             </summary>
         </a>
+        <%if (article.jsonData.tags.length > 0){%>
         <footer>
             <section>
                 <i>Tags</i>
@@ -31,6 +32,7 @@
                 <%})%>
             </section>
         </footer>
+        <%}%>
     </article>
     <% }) %>
 </div>
