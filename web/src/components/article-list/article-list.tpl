@@ -6,7 +6,7 @@
                 {{article.introduction}}
             </summary>
         </a>
-        <footer>
+        <footer v-if="article.tags.length > 0">
             <section class="tags-container">
                 <i class="icon-tag" title="Tags"></i>
                 <a class="tag-item" v-for="tag in article.tags">{{tag}}</a>
