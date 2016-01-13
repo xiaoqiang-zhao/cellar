@@ -19,7 +19,7 @@ var articleList = Vue.extend({
             success: function (data) {
                 // 按时间排序
                 data.sort(function (item1, item2) {
-                    return item1.createDate < item2.createDate;
+                    return item2.createDate - item1.createDate;
                 });
                 me.$data.list = data;
             }
