@@ -100,7 +100,7 @@ function listenWindowScrollEvent(vm) {
                 height = 'auto';
             }
             else {
-                height += 'xp';
+                height += 'px';
             }
             css = {
                 position: 'fixed',
