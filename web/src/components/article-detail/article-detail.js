@@ -19,11 +19,14 @@ var articleDetail = Vue.extend({
     template: template,
     data: function () {
         var me = this;
+        var articlePath = '/articles/' + this.$route.params.id + '/';
         // 获取文章详情的 md 文档
         $.ajax({
-            url: '/articles/' + this.$route.params.id + '/main.md',
+            url: articlePath + 'main.md',
             success: function (data) {
-                data = markdownTool.mark(data);
+                data = markdownTool.mark(data, {
+                    articlePath: articlePath
+                });
                 me.$data.htmlContent = data.htmlContent;
                 var headerTree = [];
                 if (data.headerTree.length > 0) {

@@ -15,26 +15,26 @@
     </h2>
 </header>
 <div class="page-body article-list-container">
-    
+    <% articleArr.forEach(function(article){ %>
     <article>
-        <a href="/articles/example/main.html">
-            <h1>示例文章</h1>
+        <a href="<%=article.detailPagePath %>">
+            <h1><%=article.jsonData.title %></h1>
             <summary>
-                文章说明，出现在文章列表页。
+                <%=article.jsonData.introduction %>
             </summary>
         </a>
-        
+        <%if (article.jsonData.tags.length > 0){%>
         <footer>
             <section>
                 <i>Tags</i>
-                
-                <a href="">示例 Tag</a>
-                
+                <%article.jsonData.tags.forEach(function(tag){%>
+                <a href=""><%=tag%></a>
+                <%})%>
             </section>
         </footer>
-        
+        <%}%>
     </article>
-    
+    <% }) %>
 </div>
 </body>
 </html>
