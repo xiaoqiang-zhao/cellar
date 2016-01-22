@@ -4,6 +4,7 @@
  * 初始化网站(遗漏或更改后可以二次初始化)
  */
 
+console.log('-------- init-site  --------');
 var fs = require('fs');
 var ejs = require('ejs');
 ejs.open = '{{';
@@ -16,12 +17,23 @@ rootPath = libPath.replace('tool/init-site/lib/', '');
 // 初始化网站全局部分
 var encoding = config.encoding;
 var versionMapPath = libPath + 'version-map.json';
-var versionMap = JSON.parse(fs.readFileSync(versionMapPath, encoding));
+var versionMapStr = fs.readFileSync(versionMapPath, encoding);
+var versionMap;
+// 兼容文件为空
+if (versionMapStr === '') {
+    versionMap = [{
+        version: 'v0.0'
+    }];
+}
+else {
+    versionMap = JSON.parse(versionMapStr);
+}
 var lastVersion = versionMap[versionMap.length - 1];
 config.siteData.version = lastVersion.version;
 config.templates.forEach(function (item) {
     renderTemplateAndCopy(item);
 });
+console.log('模板初始化完成             ');
 
 function renderTemplateAndCopy(item) {
     var fromPath = libPath + item.from;
@@ -33,23 +45,21 @@ function renderTemplateAndCopy(item) {
     );
     fs.writeFileSync(toPath, content, encoding);
 }
-console.log('-------- init-site  --------');
-console.log('模板初始化完成             ');
-console.log('资源压缩中...             ');
+
 // 压缩
 var webpack = require('webpack');
 var webpackConfig = {
     entry: {
         main: rootPath + 'web/src/components/main/main.js'
     },
-    optimize: {
-        // 是否压缩
-        minimize: true
-    },
     resolve: {
         alias: {
-            vue: rootPath +  '/web/src/dep/vue.js'
+            vue: rootPath + '/web/src/dep/vue.js'
         }
+    },
+    optimize: {
+        // 是否压缩
+        minimize: true // UglifyJsPlugin
     },
     output: {
         path: rootPath + '/web/dist/',
@@ -57,6 +67,11 @@ var webpackConfig = {
     },
     module: {
         loaders: [
+            //{
+            //    test: /\.js$/,
+            //    loader: 'babel-loader' //?stage=1
+            //    // ,exclude: /dep|dist/
+            //},
             {
                 test: /\.tpl$/,
                 loader: 'html-loader'
@@ -82,6 +97,8 @@ if (isDebug) {
     webpackConfig.output.filename = 'debug.js';
     webpackConfig.output.sourceMapFilename = 'debug.map';
 }
+
+console.log('资源压缩中...             ');
 webpack(webpackConfig, function (err, stats) {
     if (err) {
         throw new gutil.PluginError("webpack", err);
@@ -114,11 +131,12 @@ webpack(webpackConfig, function (err, stats) {
             fs.writeFile(versionMapPath, versionMapStr, config.encoding);
 
             // 重命名压缩后的资源文件
-            fs.rename(distPath + hash + '.js', distPath + version + '.js');
+            fs.renameSync(distPath + hash + '.js', distPath + version + '.js');
         }
+        // 资源文件无改动
         else {
             // 删除压缩后的资源文件(用 hash 命名的那一个)
-            fs.unlink(distPath + hash + '.js');
+            fs.unlinkSync(distPath + hash + '.js');
         }
         // 暂不提供大版本更新，可手动修改 version-map.json 和 dist 下对应的 js 压缩包
         console.log('资源压缩完成             ');

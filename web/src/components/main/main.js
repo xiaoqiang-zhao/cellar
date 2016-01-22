@@ -33,6 +33,7 @@ Vue.use(VueRouter);
 var router = new VueRouter();
 var articleList = require('../article-list/article-list.js');
 var articleDetail = require('../article-detail/article-detail.js');
+
 router.map({
     '': {
         component: articleList
@@ -44,5 +45,6 @@ router.map({
         component: articleDetail
     }
 });
-
 router.start(Vue.extend({}), body);
+
+module.exports = app;

@@ -12,6 +12,7 @@ var renderer = new marked.Renderer();
 var options = {
     renderer: renderer
 };
+// 在本文件的 mark 函数中会添加 renderOptions 属性
 
 /**
  * 重写链接的渲染方式
@@ -20,14 +21,71 @@ var options = {
  * @param {string} title 链接 title
  * @param {string} text 链接文本
  *
- * @returns {string} 渲染后的  标签
+ * @returns {string} 渲染后的 a 标签
  */
 renderer.link = function (href, title, text) {
+    // 传统拼接字符串，对应下面 ES6 拼接字符串
     var attrStr = ''
         + ' href="' + href + '"'
             // + ' title="' + title + '"'
         + ' target="_blank"';
     return '<a' + attrStr + '>' + text + '</a>';
+};
+
+/**
+ * 重写图片的渲染方式
+ * 图片路径以 ./img/img.png 开头渲染为 /articles/license/./img/img.png
+ * 图片路径直接写相对路径 img/img.png 渲染为 /articles/license/img/img.png
+ * 以 / , http:// , https:// 开头 的路径视为绝对路径不做处理
+ *
+ *
+ * @param {string} src 图片地址
+ * @param {string} title 图片 title
+ * @param {string} alt 图片加载失败的替代文字
+ *
+ * @returns {string} 渲染后的 img 标签
+ */
+renderer.image = function (src, title, alt) {
+    // 浏览器端，由于是单页应用所以需要做图片路径的重写
+    if (typeof window !== 'undefined') {
+        var regexp = /^[\/|https?:\/\/]/;
+        // 不以 / , http:// , https:// 开头的路径视为相对路径，对单页应用需要做路径处理
+        if (!regexp.test(src)) {
+            var articlePath = options.renderOptions.articlePath;
+            src = articlePath + src;
+        }
+    }
+    if (title === null) {
+        title = '';
+    }
+    // TODO 配置 babel-loader ，使用 ES6 新特性
+    //else {
+    //    title = ` title="${title}"`;
+    //}
+    //
+    //if (alt === null) {
+    //    alt = '';
+    //}
+    //else {
+    //    alt = ` alt="${alt}"`;
+    //}
+
+    // ES6 拼接字符串
+    // var html = `<img src="${src}"${alt}${title}>`;
+    // 没搞定 babel-loader 的配置 暂时还用字符串拼接
+    else {
+        title = ' title="' + title + '"';
+    }
+
+    if (alt === null) {
+        alt = '';
+    }
+    else {
+        alt = ' alt=' + alt + '"';
+    }
+
+    var html = '<img src="' + src + '"' + alt + title + '>';
+    return html;
 };
 
 /******************** 重写各级标题的渲染方式 ********************/
@@ -116,13 +174,15 @@ function createHeaderNode(text, level, parentNode) {
  * 渲染 markdown 文档
  *
  * @param {string} mdContent md 文档内容
- *
+ * @param {Object} renderOptions 对渲染的配置参数
  * @returns {Object} 渲染生成的html 文本和 副产品数据组成的对象
  *                   {htmlContent: string, headerTree: Array}
  */
-function mark(mdContent) {
+function mark(mdContent, renderOptions) {
     // 开始一篇文章时清零根节点的子节点
     rootNode.children = [];
+    // 这种写法有隐患
+    options.renderOptions = renderOptions;
     var htmlContent = marked(mdContent, options);
     return {
         htmlContent: htmlContent,

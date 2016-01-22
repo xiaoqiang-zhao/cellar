@@ -6,6 +6,9 @@
  */
 var fs = require('fs');
 var ejs = require('ejs');
+// 当和 init-site 集成使用时需要重置配置
+ejs.open = '<%';
+ejs.close = '%>';
 var config = require('./config.js');
 var markdownTool = require('./markdown-tool.js');
 /**
