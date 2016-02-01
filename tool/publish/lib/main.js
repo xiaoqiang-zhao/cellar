@@ -20,10 +20,6 @@ var articleArr = getArticleArr(config);
 var initDataJson = require('./init-json-data.js');
 initDataJson(articleArr);
 
-// 初始化资源文件
-var initSrc = require('./init-src.js');
-initSrc();
-
 // 生成首页
 var initIndexPage = require('./init-index-page.js');
 initIndexPage(articleArr);
