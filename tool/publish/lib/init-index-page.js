@@ -7,6 +7,9 @@
 var fs = require('fs');
 var config = require('./config.js');
 var ejs = require('ejs');
+// 当和 init-site 集成使用时需要重置配置
+ejs.open = '<%';
+ejs.close = '%>';
 
 function initPage(articleArr) {
     // 主人首页
