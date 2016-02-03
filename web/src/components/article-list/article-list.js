@@ -4,7 +4,7 @@
  * Created by zhaoxiaoqiang on 15/12/23.
  */
 var Vue = require('vue');
-var $ = require('../../dep/jquery-2.1.4.js');
+var $ = require('jQuery');
 var template = require('./article-list.tpl');
 
 // 依赖的样式
@@ -15,7 +15,7 @@ var articleList = Vue.extend({
     data: function () {
         var me = this;
         $.ajax({
-            url: '/articles/published-articles.json',
+            url: '/articles/articles.json',
             success: function (data) {
                 // 按时间排序
                 data.sort(function (item1, item2) {

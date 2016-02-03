@@ -1,5 +1,5 @@
 <div class="article-list-container">
-    <article class="article-list-item" v-for="article in list">
+    <article class="article-list-item" v-for="article in list" v-bind:class="{ 'unpublished': !article.isPublished}">
         <a href="#!/articles/{{article.enName}}">
             <h1 class="title">{{article.title}}</h1>
             <summary>

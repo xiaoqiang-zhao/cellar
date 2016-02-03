@@ -6,6 +6,7 @@
 var fs = require('fs');
 var config = require('./config.js');
 var gulp = require('gulp');
+var rename = require('gulp-rename');
 
 /**
  * 复制公开的文章详情页
@@ -44,6 +45,7 @@ function publishCopy (articleArr) {
 
     // 复制已发布文章的json数据
     gulp.src([rootPath + '/articles/published-articles.json'])
+        .pipe(rename('articles.json'))
         .pipe(gulp.dest(rootPath + publicSitePath + '/articles/'));
     // 复制压缩后的 js 资源文件
     gulp.src([rootPath + '/dist/*.js'])

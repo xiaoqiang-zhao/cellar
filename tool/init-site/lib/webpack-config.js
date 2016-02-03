@@ -11,7 +11,9 @@ var webpackConfig = {
     },
     resolve: {
         alias: {
-            vue: rootPath + '/web/src/dep/vue.js'
+            vue: rootPath + '/web/src/dep/vue.js',
+            vueRouter: rootPath + '/web/src/dep/vue-router.js',
+            jQuery: rootPath + '/web/src/dep/jquery-2.1.4.js'
         }
     },
     optimize: {
