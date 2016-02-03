@@ -10,9 +10,11 @@ var ejs = require('ejs');
 ejs.open = '{{';
 ejs.close = '}}';
 var config = require('./config.js');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack-config');
 var libPath = __dirname + '/';
 // 根路径
-rootPath = libPath.replace('tool/init-site/lib/', '');
+var rootPath = libPath.replace('tool/init-site/lib/', '');
 
 // 初始化网站全局部分
 var encoding = config.encoding;
@@ -47,46 +49,6 @@ function renderTemplateAndCopy(item) {
 }
 
 // 压缩
-var webpack = require('webpack');
-var webpackConfig = {
-    entry: {
-        main: rootPath + 'web/src/components/main/main.js'
-    },
-    resolve: {
-        alias: {
-            vue: rootPath + '/web/src/dep/vue.js'
-        }
-    },
-    optimize: {
-        // 是否压缩
-        minimize: true // UglifyJsPlugin
-    },
-    output: {
-        path: rootPath + '/web/dist/',
-        filename: '[hash].js'
-    },
-    module: {
-        loaders: [
-            //{
-            //    test: /\.js$/,
-            //    loader: 'babel-loader' //?stage=1
-            //    // ,exclude: /dep|dist/
-            //},
-            {
-                test: /\.tpl$/,
-                loader: 'html-loader'
-            },
-            {
-                test: /\.css$/,
-                loader: "style-loader!css-loader"
-            },
-            {
-                test: /\.png$/,
-                loader: "url-loader?limit=100000"
-            }
-        ]
-    }
-};
 var isDebug = process.argv[2] === '-d';
 if (isDebug) {
     webpackConfig.devtool = 'sourcemap';

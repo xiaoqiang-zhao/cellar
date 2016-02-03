@@ -6,7 +6,7 @@
 
 // 依赖的库
 var Vue = require('vue');//../../dep/vue.js
-var VueRouter = require('../../dep/vue-router.js');
+var VueRouter = require('vueRouter');
 
 // 样式重置
 require('../../dep/normalize.css');
