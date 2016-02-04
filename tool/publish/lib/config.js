@@ -23,9 +23,6 @@ var config = {
     // 首页输出路径，参考点为 rootPath 设置的路径
     indexPagePath: '/index.html',
 
-    indexOwnerPageTemplatePath: '/index-owner-template.html',
-    indexOwnerPagePath: '/index-owner.html',
-
     // 文章详情页模板，参考点为 rootPath 设置的路径
     articleDetailPageTemplatePath: '/article-detail-template.html',
 

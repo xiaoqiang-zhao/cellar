@@ -22,10 +22,6 @@ var config = {
             to: 'web/index-template.html'
         },
         {
-            from: 'index-owner-template.html',
-            to: 'web/index-owner-template.html'
-        },
-        {
             from: 'article-detail-template.html',
             to: 'web/article-detail-template.html'
         },
