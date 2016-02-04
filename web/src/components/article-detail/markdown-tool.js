@@ -27,7 +27,7 @@ renderer.link = function (href, title, text) {
     // 传统拼接字符串，对应下面 ES6 拼接字符串
     var attrStr = ''
         + ' href="' + href + '"'
-            // + ' title="' + title + '"'
+        + (title === null ? '' : ' title="' + title + '"')
         + ' target="_blank"';
     return '<a' + attrStr + '>' + text + '</a>';
 };

@@ -25,7 +25,7 @@ var options = {
 renderer.link = function (href, title, text) {
     var attrStr = ''
         + ' href="' + href + '"'
-            // + ' title="' + title + '"'
+        + (title === null ? '' : ' title="' + title + '"')
         + ' target="_blank"';
     return '<a' + attrStr + '>' + text + '</a>';
 };
