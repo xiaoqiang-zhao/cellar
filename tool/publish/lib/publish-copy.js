@@ -19,7 +19,7 @@ function publishCopy (articleArr) {
     var articlesFolderPath = rootPath + publicSitePath + config.articlesPath + '/';
 
     // 复制首页
-    gulp.src([rootPath + '/index.html'])
+    gulp.src([rootPath + '/index.html', rootPath + '/favicon.ico'])
         .pipe(gulp.dest(rootPath + publicSitePath + '/'));
     console.log('首页复制完成       ');
 
