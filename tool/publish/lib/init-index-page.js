@@ -12,18 +12,6 @@ ejs.open = '<%';
 ejs.close = '%>';
 
 function initPage(articleArr) {
-    // 主人首页
-    var indexOwnerPageTemplatePath = config.rootPath + config.indexOwnerPageTemplatePath;
-    var indexOwnerTemplate = fs.readFileSync(indexOwnerPageTemplatePath, config.encoding);
-    var indexOwnerHtml = ejs.render(
-        indexOwnerTemplate,
-        {
-            articleArr: articleArr
-        }
-    );
-    var indexOwnerPagePath = config.rootPath + config.indexOwnerPagePath;
-    fs.writeFileSync(indexOwnerPagePath, indexOwnerHtml, config.encoding);
-
     // 首页
     var indexPageTemplatePath = config.rootPath + config.indexPageTemplatePath;
     var indexTemplate = fs.readFileSync(indexPageTemplatePath, config.encoding);
