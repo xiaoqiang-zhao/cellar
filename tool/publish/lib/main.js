@@ -32,6 +32,10 @@ initArticleDetailPage(articleArr);
 var writeArticleListInJsonFile = require('./write-article-list-in-json-file');
 writeArticleListInJsonFile(articleArr);
 
-// 进行发布复制
-var publishCopy = require('./publish-copy.js');
-publishCopy(articleArr);
+// 复制要发布的文件到博客文件夹
+var copyBlogPublishedFile = require('./copy-blog-published-file.js');
+copyBlogPublishedFile.copyAboutArticlesFile(articleArr);
+
+module.exports = {
+    copyInitSiteFile: copyBlogPublishedFile.copyInitSiteFile
+};

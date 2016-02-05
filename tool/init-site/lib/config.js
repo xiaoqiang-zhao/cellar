@@ -18,7 +18,9 @@ var config = {
     },
     templates: [
         {
+            // 相对于当前文件夹
             from: 'index-template.html',
+            // 相对于 cellar
             to: 'web/index-template.html'
         },
         {
@@ -26,9 +28,7 @@ var config = {
             to: 'web/article-detail-template.html'
         },
         {
-            // 相对于当前文件夹
             from: 'header.tpl',
-            // 相对于 cellar
             to: 'web/src/components/header/header.tpl'
         }
     ]
