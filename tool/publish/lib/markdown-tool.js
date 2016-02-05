@@ -20,7 +20,7 @@ var options = {
  * @param {string} title 链接 title
  * @param {string} text 链接文本
  *
- * @returns {string} 渲染后的  标签
+ * @returns {string} 渲染后的 a 标签
  */
 renderer.link = function (href, title, text) {
     var attrStr = ''

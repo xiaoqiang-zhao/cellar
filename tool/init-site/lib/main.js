@@ -108,5 +108,6 @@ webpack(webpackConfig, function (err, stats) {
     renderTemplateAndCopy(config.templates[0]);
     console.log('网站整体初始化完成，版本：' + lastVersion.version + '               ');
     // 自动发布
-    require('../../publish');
+    var publishModule = require('../../publish');
+    publishModule.copyInitSiteFile(lastVersion.version);
 });

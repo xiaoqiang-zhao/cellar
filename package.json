@@ -17,10 +17,14 @@
     "url": "git://github.com/longze/cellar.git"
   },
   "dependencies": {
+    "babel-core": "^5.8.34",
+    "babel-loader": "^5.4.0",
     "css-loader": "^0.23.0",
     "ejs": "^1.0.0",
     "file-loader": "^0.8.5",
     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-rename": "^1.2.2",
     "html-loader": "^0.4.0",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
