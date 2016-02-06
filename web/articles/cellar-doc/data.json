@@ -1,0 +1,14 @@
+{
+  "enName": "cellar-doc",
+  "title": "cellar 技术文档",
+  "introduction": "我觉的一个博客系统最起码要具备三个功能：写文章，展示文章，管理文章；还有三个加分点：良好的SEO，结构清晰可二次开发，免费。cellar 恰好具备这六点，让我从技术角度为你娓娓道来。",
+  "tags": [],
+  "isPublished": true,
+  "state": "立项",
+  "type": "md",
+  "createDate": 1454737578389,
+  "commentList": [
+    ""
+  ],
+  "todoList": []
+}
