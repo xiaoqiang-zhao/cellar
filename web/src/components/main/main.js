@@ -5,7 +5,7 @@
  */
 
 // 依赖的库
-var Vue = require('vue');//../../dep/vue.js
+var Vue = require('vue');
 var VueRouter = require('vueRouter');
 
 // 样式重置
@@ -18,8 +18,10 @@ var header = require('../header/header.js');
 var footer = require('../footer/footer.js');
 
 var body = document.body;
-var app = new Vue({
-    el: body,
+var app = Vue.extend({
+    el: function () {
+        return document.body;
+    },
     replace: false,
     template: template,
     components: {
@@ -42,9 +44,10 @@ router.map({
         component: articleList
     },
     '/articles/:id': {
+        name: 'articleDetail',
         component: articleDetail
     }
 });
-router.start(Vue.extend({}), body);
+router.start(app, body);
 
 module.exports = app;
