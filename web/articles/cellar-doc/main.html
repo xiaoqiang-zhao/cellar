@@ -60,7 +60,7 @@ window.location.href = href.replace(&#39;/main.html&#39;, &#39;&#39;);
 <h3 id="header-1-2-4">头模块和尾模块</h3>
 <p><code>header</code> 和 <code>footer</code> 是站点的头和尾，都是非常简单的模块。头模块中预留了导航功能，现在内容简单还没有必要开启此功能。</p>
 <h3 id="header-1-2-5">文章列表模块</h3>
-<p><code>article-list</code>，将数据循环一下展示到页面中，数据在<code>articles/articles.json</code>(此文件由工程化辅助工具 <code>publish</code> 生成) 中，前端直接请求此文件来获取文章列表数据。还有一个技术问题没搞定：vue-router 的 <code>v-link</code> 没得到支持，直接拼字符串实现了。还有发布时间也没做显示，欢迎贡献代码。</p>
+<p><code>article-list</code>，将数据循环一下展示到页面中，数据在<code>articles/articles.json</code>(此文件由工程化辅助工具 <code>publish</code> 生成) 中，前端直接请求此文件来获取文章列表数据。还有发布时间也没做显示，欢迎贡献代码。</p>
 <h3 id="header-1-2-6">文章详情模块</h3>
 <p><code>article-detail</code>，文章详情模块的作用是异步获取文章的内容载体<code>main.md</code>文件，然后将文件内容解析成 html 填充到页面中展示。</p>
 <p>文章主体内容载体为<a href="http://wowubuntu.com/markdown/" target="_blank">markdown</a>文档，主体内容包括标题、概述、文章内容，采用 markdown 形式让你更关注内容，格式交给解析器和样式来处理，这能保证你所有的文章在格式上的统一。如果你需要为每一篇文章定义不同的标题或段落片段的格式，我想你更需要一个富文本编辑器，请出门左转注册某博客。</p>
