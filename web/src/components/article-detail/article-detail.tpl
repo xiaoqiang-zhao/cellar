@@ -1,4 +1,4 @@
-<div class="article-detail-headers-container" v-bind:class="{ 'open': isOpenHeaders}">
+<div v-if="headerTree.length > 0" class="article-detail-headers-container" v-bind:class="{ 'open': isOpenHeaders}">
     <span class="icon-catalogue" v-on:click="openHeaders">
         <i></i>
     </span>
