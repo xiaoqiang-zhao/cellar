@@ -62,7 +62,8 @@
 - 添加对博客文件夹清除非最新版 dist 的功能
 - 完善 route-view 和 v-link 的使用
 - 更新 cellar 技术文档
-- 将压缩资源的版本号与项目的版本号进行统一，并且使用 github 推荐的“语义化版本管理”
+- 将压缩资源的版本号与项目的版本号进行统一
+- 从此版开始“语义化版本管理”
 [相关描述参见此译文](http://f2e.souche.com/blog/fan-yi-ru-he-zheng-que-de-ming-ming-ruan-jian-ban-ben-hao/?from=timeline&isappinstalled=0)
 
 ## 作者寄语
