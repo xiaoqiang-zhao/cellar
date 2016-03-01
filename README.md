@@ -51,7 +51,7 @@
 - 添加单页应用中对图片路径的相对化处理
 - 完善 Licence 信息，明确指定为 MIT 许可
 
-## cellar 2.2 的改进点
+## cellar 2.2.0 的改进点
 
 - 修正 cellar 技术文档在 README.md 中的路径引用错误
 - 将 webpack 的配置提取到单独文件
