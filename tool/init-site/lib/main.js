@@ -78,13 +78,21 @@ webpack(webpackConfig, function (err, stats) {
         if (lastVersion.hash !== hash) {
             var date = new Date();
             var arr = lastVersion.version.split('.');
-            arr[arr.length - 1] = parseInt(arr[arr.length - 1]) + 1;
+            var arrLastItemStr = arr[arr.length - 1];
+            // 能被转为数字
+            if (/^\d+$/.test(arrLastItemStr)) {
+                arr[arr.length - 1] = parseInt(arrLastItemStr) + 1;
+            }
+            else {
+                arr[arr.length - 1] = arrLastItemStr + (arrLastItemStr === '' ? '' : '.') + '0.0.1';
+            }
+
             var version = arr.join('.');
             lastVersion = {
                 version: version,
                 hash: hash,
                 time: (new Date).getTime(),
-                timeStr: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getUTCDate(),
+                timeStr: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getUTCDate()
             };
 
             // 回写 version-map.json
@@ -97,8 +105,15 @@ webpack(webpackConfig, function (err, stats) {
         }
         // 资源文件无改动
         else {
-            // 删除压缩后的资源文件(用 hash 命名的那一个)
-            fs.unlinkSync(distPath + hash + '.js');
+            // 如果手动添加版本别名
+            var versionCount = versionMap.length;
+            if (versionCount > 1 && (lastVersion.version !== versionMap[versionCount - 2].version)) {
+                fs.renameSync(distPath + hash + '.js', distPath + lastVersion.version + '.js');
+            }
+            else {
+                // 删除压缩后的资源文件(用 hash 命名的那一个)
+                fs.unlinkSync(distPath + hash + '.js');
+            }
         }
         // 暂不提供大版本更新，可手动修改 version-map.json 和 dist 下对应的 js 压缩包
         console.log('资源压缩完成             ');
