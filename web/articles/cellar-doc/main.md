@@ -14,12 +14,12 @@ cellar 的定位是博客静态站点生成和管理工具，为了方便将内�
 
 还有一个辅助工具 server，自开发的轻量级 web 容器，方便运行静态站点和实验研究。代码目录如下：
 
-	${root}
-	    ├── server 
+    ${root}
+        ├── server 
         └── tool   站点辅助工具
-	        ├── init-site
-	        └── publish
-	    └── web    站点的全部资源都在这里
+            ├── init-site
+            └── publish
+        └── web    站点的全部资源都在这里
 
 他们之间的具体联系和技术细节下面分章节具体讲述，由于上面介绍的三层功能都是上层为下层提供辅助服务，理解了下层上层就非常好理解了，所以我们从 web 开始介绍。
 
@@ -29,19 +29,19 @@ cellar 的定位是博客静态站点生成和管理工具，为了方便将内�
 
 先看目录结构：
 
-	web 站点的全部资源都在这里
-		├── articles 博客的全部文章和 Demo 都在这里
-		├── dist     站点源码被工程化压缩后放在这里，供发布后的站点直接使用
-		└── src      站点的功能代码
-	        ├── components 自定义组件，博客站点的全部功能模块都实现了组件化，也就是整站组件化
-	        └── dep        依赖的第三方库
+    web 站点的全部资源都在这里
+        ├── articles 博客的全部文章和 Demo 都在这里
+        ├── dist     站点源码被工程化压缩后放在这里，供发布后的站点直接使用
+        └── src      站点的功能代码
+            ├── components 自定义组件，博客站点的全部功能模块都实现了组件化，也就是整站组件化
+            └── dep        依赖的第三方库
 
 cellar 生成的博客是一个单页应用，为了可以被搜索引擎自动收录我们在首页的 `noscript` 标签中生成了网站的标题和文章列表，`noscript` 标签中的内容没有样式但内容齐全，列表中的每篇文章有一个链接，链接到对应文章的详情页，文章详情页也是自动生成的，这样搜索引擎可以方便的抓取到博客的全部内容。在文章的详情页单独放了一段 js，如果用户通过搜索引擎来到博客，通过改变路径格式再回到单页应用的详情上来，代码如下：
 
-	var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
-		return matchStr + 'index.html#!';
-	});
-	window.location.href = href.replace('/main.html', '');
+    var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
+        return matchStr + 'index.html#!';
+    });
+    window.location.href = href.replace('/main.html', '');
 
 js 放在 `noscript` 标签的前面，不需要等 `noscript` 中的内容加载完成就可以执行，在一定程度上保证了加载速度。虽然首页的文章列表使用后台直接生成可以进一步加快首页的渲染，但是在这个连 css 和装饰图都模块化的站点中样式很难被单独提前加载，提前展示内容意义不大体验也不是很友好，另外当前方案首页初次平均加载时间已小于1秒，继续优化弊大于利。
 
@@ -71,13 +71,13 @@ js 放在 `noscript` 标签的前面，不需要等 `noscript` 中的内容加�
 
 cellar 用的 markdown 解析器是开源库 [marked](https://github.com/chjj/marked)，这个是一个轻量级的库，提供了对 markdown 基本语法的解析功能，同时提供了方便的自定义解析接口。还有一个好处是这个库封转的很好前后端通用，cellar 在后端生成文章单页供搜索引擎抓取，在前端直接获取 markdown 文档然后在浏览器中解析。下面是自定义解析的示例代码：
 
-	var renderer = new marked.Renderer();
+    var renderer = new marked.Renderer();
     var options = {
         renderer: renderer
-    };	
+    };    
 
-	// 重写链接的解析规则
-	renderer.link = function (href, title, text) {
+    // 重写链接的解析规则
+    renderer.link = function (href, title, text) {
         var attrStr = ''
             + ' href="' + href + '"'
             + (title === null ? '' : ' title="' + title + '"')
@@ -96,7 +96,7 @@ cellar 用的 markdown 解析器是开源库 [marked](https://github.com/chjj/ma
 
 `init-site`，此工具的职责就是初始化博客整站配置。博客第一次初始化，修改了网站的整站设置信息(如title、主标题、副标题)或者修改了功能性代码需要重新打包压缩，就需要执行下面命令启动该工具：
 
-	node tool/init-site
+    node tool/init-site
 
 此工具集成了 webpack，用于打包功能模块的各种资源，webpack的配置信息在文件 `webpack-config.js` 中，作为一个 node 模块向 `main.js` 提供配置数据。在 webpack 的打包回调函数中做了版本处理，这样打出来的包的文件名会是 `v1.2.js` 这种简约优雅的形式，并且会将版本信息(包括 哈希标识、生成时间、版本号)自动写入 `version-map.js` 中。
 
@@ -106,7 +106,7 @@ cellar 用的 markdown 解析器是开源库 [marked](https://github.com/chjj/ma
 
 如果你需要对前端的功能模块进行二次开发，那么调试的支持是必不可少的，可以加 `-d` 参数启动该工具，通过 `sources map` 技术来调试，命令如下：
 
-	node tool/init-site -d
+    node tool/init-site -d
 
 另外 `init-site` 会自动调用 `publish`，因为整站设置信息和代码更新后必然需要重新发布。
 
