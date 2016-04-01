@@ -17,7 +17,7 @@ var webpackConfig = {
         }
     },
     optimize: {
-        // 是否压缩
+        // 是否压缩，默认压缩
         minimize: true // UglifyJsPlugin
     },
     output: {

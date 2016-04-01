@@ -1,6 +1,6 @@
 <header class="page-header">
     <h1>
-        <span class="main-title">{{=mainHead}}</span>
+        <a class="main-title" v-link="{name: 'index'}">{{=mainHead}}</a>
         <span class="subtitle">{{=subhead}}</span>
     </h1>
     <nav class="nav">
