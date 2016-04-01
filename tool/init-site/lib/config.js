@@ -29,7 +29,9 @@ var config = {
         },
         {
             from: 'header.tpl',
-            to: 'web/src/components/header/header.tpl'
+            to: 'web/src/components/header/header.tpl',
+            // 在文件前面添加一些东西，比如下面的注释
+            before: '<!-- 博客头部，如果需要修改此文件，请修改对应的模板文件 tool/init-site/lib/header.tpl  -->\n'
         }
     ]
 };
