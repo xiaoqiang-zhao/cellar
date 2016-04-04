@@ -3,71 +3,116 @@
  *
  * 文章详情页样式
  */
-
+.article-detail-page-container {
+    display: flex;
+}
 /* 内容部分 */
 .article-detail-container {
+    flex: 1;
     margin: 1em 0 0;
     padding: 1em 1em .5em 1em;
     background-color: #f2f2f2;
 }
 /* 文章目录 */
+.article-detail-page-container > aside {
+    position: relative;
+    order: 2;
+    opacity: .95;
+    margin: 1em 0 0 1em;
+    transition: top .2s ease-out;
+}
 .article-detail-headers-container,
 .article-detail-headers-container.open {
-    position: absolute;
-    top: 0;
-    right: 0;
-    overflow: scroll;
-    box-sizing: border-box;
-    width: auto;
+    position: relative;
     max-width: 260px;
     min-width: 120px;
-    height: auto;
+    box-sizing: border-box;
     border: 1px solid #e2e2e2;
     padding: 6px;
-    border-radius: 0;
+    overflow: scroll;
     font-size: 14px;
-    line-height: 1.5em;
-    background: white;
-    opacity: .9;
+    line-height: 1em;
+    transition: border-radius .5s,
+                top .2s ease-out;
 }
-.article-detail-headers-container p {
-    margin: 0;
-    padding: 0 4px;
+.open > ul {
+    max-width: 260px;
+    min-width: 120px;
 }
-.article-detail-headers-container strong {
-    border-bottom: 1px solid #e2e2e2;
+.article-detail-headers-container > header {
+    top: 6px;
     display: block;
+    box-sizing: border-box;
+    padding-bottom: 3px;
+    padding-top: 100px; /* 为了驱赶文字的乱入 */
+    border-bottom: 1px solid #e2e2e2;
+    font-weight: 700;
+    background: #fff;
+    line-height: 1.5em;
+}
+.article-detail-headers-container.open > header {
+    padding-top: 0;
 }
 .article-detail-headers-container ul {
-    margin: .5em 1em .5em 1.5em;
+    margin: .5em 1em 0 1em;
+}
+.article-detail-headers-container ul li {
+    padding: 5px 0;
+    list-style: none;
+    position: relative;
+}
+.article-detail-headers-container ul li:before {
+    content: "\200B";
+    display: inline-block;
+    box-sizing: border-box;
+    height: 4px;
+    width: 4px;
+    overflow: hidden;
+    position: absolute;
+    left: -9px;
+    top: 11px;
+    border: 2px solid #5a5a5a;
+    border-radius: 2px;
+    vertical-align: middle;
+}
+.article-detail-headers-container ul ul li:before {
+    border: 1px solid #ccc;
 }
 .article-detail-headers-container a {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    /* 不折行 */
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 强制不换行 */
     color: #2479cc;
     text-decoration: none;
     cursor: pointer;
-    /* 不折行 */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; /* 强制不换行 */
 }
 .article-detail-headers-container ul ul {
     margin-top: 0;
     margin-bottom: 0;
 }
 .article-detail-headers-container .icon-catalogue {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: none; /* 宽屏隐藏 */
     box-sizing: border-box;
-    margin: -6px -6px;
     width: 38px;
     height: 38px;
+    border: none;
     padding: 5px 6px;
     border-radius: 20px;
     cursor: pointer;
 }
 .article-detail-headers-container .icon-close {
+    position: absolute;
+    top: 6px;
+    right: 12px;
     display: none;
-    float: right;
-    margin: -2px;
+    border: none;
+    background: none;
 }
 /* 文章列表图标 */
 .icon-catalogue {
@@ -98,7 +143,9 @@
 .icon-catalogue i:after {
     bottom: -6px;
 }
-/* 关闭按钮图标 */
+/* 关闭按钮图标，当前只有这里用到，
+   如果有第二处使用，需要提到公共文件中( icon 文件夹下是个不错的选择)
+ */
 .icon-close {
     position: relative;
     box-sizing: border-box;
@@ -113,6 +160,7 @@
     width: 100%;
     height: 2px;
     top: 50%;
+    left: 0;
     background: #006a00;
     content: "\200B";
 }
@@ -124,19 +172,28 @@
 }
 /* 小于800时文章目录显示为图标 */
 @media screen and (max-width: 800px) {
+    .article-detail-page-container > aside {
+        position: absolute;
+        right: 0;
+    }
     .article-detail-headers-container {
         width: 40px;
-        min-width: 40px;
         height: 40px;
-        overflow: hidden;
+        min-width: 40px; /* 不加会出现侧 U 型边框 */
         border-radius: 20px;
-        right: 0;
+        overflow: hidden;
     }
     .article-detail-headers-container.open {
         height: auto;
+        width: auto;
+        min-width: auto;
+        overflow: scroll;
+        background: #fff;
+        border-radius: 0;
     }
     .article-detail-headers-container .icon-catalogue {
         display: inline-block;
+        background: #fff;
     }
     .article-detail-headers-container.open .icon-catalogue {
         display: none;

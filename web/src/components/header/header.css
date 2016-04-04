@@ -23,6 +23,7 @@
     font-size: 16px;
     line-height: 20px;
     color: #333;
+    text-decoration: none;
 }
 .page-header h1 .subtitle {
     display: block;

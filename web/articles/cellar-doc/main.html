@@ -31,21 +31,22 @@
 <li>web 前端的所有资源文件。</li>
 </ul>
 <p>还有一个辅助工具 server，自开发的轻量级 web 容器，方便运行静态站点和实验研究。代码目录如下：</p>
-<pre><code>${root}/server 
-       /tool   站点辅助工具
-            /init-site
-            /publish
-       /web    站点的全部资源都在这里
+<pre><code>${root}
+    ├── server 
+    └── tool   站点辅助工具
+        ├── init-site
+        └── publish
+    └── web    站点的全部资源都在这里
 </code></pre><p>他们之间的具体联系和技术细节下面分章节具体讲述，由于上面介绍的三层功能都是上层为下层提供辅助服务，理解了下层上层就非常好理解了，所以我们从 web 开始介绍。</p>
 <h2 id="header-1-2">前端功能模块</h2>
 <h3 id="header-1-2-1">概述</h3>
 <p>先看目录结构：</p>
-<pre><code>/web 站点的全部资源都在这里
-    /articles 博客的全部文章和 Demo 都在这里
-    /dist     站点源码被工程化压缩后放在这里，供发布后的站点直接使用
-    /src      站点的功能代码
-        /components 自定义组件，博客站点的全部功能模块都实现了组件化，也就是整站组件化
-        /dep        依赖的第三方库
+<pre><code>web 站点的全部资源都在这里
+    ├── articles 博客的全部文章和 Demo 都在这里
+    ├── dist     站点源码被工程化压缩后放在这里，供发布后的站点直接使用
+    └── src      站点的功能代码
+        ├── components 自定义组件，博客站点的全部功能模块都实现了组件化，也就是整站组件化
+        └── dep        依赖的第三方库
 </code></pre><p>cellar 生成的博客是一个单页应用，为了可以被搜索引擎自动收录我们在首页的 <code>noscript</code> 标签中生成了网站的标题和文章列表，<code>noscript</code> 标签中的内容没有样式但内容齐全，列表中的每篇文章有一个链接，链接到对应文章的详情页，文章详情页也是自动生成的，这样搜索引擎可以方便的抓取到博客的全部内容。在文章的详情页单独放了一段 js，如果用户通过搜索引擎来到博客，通过改变路径格式再回到单页应用的详情上来，代码如下：</p>
 <pre><code>var href = window.location.href.replace(/[^:|\/]\//,function (matchStr){
     return matchStr + &#39;index.html#!&#39;;

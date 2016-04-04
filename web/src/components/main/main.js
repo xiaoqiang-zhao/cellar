@@ -38,9 +38,11 @@ var articleDetail = require('../article-detail/article-detail.js');
 
 router.map({
     '': {
+        name: 'index',
         component: articleList
     },
     '/articles': {
+        name: 'articleList',
         component: articleList
     },
     '/articles/:id': {
