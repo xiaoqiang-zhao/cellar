@@ -33,20 +33,15 @@ var articleDetail = Vue.extend({
                     headerTree = data.headerTree[0].children;
                     me.$data.headerTree = headerTree;
                 }
-                window.setTimeout(function () {
-                    if ($(window).width() > 800) {
-                        // 数据改变触发异步回调，所以需要将命令加入异步队列
-                        resizeHeaderAndDetailWidth();
-                    }
-                    listenWindowScrollEvent(me);
-                });
+                listenWindowScrollEvent();
             }
         });
 
         return {
             htmlContent: '',
             headerTree: [],
-            isOpenHeaders: false
+            isOpenHeaders: false,
+            closeHeadersStyle: 'height: 40px;'
         };
     },
     methods: {
@@ -60,84 +55,54 @@ var articleDetail = Vue.extend({
         // 展开目录
         openHeaders: function () {
             this.$data.isOpenHeaders = true;
-            $('.article-detail-headers-container').css('height', 'auto');
+            this.$data.closeHeadersStyle = '';
         },
         // 关闭目录
         closeHeaders: function () {
             this.$data.isOpenHeaders = false;
-            $('.article-detail-headers-container').css('height', '40px');
+            this.$data.closeHeadersStyle = 'height: 40px;';
         }
     }
 });
 
-// 从新调整标题和内容的尺寸
-function resizeHeaderAndDetailWidth() {
-    var articleDetailHeadersContainer$ = $('.article-detail-headers-container');
-    var articleDetailContainer$ = $('.article-detail-container');
-    var headerWidth = articleDetailHeadersContainer$.width();
-    $('.article-detail-container').css({
-        'margin-right': (headerWidth + 30) + 'px'
-    });
-    var contentWidth = articleDetailContainer$.width();
-    articleDetailHeadersContainer$.css({
-        'margin-left': (contentWidth + 48) + 'px'
-    })
-}
-
 // 监听 body 滚动条
-function listenWindowScrollEvent(vm) {
-    var articleDetailHeadersContainer$ = $('.article-detail-headers-container');
+function listenWindowScrollEvent() {
+    var selector = '.article-detail-page-container > aside';
     var window$ = $(window);
-    window$.scroll(function () {
-        var scrollTop = window$.scrollTop();
-        var headerHeight = $('.page-header').height();
-        var windowWidth = window$.width();
-        var windowHeight = window$.height();
-        // 临界值
-        var criticalValue = headerHeight + 15;
-        var css = {};
-        // 悬挂布局
+    var headerHeight = $('.page-header').height();
+    // 临界值
+    var criticalValue = headerHeight + 15;
+
+    function respondScrollChange(scrollTop) {
+        var aside = $(selector);
+        var top = 0;
         if (scrollTop > criticalValue) {
-            var height = window$.height();
-            if (articleDetailHeadersContainer$.height() < height) {
-                height = 'auto';
+            // 加 4 是为了使顶部有 4px 间隔
+            top = (scrollTop - criticalValue + 4) + 'px';
+            var headerList = aside.find(' > div');
+            var windowHeight = window$.height();
+            var headerListHeight = headerList.height() - 2;
+            if (headerListHeight > windowHeight) {
+                // 减 10 是为了底部有 4px 间隔，
+                // 10 = 4(顶部间距) + 4(底部间距) + 2(上下边框)
+                headerList.css({
+                    height: (windowHeight - 10) + 'px'
+                });
             }
-            else {
-                height += 'px';
-            }
-            css = {
-                position: 'fixed',
-                right: 'auto',
-                height: height
-            };
+        }
+        aside.css({
+            top: top
+        });
+    }
 
-        }
-        // 还原
-        else {
-            css = {
-                position: 'absolute',
-                height: 'auto'
-            };
-        }
+    var timmerId;
+    window$.scroll(function () {
+        clearTimeout(timmerId);
+        timmerId = setTimeout(function () {
+            var scrollTop = window$.scrollTop();
+            respondScrollChange(scrollTop);
+        }, 10);
 
-        // 处理移动端
-        if (vm.$data.isOpenHeaders) {
-            var ulHeight = articleDetailHeadersContainer$.find('>ul').outerHeight(true);
-            if (ulHeight + 30 > windowHeight) {
-                css.height = windowHeight + 'px';
-            }
-            else {
-                css.height = 'auto';
-            }
-        }
-        else if (windowWidth < 800) {
-            css.height = '40px';
-        }
-        if (windowWidth < 800 ) {
-            css.right = 0;
-        }
-
-        articleDetailHeadersContainer$.css(css);
     });
 }
 

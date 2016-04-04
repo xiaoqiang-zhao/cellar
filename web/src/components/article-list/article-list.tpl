@@ -2,9 +2,9 @@
     <article class="article-list-item" v-for="article in list" v-bind:class="{ 'unpublished': !article.isPublished}">
         <a v-link="{ name: 'articleDetail', params: { id: article.enName }}">
             <h1 class="title">{{article.title}}</h1>
-            <summary>
+            <div>
                 {{article.introduction}}
-            </summary>
+            </div>
         </a>
         <footer v-if="article.tags.length > 0">
             <section class="tags-container">

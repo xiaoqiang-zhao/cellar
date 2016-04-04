@@ -1,6 +1,7 @@
+<!-- 博客头部，如果需要修改此文件，请修改对应的模板文件 tool/init-site/lib/header.tpl  -->
 <header class="page-header">
     <h1>
-        <span class="main-title">网站的主标题</span>
+        <a class="main-title" v-link="{name: 'index'}">网站的主标题</a>
         <span class="subtitle">网站的副标题</span>
     </h1>
     <nav class="nav">
