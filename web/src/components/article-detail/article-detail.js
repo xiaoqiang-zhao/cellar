@@ -40,7 +40,7 @@ var articleDetail = Vue.extend({
         return {
             htmlContent: '',
             headerTree: [],
-            isOpenHeaders: false,
+            isOpenHeaders: true,
             closeHeadersStyle: 'height: 40px;'
         };
     },

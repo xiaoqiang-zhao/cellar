@@ -43,8 +43,8 @@
     top: 6px;
     display: block;
     box-sizing: border-box;
-    padding-bottom: 3px;
     padding-top: 100px; /* 为了驱赶文字的乱入 */
+    padding-bottom: 3px;
     border-bottom: 1px solid #e2e2e2;
     font-weight: 700;
     background: #fff;
