@@ -29,11 +29,13 @@
     box-sizing: border-box;
     border: 1px solid #e2e2e2;
     padding: 6px;
-    overflow: scroll;
     font-size: 14px;
     line-height: 1em;
     transition: border-radius .5s,
                 top .2s ease-out;
+}
+.article-detail-headers-container.open.scroll {
+    overflow-y: scroll;
 }
 .open > ul {
     max-width: 260px;
@@ -187,7 +189,6 @@
         height: auto;
         width: auto;
         min-width: auto;
-        overflow: scroll;
         background: #fff;
         border-radius: 0;
     }
