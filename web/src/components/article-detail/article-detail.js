@@ -33,14 +33,14 @@ var articleDetail = Vue.extend({
                     headerTree = data.headerTree[0].children;
                     me.$data.headerTree = headerTree;
                 }
-                listenWindowScrollEvent();
+                me.listenWindowScrollEvent();
             }
         });
 
         return {
             htmlContent: '',
             headerTree: [],
-            isOpenHeaders: true,
+            isOpenHeaders: !this.isPhone(), // 手机上关闭，PC 上打开
             closeHeadersStyle: 'height: 40px;'
         };
     },
@@ -60,58 +60,67 @@ var articleDetail = Vue.extend({
         closeHeaders: function () {
             this.$data.isOpenHeaders = false;
             this.$data.closeHeadersStyle = 'height: 40px;';
+        },
+        // 是否是手机(宽度小于800的视为手机)
+        isPhone: function () {
+            var isPhone = false;
+            if ($(window).width() < 800) {
+                isPhone = true;
+            }
+            return isPhone;
+        },
+        // 监听 body 滚动条
+        listenWindowScrollEvent: function () {
+            var me = this;
+            var window$ = $(window);
+
+            var timmerId;
+            window$.scroll(function () {
+                clearTimeout(timmerId);
+                timmerId = setTimeout(function () {
+                    var scrollTop = window$.scrollTop();
+                    me.respondScrollChange(scrollTop);
+                }, 10);
+            });
+        },
+        // 对滚动条的滚动做出见面上的相应
+        respondScrollChange: function (scrollTop) {
+            var header = $(this.$els.header);
+            var headerUl = $(this.$els.headerUl);
+            var window$ = $(window);
+            var headerHeight = $('.page-header').height();
+            // 临界值,15是头部和内容的间距
+            var criticalValue = headerHeight + 15;
+            var top = 0;
+            // 文章目录悬浮
+            if (scrollTop > criticalValue) {
+                // 加 4 是为了使顶部有 4px 间隔
+                top = (scrollTop - criticalValue + 4) + 'px';
+                // 减 10 是将间隔计算进去
+                // 10 = 4(顶部间距) + 4(底部间距) + 2(上下边框)
+                var windowHeight = window$.height() - 10;
+                var headerHeight = header.outerHeight();
+
+                var styleClass = 'scroll';
+                // 文章目录高度超过可视高度
+                if (headerHeight >= windowHeight) {
+                    headerUl.css({
+                        //
+                        height: (windowHeight - 41) + 'px'
+                    });
+                    headerUl.addClass(styleClass);
+                }
+                else {
+                    headerUl.removeClass(styleClass);
+                }
+            }
+            // 重置定位，悬浮和不悬浮的定位逻辑一样
+            header.css({
+                top: top
+            });
         }
     }
 });
 
-// 监听 body 滚动条
-function listenWindowScrollEvent() {
-    var selector = '.article-detail-page-container > aside';
-    var window$ = $(window);
-    var headerHeight = $('.page-header').height();
-    // 临界值
-    var criticalValue = headerHeight + 15;
-
-    function respondScrollChange(scrollTop) {
-        var aside = $(selector);
-        var top = 0;
-        // 文章目录悬浮
-        if (scrollTop > criticalValue) {
-            // 加 4 是为了使顶部有 4px 间隔
-            top = (scrollTop - criticalValue + 4) + 'px';
-            var headerList = aside.find(' > div');
-            var windowHeight = window$.height();
-            var headerListHeight = headerList.outerHeight(true) - 2;
-
-            var styleClass = 'scroll';
-            // 文章目录高度超过可视高度
-            if (headerListHeight + 15 > windowHeight) {
-                // 减 10 是为了底部有 4px 间隔，
-                // 10 = 4(顶部间距) + 4(底部间距) + 2(上下边框)
-                headerList.css({
-                    height: (windowHeight - 10) + 'px'
-                });
-                headerList.addClass(styleClass);
-            }
-            else {
-                headerList.removeClass(styleClass);
-            }
-        }
-        // 重置定位，悬浮和不悬浮的定位逻辑一样
-        aside.css({
-            top: top
-        });
-    }
-
-    var timmerId;
-    window$.scroll(function () {
-        clearTimeout(timmerId);
-        timmerId = setTimeout(function () {
-            var scrollTop = window$.scrollTop();
-            respondScrollChange(scrollTop);
-        }, 10);
-
-    });
-}
 
 module.exports = articleDetail;

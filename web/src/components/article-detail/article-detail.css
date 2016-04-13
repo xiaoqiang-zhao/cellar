@@ -9,7 +9,7 @@
 /* 内容部分 */
 .article-detail-container {
     flex: 1;
-    margin: 1em 0 0;
+    margin: 1em 0 4px;
     padding: 1em 1em .5em 1em;
     background-color: #f2f2f2;
 }
@@ -17,9 +17,8 @@
 .article-detail-page-container > aside {
     position: relative;
     order: 2;
-    opacity: .95;
+    /*opacity: .95;*//* 这可是个坑呀，加了滚动条会出问题 */
     margin: 1em 0 0 1em;
-    transition: top .2s ease-out;
 }
 .article-detail-headers-container,
 .article-detail-headers-container.open {
@@ -28,26 +27,26 @@
     min-width: 120px;
     box-sizing: border-box;
     border: 1px solid #e2e2e2;
-    padding: 6px;
     font-size: 14px;
     line-height: 1em;
     transition: border-radius .5s,
-                top .2s ease-out;
+                top .2s ease-out,
+                width 80ms ease-out,
+                height 80ms ease-out;
 }
-.article-detail-headers-container.open.scroll {
-    overflow-y: scroll;
-}
-.open > ul {
+.article-detail-headers-container.open > ul {
     max-width: 260px;
     min-width: 120px;
+    overflow: auto;
 }
 .article-detail-headers-container > header {
-    top: 6px;
+    position: relative;
     display: block;
     box-sizing: border-box;
     padding-top: 100px; /* 为了驱赶文字的乱入 */
     padding-bottom: 3px;
     border-bottom: 1px solid #e2e2e2;
+    margin: 6px;
     font-weight: 700;
     background: #fff;
     line-height: 1.5em;
@@ -56,7 +55,7 @@
     padding-top: 0;
 }
 .article-detail-headers-container ul {
-    margin: .5em 1em 0 1em;
+    padding: 0 6px 3px 20px;
 }
 .article-detail-headers-container ul li {
     padding: 5px 0;
@@ -97,8 +96,8 @@
 }
 .article-detail-headers-container .icon-catalogue {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -6px;
+    left: -6px;
     display: none; /* 宽屏隐藏 */
     box-sizing: border-box;
     width: 38px;
@@ -110,8 +109,7 @@
 }
 .article-detail-headers-container .icon-close {
     position: absolute;
-    top: 6px;
-    right: 12px;
+    right: 0px;
     display: none;
     border: none;
     background: none;
@@ -186,6 +184,7 @@
         overflow: hidden;
     }
     .article-detail-headers-container.open {
+        /* 消除 pc 端最小高宽的限制，因为关闭状态下内容会窄 */
         height: auto;
         width: auto;
         min-width: auto;
