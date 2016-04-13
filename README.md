@@ -1,4 +1,4 @@
-# cellar 2.2.0
+# cellar 2.3.0
 
 > cellar中文意思酒窖，希望这里的每一篇博文都是一瓶美酒佳酿，这是建立这个项目的美好愿景。
 
@@ -65,6 +65,12 @@
 - 将压缩资源的版本号与项目的版本号进行统一
 - 从此版开始“语义化版本管理”
 [相关描述参见此译文](http://f2e.souche.com/blog/fan-yi-ru-he-zheng-que-de-ming-ming-ruan-jian-ban-ben-hao/?from=timeline&isappinstalled=0)
+
+## cellar 2.3.0 的改进点
+
+- 添加 手动更改版本信息后自动部署 的支持
+- 升级页面布局，改为弹性布局，代码更简单清晰
+- 优化文章详情页体验，添加文章目录始终保持在可是范围内以及跟随动画等
 
 ## 作者寄语
 
