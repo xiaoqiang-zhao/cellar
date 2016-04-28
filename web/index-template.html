@@ -6,35 +6,31 @@
     <title>网站 title</title>
 </head>
 <body>
-<script src="dist/v2.3.0.js"></script>
+<script src="dist/v2.3.1.js"></script>
 <!-- 给搜索引擎看的 -->
 <noscript>
     <header>
         <h1> 网站的主标题 </h1>
         <h2> 网站的副标题 </h2>
     </header>
-    <div>
-        <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
-        <article>
-            <a href="<%=article.detailPagePath %>">
-                <h1><%=article.jsonData.title %></h1>
-                <summary>
-                    <%=article.jsonData.introduction %>
-                </summary>
-            </a>
-            <%if (article.jsonData.tags.length > 0){%>
-            <footer>
-                <section>
-                    <i>Tags:</i>
-                    <%article.jsonData.tags.forEach(function(tag){%>
-                    <a href=""><%=tag%></a>
-                    <%})%>
-                </section>
-            </footer>
-            <%}%>
-        </article>
-        <%}})%>
-    </div>
+    <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
+    <section>
+        <a href=".<%=article.detailPagePath %>">
+            <h1><%=article.jsonData.title %></h1>
+            <article>
+                <%=article.jsonData.introduction %>
+            </article>
+        </a>
+        <%if (article.jsonData.tags.length > 0){%>
+        <footer>
+            <i>Tags:</i>
+            <%article.jsonData.tags.forEach(function(tag){%>
+            <a><%=tag%></a>
+            <%})%>
+        </footer>
+        <%}%>
+    </section>
+    <%}})%>
 </noscript>
 </body>
 </html>

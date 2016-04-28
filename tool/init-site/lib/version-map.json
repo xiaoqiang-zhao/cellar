@@ -84,9 +84,15 @@
     "timeStr": "2016-4-10"
   },
   {
-    "version": "v2.2.4",
+    "version": "v2.3.0",
     "hash": "1bf325e4524cac3716df",
     "time": 1460541601408,
     "timeStr": "2016-4-13"
+  },
+  {
+    "version": "v2.3.1",
+    "hash": "59d52fed4ed82566eb79",
+    "time": 1461835900877,
+    "timeStr": "2016-4-28"
   }
 ]

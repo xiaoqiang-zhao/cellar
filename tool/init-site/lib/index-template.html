@@ -13,28 +13,24 @@
         <h1> {{=mainHead}} </h1>
         <h2> {{=subhead}} </h2>
     </header>
-    <div>
-        <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
-        <article>
-            <a href="<%=article.detailPagePath %>">
-                <h1><%=article.jsonData.title %></h1>
-                <summary>
-                    <%=article.jsonData.introduction %>
-                </summary>
-            </a>
-            <%if (article.jsonData.tags.length > 0){%>
-            <footer>
-                <section>
-                    <i>Tags:</i>
-                    <%article.jsonData.tags.forEach(function(tag){%>
-                    <a href=""><%=tag%></a>
-                    <%})%>
-                </section>
-            </footer>
-            <%}%>
-        </article>
-        <%}})%>
-    </div>
+    <% articleArr.forEach(function(article){ if(article.jsonData.isPublished){%>
+    <section>
+        <a href=".<%=article.detailPagePath %>">
+            <h1><%=article.jsonData.title %></h1>
+            <article>
+                <%=article.jsonData.introduction %>
+            </article>
+        </a>
+        <%if (article.jsonData.tags.length > 0){%>
+        <footer>
+            <i>Tags:</i>
+            <%article.jsonData.tags.forEach(function(tag){%>
+            <a><%=tag%></a>
+            <%})%>
+        </footer>
+        <%}%>
+    </section>
+    <%}})%>
 </noscript>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <div class="article-list-container">
-    <article class="article-list-item" v-for="article in list" v-bind:class="{ 'unpublished': !article.isPublished}">
+    <section class="article-list-item" v-for="article in list" v-bind:class="{ 'unpublished': !article.isPublished}">
         <a v-link="{ name: 'articleDetail', params: { id: article.enName }}">
             <h1 class="title">{{article.title}}</h1>
             <div>
@@ -12,5 +12,5 @@
                 <a class="tag-item" v-for="tag in article.tags">{{tag}}</a>
             </section>
         </footer>
-    </article>
+    </section>
 </div>
