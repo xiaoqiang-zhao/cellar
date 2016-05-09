@@ -20,7 +20,7 @@ var defaultJson = {
     "type": "md",          // md / html / none
     "createDate": 0,       // 创建时间(毫秒数)
     "commentList": [       // 评论
-        ""
+
     ],
     "todoList": [          // 未来要做的
                            // 已收集了什么还要收集什么，还要集成什么等
