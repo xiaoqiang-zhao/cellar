@@ -30,6 +30,10 @@ var config = {
             contentType: 'text/html; charset=' + encoding,
             encoding: encoding
         },
+        tpl: {
+            contentType: 'text/html; charset=' + encoding,
+            encoding: encoding
+        },
         css: {
             contentType: 'text/css; charset=' + encoding,
             encoding: encoding
