@@ -19,8 +19,8 @@ var getStaticFieldConfig = config.getStaticFieldConfig;
 function routRequest(request, response) {
     // 路由队列（路由的优先顺序在此配置）
     var routList = [
-        routStaticFile,
         routUserSettingPath,
+        routStaticFile,
         routAutoPath,
         response404
     ];
@@ -37,8 +37,14 @@ function routRequest(request, response) {
             routList.pop().apply(null, arg);
         }
     };
-
-    rout.next();
+    // 错误日志，异常处理
+    try {
+        rout.next();
+    }
+    catch (e) {
+        console.log('静态文件路由错误:           ');
+        console.log(e);
+    }
 }
 
 /**
@@ -50,7 +56,6 @@ function routRequest(request, response) {
  * @private
  */
 function routStaticFile(request, response, rout) {
-    // TODO 错误日志，异常处理
     // 请求路径
     var path = url.parse(request.url).pathname;
 
@@ -102,43 +107,49 @@ function routUserSettingPath(request, response, rout) {
     }
 
     if (routInfo !== null) {
-        try {
-            var contentType = getStaticFieldConfig(routInfo.contentType);
-            var serviceModel = require(config.serviceRootPath + routInfo.modelPath);
-            // 服务调用方法名
-            var methodName = routInfo.methodName || config.serviceDefaultMethodName;
-
-            /**
-             * 方案一，使用方便，但是会污染服务对象
-             *
-             // 为 serviceModel 添加额外的属性，
-             // 如果 serviceModel 中已经有这两个属性，那么会被覆盖，这个还没有好的解决办法
-             serviceModel.request = request;
-             serviceModel.response = response;
-             // 将分离出的路径参数传入
-             var content = serviceModel[routInfo.method].apply(serviceModel, routInfo.arguments);
-             */
-
-            /**
-             * 方案二，不污染服务对象，在服务对象的对外方法中需要显示声明参数
-             */
-            routInfo.arguments.push(
-                request,
-                response,
-                // 给服务的异步准备的，服务走异步时请勿有返回值（或返回undefined）
-                function (contentType, content, encoding) {
-                    response200(response, contentType, content, encoding);
-                },
-                // 异常捕获回调
-                function () {
-                    response500(response);
-                }
-            );
-            var content = serviceModel[methodName].apply(serviceModel, routInfo.arguments);
-            response200(response, contentType, content);
+        if (routInfo.type === 'staticFile') {
+            request.url = routInfo.filePatch;
+            rout.next();
         }
-        catch (err) {
-            response500(response);
+        else {
+            try {
+                var contentType = getStaticFieldConfig(routInfo.contentType);
+                var serviceModel = require(config.serviceRootPath + routInfo.modelPath);
+                // 服务调用方法名
+                var methodName = routInfo.methodName || config.serviceDefaultMethodName;
+
+                /**
+                 * 方案一，使用方便，但是会污染服务对象
+                 *
+                 // 为 serviceModel 添加额外的属性，
+                 // 如果 serviceModel 中已经有这两个属性，那么会被覆盖，这个还没有好的解决办法
+                 serviceModel.request = request;
+                 serviceModel.response = response;
+                 // 将分离出的路径参数传入
+                 var content = serviceModel[routInfo.method].apply(serviceModel, routInfo.arguments);
+                 */
+
+                /**
+                 * 方案二，不污染服务对象，在服务对象的对外方法中需要显示声明参数
+                 */
+                routInfo.arguments.push(
+                    request,
+                    response,
+                    // 给服务的异步准备的，服务走异步时请勿有返回值（或返回undefined）
+                    function (contentType, content, encoding) {
+                        response200(response, contentType, content, encoding);
+                    },
+                    // 异常捕获回调
+                    function () {
+                        response500(response);
+                    }
+                );
+                var content = serviceModel[methodName].apply(serviceModel, routInfo.arguments);
+                response200(response, contentType, content);
+            }
+            catch (err) {
+                response500(response);
+            }
         }
     }
     else {
