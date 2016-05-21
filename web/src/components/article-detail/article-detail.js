@@ -12,7 +12,7 @@ var markdownTool = require('./markdown-tool.js');
 // 依赖的样式
 require('./prettify.css');
 require('./markdown-reader.css');
-require('./article-detail.css');
+require('./article-detail.less');
 require('../icon/tag.css');
 
 var articleDetail = Vue.extend({
@@ -40,8 +40,7 @@ var articleDetail = Vue.extend({
         return {
             htmlContent: '',
             headerTree: [],
-            isOpenHeaders: !this.isPhone(), // 手机上关闭，PC 上打开
-            closeHeadersStyle: 'height: 40px;'
+            isOpenHeaders: !this.isPhone() // 手机上关闭，PC 上打开
         };
     },
     methods: {
@@ -54,12 +53,10 @@ var articleDetail = Vue.extend({
         // 展开目录
         openHeaders: function () {
             this.$data.isOpenHeaders = true;
-            this.$data.closeHeadersStyle = '';
         },
         // 关闭目录
         closeHeaders: function () {
             this.$data.isOpenHeaders = false;
-            this.$data.closeHeadersStyle = 'height: 40px;';
         },
         // 是否是手机(宽度小于800的视为手机)
         isPhone: function () {

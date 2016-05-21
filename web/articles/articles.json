@@ -8,9 +8,7 @@
     "state": "立项",
     "type": "md",
     "createDate": 1454737578389,
-    "commentList": [
-      ""
-    ],
+    "commentList": [],
     "todoList": []
   },
   {
@@ -23,9 +21,7 @@
     "type": "md",
     "createDate": "1447985061510",
     "md5": "",
-    "commentList": [
-      ""
-    ],
+    "commentList": [],
     "todoList": [],
     "isPublished": true,
     "enName": "example"

@@ -3,9 +3,9 @@
     <!--- 文章目录模板 -->
     <aside>
         <div v-if="headerTree.length > 0" v-el:header class="article-detail-headers-container"
-             :class="{ 'open': isOpenHeaders}" :style="[closeHeadersStyle]">
+             :class="{ 'open': isOpenHeaders, 'close': !isOpenHeaders}">
             <header>
-                文章目录
+                <span class="text">文章目录</span>
                 <button class="icon-catalogue" v-on:click="openHeaders">
                     <i></i>
                 </button>
