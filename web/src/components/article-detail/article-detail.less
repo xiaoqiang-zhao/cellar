@@ -29,21 +29,35 @@
     border: 1px solid #e2e2e2;
     font-size: 14px;
     line-height: 1em;
+    -webkit-transition: border-radius .5s,
+    top .2s ease-out,
+    width 80ms ease-out,
+    height 80ms ease-out;
     transition: border-radius .5s,
-                top .2s ease-out,
-                width 80ms ease-out,
-                height 80ms ease-out;
+    top .2s ease-out,
+    width 80ms ease-out,
+    height 80ms ease-out;
+}
+.article-detail-headers-container {
+    &.close {
+        > ul {
+            display: none;
+        }
+        .text {
+            display: none;
+        }
+    }
 }
 .article-detail-headers-container.open > ul {
     max-width: 260px;
     min-width: 120px;
+    margin-bottom: 5px;
     overflow: auto;
 }
 .article-detail-headers-container > header {
     position: relative;
     display: block;
     box-sizing: border-box;
-    padding-top: 100px; /* 为了驱赶文字的乱入 */
     padding-bottom: 3px;
     border-bottom: 1px solid #e2e2e2;
     margin: 6px;
@@ -55,12 +69,14 @@
     padding-top: 0;
 }
 .article-detail-headers-container ul {
-    padding: 0 6px 3px 20px;
+    padding: 0 6px 0 20px;
 }
 .article-detail-headers-container ul li {
-    padding: 5px 0;
     list-style: none;
     position: relative;
+}
+.article-detail-headers-container ul li a {
+    padding: 5px 0;
 }
 .article-detail-headers-container ul li:before {
     content: "\200B";
