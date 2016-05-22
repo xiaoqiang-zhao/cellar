@@ -1,5 +1,9 @@
 # IDE的配置文件
 /.idea/
 .idea/codeStyleSettings.xml
+
 # npm日志
 npm-debug.log
+
+# node 依赖包
+node_modules/
