@@ -38,7 +38,7 @@
 
 此工具生成的是一套静态网站，如果有自己的服务器只需要将 `my-blog` 下的内容放到网站根目录下就可以。
 
-如果没有自己的服务器，可以在 github 上开通个人站点，作为一个开源项目上传，如何开通和上传请参考 [github 官方文档](https://pages.github.com/)。最后的成果请参考[本开源项目发起人龙则的个人站点](https://longze.github.io)。
+如果没有自己的服务器，可以在 github 上开通个人站点，作为一个开源项目上传，如何开通和上传请参考 [github 官方文档](https://pages.github.com/)。最后的成果请参考[本开源项目发起人小强赵的个人站点](https://xiaoqiang-zhao.github.io)。
 
 ## cellar 2.1 的改进点
 
@@ -79,5 +79,3 @@
 - css 预处理
 
 这个系统是我对前端模块化和工程化的一个探索，抛开这个工具业务本身，在技术和工程层面也很值得探索，技术细节请参考 "[cellar 技术文档](./web/articles/cellar-doc/main.md)"
-
-测试~~~~
